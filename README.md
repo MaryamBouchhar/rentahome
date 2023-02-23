@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <i>A web application for renting homes, where users can browse properties, add them to their wishlist, and make reservations. The app also provides an administrative interface for managing properties, reservations, users, and reports.</i>
+  <i>A web application for renting homes, where users can browse properties, add them to their wishlist, and make reservations. The app also provides an administrative interface for managing properties, reservations, users, reports and many more features.</i>
 </p>
 
 ## Table of Contents
