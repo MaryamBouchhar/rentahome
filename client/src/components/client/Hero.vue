@@ -10,7 +10,9 @@
           <div class="badge badge-outline">Best prices</div>
           <div class="badge badge-outline">Modern design</div>
         </div>
-        <button class="btn btn-primary">start browsing</button>
+        <router-link to="/properties">
+          <button class="btn btn-primary">start browsing</button>
+        </router-link>
       </div>
     </div>
   </div>
@@ -18,7 +20,7 @@
 
 <script>
 export default {
-  name: "Hero"
+  name: "Hero",
 }
 </script>
 
