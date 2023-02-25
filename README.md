@@ -1,9 +1,12 @@
-<h1 align="center">Renting Home Web App</h1>
+<h1 align="center">RentaHome: Renting Home Web App</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Java-Jakarta%2010-orange" alt="Java Jakarta 10">
   <img src="https://img.shields.io/badge/Vue.js-3.x-brightgreen" alt="Vue.js 3.x">
   <img src="https://img.shields.io/badge/Vite.js-2.x-yellowgreen" alt="Vite.js 2.x">
+  <img src="https://img.shields.io/badge/Tailwind%20CSS-2.x-blue" alt="Tailwind CSS 3.x">
+  <img src="https://img.shields.io/badge/DaisyUI-2.x-blueviolet" alt="DaisyUI 2.51.1">
+  <img src="https://img.shields.io/badge/MySQL-8.x-blue" alt="MySQL 8.x">
 </p>
 
 <p align="center">
