@@ -1,12 +1,21 @@
 import {RouteRecordRaw, createRouter, createWebHistory} from 'vue-router';
 
+// @ts-ignore
+// @ts-ignore
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'Home',
         component: () => import('../App.vue')
     },
-    //TODO: Add more routes here
+    //TODO: Add client routes here
+
+    //TODO: Add admin routes here
+    {
+        path: '/admin',
+        name: 'Admin',
+        component: () => import('../admin/views/Login.vue')
+    },
     {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
