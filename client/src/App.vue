@@ -1,16 +1,19 @@
 <script setup lang="ts">
-
+import { ref } from "vue";
+import NavBar from "./components/NavBar.vue";
 </script>
 
 <template>
-  <main class="grid min-h-full place-items-center bg-white py-24 px-6 sm:py-32 lg:px-8">
-    <ul class="steps">
-      <li class="step step-info">Fly to moon</li>
-      <li class="step step-info">Shrink the moon</li>
-      <li class="step step-info">Grab the moon</li>
-      <li class="step step-error" data-content="?">Sit on toilet</li>
-    </ul>
-  </main>
+  <div>
+    <NavBar/>
+    <router-view v-slot="{ Component, route }">
+      <transition name="fade" mode="out-in">
+        <div :key="route.name">
+          <component :is="Component"></component>
+        </div>
+      </transition>
+    </router-view>
+  </div>
 </template>
 
 <style scoped>
