@@ -5,7 +5,12 @@
       <div class="max-w-md">
         <h1 class="mb-5 text-5xl font-bold">You can trust us</h1>
         <p class="mb-5">with your choice of housing</p>
-        <button class="btn btn-primary">Get Started</button>
+        <div class="flex justify-center space-x-2 mb-5">
+          <div class="badge badge-outline">Most trusted</div>
+          <div class="badge badge-outline">Best prices</div>
+          <div class="badge badge-outline">Modern design</div>
+        </div>
+        <button class="btn btn-primary">start browsing</button>
       </div>
     </div>
   </div>
