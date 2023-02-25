@@ -41,9 +41,9 @@
           </div>
         </label>
         <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-          <li><a>Profile</a></li>
-          <li><a>Settings</a></li>
-          <li><a>Logout</a></li>
+          <li><a><box-icon name='user-circle'></box-icon>Profile</a></li>
+          <li><a><box-icon name='cog' ></box-icon>Settings</a></li>
+          <li><a><box-icon name='power-off'></box-icon>Logout</a></li>
         </ul>
       </div>
       <ThemeDropDown/>
@@ -54,6 +54,7 @@
 <script>
 import NavLink from "./NavLink.vue";
 import ThemeDropDown from "./ThemeDropDown.vue";
+import 'boxicons';
 
 export default {
   name: "NavBar",
