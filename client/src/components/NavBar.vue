@@ -18,7 +18,7 @@
       </div>
       <router-link to="/">
         <a class="btn btn-ghost normal-case text-xl">
-          Abdel<span class="text-primary">.</span>
+          Renta<span class="text-primary">Home</span>
         </a>
       </router-link>
     </div>
