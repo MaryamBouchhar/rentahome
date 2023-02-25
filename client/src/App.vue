@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import NavBar from "./components/NavBar.vue";
+import Hero from "./components/Hero.vue";
 </script>
 
 <template>
   <div>
     <NavBar/>
+    <Hero/>
     <router-view/>
   </div>
 </template>

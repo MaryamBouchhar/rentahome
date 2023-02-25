@@ -9,10 +9,8 @@
         </label>
         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
           <NavLink to="/" label="Home"/>
+          <NavLink to="/properties" label="Properties" class="my-1"/>
           <NavLink to="/about" label="About" class="my-1"/>
-          <NavLink to="/skills" label="Skills" class="my-1"/>
-          <NavLink to="/projects" label="Projects" class="my-1"/>
-          <NavLink to="/services" label="Services" class="my-1"/>
           <NavLink to="/contact" label="Contact" class="my-1"/>
         </ul>
       </div>
@@ -41,9 +39,15 @@
           </div>
         </label>
         <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-          <li><a><box-icon name='user-circle'></box-icon>Profile</a></li>
-          <li><a><box-icon name='cog' ></box-icon>Settings</a></li>
-          <li><a><box-icon name='power-off'></box-icon>Logout</a></li>
+          <li><a>
+            <box-icon name='user-circle'></box-icon>
+            Profile</a></li>
+          <li><a>
+            <box-icon name='cog'></box-icon>
+            Settings</a></li>
+          <li><a>
+            <box-icon name='power-off'></box-icon>
+            Logout</a></li>
         </ul>
       </div>
       <ThemeDropDown/>
