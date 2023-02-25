@@ -5,6 +5,11 @@ const theme_items = document.querySelectorAll('.theme-item');
 getTheme();
 
 theme_items.forEach((theme) => {
+
+    //remove outline from all themes
+    theme.classList.remove('outline');
+    theme.classList.remove('outline-2');
+
     theme.addEventListener("click", (e) => {
         //remove all active classes
         theme_items.forEach((theme) => {

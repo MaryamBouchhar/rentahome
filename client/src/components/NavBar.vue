@@ -25,14 +25,27 @@
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal p-0">
         <NavLink to="/" label="Home" class="mx-1"/>
+        <NavLink to="/properties" label="Properties" class="mx-1"/>
         <NavLink to="/about" label="About" class="mx-1"/>
-        <NavLink to="/skills" label="Skills" class="mx-1"/>
-        <NavLink to="/projects" label="Projects" class="mx-1"/>
-        <NavLink to="/services" label="Services" class="mx-1"/>
         <NavLink to="/contact" label="Contact" class="mx-1"/>
       </ul>
     </div>
     <div class="navbar-end">
+      <div class="form-control">
+        <input type="text" placeholder="Search..." class="input input-bordered"/>
+      </div>
+      <div class="dropdown dropdown-end ml-2">
+        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+          <div class="w-10 rounded-full">
+            <img src="https://i.pravatar.cc/300"/>
+          </div>
+        </label>
+        <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+          <li><a>Profile</a></li>
+          <li><a>Settings</a></li>
+          <li><a>Logout</a></li>
+        </ul>
+      </div>
       <ThemeDropDown/>
     </div>
   </div>
