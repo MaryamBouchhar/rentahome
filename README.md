@@ -35,9 +35,9 @@
 ```git clone https://github.com/abdellatif-laghjaj/rentahome.git```
 
 
-2. Navigate to the project directory:
+2. Navigate to the client directory:
 
-```cd rentahome```
+```cd rentahome/client/```
 
 3. Install the dependencies:
 
@@ -51,6 +51,12 @@
 ```npm run dev```
 
 2. Open your web browser and navigate to [http://localhost:3000](http://localhost:3000).
+
+3. Open server directory in another window
+
+4. Start the Tomcat server
+
+5. Enjoy :)
 
 ## Contributing
 
