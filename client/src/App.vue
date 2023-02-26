@@ -7,7 +7,7 @@ const isAllowedRoute = allowedRoutes.map(route => route === location.pathname).i
 </script>
 
 <template>
-  <NavBar v-if="isAllowedRoute"/>
+  <NavBar/>
   <router-view v-slot="{ Component, route }">
     <transition name="fade" mode="out-in">
       <div :key="route.name">
