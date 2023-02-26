@@ -5,7 +5,7 @@ import {
   gradientBgPurplePink,
   gradientBgDark,
   gradientBgPinkRed,
-} from "@/colors";
+} from "../js/colors";
 
 const props = defineProps({
   bg: {
