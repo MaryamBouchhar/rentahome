@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdi/js": "^7.1.96",
     "axios": "^1.3.4",
     "boxicons": "^2.1.4",
     "daisyui": "^2.51.1",
