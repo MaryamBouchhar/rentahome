@@ -15,16 +15,17 @@ const routes: RouteRecordRaw[] = [
         component: () => import('../../src/views/About.vue')
     },
     {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: () => import('../admin/views/HomeView.vue')
+    },
+    {
         path: '/contact',
         name: 'Contact',
         component: () => import('../../src/views/Contact.vue')
     },
     //TODO: Add admin routes here
-    {
-        path: '/admin',
-        name: 'Admin',
-        component: () => import('../admin/views/Login.vue')
-    },
+
     {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
