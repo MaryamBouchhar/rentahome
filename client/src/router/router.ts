@@ -19,6 +19,11 @@ const routes: RouteRecordRaw[] = [
         name: 'Contact',
         component: () => import('../../src/views/Contact.vue')
     },
+    {
+        path: '/profile',
+        name: 'Profile',
+        component: () => import('../../src/views/Profile.vue')
+    },
     //TODO: Add admin routes here
     {
         path: '/admin',
