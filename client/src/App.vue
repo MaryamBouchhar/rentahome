@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import NavBar from "./components/client/NavBar.vue";
 import Hero from "./components/client/Hero.vue";
+const allowedRoutes = ['/', '/properties', '/about', '/contact'];
+const isAllowedRoute = allowedRoutes.map(route => route === location.pathname).includes(true);
 </script>
 
 <template>
-  <NavBar/>
+  <NavBar v-if="isAllowedRoute"/>
+  <RouterView v-else />
+
   <router-view v-slot="{ Component, route }">
     <transition name="fade" mode="out-in">
       <div :key="route.name">
@@ -12,6 +16,7 @@ import Hero from "./components/client/Hero.vue";
       </div>
     </transition>
   </router-view>
+
 </template>
 
 <style scoped>

@@ -1,4 +1,4 @@
-import {RouteRecordRaw, createRouter, createWebHashHistory} from 'vue-router';
+import {RouteRecordRaw, createRouter, createWebHistory} from 'vue-router';
 
 // @ts-ignore
 // @ts-ignore
@@ -18,15 +18,22 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/contact',
         name: 'Contact',
-        component: () => import('../admin/views/FormsView.vue')
+        component: () => import('../admin/views/HomeView.vue')
     }
-    //TODO: Add admin routes here
 
+    //TODO: Add admin routes here
+    ,
+
+    {
+        path: '/admin/dashboard',
+        name: 'Dashboard',
+        component: () => import('../admin/views/HomeView.vue')
+    }
 
 ];
 
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes
 });
 
