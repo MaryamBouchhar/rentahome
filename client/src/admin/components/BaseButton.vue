@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import { RouterLink } from "vue-router";
-import { getButtonColor } from "@/colors.js";
+import { getButtonColor } from "../js/colors.js";
 import BaseIcon from "../components/BaseIcon.vue";
 
 const props = defineProps({
