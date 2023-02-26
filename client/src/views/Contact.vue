@@ -1,7 +1,7 @@
 <template>
   <div class="container w-11/12 mx-auto flex items-center justify-center flex-col">
     <!-- Section Title -->
-    <div class="text-3xl font-bold my-4">
+    <div class="text-3xl font-bold mt-4 mb-2">
       <span>Contact </span>
       <span class="text-primary">Us</span>
     </div>
