@@ -2,8 +2,8 @@
 import { mdiForwardburger, mdiBackburger, mdiMenu } from "@mdi/js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import menuAside from "../menuAside.js";
-import menuNavBar from "../menuNavBar.js";
+import menuAside from "../js/menuAside.js";
+import menuNavBar from "../js/menuNavBar.js";
 import { useMainStore } from "../stores/main.js";
 import { useStyleStore } from "../stores/style.js";
 import BaseIcon from "../components/BaseIcon.vue";

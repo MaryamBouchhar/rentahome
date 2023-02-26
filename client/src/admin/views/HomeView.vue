@@ -23,6 +23,9 @@ import CardBoxClient from "../components/CardBoxClient.vue";
 import LayoutAuthenticated from "../layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "../components/SectionTitleLineWithButton.vue";
 import SectionBannerStarOnGitHub from "../components/SectionBannerStarOnGitHub.vue";
+import Hero from "../../components/client/Hero.vue";
+import Featured from "../../components/client/Featured.vue";
+import Footer from "../../components/client/Footer.vue";
 
 const chartData = ref(null);
 
@@ -142,3 +145,10 @@ const transactionBarItems = computed(() => mainStore.history);
     </SectionMain>
   </LayoutAuthenticated>
 </template>
+<script>
+
+export default {
+name: "dashboard"
+
+}
+</script>
