@@ -17,6 +17,51 @@
       </div>
     </div>
   </div>
+
+  <!-- details -->
+  <div class="container mt-20 mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-12">
+    <div class="form-control w-full flex flex-col content-center items-center">
+      <label class="label">
+        <span class="label-text">First Name</span>
+      </label>
+      <input type="text" placeholder="Jhon Smilga" value="Jhon Smilga" class="input input-bordered w-full"/>
+    </div>
+
+    <div class="form-control w-full flex flex-col content-center items-center">
+      <label class="label">
+        <span class="label-text">Last Name</span>
+      </label>
+      <input type="text" placeholder="Jhon Smilga" value="Jhon Smilga" class="input input-bordered w-full"/>
+    </div>
+
+    <div class="form-control w-full flex flex-col content-center items-center">
+      <label class="label">
+        <span class="label-text">Email</span>
+      </label>
+      <input type="text" placeholder="Jhon Smilga" value="Jhon Smilga" class="input input-bordered w-full"/>
+    </div>
+
+    <div class="form-control w-full flex flex-col content-center items-center">
+      <label class="label">
+        <span class="label-text">Phone</span>
+      </label>
+      <input type="text" placeholder="Jhon Smilga" value="Jhon Smilga" class="input input-bordered w-full"/>
+    </div>
+
+    <div class="form-control w-full flex flex-col content-center items-center">
+      <label class="label">
+        <span class="label-text">Old password</span>
+      </label>
+      <input type="password" placeholder="Old password" class="input input-bordered w-full"/>
+    </div>
+
+    <div class="form-control w-full flex flex-col content-center items-center">
+      <label class="label">
+        <span class="label-text">New password</span>
+      </label>
+      <input type="password" placeholder="New password" class="input input-bordered w-full"/>
+    </div>
+  </div>
 </template>
 
 <script>
