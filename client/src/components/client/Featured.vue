@@ -15,6 +15,9 @@
         <PropertyCard/>
         <PropertyCard/>
       </div>
+
+      <!-- view all button -->
+      <button class="btn btn-wide">View All</button>
     </div>
   </div>
 </template>
