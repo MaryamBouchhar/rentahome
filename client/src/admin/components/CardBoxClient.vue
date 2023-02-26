@@ -1,10 +1,10 @@
 <script setup>
 import { computed } from "vue";
 import { mdiTrendingDown, mdiTrendingUp, mdiTrendingNeutral } from "@mdi/js";
-import CardBox from "@/components/CardBox.vue";
-import BaseLevel from "@/components/BaseLevel.vue";
-import PillTag from "@/components/PillTag.vue";
-import UserAvatar from "@/components/UserAvatar.vue";
+import CardBox from "../components/CardBox.vue";
+import BaseLevel from "../components/BaseLevel.vue";
+import PillTag from "../components/PillTag.vue";
+import UserAvatar from "../components/UserAvatar.vue";
 
 const props = defineProps({
   name: {
