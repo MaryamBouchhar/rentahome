@@ -17,7 +17,9 @@
       </div>
 
       <!-- view all button -->
-      <button class="btn btn-wide">View All</button>
+      <router-link to="/properties">
+        <button class="btn btn-wide">View All</button>
+      </router-link>
     </div>
   </div>
 </template>
