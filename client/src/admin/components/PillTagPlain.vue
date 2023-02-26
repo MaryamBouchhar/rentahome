@@ -1,5 +1,5 @@
 <script setup>
-import BaseIcon from "@/components/BaseIcon.vue";
+import BaseIcon from "../components/BaseIcon.vue";
 
 defineProps({
   label: {

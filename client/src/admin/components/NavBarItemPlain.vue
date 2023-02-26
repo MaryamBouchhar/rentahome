@@ -1,5 +1,5 @@
 <script setup>
-import { useStyleStore } from "@/stores/style";
+import { useStyleStore } from "../stores/style";
 
 defineProps({
   display: {
