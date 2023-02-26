@@ -17,6 +17,58 @@
       </div>
     </div>
   </div>
+
+  <!-- details -->
+  <form action="">
+    <div class="container my-20 mx-auto px-20 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-6">
+      <div class="form-control w-full flex flex-col content-center items-center">
+        <label class="label">
+          <span class="label-text font-bold text-lg font-bold text-lg">First Name</span>
+        </label>
+        <input type="text" placeholder="Jhon Smilga" value="Jhon Smilga"
+               class="input input-primary input-bordered w-full"/>
+      </div>
+
+      <div class="form-control w-full flex flex-col content-center items-center">
+        <label class="label">
+          <span class="label-text font-bold text-lg">Last Name</span>
+        </label>
+        <input type="text" placeholder="Jhon Smilga" value="Jhon Smilga"
+               class="input input-primary input-bordered w-full"/>
+      </div>
+
+      <div class="form-control w-full flex flex-col content-center items-center">
+        <label class="label">
+          <span class="label-text font-bold text-lg">Email</span>
+        </label>
+        <input type="text" placeholder="Jhon Smilga" value="Jhon Smilga"
+               class="input input-primary input-bordered w-full"/>
+      </div>
+
+      <div class="form-control w-full flex flex-col content-center items-center">
+        <label class="label">
+          <span class="label-text font-bold text-lg">Phone</span>
+        </label>
+        <input type="text" placeholder="Jhon Smilga" value="Jhon Smilga"
+               class="input input-primary input-bordered w-full"/>
+      </div>
+
+      <div class="form-control w-full flex flex-col content-center items-center">
+        <label class="label">
+          <span class="label-text font-bold text-lg">Old password</span>
+        </label>
+        <input type="password" placeholder="Old password" class="input input-primary input-bordered w-full"/>
+      </div>
+
+      <div class="form-control w-full flex flex-col content-center items-center">
+        <label class="label">
+          <span class="label-text font-bold text-lg">New password</span>
+        </label>
+        <input type="password" placeholder="New password" class="input input-primary input-bordered w-full"/>
+      </div>
+      <button class="btn btn-wide w-full col-span-full">Update</button>
+    </div>
+  </form>
 </template>
 
 <script>

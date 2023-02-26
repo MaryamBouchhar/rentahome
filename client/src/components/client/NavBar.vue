@@ -29,9 +29,6 @@
       </ul>
     </div>
     <div class="navbar-end">
-      <div class="form-control">
-        <input type="text" placeholder="Search..." class="input input-bordered"/>
-      </div>
       <div class="dropdown dropdown-end ml-2">
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
