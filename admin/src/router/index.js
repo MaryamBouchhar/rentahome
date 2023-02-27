@@ -3,32 +3,34 @@ import Style from "@/views/StyleView.vue";
 import Home from "@/views/HomeView.vue";
 
 const routes = [
-
   {
     // Document title tag
     // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
     meta: {
       title: "Dashboard",
     },
+
     path: "/",
+
     name: "dashboard",
     component: Home,
-  },
+  },{
+  meta: {
+  title: "Properties"
+},
+  path: "/properties",
+  name: "properties",
+  component: () => import("@/views/PropertiesView.vue"),
+},
   {
+
+
     meta: {
-      title: "Tables",
+      title: "AddProperty",
     },
-    path: "/tables",
-    name: "tables",
-    component: () => import("@/views/TablesView.vue"),
-  },
-  {
-    meta: {
-      title: "Forms",
-    },
-    path: "/forms",
-    name: "forms",
-    component: () => import("@/views/FormsView.vue"),
+    path: "/add-property",
+    name: "addproperty",
+    component: () => import("@/views/NewPropertyView.vue"),
   },
   {
     meta: {
