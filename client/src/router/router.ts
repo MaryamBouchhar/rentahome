@@ -36,4 +36,5 @@ const router = createRouter({
     routes
 });
 
+// @ts-ignore
 export default router;
