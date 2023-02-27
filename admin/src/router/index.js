@@ -16,10 +16,8 @@ const routes = [
     component: Home,
   },
   {
-    meta: {
-      title: "Tables",
-    },
-  },
+
+
     meta: {
       title: "Forms",
     },
