@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import {createRouter, createWebHashHistory} from "vue-router";
 import Style from "@/views/StyleView.vue";
 import Home from "@/views/HomeView.vue";
 
@@ -14,14 +14,14 @@ const routes = [
 
     name: "dashboard",
     component: Home,
-  },{
-  meta: {
-  title: "Properties"
-},
-  path: "/properties",
-  name: "properties",
-  component: () => import("@/views/PropertiesView.vue"),
-},
+  }, {
+    meta: {
+      title: "Properties"
+    },
+    path: "/properties",
+    name: "properties",
+    component: () => import("@/views/PropertiesView.vue"),
+  },
   {
 
 
@@ -78,7 +78,7 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    return savedPosition || { top: 0 };
+    return savedPosition || {top: 0};
   },
 });
 
