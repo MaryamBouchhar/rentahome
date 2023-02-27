@@ -49,7 +49,9 @@ const asideLgCloseClick = (event) => {
         <div
           class="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0"
         >
-          <b class="font-black">One</b>
+          <img src="../images/logo-rentahome.png"
+                 alt="image"
+          style=" margin-top:130px ;margin-bottom: 10px ; height: 200px;width: 400px"/>
         </div>
         <button
           class="hidden lg:inline-block xl:hidden p-3"
@@ -66,7 +68,7 @@ const asideLgCloseClick = (event) => {
         "
         class="flex-1 overflow-y-auto overflow-x-hidden"
       >
-        <AsideMenuList :menu="menu" @menu-click="menuClick" />
+        <AsideMenuList :menu="menu" @menu-click="menuClick" style="margin-top: 50px" />
       </div>
 
       <ul>
