@@ -30,9 +30,6 @@
       </ul>
     </div>
     <div class="navbar-end">
-      <div class="form-control">
-        <input type="text" placeholder="Search..." class="input input-bordered"/>
-      </div>
       <div class="dropdown dropdown-end ml-2">
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
@@ -40,15 +37,13 @@
           </div>
         </label>
         <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-          <li><a>
-            <box-icon name='user-circle'></box-icon>
-            Profile</a></li>
-          <li><a>
-            <box-icon name='cog'></box-icon>
-            Settings</a></li>
-          <li><a>
-            <box-icon name='power-off'></box-icon>
-            Logout</a></li>
+          <li>
+            <router-link to="/profile">
+              <i class='bx bx-user bx-sm'></i>Profile
+            </router-link>
+          </li>
+          <li><a><i class='bx bx-cog bx-sm'></i>Settings</a></li>
+          <li><a><i class='bx bx-power-off bx-sm'></i>Logout</a></li>
         </ul>
       </div>
       <ThemeDropDown/>
