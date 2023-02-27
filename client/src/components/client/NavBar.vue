@@ -12,6 +12,7 @@
           <NavLink to="/properties" label="Properties" class="my-1"/>
           <NavLink to="/about" label="About" class="my-1"/>
           <NavLink to="/contact" label="Contact" class="my-1"/>
+
         </ul>
       </div>
       <router-link to="/">
