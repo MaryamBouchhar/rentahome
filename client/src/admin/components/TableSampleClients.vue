@@ -1,13 +1,13 @@
 <script setup>
 import { computed, ref } from "vue";
-import { useMainStore } from "@/stores/main";
+import { useMainStore } from "../stores/main";
 import { mdiEye, mdiTrashCan } from "@mdi/js";
-import CardBoxModal from "@/components/CardBoxModal.vue";
-import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
-import BaseLevel from "@/components/BaseLevel.vue";
-import BaseButtons from "@/components/BaseButtons.vue";
-import BaseButton from "@/components/BaseButton.vue";
-import UserAvatar from "@/components/UserAvatar.vue";
+import CardBoxModal from "../components/CardBoxModal.vue";
+import TableCheckboxCell from "../components/TableCheckboxCell.vue";
+import BaseLevel from "../components/BaseLevel.vue";
+import BaseButtons from "../components/BaseButtons.vue";
+import BaseButton from "../components/BaseButton.vue";
+import UserAvatar from "../components/UserAvatar.vue";
 
 defineProps({
   checkable: Boolean,
@@ -102,14 +102,12 @@ const checked = (isChecked, client) => {
     <thead>
       <tr>
         <th v-if="checkable" />
-        <th>Id</th>
-        <th>Category</th>
-        <th>Type</th>
+        <th />
+        <th>Name</th>
+        <th>Company</th>
         <th>City</th>
-        <th>Equiped</th>
-        <th>Price</th>
-        <th>status</th>
-        <th>Added at</th>
+        <th>Progress</th>
+        <th>Created</th>
         <th />
       </tr>
     </thead>
@@ -119,11 +117,12 @@ const checked = (isChecked, client) => {
           v-if="checkable"
           @checked="checked($event, client)"
         />
-
-        <td data-label="Name">
-          {{ client.id }}
+        <td class="border-b-0 lg:w-6 before:hidden">
+          <UserAvatar
+            :username="client.name"
+            class="w-24 h-24 mx-auto lg:w-6 lg:h-6"
+          />
         </td>
-
         <td data-label="Name">
           {{ client.name }}
         </td>
@@ -142,12 +141,6 @@ const checked = (isChecked, client) => {
             {{ client.progress }}
           </progress>
         </td>
-        <td data-label="Company">
-          {{ client.company }}
-        </td>
-        <td data-label="City">
-          {{ client.city }}
-        </td>
         <td data-label="Created" class="lg:w-1 whitespace-nowrap">
           <small
             class="text-gray-500 dark:text-slate-400"
@@ -155,7 +148,6 @@ const checked = (isChecked, client) => {
             >{{ client.created }}</small
           >
         </td>
-
         <td class="before:hidden lg:w-1 whitespace-nowrap">
           <BaseButtons type="justify-start lg:justify-end" no-wrap>
             <BaseButton
