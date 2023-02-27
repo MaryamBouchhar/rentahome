@@ -11,6 +11,7 @@ import {
   mdiResponsive,
   mdiPalette,
   mdiReact,
+  mdiHome,
 } from "@mdi/js";
 
 export default [
@@ -19,10 +20,24 @@ export default [
     icon: mdiMonitor,
     label: "Dashboard",
   },
+
+
+
+
   {
-    to: "/tables",
-    label: "Tables",
-    icon: mdiTable,
+
+    label: "Properties",
+    icon: mdiHome,
+    menu: [
+      {
+        label: "Show Properties",
+        to: "/properties",
+      },
+      {
+        label: "New property",
+        to: "/addproperty",
+      },
+    ],
   },
   {
     to: "/forms",

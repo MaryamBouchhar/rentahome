@@ -102,12 +102,14 @@ const checked = (isChecked, client) => {
     <thead>
       <tr>
         <th v-if="checkable" />
-        <th />
-        <th>Name</th>
-        <th>Company</th>
+        <th>Id</th>
+        <th>Category</th>
+        <th>Type</th>
         <th>City</th>
-        <th>Progress</th>
-        <th>Created</th>
+        <th>Equiped</th>
+        <th>Price</th>
+        <th>status</th>
+        <th>Added at</th>
         <th />
       </tr>
     </thead>
@@ -117,12 +119,11 @@ const checked = (isChecked, client) => {
           v-if="checkable"
           @checked="checked($event, client)"
         />
-        <td class="border-b-0 lg:w-6 before:hidden">
-          <UserAvatar
-            :username="client.name"
-            class="w-24 h-24 mx-auto lg:w-6 lg:h-6"
-          />
+
+        <td data-label="Name">
+          {{ client.id }}
         </td>
+
         <td data-label="Name">
           {{ client.name }}
         </td>
@@ -141,6 +142,12 @@ const checked = (isChecked, client) => {
             {{ client.progress }}
           </progress>
         </td>
+        <td data-label="Company">
+          {{ client.company }}
+        </td>
+        <td data-label="City">
+          {{ client.city }}
+        </td>
         <td data-label="Created" class="lg:w-1 whitespace-nowrap">
           <small
             class="text-gray-500 dark:text-slate-400"
@@ -148,6 +155,7 @@ const checked = (isChecked, client) => {
             >{{ client.created }}</small
           >
         </td>
+
         <td class="before:hidden lg:w-1 whitespace-nowrap">
           <BaseButtons type="justify-start lg:justify-end" no-wrap>
             <BaseButton

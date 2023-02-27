@@ -4,6 +4,14 @@ import {
   mdiTableBorder,
   mdiTableOff,
   mdiGithub,
+  mdiHome,
+  mdiChartTimelineVariant,
+  mdiAccountMultiple,
+  mdiCartOutline,
+  mdiReload,
+  mdiChartPie,
+  mdiPlus,
+
 } from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
 import NotificationBar from "@/components/NotificationBar.vue";
@@ -18,34 +26,34 @@ import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
 <template>
   <LayoutAuthenticated>
     <SectionMain>
-      <SectionTitleLineWithButton :icon="mdiTableBorder" title="Tables" main>
+      <SectionTitleLineWithButton :icon="mdiHome" title="Properties" main>
         <BaseButton
-          href="https://github.com/justboil/admin-one-vue-tailwind"
+          href=""
           target="_blank"
-          :icon="mdiGithub"
-          label="Star on GitHub"
+          :icon="mdiPlus"
+          label="Add new property"
           color="contrast"
           rounded-full
           small
         />
       </SectionTitleLineWithButton>
+      <!--   we can call tha notification here
       <NotificationBar color="info" :icon="mdiMonitorCellphone">
         <b>Responsive table.</b> Collapses on mobile
       </NotificationBar>
-
-      <CardBox class="mb-6" has-table>
-        <TableSampleClients checkable />
-      </CardBox>
-
-      <SectionTitleLineWithButton :icon="mdiTableOff" title="Empty variation" />
-
-      <NotificationBar color="danger" :icon="mdiTableOff">
+          <NotificationBar color="danger" :icon="mdiTableOff">
         <b>Empty table.</b> When there's nothing to show
       </NotificationBar>
-
-      <CardBox>
-        <CardBoxComponentEmpty />
+      -->
+      <CardBox class="mb-6" has-table>
+        <TableSampleClients  />
       </CardBox>
+
+
+
+
+
+
     </SectionMain>
   </LayoutAuthenticated>
 </template>

@@ -14,16 +14,23 @@ const routes = [
 
     name: "dashboard",
     component: Home,
-  },
+  },{
+  meta: {
+  title: "Properties"
+},
+  path: "/Properties",
+  name: "properties",
+  component: () => import("@/views/PropertiesView.vue"),
+},
   {
 
 
     meta: {
-      title: "Forms",
+      title: "AddProperty",
     },
-    path: "/forms",
-    name: "forms",
-    component: () => import("@/views/FormsView.vue"),
+    path: "/addproperty",
+    name: "addproperty",
+    component: () => import("@/views/NewPropertyView.vue"),
   },
   {
     meta: {
