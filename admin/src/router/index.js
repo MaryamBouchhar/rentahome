@@ -18,7 +18,7 @@ const routes = [
   meta: {
   title: "Properties"
 },
-  path: "/Properties",
+  path: "/properties",
   name: "properties",
   component: () => import("@/views/PropertiesView.vue"),
 },
@@ -28,7 +28,7 @@ const routes = [
     meta: {
       title: "AddProperty",
     },
-    path: "/addproperty",
+    path: "/add-property",
     name: "addproperty",
     component: () => import("@/views/NewPropertyView.vue"),
   },

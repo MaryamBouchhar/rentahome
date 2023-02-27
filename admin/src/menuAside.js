@@ -35,7 +35,7 @@ export default [
       },
       {
         label: "New property",
-        to: "/addproperty",
+        to: "/add-property",
       },
     ],
   },

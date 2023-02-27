@@ -28,7 +28,7 @@ import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
     <SectionMain>
       <SectionTitleLineWithButton :icon="mdiHome" title="Properties" main>
         <BaseButton
-          href=""
+          href="/add-property"
           target="_blank"
           :icon="mdiPlus"
           label="Add new property"

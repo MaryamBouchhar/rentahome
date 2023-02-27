@@ -1,6 +1,6 @@
 <script setup>
-import { reactive, ref } from "vue";
-import { mdiBallotOutline, mdiAccount, mdiMail, mdiGithub } from "@mdi/js";
+import {reactive, ref} from "vue";
+import {mdiBallotOutline, mdiAccount, mdiMail, mdiGithub, mdiPlus} from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
 import CardBox from "@/components/CardBox.vue";
 import FormCheckRadioGroup from "@/components/FormCheckRadioGroup.vue";
@@ -16,9 +16,9 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
 import NotificationBarInCard from "@/components/NotificationBarInCard.vue";
 
 const selectOptions = [
-  { id: 1, label: "Business development" },
-  { id: 2, label: "Marketing" },
-  { id: 3, label: "Sales" },
+  {id: 1, label: "Business development"},
+  {id: 2, label: "Marketing"},
+  {id: 3, label: "Sales"},
 ];
 
 const form = reactive({
@@ -58,127 +58,95 @@ const formStatusSubmit = () => {
   <LayoutAuthenticated>
     <SectionMain>
       <SectionTitleLineWithButton
-        :icon="mdiBallotOutline"
+        :icon="mdiPlus"
         title="New Property"
         main
       >
         <BaseButton
-          href="https://github.com/justboil/admin-one-vue-tailwind"
+          href="/properties"
           target="_blank"
-          :icon="mdiGithub"
-          label="Star on GitHub"
+          :icon="mdiProperty"
+          label="Show properties"
           color="contrast"
           rounded-full
           small
         />
       </SectionTitleLineWithButton>
       <CardBox form @submit.prevent="submit">
-        <FormField label="Grouped with icons">
-          <FormControl v-model="form.name" :icon="mdiAccount" />
-          <FormControl v-model="form.email" type="email" :icon="mdiMail" />
+       <FormField>
+          <FormField label="Category">
+            <FormControl v-model="form.department" :options="selectOptions"/>
+          </FormField>
+          <FormField label="Type">
+            <FormControl v-model="form.department" :options="selectOptions"/>
+          </FormField>
         </FormField>
 
-        <FormField label="With help line" help="Do not enter the leading zero">
+<FormField>
+        <FormField label="Bathroom Count " >
+          <FormControl v-model="form.phone" type="number"
+          />
+        </FormField>
+        <FormField label="Room Count " >
           <FormControl
             v-model="form.phone"
-            type="tel"
-            placeholder="Your phone number"
+            type="number"
           />
         </FormField>
-
-        <FormField label="Dropdown">
-          <FormControl v-model="form.department" :options="selectOptions" />
-        </FormField>
-
-        <BaseDivider />
-
-        <FormField label="Question" help="Your question. Max 255 characters">
-          <FormControl
-            type="textarea"
-            placeholder="Explain how we can help you"
+</FormField>
+        <FormField>
+        <FormField label="Stage Count " >
+          <FormControl v-model="form.phone" type="number"
           />
         </FormField>
+          <FormField label="Surface" >
+            <FormControl v-model="form.phone" type="text"
+            />
+          </FormField>
+        </FormField>
+        <FormField>
+          <FormField label="Location" >
+            <FormControl v-model="form.department" :options="selectOptions"/>
+          </FormField>
+          <FormField label="Equiped" >
+<br>
+              <FormCheckRadioGroup
+                v-model="customElementsForm.radio"
+                name="sample-radio"
+                type="radio"
+                :options="{ one: 'Yes', two: 'No' }"
+              />
+            </FormField>
+          </FormField>
+
+        <FormFilePicker v-model="customElementsForm.file" label="Upload"/>
+        <BaseDivider/>
+
+
 
         <template #footer>
           <BaseButtons>
-            <BaseButton type="submit" color="info" label="Submit" />
-            <BaseButton type="reset" color="info" outline label="Reset" />
+            <BaseButton type="submit" color="info" label="Submit"/>
+            <BaseButton type="reset" color="info" outline label="Reset"/>
           </BaseButtons>
         </template>
       </CardBox>
     </SectionMain>
 
-    <SectionTitle>Custom elements</SectionTitle>
 
-    <SectionMain>
-      <CardBox>
-        <FormField label="Checkbox">
-          <FormCheckRadioGroup
-            v-model="customElementsForm.checkbox"
-            name="sample-checkbox"
-            :options="{ lorem: 'Lorem', ipsum: 'Ipsum', dolore: 'Dolore' }"
-          />
-        </FormField>
 
-        <BaseDivider />
 
-        <FormField label="Radio">
-          <FormCheckRadioGroup
-            v-model="customElementsForm.radio"
-            name="sample-radio"
-            type="radio"
-            :options="{ one: 'One', two: 'Two' }"
-          />
-        </FormField>
 
-        <BaseDivider />
 
-        <FormField label="Switch">
-          <FormCheckRadioGroup
-            v-model="customElementsForm.switch"
-            name="sample-switch"
-            type="switch"
-            :options="{ one: 'One', two: 'Two' }"
-          />
-        </FormField>
 
-        <BaseDivider />
 
-        <FormFilePicker v-model="customElementsForm.file" label="Upload" />
-      </CardBox>
 
-      <SectionTitle>Form with status example</SectionTitle>
 
-      <CardBox
-        class="md:w-7/12 lg:w-5/12 xl:w-4/12 shadow-2xl md:mx-auto"
-        is-form
-        is-hoverable
-        @submit.prevent="formStatusSubmit"
-      >
-        <NotificationBarInCard
-          :color="formStatusOptions[formStatusCurrent]"
-          :is-placed-with-header="formStatusWithHeader"
-        >
-          <span
-            ><b class="capitalize">{{
-              formStatusOptions[formStatusCurrent]
-            }}</b>
-            state</span
-          >
-        </NotificationBarInCard>
-        <FormField label="Fields">
-          <FormControl
-            v-model="form.name"
-            :icon-left="mdiAccount"
-            help="Your full name"
-            placeholder="Name"
-          />
-        </FormField>
 
-        <template #footer>
-          <BaseButton label="Trigger" type="submit" color="info" />
-        </template>
-      </CardBox>
-    </SectionMain>
+
+
+
+
+
   </LayoutAuthenticated>
 </template>
