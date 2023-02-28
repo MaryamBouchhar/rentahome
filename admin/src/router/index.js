@@ -48,14 +48,7 @@ const routes = [
     name: "ui",
     component: () => import("@/views/UiView.vue"),
   },
-  {
-    meta: {
-      title: "Responsive layout",
-    },
-    path: "/responsive",
-    name: "responsive",
-    component: () => import("@/views/ResponsiveView.vue"),
-  },
+
   {
     meta: {
       title: "Login",
