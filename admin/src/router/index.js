@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Style from "@/views/StyleView.vue";
+
 import Home from "@/views/HomeView.vue";
 
 const routes = [
@@ -7,14 +7,23 @@ const routes = [
     // Document title tag
     // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
     meta: {
-      title: "Dashboard",
+      title: "Login",
     },
 
     path: "/",
 
+    name: "login",
+    component: import("@/views/LoginView.vue"),
+  },
+  {
+    meta: {
+      title: "Dashboard"
+    },
+    path: "/dashboard",
     name: "dashboard",
-    component: Home,
-  },{
+    component: () => import("@/views/HomeView.vue"),
+  },
+  {
   meta: {
   title: "Properties"
 },
@@ -32,39 +41,10 @@ const routes = [
     name: "addproperty",
     component: () => import("@/views/NewPropertyView.vue"),
   },
-  {
-    meta: {
-      title: "Profile",
-    },
-    path: "/profile",
-    name: "profile",
-    component: () => import("@/views/ProfileView.vue"),
-  },
-  {
-    meta: {
-      title: "Ui",
-    },
-    path: "/ui",
-    name: "ui",
-    component: () => import("@/views/UiView.vue"),
-  },
 
-  {
-    meta: {
-      title: "Login",
-    },
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/LoginView.vue"),
-  },
-  {
-    meta: {
-      title: "Error",
-    },
-    path: "/error",
-    name: "error",
-    component: () => import("@/views/ErrorView.vue"),
-  },
+
+
+
 ];
 
 const router = createRouter({
