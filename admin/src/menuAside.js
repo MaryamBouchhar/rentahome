@@ -11,63 +11,52 @@ import {
   mdiResponsive,
   mdiPalette,
   mdiReact,
-  mdiHome,
+  mdiHome, mdiAccountMultiple, mdiPlus,
+  mdiAccount,
 } from "@mdi/js";
 
 export default [
   {
-    to: "/",
+    to: "/dashboard",
     icon: mdiMonitor,
     label: "Dashboard",
   },
-
-
-
-
   {
 
     label: "Properties",
     icon: mdiHome,
     menu: [
       {
-        label: "Show Properties",
+        label: "View All",
+        icon: mdiViewList,
         to: "/properties",
       },
       {
-        label: "New property",
+        label: "Add New",
+        icon: mdiPlus,
         to: "/add-property",
       },
     ],
   },
-  {
-    to: "/forms",
-    label: "Forms",
-    icon: mdiSquareEditOutline,
-  },
 
   {
-    to: "/login",
-    label: "Login",
-    icon: mdiLock,
-  },
 
-  {
-    label: "Dropdown",
-    icon: mdiViewList,
+    label: "Users",
+    icon: mdiAccountMultiple,
     menu: [
       {
-        label: "Item One",
+        label: "Clients",
+        icon: mdiAccount,
+        to: "/clients",
       },
       {
-        label: "Item Two",
+        label: "Admins",
+        icon: mdiLock,
+        to: "/admins",
       },
     ],
   },
 
-  {
-    to: "/profile",
-    label: "Profile",
-    icon: mdiAccountCircle,
-  },
+
 
 ];
