@@ -1,0 +1,10 @@
+{
+  "en": {
+    "title": "Hello World",
+    "description": "This is a description"
+  },
+  "fr": {
+    "title": "Bonjour le monde",
+    "description": "Ceci est une description"
+  }
+}
