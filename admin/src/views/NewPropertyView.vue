@@ -126,11 +126,13 @@ const formStatusSubmit = () => {
 
 
 
-        <template #footer>
-          <BaseButtons>
-            <BaseButton type="submit" color="info" label="Submit"/>
-            <BaseButton type="reset" color="info" outline label="Reset"/>
+        <template #footer >
+
+          <BaseButtons class=" flex items-center justify-center">
+            <BaseButton  type="submit" color="warning" label="Add"/>
+            <BaseButton  type="reset" color="warning" outline label="Reset"/>
           </BaseButtons>
+
         </template>
       </CardBox>
     </SectionMain>

@@ -17,6 +17,14 @@ const routes = [
   },
   {
     meta: {
+      title: "Profile"
+    },
+    path: "/profile",
+    name: "profile",
+    component: () => import("@/views/ProfileView.vue"),
+  },
+  {
+    meta: {
       title: "Dashboard"
     },
     path: "/dashboard",
@@ -42,7 +50,38 @@ const routes = [
     component: () => import("@/views/NewPropertyView.vue"),
   },
 
-
+  {
+    meta: {
+      title: "Admin"
+    },
+    path: "/admins",
+    name: "admins",
+    component: () => import("@/views/AdminView.vue"),
+  },
+  {
+    meta: {
+      title: "Clients"
+    },
+    path: "/clients",
+    name: "clients",
+    component: () => import("@/views/ClientsView.vue"),
+  },
+  {
+    meta: {
+      title: "AddAdmin"
+    },
+    path: "/add-admin",
+    name: "addadmin",
+    component: () => import("@/views/NewAdminView.vue"),
+  },
+  {
+    meta: {
+      title: "AddClient"
+    },
+    path: "/add-client",
+    name: "addclient",
+    component: () => import("@/views/NewClientView.vue"),
+  },
 
 
 ];
