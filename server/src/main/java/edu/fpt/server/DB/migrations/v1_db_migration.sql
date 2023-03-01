@@ -1,11 +1,5 @@
 -- Path: src\main\java\edu\fpt\server\DB\v1_db_migration.sql
 
--- create database: rentahome
-
-CREATE DATABASE IF NOT EXISTS rentahome;
-
-USE rentahome;
-
 -- Client table
 
 CREATE TABLE IF NOT EXISTS client
