@@ -1,10 +1,17 @@
 {
   "en": {
-    "title": "Hello World",
-    "description": "This is a description"
+    "our_story": "Our Story",
+    "most_trusted": "Most trusted",
+    "best_prices": "Best prices"
   },
   "fr": {
-    "title": "Bonjour le monde",
-    "description": "Ceci est une description"
+    "our_story": "Notre Histoire",
+    "most_trusted": "Le plus fiable",
+    "best_prices": "Meilleurs prix"
+  },
+  "ar": {
+    "our_story": "قصتنا",
+    "most_trusted": "الأكثر اعتمادا",
+    "best_prices": "أفضل الأسعار"
   }
 }
