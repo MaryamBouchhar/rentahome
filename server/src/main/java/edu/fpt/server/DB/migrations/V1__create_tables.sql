@@ -1,5 +1,3 @@
--- Path: src\main\java\edu\fpt\server\DB\V1__create_tables.sql
-
 -- Client table
 
 CREATE TABLE IF NOT EXISTS client
