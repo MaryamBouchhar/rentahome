@@ -96,8 +96,8 @@ const formStatusSubmit = () => {
 
           <template #footer>
             <BaseButtons>
-              <BaseButton type="submit" color="info" label="Add"/>
-              <BaseButton type="reset" color="info" outline label="Reset"/>
+              <BaseButton  class=" bg-amber-700" type="submit" color="warning" label="Add"/>
+              <BaseButton type="reset" color="warning" outline label="Reset"/>
             </BaseButtons>
           </template>
       </CardBox>
