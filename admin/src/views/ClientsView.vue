@@ -27,7 +27,7 @@ import TableClient from "@/components/TableClient.vue";
   <LayoutAuthenticated>
     <SectionMain>
       <SectionTitleLineWithButton :icon="mdiAccount" title="Clients" main>
-        <router-link to="/add_client">
+        <router-link to="/add-client">
           <BaseButton
             target="_blank"
             :icon="mdiPlus"

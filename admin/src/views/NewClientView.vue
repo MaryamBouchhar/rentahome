@@ -59,15 +59,15 @@ const formStatusSubmit = () => {
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiPlus"
-        title="New Admin"
+        title="New Client"
         main
       >
-        <router-link to="/admins">
+        <router-link to="/clients">
           <BaseButton
 
             target="_blank"
-            :icon="mdiLock"
-            label="Show Admins"
+            :icon="mdiAccount"
+            label="Show Clients"
             color="contrast"
             rounded-full
             small
@@ -75,14 +75,18 @@ const formStatusSubmit = () => {
         </router-link>
       </SectionTitleLineWithButton>
       <div class="container w-5/12 mx-auto">
-      <CardBox form @submit.prevent="submit">
+        <CardBox form @submit.prevent="submit">
 
           <FormField label="Name">
-            <FormControl type="email"/>
+            <FormControl type="text"/>
           </FormField>
+
           <FormField label="Email">
             <FormControl  type="email"/>
           </FormField>
+          <FormField label="Phone">
+          <FormControl type="text"/>
+        </FormField>
           <FormField label="Password">
             <FormControl type="password"/>
           </FormField>
@@ -100,7 +104,7 @@ const formStatusSubmit = () => {
               <BaseButton  class="ml-2" type="reset" color="warning" outline label="Reset"/>
             </BaseButtons>
           </template>
-      </CardBox>
+        </CardBox>
       </div>
     </SectionMain>
 
