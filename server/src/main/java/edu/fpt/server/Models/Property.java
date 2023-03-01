@@ -13,7 +13,7 @@ public class Property {
     private String rent_type;
     private int bathroom_count;
     private int room_count;
-    private boolean is_equiped;
+    private boolean is_equipped;
     private Date published_date;
 
     public Property() {
@@ -30,7 +30,7 @@ public class Property {
         this.rent_type = rent_type;
         this.bathroom_count = bathroom_count;
         this.room_count = room_count;
-        this.is_equiped = is_equiped;
+        this.is_equipped = is_equiped;
         this.published_date = published_date;
     }
 
@@ -114,12 +114,12 @@ public class Property {
         this.room_count = room_count;
     }
 
-    public boolean isIs_equiped() {
-        return is_equiped;
+    public boolean isIs_equipped() {
+        return is_equipped;
     }
 
-    public void setIs_equiped(boolean is_equiped) {
-        this.is_equiped = is_equiped;
+    public void setIs_equipped(boolean is_equipped) {
+        this.is_equipped = is_equipped;
     }
 
     public Date getPublished_date() {
