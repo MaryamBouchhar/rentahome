@@ -44,16 +44,20 @@ CREATE TABLE location
 
 CREATE TABLE property
 (
-    id          INT          NOT NULL AUTO_INCREMENT,
-    category    ENUM('Appartment', 'Studio', 'Villa', 'Duplex') NOT NULL DEFAULT 'Appartment',
-    description VARCHAR(255) NOT NULL,
-    price       DOUBLE       NOT NULL,
-    area        DOUBLE       NOT NULL,
-    status      VARCHAR(255) NOT NULL,
-    location    INT          NOT NULL,
-
-    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    id              INT          NOT NULL AUTO_INCREMENT,
+    category        ENUM('Appartment', 'Studio', 'Villa', 'Duplex') NOT NULL DEFAULT 'Appartment',
+    description     VARCHAR(255) NOT NULL,
+    price           DOUBLE       NOT NULL,
+    area            DOUBLE       NOT NULL,
+    status          VARCHAR(255) NOT NULL,
+    location        INT          NOT NULL,
+    rent_type       ENUM('Daily', 'Monthly') NOT NULL DEFAULT 'Monthly',
+    batthroom_count INT NOT NULL,
+    room_count      INT NOT NULL,
+    is_equipped     BOOLEAN      NOT NULL DEFAULT FALSE,
+    publish_date    DATE         NOT NULL,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
