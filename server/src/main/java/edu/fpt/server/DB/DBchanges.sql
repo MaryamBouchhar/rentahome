@@ -1,8 +1,14 @@
 -- Path: src\main\java\edu\fpt\server\DB\DBchanges.sql
 
+-- create database: rentahome
+
+CREATE DATABASE IF NOT EXISTS rentahome;
+
+USE rentahome;
+
 -- Client table
 
-CREATE TABLE client
+CREATE TABLE IF NOT EXISTS client
 (
     id         INT          NOT NULL AUTO_INCREMENT,
     name       VARCHAR(255) NOT NULL,
@@ -16,7 +22,7 @@ CREATE TABLE client
 
 -- Admin table
 
-CREATE TABLE admin
+CREATE TABLE IF NOT EXISTS admin
 (
     id         INT          NOT NULL AUTO_INCREMENT,
     name       VARCHAR(255) NOT NULL,
@@ -29,7 +35,7 @@ CREATE TABLE admin
 
 -- Location table
 
-CREATE TABLE location
+CREATE TABLE IF NOT EXISTS location
 (
     id         INT          NOT NULL AUTO_INCREMENT,
     address    VARCHAR(255) NOT NULL,
@@ -42,7 +48,7 @@ CREATE TABLE location
 
 -- Property table
 
-CREATE TABLE property
+CREATE TABLE IF NOT EXISTS property
 (
     id              INT          NOT NULL AUTO_INCREMENT,
     category        ENUM('Appartment', 'Studio', 'Villa', 'Duplex') NOT NULL DEFAULT 'Appartment',
@@ -63,7 +69,7 @@ CREATE TABLE property
 
 -- Property image table
 
-CREATE TABLE property_image
+CREATE TABLE IF NOT EXISTS property_image
 (
     id         INT          NOT NULL AUTO_INCREMENT,
     property   INT          NOT NULL,
@@ -75,7 +81,7 @@ CREATE TABLE property_image
 
 -- Reservation table
 
-CREATE TABLE reservation
+CREATE TABLE IF NOT EXISTS reservation
 (
     id         INT          NOT NULL AUTO_INCREMENT,
     client     INT          NOT NULL,
@@ -89,7 +95,7 @@ CREATE TABLE reservation
 
 -- Ratings table
 
-CREATE TABLE rating
+CREATE TABLE IF NOT EXISTS rating
 (
     id         INT          NOT NULL AUTO_INCREMENT,
     client     INT          NOT NULL,
@@ -102,7 +108,7 @@ CREATE TABLE rating
 
 -- Comments table
 
-CREATE TABLE comment
+CREATE TABLE IF NOT EXISTS comment
 (
     id         INT          NOT NULL AUTO_INCREMENT,
     client     INT          NOT NULL,
