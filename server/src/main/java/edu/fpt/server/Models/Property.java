@@ -16,7 +16,6 @@ public class Property {
     private boolean is_equiped;
     private Date published_date;
 
-
     public Property() {
     }
 
