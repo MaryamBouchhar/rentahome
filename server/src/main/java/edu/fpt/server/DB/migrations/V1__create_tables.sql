@@ -1,11 +1,3 @@
--- Path: src\main\java\edu\fpt\server\DB\DBchanges.sql
-
--- create database: rentahome
-
-CREATE DATABASE IF NOT EXISTS rentahome;
-
-USE rentahome;
-
 -- Client table
 
 CREATE TABLE IF NOT EXISTS client

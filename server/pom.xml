@@ -56,6 +56,17 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- Java MySQL Connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>7.14.0</version>
+        </dependency>
     </dependencies>
 
     <build>
