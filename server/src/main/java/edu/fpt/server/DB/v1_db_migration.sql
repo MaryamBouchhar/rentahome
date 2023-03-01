@@ -1,4 +1,4 @@
--- Path: src\main\java\edu\fpt\server\DB\DBchanges.sql
+-- Path: src\main\java\edu\fpt\server\DB\v1_db_migration.sql
 
 -- create database: rentahome
 
