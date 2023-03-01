@@ -5,6 +5,7 @@ import java.util.Date;
 public class Property {
     private int id;
     private String category;
+    private String rent_type;
     private int location_id;
     private float price;
     private String description;
