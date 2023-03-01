@@ -14,7 +14,7 @@ public class Property {
     private int bathroom_count;
     private int room_count;
     private boolean is_equipped;
-    private Date published_date;
+    private Date publish_date;
 
     public Property() {
     }
@@ -31,7 +31,7 @@ public class Property {
         this.bathroom_count = bathroom_count;
         this.room_count = room_count;
         this.is_equipped = is_equiped;
-        this.published_date = published_date;
+        this.publish_date = published_date;
     }
 
     public int getId() {
@@ -122,11 +122,11 @@ public class Property {
         this.is_equipped = is_equipped;
     }
 
-    public Date getPublished_date() {
-        return published_date;
+    public Date getPublish_date() {
+        return publish_date;
     }
 
-    public void setPublished_date(Date published_date) {
-        this.published_date = published_date;
+    public void setPublish_date(Date publish_date) {
+        this.publish_date = publish_date;
     }
 }
