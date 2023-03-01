@@ -13,8 +13,8 @@ import {
 }
   from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
-import NotificationBar from "@/components/NotificationBar.vue";
-import TableSampleClients from "@/components/TableSampleClients.vue";
+
+import TableAdmin from "@/components/TableAdmin.vue";
 import CardBox from "@/components/CardBox.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
@@ -26,7 +26,7 @@ import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
   <LayoutAuthenticated>
     <SectionMain>
       <SectionTitleLineWithButton :icon="mdiLock" title="Admins" main>
-        <router-link to="/add_admin">
+        <router-link to="/add-admin">
           <BaseButton
             target="_blank"
             :icon="mdiPlus"
@@ -46,7 +46,7 @@ import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
       </NotificationBar>
       -->
       <CardBox class="mb-6" has-table>
-        <TableSampleClients/>
+        <TableAdmin/>
       </CardBox>
     </SectionMain>
   </LayoutAuthenticated>

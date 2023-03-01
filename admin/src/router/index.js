@@ -58,6 +58,14 @@ const routes = [
     name: "clients",
     component: () => import("@/views/ClientsView.vue"),
   },
+  {
+    meta: {
+      title: "AddAdmin"
+    },
+    path: "/add-admin",
+    name: "addadmin",
+    component: () => import("@/views/NewAdminView.vue"),
+  },
 
 
 ];
