@@ -4,14 +4,49 @@
     "most_trusted": "Most trusted",
     "best_prices": "Best prices"
   },
-  "fr": {
-    "our_story": "Notre Histoire",
-    "most_trusted": "Le plus fiable",
-    "best_prices": "Meilleurs prix"
+  "zh": {
+    "our_story": "我们的故事",
+    "most_trusted": "最受信任",
+    "best_prices": "最低价格"
+  },
+  "es": {
+    "our_story": "Nuestra historia",
+    "most_trusted": "Más confiable",
+    "best_prices": "Mejores precios"
   },
   "ar": {
     "our_story": "قصتنا",
     "most_trusted": "الأكثر اعتمادا",
     "best_prices": "أفضل الأسعار"
+  },
+  "id": {
+    "our_story": "Cerita kami",
+    "most_trusted": "Paling terpercaya",
+    "best_prices": "Harga terbaik"
+  },
+  "pt": {
+    "our_story": "Nossa história",
+    "most_trusted": "Mais confiável",
+    "best_prices": "Melhores preços"
+  },
+  "fr": {
+    "our_story": "Notre histoire",
+    "most_trusted": "Le plus fiable",
+    "best_prices": "Meilleurs prix"
+  },
+  "ja": {
+    "our_story": "私たちの物語",
+    "most_trusted": "最も信頼されている",
+    "best_prices": "最高の価格"
+  },
+  "ru": {
+    "our_story": "Наша история",
+    "most_trusted": "Самый надежный",
+    "best_prices": "Лучшие цены"
+  },
+  "de": {
+    "our_story": "Unsere Geschichte",
+    "most_trusted": "Am vertrauenswürdigsten",
+    "best_prices": "Beste Preise"
   }
 }
