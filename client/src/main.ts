@@ -4,7 +4,7 @@ import router from './router/router'
 import App from './App.vue'
 import { createI18n } from "vue-i18n";
 
-import strings from './ressources/strings.json'
+import strings from './assets/strings.json'
 
 // Create VueI18n instance with options
 const i18n = createI18n({
