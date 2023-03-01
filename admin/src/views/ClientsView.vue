@@ -9,9 +9,9 @@ import {
   mdiAccountMultiple,
   mdiCartOutline,
   mdiReload,
-  mdiChartPie,  mdiPlus,
+  mdiChartPie, mdiPlus, mdiAccount,
 }
-from "@mdi/js";
+  from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
 import NotificationBar from "@/components/NotificationBar.vue";
 import TableSampleClients from "@/components/TableSampleClients.vue";
@@ -25,12 +25,12 @@ import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
 <template>
   <LayoutAuthenticated>
     <SectionMain>
-      <SectionTitleLineWithButton :icon="mdiHome" title="Properties" main>
-        <router-link to="/add-property">
+      <SectionTitleLineWithButton :icon="mdiAccount" title="Clients" main>
+        <router-link to="/add_client">
           <BaseButton
             target="_blank"
             :icon="mdiPlus"
-            label="Add new property"
+            label="Add new client"
             color="contrast"
             rounded-full
             small

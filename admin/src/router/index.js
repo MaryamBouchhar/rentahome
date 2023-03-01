@@ -42,7 +42,22 @@ const routes = [
     component: () => import("@/views/NewPropertyView.vue"),
   },
 
-
+  {
+    meta: {
+      title: "Admin"
+    },
+    path: "/admins",
+    name: "admins",
+    component: () => import("@/views/AdminView.vue"),
+  },
+  {
+    meta: {
+      title: "Clients"
+    },
+    path: "/clients",
+    name: "clients",
+    component: () => import("@/views/ClientsView.vue"),
+  },
 
 
 ];
