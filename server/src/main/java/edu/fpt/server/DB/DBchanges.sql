@@ -112,3 +112,38 @@ CREATE TABLE comment
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
+
+-- Foreign keys
+
+ALTER TABLE property
+    ADD CONSTRAINT fk_property_location
+        FOREIGN KEY (location) REFERENCES location (id);
+
+ALTER TABLE property_image
+    ADD CONSTRAINT fk_property_image_property
+        FOREIGN KEY (property) REFERENCES property (id);
+
+ALTER TABLE reservation
+    ADD CONSTRAINT fk_reservation_client
+        FOREIGN KEY (client) REFERENCES client (id);
+
+ALTER TABLE reservation
+    ADD CONSTRAINT fk_reservation_property
+        FOREIGN KEY (property) REFERENCES property (id);
+
+ALTER TABLE rating
+    ADD CONSTRAINT fk_rating_client
+        FOREIGN KEY (client) REFERENCES client (id);
+
+ALTER TABLE rating
+    ADD CONSTRAINT fk_rating_property
+        FOREIGN KEY (property) REFERENCES property (id);
+
+ALTER TABLE comment
+    ADD CONSTRAINT fk_comment_client
+        FOREIGN KEY (client) REFERENCES client (id);
+
+ALTER TABLE comment
+    ADD CONSTRAINT fk_comment_property
+        FOREIGN KEY (property) REFERENCES property (id);
+
