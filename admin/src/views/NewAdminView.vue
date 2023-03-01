@@ -74,6 +74,7 @@ const formStatusSubmit = () => {
           />
         </router-link>
       </SectionTitleLineWithButton>
+      <div class="container w-5/12 mx-auto">
       <CardBox form @submit.prevent="submit">
 
           <FormField label="Name">
@@ -100,6 +101,7 @@ const formStatusSubmit = () => {
             </BaseButtons>
           </template>
       </CardBox>
+      </div>
     </SectionMain>
 
 
