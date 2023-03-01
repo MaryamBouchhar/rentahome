@@ -6,14 +6,26 @@ import router from "./router";
 import { useMainStore } from "@/stores/main.js";
 import { useStyleStore } from "@/stores/style.js";
 import { darkModeKey, styleKey } from "@/config.js";
+import { createI18n } from "vue-i18n";
 
 import "./css/main.css";
+import strings from "./ressources/strings.js";
 
 /* Init Pinia */
 const pinia = createPinia();
 
+/* Init i18n */
+const i18n = createI18n({
+  locale: "en",
+  messages: strings,
+});
+
 /* Create Vue app */
-createApp(App).use(router).use(pinia).mount("#app");
+createApp(App)
+  .use(router)
+  .use(pinia)
+  .use(i18n)
+  .mount("#app");
 
 /* Init Pinia stores */
 const mainStore = useMainStore(pinia);
