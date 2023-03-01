@@ -101,3 +101,14 @@ CREATE TABLE rating
 );
 
 -- Comments table
+
+CREATE TABLE comment
+(
+    id         INT          NOT NULL AUTO_INCREMENT,
+    client     INT          NOT NULL,
+    property   INT          NOT NULL,
+    content    VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
