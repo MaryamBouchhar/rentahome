@@ -5,6 +5,7 @@ import java.util.Date;
 public class Property {
     private int id;
     private String category;
+    private String rent_type;
     private int location_id;
     private float price;
     private String description;
@@ -43,6 +44,14 @@ public class Property {
 
     public int getLocation_id() {
         return location_id;
+    }
+
+    public String getRent_type() {
+        return rent_type;
+    }
+
+    public void setRent_type(String rent_type) {
+        this.rent_type = rent_type;
     }
 
     public void setLocation_id(int location_id) {
