@@ -13,7 +13,7 @@ public class DBMigration {
     public void migrate() {
         Flyway flyway = Flyway.configure()
                 .dataSource(DB_URL, DB_USER, DB_PASSWORD)
-                .locations("classpath:db/migration")
+                .locations("filesystem:src/main/java/edu/fpt/server/DB/v1_db_migration.sql")
                 .load();
     }
 }
