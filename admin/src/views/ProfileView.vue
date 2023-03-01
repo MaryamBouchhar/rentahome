@@ -78,9 +78,9 @@ const submitPass = () => {
           </FormField>
 
           <template #footer>
-            <BaseButtons>
-              <BaseButton color="info" type="submit" label="Submit" />
-              <BaseButton color="info" label="Options" outline />
+            <BaseButtons class="ml-14 mr-0">
+              <BaseButton   class="ml-20 " type="submit" color="warning" label="Add"/>
+              <BaseButton  class="ml-2" type="reset" color="warning" outline label="Reset"/>
             </BaseButtons>
           </template>
         </CardBox>
@@ -128,9 +128,9 @@ const submitPass = () => {
           </FormField>
 
           <template #footer>
-            <BaseButtons>
-              <BaseButton type="submit" color="info" label="Submit" />
-              <BaseButton color="info" label="Options" outline />
+            <BaseButtons class="ml-14 mr-0">
+              <BaseButton   class="ml-20 " type="submit" color="warning" label="Add"/>
+              <BaseButton  class="ml-2" type="reset" color="warning" outline label="Reset"/>
             </BaseButtons>
           </template>
         </CardBox>
