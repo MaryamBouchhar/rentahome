@@ -1,4 +1,4 @@
--- Path: src\main\java\edu\fpt\server\DB\v1_db_migration.sql
+-- Path: src\main\java\edu\fpt\server\DB\V1__create_tables.sql
 
 -- Client table
 
