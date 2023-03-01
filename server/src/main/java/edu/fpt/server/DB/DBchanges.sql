@@ -61,3 +61,16 @@ CREATE TABLE property
     PRIMARY KEY (id)
 );
 
+-- Property image table
+
+CREATE TABLE property_image
+(
+    id         INT          NOT NULL AUTO_INCREMENT,
+    property   INT          NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+-- Property client table
