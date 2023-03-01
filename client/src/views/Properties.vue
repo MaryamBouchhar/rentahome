@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <h1 class="w-full text-center font-bold text-2xl my-5">
       Properties
     </h1>
@@ -54,7 +54,7 @@
           <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
         </div>
       </div>
-      <div class="flex flex-col w-full content-center">
+      <div class="flex flex-col w-full content-center mx-4">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 flex justify-center mx-auto">
           <PropertyCard/>
           <PropertyCard/>
