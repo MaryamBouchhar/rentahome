@@ -39,3 +39,21 @@ CREATE TABLE location
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
+
+-- Property table
+
+CREATE TABLE property
+(
+    id          INT          NOT NULL AUTO_INCREMENT,
+    category    ENUM('Appartment', 'Studio', 'Villa', 'Duplex') NOT NULL DEFAULT 'Appartment',
+    description VARCHAR(255) NOT NULL,
+    price       DOUBLE       NOT NULL,
+    area        DOUBLE       NOT NULL,
+    status      VARCHAR(255) NOT NULL,
+    location    INT          NOT NULL,
+
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+

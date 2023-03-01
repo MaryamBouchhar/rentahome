@@ -5,14 +5,13 @@ import java.util.Date;
 public class Property {
     private int id;
     private String category;
-    private int location_id;
-    private float price;
     private String description;
-    private int bathroom_count;
-    private int room_count;
+    private float price;
     private float area;
     private String status;
-    private String city;
+    private int location;
+    private int bathroom_count;
+    private int room_count;
     private boolean is_equiped;
     private Date published_date;
 
@@ -28,7 +27,6 @@ public class Property {
         this.room_count = room_count;
         this.area = area;
         this.status = status;
-        this.city = city;
         this.is_equiped = is_equiped;
         this.published_date = published_date;
     }
@@ -41,12 +39,12 @@ public class Property {
         this.id = id;
     }
 
-    public int getLocation_id() {
-        return location_id;
+    public int getLocation() {
+        return location;
     }
 
-    public void setLocation_id(int location_id) {
-        this.location_id = location_id;
+    public void setLocation(int location) {
+        this.location = location;
     }
 
     public String getCategory() {
@@ -103,14 +101,6 @@ public class Property {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public boolean isIs_equiped() {
