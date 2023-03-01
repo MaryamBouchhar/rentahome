@@ -62,8 +62,9 @@ const formStatusSubmit = () => {
         title="New Property"
         main
       >
+        <router-link to="/properties">
         <BaseButton
-          href="/properties"
+
           target="_blank"
           :icon="mdiProperty"
           label="Show properties"
@@ -71,6 +72,7 @@ const formStatusSubmit = () => {
           rounded-full
           small
         />
+        </router-link>
       </SectionTitleLineWithButton>
       <CardBox form @submit.prevent="submit">
        <FormField>

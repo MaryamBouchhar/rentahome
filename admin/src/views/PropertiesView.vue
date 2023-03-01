@@ -9,8 +9,7 @@ import {
   mdiAccountMultiple,
   mdiCartOutline,
   mdiReload,
-  mdiChartPie,
-  mdiPlus,
+  mdiChartPie,  mdiPlus,
 
 } from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
@@ -27,15 +26,16 @@ import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
   <LayoutAuthenticated>
     <SectionMain>
       <SectionTitleLineWithButton :icon="mdiHome" title="Properties" main>
-        <BaseButton
-          href="/add-property"
-          target="_blank"
-          :icon="mdiPlus"
-          label="Add new property"
-          color="contrast"
-          rounded-full
-          small
-        />
+        <router-link to="/add-property">
+          <BaseButton
+            target="_blank"
+            :icon="mdiPlus"
+            label="Add new property"
+            color="contrast"
+            rounded-full
+            small
+          />
+        </router-link>
       </SectionTitleLineWithButton>
       <!--   we can call tha notification here
       <NotificationBar color="info" :icon="mdiMonitorCellphone">
@@ -46,12 +46,8 @@ import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
       </NotificationBar>
       -->
       <CardBox class="mb-6" has-table>
-        <TableSampleClients  />
+        <TableSampleClients/>
       </CardBox>
-
-
-
-
 
 
     </SectionMain>
