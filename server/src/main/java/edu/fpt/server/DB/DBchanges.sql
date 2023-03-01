@@ -87,4 +87,17 @@ CREATE TABLE reservation
     PRIMARY KEY (id)
 );
 
--- Property image table
+-- Ratings table
+
+CREATE TABLE rating
+(
+    id         INT          NOT NULL AUTO_INCREMENT,
+    client     INT          NOT NULL,
+    property   INT          NOT NULL,
+    rating     INT          NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+-- Comments table
