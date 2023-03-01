@@ -9,8 +9,7 @@ import {
   mdiAccountMultiple,
   mdiCartOutline,
   mdiReload,
-  mdiChartPie,
-  mdiPlus,
+  mdiChartPie,  mdiPlus,
 
 } from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
