@@ -23,4 +23,13 @@ public class ClientController {
         System.out.printf("Email: %s", client.getEmail());
         System.out.printf("Phone: %s", client.getPhone());
         System.out.printf("Password: %s", client.getPassword());
+
+        return "Hello from POST, " + client.getName();
     }
+
+    @DeleteMapping("/delete/{id}")
+    public String helloDelete(@PathVariable int id) {
+        System.out.println(id);
+        return "Delete " + id;
+    }
+}
