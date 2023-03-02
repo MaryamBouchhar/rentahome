@@ -2,51 +2,171 @@
   "en": {
     "our_story": "Our Story",
     "most_trusted": "Most trusted",
-    "best_prices": "Best prices"
+    "best_prices": "Best prices",
+    "languages": {
+      "en": "English",
+      "zh": "Chinese",
+      "es": "Spanish",
+      "ar": "Arabic",
+      "id": "Indonesian",
+      "pt": "Portuguese",
+      "fr": "French",
+      "ja": "Japanese",
+      "ru": "Russian",
+      "de": "German"
+    }
   },
   "zh": {
     "our_story": "我们的故事",
     "most_trusted": "最受信任",
-    "best_prices": "最低价格"
+    "best_prices": "最低价格",
+    "languages": {
+      "en": "英语",
+      "zh": "中文",
+      "es": "西班牙语",
+      "ar": "阿拉伯语",
+      "id": "印尼语",
+      "pt": "葡萄牙语",
+      "fr": "法语",
+      "ja": "日语",
+      "ru": "俄语",
+      "de": "德语"
+    }
   },
   "es": {
     "our_story": "Nuestra historia",
     "most_trusted": "Más confiable",
-    "best_prices": "Mejores precios"
+    "best_prices": "Mejores precios",
+    "languages": {
+      "en": "Inglés",
+      "zh": "Chino",
+      "es": "Español",
+      "ar": "Árabe",
+      "id": "Indonesio",
+      "pt": "Portugués",
+      "fr": "Francés",
+      "ja": "Japonés",
+      "ru": "Ruso",
+      "de": "Alemán"
+    }
   },
   "ar": {
     "our_story": "قصتنا",
     "most_trusted": "الأكثر اعتمادا",
-    "best_prices": "أفضل الأسعار"
+    "best_prices": "أفضل الأسعار",
+    "languages": {
+      "en": "الإنجليزية",
+      "zh": "الصينية",
+      "es": "الأسبانية",
+      "ar": "العربية",
+      "id": "الأندونيسية",
+      "pt": "البرتغالية",
+      "fr": "الفرنسية",
+      "ja": "اليابانية",
+      "ru": "الروسية",
+      "de": "الألمانية"
+    }
   },
   "id": {
     "our_story": "Cerita kami",
     "most_trusted": "Paling terpercaya",
-    "best_prices": "Harga terbaik"
+    "best_prices": "Harga terbaik",
+    "languages": {
+      "en": "Inggris",
+      "zh": "Cina",
+      "es": "Spanyol",
+      "ar": "Arab",
+      "id": "Indonesia",
+      "pt": "Portugis",
+      "fr": "Perancis",
+      "ja": "Jepang",
+      "ru": "Rusia",
+      "de": "Jerman"
+    }
   },
   "pt": {
     "our_story": "Nossa história",
     "most_trusted": "Mais confiável",
-    "best_prices": "Melhores preços"
+    "best_prices": "Melhores preços",
+    "languages": {
+      "en": "Inglês",
+      "zh": "Chinês",
+      "es": "Espanhol",
+      "ar": "Árabe",
+      "id": "Indonésio",
+      "pt": "Português",
+      "fr": "Francês",
+      "ja": "Japonês",
+      "ru": "Russo",
+      "de": "Alemão"
+    }
   },
   "fr": {
     "our_story": "Notre histoire",
     "most_trusted": "Le plus fiable",
-    "best_prices": "Meilleurs prix"
+    "best_prices": "Meilleurs prix",
+    "languages": {
+      "en": "Anglais",
+      "zh": "Chinois",
+      "es": "Espagnol",
+      "ar": "Arabe",
+      "id": "Indonésien",
+      "pt": "Portugais",
+      "fr": "Français",
+      "ja": "Japonais",
+      "ru": "Russe",
+      "de": "Allemand"
+    }
   },
   "ja": {
     "our_story": "私たちの物語",
     "most_trusted": "最も信頼されている",
-    "best_prices": "最高の価格"
+    "best_prices": "最高の価格",
+    "languages": {
+      "en": "英語",
+      "zh": "中国語",
+      "es": "スペイン語",
+      "ar": "アラビア語",
+      "id": "インドネシア語",
+      "pt": "ポルトガル語",
+      "fr": "フランス語",
+      "ja": "日本語",
+      "ru": "ロシア語",
+      "de": "ドイツ語"
+    }
   },
   "ru": {
     "our_story": "Наша история",
     "most_trusted": "Самый надежный",
-    "best_prices": "Лучшие цены"
+    "best_prices": "Лучшие цены",
+    "languages": {
+      "en": "Английский",
+      "zh": "Китайский",
+      "es": "Испанский",
+      "ar": "Арабский",
+      "id": "Индонезийский",
+      "pt": "Португальский",
+      "fr": "Французский",
+      "ja": "Японский",
+      "ru": "Русский",
+      "de": "Немецкий"
+    }
   },
   "de": {
     "our_story": "Unsere Geschichte",
     "most_trusted": "Am vertrauenswürdigsten",
-    "best_prices": "Beste Preise"
+    "best_prices": "Beste Preise",
+    "languages": {
+      "en": "Englisch",
+      "zh": "Chinesisch",
+      "es": "Spanisch",
+      "ar": "Arabisch",
+      "id": "Indonesisch",
+      "pt": "Portugiesisch",
+      "fr": "Französisch",
+      "ja": "Japanisch",
+      "ru": "Russisch",
+      "de": "Deutsch"
+    }
   }
 }

@@ -9,7 +9,7 @@ import { darkModeKey, styleKey } from "@/config.js";
 import { createI18n } from "vue-i18n";
 
 import "./css/main.css";
-import strings from "./ressources/strings.js";
+import strings from "./assets/strings.json";
 
 /* Init Pinia */
 const pinia = createPinia();
