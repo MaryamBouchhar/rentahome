@@ -1,35 +1,35 @@
 {
   "en": {
-    profile: {
-      my_profile: "My Profile",
-      first_name: "First Name",
-      last_name: "Last Name",
-      email: "Email",
-      phone: "Phone",
-      old_password: "Old Password",
-      new_password: "New Password",
-      confirm_password: "Confirm Password",
-      update: "Update",
-      placeholder: {
-        first_name: "Enter your first name",
-        last_name: "Enter your last name",
-        email: "Enter your email",
-        phone: "Enter your phone",
-        old_password: "Enter your old password",
-        new_password: "Enter your new password",
-        confirm_password: "Confirm your new password"
+    "profile": {
+      "my_profile": "My Profile",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "old_password": "Old Password",
+      "new_password": "New Password",
+      "confirm_password": "Confirm Password",
+      "update": "Update",
+      "placeholder": {
+        "first_name": "Enter your first name",
+        "last_name": "Enter your last name",
+        "email": "Enter your email",
+        "phone": "Enter your phone",
+        "old_password": "Enter your old password",
+        "new_password": "Enter your new password",
+        "confirm_password": "Confirm your new password"
       }
     },
-    about: {
-      about: "About",
-      our_story: "Our Story",
-      description: "Description",
-      version: "Version"
+    "about": {
+      "about": "About",
+      "our_story": "Our Story",
+      "description": "Description",
+      "version": "Version"
     },
     "tags": {
-      most_trusted: "Most Trusted",
-      best_prices: "Best Prices",
-      modern_design: "Modern Design"
+      "most_trusted": "Most Trusted",
+      "best_prices": "Best Prices",
+      "modern_design": "Modern Design"
     },
     "theme": "Theme",
     "change_theme": "Change Theme",
@@ -79,71 +79,71 @@
     }
   },
   "zh": {
-    profile: {
-      my_profile: "我的个人资料",
-      first_name: "名字",
-      last_name: "姓",
-      email: "电子邮件",
-      phone: "电话",
-      old_password: "旧密码",
-      new_password: "新密码",
-      confirm_password: "确认密码",
-      update: "更新",
-      placeholder: {
-        first_name: "输入您的名字",
-        last_name: "输入您的姓氏",
-        email: "输入您的电子邮件",
-        phone: "输入您的电话",
-        old_password: "输入您的旧密码",
-        new_password: "输入您的新密码",
-        confirm_password: "确认您的新密码"
+    "profile": {
+      "my_profile": "我的个人资料",
+      "first_name": "名字",
+      "last_name": "姓",
+      "email": "电子邮件",
+      "phone": "电话",
+      "old_password": "旧密码",
+      "new_password": "新密码",
+      "confirm_password": "确认密码",
+      "update": "更新",
+      "placeholder": {
+        "first_name": "输入您的名字",
+        "last_name": "输入您的姓氏",
+        "email": "输入您的电子邮件",
+        "phone": "输入您的电话",
+        "old_password": "输入您的旧密码",
+        "new_password": "输入您的新密码",
+        "confirm_password": "确认您的新密码"
       }
     },
-    about: {
-      about: "关于",
-      our_story: "我们的故事",
-      description: "描述",
-      version: "版本"
+    "about": {
+      "about": "关于",
+      "our_story": "我们的故事",
+      "description": "描述",
+      "version": "版本"
     },
     "tags": {
-      most_trusted: "最受信任",
-      best_prices: "最佳价格",
-      modern_design: "现代设计"
+      "most_trusted": "最受信任",
+      "best_prices": "最佳价格",
+      "modern_design": "现代设计"
     },
-    theme: "主题",
-    change_theme: "更改主题",
-    themes: {
-      light: "光",
-      dark: "黑暗",
-      cupcake: "纸杯蛋糕",
-      bumblebee: "蜜蜂",
-      emerald: "祖母绿",
-      corporate: "公司",
-      synthwave: "合成波",
-      retro: "复古",
-      cyberpunk: "赛博朋克",
-      valentine: "情人节",
-      halloween: "万圣节",
-      garden: "花园",
-      forest: "森林",
-      aqua: "水色",
-      lofi: "低调",
-      pastel: "粉彩",
-      fantasy: "幻想",
-      wireframe: "线框",
-      black: "黑色",
-      luxury: "奢侈",
-      dracula: "吸血鬼",
-      cmyk: "CMYK",
-      autumn: "秋天",
-      business: "商业",
-      acid: "酸",
-      lemonade: "柠檬水",
-      night: "夜",
-      coffee: "咖啡",
-      winter: "冬天"
+    "theme": "主题",
+    "change_theme": "更改主题",
+    "themes": {
+      "light": "光",
+      "dark": "黑暗",
+      "cupcake": "纸杯蛋糕",
+      "bumblebee": "蜜蜂",
+      "emerald": "祖母绿",
+      "corporate": "公司",
+      "synthwave": "合成波",
+      "retro": "复古",
+      "cyberpunk": "赛博朋克",
+      "valentine": "情人节",
+      "halloween": "万圣节",
+      "garden": "花园",
+      "forest": "森林",
+      "aqua": "水色",
+      "lofi": "低调",
+      "pastel": "粉彩",
+      "fantasy": "幻想",
+      "wireframe": "线框",
+      "black": "黑色",
+      "luxury": "奢侈",
+      "dracula": "吸血鬼",
+      "cmyk": "CMYK",
+      "autumn": "秋天",
+      "business": "商业",
+      "acid": "酸",
+      "lemonade": "柠檬水",
+      "night": "夜",
+      "coffee": "咖啡",
+      "winter": "冬天"
     },
-    change_language: "更改语言",
+    "change_language": "更改语言",
     "languages": {
       "en": "英语",
       "zh": "中文",
@@ -158,36 +158,36 @@
     }
   },
   "es": {
-    profile: {
-      my_profile: "Mi perfil",
-      first_name: "Nombre de pila",
-      last_name: "Apellido",
-      email: "Email",
-      phone: "Teléfono",
-      old_password: "Contraseña anterior",
-      new_password: "Nueva contraseña",
-      confirm_password: "Confirmar contraseña",
-      update: "Actualizar",
-      placeholder: {
-        first_name: "Ingrese su nombre",
-        last_name: "Ingrese su apellido",
-        email: "Ingrese su correo electrónico",
-        phone: "Ingrese su teléfono",
-        old_password: "Ingrese su contraseña anterior",
-        new_password: "Ingrese su nueva contraseña",
-        confirm_password: "Confirme su nueva contraseña"
+    "profile": {
+      "my_profile": "Mi perfil",
+      "first_name": "Nombre de pila",
+      "last_name": "Apellido",
+      "email": "Email",
+      "phone": "Teléfono",
+      "old_password": "Contraseña anterior",
+      "new_password": "Nueva contraseña",
+      "confirm_password": "Confirmar contraseña",
+      "update": "Actualizar",
+      "placeholder": {
+        "first_name": "Ingrese su nombre",
+        "last_name": "Ingrese su apellido",
+        "email": "Ingrese su correo electrónico",
+        "phone": "Ingrese su teléfono",
+        "old_password": "Ingrese su contraseña anterior",
+        "new_password": "Ingrese su nueva contraseña",
+        "confirm_password": "Confirme su nueva contraseña"
       }
     },
-    about: {
-      about: "Acerca de",
-      our_story: "Nuestra historia",
-      description: "Descripción",
-      version: "Versión"
+    "about": {
+      "about": "Acerca de",
+      "our_story": "Nuestra historia",
+      "description": "Descripción",
+      "version": "Versión"
     },
     "tags": {
-      most_trusted: "Más confiable",
-      best_prices: "Mejores precios",
-      modern_design: "Diseño moderno"
+      "most_trusted": "Más confiable",
+      "best_prices": "Mejores precios",
+      "modern_design": "Diseño moderno"
     },
     "theme": "Tema",
     "change_theme": "Cambiar tema",
@@ -237,36 +237,36 @@
     }
   },
   "ar": {
-    profile: {
-      my_profile: "ملفي الشخصي",
-      first_name: "الاسم الاول",
-      last_name: "الكنية",
-      email: "البريد الإلكتروني",
-      phone: "هاتف",
-      old_password: "كلمة السر القديمة",
-      new_password: "كلمة السر الجديدة",
-      confirm_password: "تأكيد كلمة السر",
-      update: "تحديث",
-      placeholder: {
-        first_name: "أدخل اسمك الأول",
-        last_name: "أدخل اسمك الأخير",
-        email: "أدخل بريدك الإلكتروني",
-        phone: "أدخل هاتفك",
-        old_password: "أدخل كلمة المرور القديمة",
-        new_password: "أدخل كلمة المرور الجديدة",
-        confirm_password: "تأكيد كلمة المرور الجديدة"
+    "profile": {
+      "my_profile": "ملفي الشخصي",
+      "first_name": "الاسم الاول",
+      "last_name": "الكنية",
+      "email": "البريد الإلكتروني",
+      "phone": "هاتف",
+      "old_password": "كلمة السر القديمة",
+      "new_password": "كلمة السر الجديدة",
+      "confirm_password": "تأكيد كلمة السر",
+      "update": "تحديث",
+      "placeholder": {
+        "first_name": "أدخل اسمك الأول",
+        "last_name": "أدخل اسمك الأخير",
+        "email": "أدخل بريدك الإلكتروني",
+        "phone": "أدخل هاتفك",
+        "old_password": "أدخل كلمة المرور القديمة",
+        "new_password": "أدخل كلمة المرور الجديدة",
+        "confirm_password": "تأكيد كلمة المرور الجديدة"
       }
     },
-    about: {
-      about: "حول",
-      our_story: "قصتنا",
-      description: "وصف",
-      version: "الإصدار"
+    "about": {
+      "about": "حول",
+      "our_story": "قصتنا",
+      "description": "وصف",
+      "version": "الإصدار"
     },
     "tags": {
-      most_trusted: "الأكثر اعتمادًا",
-      best_prices: "أفضل الأسعار",
-      modern_design: "تصميم حديث"
+      "most_trusted": "الأكثر اعتمادًا",
+      "best_prices": "أفضل الأسعار",
+      "modern_design": "تصميم حديث"
     },
     "theme": "الموضوع",
     "change_theme": "تغيير الموضوع",
@@ -317,22 +317,22 @@
   },
   "id": {
     "profile": {
-      my_profile: "Profil Saya",
-      first_name: "Nama depan",
-      last_name: "Nama belakang",
-      email: "Surel",
-      phone: "Telepon",
-      old_password: "Kata sandi lama",
-      new_password: "Kata sandi baru",
+      "my_profile": "Profil Saya",
+      "first_name": "Nama depan",
+      "last_name": "Nama belakang",
+      "email": "Surel",
+      "phone": "Telepon",
+      "old_password": "Kata sandi lama",
+      "new_password": "Kata sandi baru",
       "confirm_password": "Konfirmasi kata sandi",
-      update: "Memperbarui",
+      "update": "Memperbarui",
       "placeholder": {
-        first_name: "Masukkan nama depan Anda",
-        last_name: "Masukkan nama belakang Anda",
-        email: "Masukkan email Anda",
-        phone: "Masukkan telepon Anda",
-        old_password: "Masukkan kata sandi lama Anda",
-        new_password: "Masukkan kata sandi baru Anda",
+        "first_name": "Masukkan nama depan Anda",
+        "last_name": "Masukkan nama belakang Anda",
+        "email": "Masukkan email Anda",
+        "phone": "Masukkan telepon Anda",
+        "old_password": "Masukkan kata sandi lama Anda",
+        "new_password": "Masukkan kata sandi baru Anda",
         "confirm_password": "Konfirmasi kata sandi baru Anda"
       }
     },
@@ -395,36 +395,36 @@
     }
   },
   "pt": {
-    profile: {
-      my_profile: "Meu perfil",
-      first_name: "Primeiro nome",
-      last_name: "Último nome",
-      email: "O email",
-      phone: "telefone",
-      old_password: "Senha antiga",
-      new_password: "Nova senha",
-      confirm_password: "Confirme a Senha",
-      update: "Atualizar",
-      placeholder: {
-        first_name: "Digite seu primeiro nome",
-        last_name: "Digite seu sobrenome",
-        email: "Digite seu email",
-        phone: "Digite seu telefone",
-        old_password: "Digite sua senha antiga",
-        new_password: "Digite sua nova senha",
-        confirm_password: "Confirme sua nova senha"
+    "profile": {
+      "my_profile": "Meu perfil",
+      "first_name": "Primeiro nome",
+      "last_name": "Último nome",
+      "email": "O email",
+      "phone": "telefone",
+      "old_password": "Senha antiga",
+      "new_password": "Nova senha",
+      "confirm_password": "Confirme a Senha",
+      "update": "Atualizar",
+      "placeholder": {
+        "first_name": "Digite seu primeiro nome",
+        "last_name": "Digite seu sobrenome",
+        "email": "Digite seu email",
+        "phone": "Digite seu telefone",
+        "old_password": "Digite sua senha antiga",
+        "new_password": "Digite sua nova senha",
+        "confirm_password": "Confirme sua nova senha"
       }
     },
-    about: {
-      about: "Sobre",
-      our_story: "Nossa história",
-      description: "Descrição",
-      version: "Versão"
+    "about": {
+      "about": "Sobre",
+      "our_story": "Nossa história",
+      "description": "Descrição",
+      "version": "Versão"
     },
     "tags": {
-      most_trusted: "Mais confiável",
-      best_prices: "Melhores preços",
-      modern_design: "Design moderno"
+      "most_trusted": "Mais confiável",
+      "best_prices": "Melhores preços",
+      "modern_design": "Design moderno"
     },
     "theme": "Tema",
     "change_theme": "Alterar Tema",
@@ -475,35 +475,35 @@
   },
   "fr": {
     "profile": {
-      my_profile: "Mon profil",
-      first_name: "Prénom",
-      last_name: "Nom de famille",
-      email: "Email",
-      phone: "Téléphone",
-      old_password: "Ancien mot de passe",
-      new_password: "Nouveau mot de passe",
-      confirm_password: "Confirmez le mot de passe",
-      update: "Mettre à jour",
-      placeholder: {
-        first_name: "Entrez votre prénom",
-        last_name: "Entrez votre nom de famille",
-        email: "Entrez votre email",
-        phone: "Entrez votre téléphone",
-        old_password: "Entrez votre ancien mot de passe",
-        new_password: "Entrez votre nouveau mot de passe",
-        confirm_password: "Confirmez votre nouveau mot de passe"
+      "my_profile": "Mon profil",
+      "first_name": "Prénom",
+      "last_name": "Nom de famille",
+      "email": "Email",
+      "phone": "Téléphone",
+      "old_password": "Ancien mot de passe",
+      "new_password": "Nouveau mot de passe",
+      "confirm_password": "Confirmez le mot de passe",
+      "update": "Mettre à jour",
+      "placeholder": {
+        "first_name": "Entrez votre prénom",
+        "last_name": "Entrez votre nom de famille",
+        "email": "Entrez votre email",
+        "phone": "Entrez votre téléphone",
+        "old_password": "Entrez votre ancien mot de passe",
+        "new_password": "Entrez votre nouveau mot de passe",
+        "confirm_password": "Confirmez votre nouveau mot de passe"
       }
     },
     "about": {
-      about: "Sur",
-      our_story: "Notre histoire",
-      description: "La description",
-      version: "Version"
+      "about": "Sur",
+      "our_story": "Notre histoire",
+      "description": "La description",
+      "version": "Version"
     },
     "tags": {
-      most_trusted: "Le plus fiable",
-      best_prices: "Meilleurs prix",
-      modern_design: "Design moderne"
+      "most_trusted": "Le plus fiable",
+      "best_prices": "Meilleurs prix",
+      "modern_design": "Design moderne"
     },
     "theme": "Thème",
     "change_theme": "Changer de thème",
@@ -554,35 +554,35 @@
   },
   "ja": {
     "profile": {
-      my_profile: "私のプロフィール",
-      first_name: "ファーストネーム",
-      last_name: "苗字",
-      email: "Eメール",
-      phone: "電話",
-      old_password: "古いパスワード",
-      new_password: "新しいパスワード",
-      confirm_password: "パスワードを認証する",
-      update: "更新する",
-      placeholder: {
-        first_name: "あなたの名前を入力してください",
-        last_name: "あなたの苗字を入力してください",
-        email: "あなたのメールアドレスを入力してください",
-        phone: "あなたの電話番号を入力してください",
-        old_password: "あなたの古いパスワードを入力してください",
-        new_password: "あなたの新しいパスワードを入力してください",
-        confirm_password: "あなたの新しいパスワードを確認してください"
+      "my_profile": "私のプロフィール",
+      "first_name": "ファーストネーム",
+      "last_name": "苗字",
+      "email": "Eメール",
+      "phone": "電話",
+      "old_password": "古いパスワード",
+      "new_password": "新しいパスワード",
+      "confirm_password": "パスワードを認証する",
+      "update": "更新する",
+      "placeholder": {
+        "first_name": "あなたの名前を入力してください",
+        "last_name": "あなたの苗字を入力してください",
+        "email": "あなたのメールアドレスを入力してください",
+        "phone": "あなたの電話番号を入力してください",
+        "old_password": "あなたの古いパスワードを入力してください",
+        "new_password": "あなたの新しいパスワードを入力してください",
+        "confirm_password": "あなたの新しいパスワードを確認してください"
       }
     },
     "about": {
-      about: "約",
-      our_story: "私たちの物語",
-      description: "説明",
-      version: "バージョン"
+      "about": "約",
+      "our_story": "私たちの物語",
+      "description": "説明",
+      "version": "バージョン"
     },
     "tags": {
-      most_trusted: "最も信頼できる",
-      best_prices: "最高の価格",
-      modern_design: "モダンなデザイン"
+      "most_trusted": "最も信頼できる",
+      "best_prices": "最高の価格",
+      "modern_design": "モダンなデザイン"
     },
     "theme": "テーマ",
     "change_theme": "テーマを変更",
@@ -633,15 +633,15 @@
   },
   "ru": {
     "profile": {
-      my_profile: "Мой профиль",
-      first_name: "Имя",
-      last_name: "Фамилия",
-      email: "Эл. адрес",
-      phone: "Телефон",
-      old_password: "Старый пароль",
-      new_password: "Новый пароль",
-      confirm_password: "Подтвердите Пароль",
-      update: "Обновить",
+      "my_profile": "Мой профиль",
+      "first_name": "Имя",
+      "last_name": "Фамилия",
+      "email": "Эл. адрес",
+      "phone": "Телефон",
+      "old_password": "Старый пароль",
+      "new_password": "Новый пароль",
+      "confirm_password": "Подтвердите Пароль",
+      "update": "Обновить",
       "placeholder": {
         "first_name": "Введите ваше имя",
         "last_name": "Введите вашу фамилию",
@@ -712,15 +712,15 @@
   },
   "de": {
     "profile": {
-      my_profile: "Mein Profil",
-      first_name: "Vorname",
-      last_name: "Nachname",
-      email: "Email",
-      phone: "Telefon",
-      old_password: "Altes Passwort",
-      new_password: "Neues Kennwort",
-      confirm_password: "Bestätige das Passwort",
-      update: "Aktualisieren",
+      "my_profile": "Mein Profil",
+      "first_name": "Vorname",
+      "last_name": "Nachname",
+      "email": "Email",
+      "phone": "Telefon",
+      "old_password": "Altes Passwort",
+      "new_password": "Neues Kennwort",
+      "confirm_password": "Bestätige das Passwort",
+      "update": "Aktualisieren",
       "placeholder": {
         "first_name": "Geben Sie Ihren Vornamen ein",
         "last_name": "Geben Sie Ihren Nachnamen ein",
