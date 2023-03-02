@@ -9,12 +9,12 @@ import {
   mdiAccountMultiple,
   mdiCartOutline,
   mdiReload,
-  mdiChartPie,  mdiPlus,
+  mdiChartPie, mdiPlus, mdiLock,
 }
-from "@mdi/js";
+  from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
-import NotificationBar from "@/components/NotificationBar.vue";
-import TableProperty from "@/components/TableProperty.vue";
+
+import TableAdmin from "@/components/TableAdmin.vue";
 import CardBox from "@/components/CardBox.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
@@ -25,12 +25,12 @@ import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
 <template>
   <LayoutAuthenticated>
     <SectionMain>
-      <SectionTitleLineWithButton :icon="mdiHome" title="Properties" main>
-        <router-link to="/add-property">
+      <SectionTitleLineWithButton :icon="mdiLock" title="Admins" main>
+        <router-link to="/add-admin">
           <BaseButton
             target="_blank"
             :icon="mdiPlus"
-            label="Add new property"
+            label="Add new admin"
             color="contrast"
             rounded-full
             small
@@ -46,7 +46,7 @@ import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
       </NotificationBar>
       -->
       <CardBox class="mb-6" has-table>
-          <TableProperty/>
+        <TableAdmin/>
       </CardBox>
     </SectionMain>
   </LayoutAuthenticated>

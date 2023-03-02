@@ -1,6 +1,6 @@
 <script setup>
 import {reactive, ref} from "vue";
-import {mdiBallotOutline, mdiAccount, mdiMail, mdiGithub, mdiPlus} from "@mdi/js";
+import {mdiBallotOutline, mdiAccount, mdiMail, mdiGithub, mdiPlus, mdiLock} from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
 import CardBox from "@/components/CardBox.vue";
 import FormCheckRadioGroup from "@/components/FormCheckRadioGroup.vue";
@@ -59,85 +59,49 @@ const formStatusSubmit = () => {
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiPlus"
-        title="New Property"
+        title="New Admin"
         main
       >
-        <router-link to="/properties">
+        <router-link to="/admins">
           <BaseButton
 
             target="_blank"
-            :icon="mdiProperty"
-            label="Show properties"
+            :icon="mdiLock"
+            label="Show Admins"
             color="contrast"
             rounded-full
             small
           />
         </router-link>
       </SectionTitleLineWithButton>
+      <div class="container w-5/12 mx-auto">
       <CardBox form @submit.prevent="submit">
-        <FormField>
-          <FormField label="Category">
-            <FormControl v-model="form.department" :options="selectOptions"/>
+
+          <FormField label="Name">
+            <FormControl type="email"/>
           </FormField>
-          <FormField label="Type">
-            <FormControl v-model="form.department" :options="selectOptions"/>
+          <FormField label="Email">
+            <FormControl  type="email"/>
           </FormField>
-        </FormField>
-
-        <FormField>
-          <FormField label="Bathroom Count ">
-            <FormControl v-model="form.phone" type="number"
-            />
+          <FormField label="Password">
+            <FormControl type="password"/>
           </FormField>
-          <FormField label="Room Count ">
-            <FormControl
-              v-model="form.phone"
-              type="number"
-            />
-          </FormField>
-        </FormField>
-        <FormField>
-
-          <FormField label="Area">
-            <FormControl v-model="form.phone" type="text"
-            />
-          </FormField>
-        </FormField>
-        <FormField>
-          <FormField label="Location">
-            <FormControl v-model="form.department" :options="selectOptions"/>
-          </FormField>
-          <FormField label="Equiped">
-
-            <FormCheckRadioGroup
-              v-model="customElementsForm.switch"
-              name="sample-switch"
-              type="switch"
-
-              :options="{ one: ' '}"
-            />
-          </FormField>
-        </FormField>
-
-        <FormField label="Description" class="w-full">
-          <FormControl
-            type="textarea"
-            placeholder="Put your description here"
-          />
-        </FormField>
-        <FormFilePicker v-model="customElementsForm.file" label="Upload"/>
-        <BaseDivider/>
 
 
-        <template #footer>
 
-          <BaseButtons class=" flex items-center justify-center">
-            <BaseButton type="submit" color="warning" label="Add"/>
-            <BaseButton type="reset" color="warning" outline label="Reset"/>
-          </BaseButtons>
 
-        </template>
+
+          <BaseDivider/>
+
+
+          <template #footer>
+            <BaseButtons class="ml-14 mr-0">
+              <BaseButton   class="ml-20 " type="submit" color="warning" label="Add"/>
+              <BaseButton  class="ml-2" type="reset" color="warning" outline label="Reset"/>
+            </BaseButtons>
+          </template>
       </CardBox>
+      </div>
     </SectionMain>
 
 

@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan } from "@mdi/js";
+import { mdiEye, mdiTrashCan,mdiImageEdit } from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
@@ -100,79 +100,55 @@ const checked = (isChecked, client) => {
 
   <table>
     <thead>
-      <tr>
-        <th v-if="checkable" />
-        <th>Id</th>
-        <th>Category</th>
-        <th>Type</th>
-        <th>City</th>
-        <th>Equiped</th>
-        <th>Price</th>
-        <th>status</th>
-        <th>Added at</th>
-        <th />
-      </tr>
+    <tr>
+      <th v-if="checkable" />
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+
+
+      <th />
+    </tr>
     </thead>
     <tbody>
-      <tr v-for="client in itemsPaginated" :key="client.id">
-        <TableCheckboxCell
-          v-if="checkable"
-          @checked="checked($event, client)"
-        />
+    <tr v-for="client in itemsPaginated" :key="client.id">
+      <TableCheckboxCell
+        v-if="checkable"
+        @checked="checked($event, client)"
+      />
 
-        <td data-label="Name">
-          {{ client.id }}
-        </td>
+      <td data-label="Name">
+        {{ client.id }}
+      </td>
 
-        <td data-label="Name">
-          {{ client.name }}
-        </td>
-        <td data-label="Company">
-          {{ client.company }}
-        </td>
-        <td data-label="City">
-          {{ client.city }}
-        </td>
-        <td data-label="Progress" class="lg:w-32">
-          <progress
-            class="flex w-2/5 self-center lg:w-full"
-            max="100"
-            :value="client.progress"
-          >
-            {{ client.progress }}
-          </progress>
-        </td>
-        <td data-label="Company">
-          {{ client.company }}
-        </td>
-        <td data-label="City">
-          {{ client.city }}
-        </td>
-        <td data-label="Created" class="lg:w-1 whitespace-nowrap">
-          <small
-            class="text-gray-500 dark:text-slate-400"
-            :title="client.created"
-            >{{ client.created }}</small
-          >
-        </td>
+      <td data-label="Name">
+        {{ client.name }}
+      </td>
+      <td data-label="Company">
+        {{ client.company }}
+      </td>
 
-        <td class="before:hidden lg:w-1 whitespace-nowrap">
-          <BaseButtons type="justify-start lg:justify-end" no-wrap>
-            <BaseButton
-              color="info"
-              :icon="mdiEye"
-              small
-              @click="isModalActive = true"
-            />
-            <BaseButton
-              color="danger"
-              :icon="mdiTrashCan"
-              small
-              @click="isModalDangerActive = true"
-            />
-          </BaseButtons>
-        </td>
-      </tr>
+
+
+
+      <td class="before:hidden lg:w-1 whitespace-nowrap">
+        <BaseButtons type="justify-start lg:justify-end" no-wrap>
+
+          <BaseButton
+            color="danger"
+            :icon="mdiTrashCan"
+            small
+            @click="isModalDangerActive = true"
+          />
+          <BaseButton
+            color="success"
+            :icon="mdiImageEdit"
+            small
+            @click="isModalDangerActive = true"
+          />
+        </BaseButtons>
+      </td>
+    </tr>
     </tbody>
   </table>
   <div class="p-3 lg:px-6 border-t border-gray-100 dark:border-slate-800">

@@ -10,32 +10,25 @@ import {
   mdiCartOutline,
   mdiReload,
   mdiChartPie,  mdiPlus,
-}
-from "@mdi/js";
+  mdiClipboardList,
+
+} from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
 import NotificationBar from "@/components/NotificationBar.vue";
-import TableProperty from "@/components/TableProperty.vue";
+import TableSampleClients from "@/components/TableSampleClients.vue";
 import CardBox from "@/components/CardBox.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
+import TableSampleReservation from "@/components/TableSampleReservation.vue";
 </script>
 
 <template>
   <LayoutAuthenticated>
     <SectionMain>
-      <SectionTitleLineWithButton :icon="mdiHome" title="Properties" main>
-        <router-link to="/add-property">
-          <BaseButton
-            target="_blank"
-            :icon="mdiPlus"
-            label="Add new property"
-            color="contrast"
-            rounded-full
-            small
-          />
-        </router-link>
+      <SectionTitleLineWithButton :icon=" mdiClipboardList" title="Booking Requests" main>
+
       </SectionTitleLineWithButton>
       <!--   we can call tha notification here
       <NotificationBar color="info" :icon="mdiMonitorCellphone">
@@ -46,8 +39,10 @@ import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
       </NotificationBar>
       -->
       <CardBox class="mb-6" has-table>
-          <TableProperty/>
+        <TableSampleReservation/>
       </CardBox>
+
+
     </SectionMain>
   </LayoutAuthenticated>
 </template>

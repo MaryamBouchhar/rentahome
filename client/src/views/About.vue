@@ -3,12 +3,22 @@
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-center text-neutral-content">
       <div class="max-w-md">
-        <h1 class="mb-5 text-5xl font-bold">Our Story</h1>
+        <h1
+            class="mb-5 text-5xl font-bold"
+        >
+            {{ $t('about.our_story') }}
+        </h1>
         <div class="flex justify-center space-x-2 mb-5">
+<<<<<<< HEAD
           <div class="badge badge-outline">Most trusted</div>
           <div class="badge badge-outline">Best prices</div>
           <div class="badge badge-outline">Modern design</div>
           <div class="badge badge-outline">{{ message }}</div>
+=======
+          <div class="badge badge-outline">{{ $t('tags.most_trusted') }}</div>
+          <div class="badge badge-outline">{{ $t('tags.best_prices') }}</div>
+          <div class="badge badge-outline">{{ $t('tags.modern_design') }}</div>
+>>>>>>> bd5286dabf0029fc79ffbe1b802c6a2c154526b2
         </div>
       </div>
     </div>
@@ -21,7 +31,7 @@
         <img src="../../src/assets/our_story.png" alt="about image" class="w-full h-full object-cover"/>
       </div>
       <div class="flex flex-col justify-center items-center">
-        <h1 class="text-3xl font-bold">Our Story</h1>
+        <h1 class="text-3xl font-bold">{{ $t('about.our_story') }}</h1>
         <p class="py-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur atque autem
           <consequuntur></consequuntur>
           cumque delectus doloremque doloribus ducimus earum enim eos esse et eveniet exercitationem fugiat
