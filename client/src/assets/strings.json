@@ -35,6 +35,22 @@
       "contact": "Contact",
       "logout": "Logout"
     },
+    "contact": {
+      "contact_us": "Contact Us",
+      "email_us": "Email us for any questions or inquiries.",
+      "call_us": "Call us for any questions or inquiries.",
+      "visit_us": "Visit us for any questions or inquiries.",
+      "taroudant": "Taroudant",
+      "morocco": "Morocco",
+      "submit": "submit",
+      "follow_us": "Follow us on social media",
+      "placeholder": {
+        "your_name": "Your name",
+        "subject": "Subject",
+        "your_email": "Your email",
+        "your_message": "Your message"
+      }
+    },
     "tags": {
       "most_trusted": "Most Trusted",
       "best_prices": "Best Prices",
@@ -122,6 +138,22 @@
       "properties": "财产",
       "contact": "接触",
       "logout": "登出"
+    },
+    "contact": {
+      "contact_us": "联系我们",
+      "email_us": "通过电子邮件与我们联系，以获取任何问题或查询。",
+      "call_us": "通过电话与我们联系，以获取任何问题或查询。",
+      "visit_us": "访问我们，以获取任何问题或查询。",
+      "taroudant": "塔鲁丹特",
+      "morocco": "摩洛哥",
+      "submit": "提交",
+      "follow_us": "在社交媒体上关注我们",
+      "placeholder": {
+        "your_name": "你的名字",
+        "subject": "学科",
+        "your_email": "你的电子邮件",
+        "your_message": "你的信息"
+      }
     },
     "tags": {
       "most_trusted": "最受信任",
@@ -211,6 +243,22 @@
       "contact": "Contacto",
       "logout": "Cerrar sesión"
     },
+    "contact": {
+      "contact_us": "Contáctenos",
+      "email_us": "Contáctenos por correo electrónico para cualquier pregunta o consulta.",
+      "call_us": "Contáctenos por teléfono para cualquier pregunta o consulta.",
+      "visit_us": "Visítenos para cualquier pregunta o consulta.",
+      "taroudant": "Taroudant",
+      "morocco": "Marruecos",
+      "submit": "Enviar",
+      "follow_us": "Síguenos en las redes sociales",
+      "placeholder": {
+        "your_name": "Tu nombre",
+        "subject": "Tema",
+        "your_email": "Tu correo electrónico",
+        "your_message": "Tu mensaje"
+      }
+    },
     "tags": {
       "most_trusted": "Más confiable",
       "best_prices": "Mejores precios",
@@ -298,6 +346,22 @@
       "properties": "الخصائص",
       "contact": "اتصل",
       "logout": "تسجيل خروج"
+    },
+    "contact": {
+      "contact_us": "اتصل بنا",
+      "email_us": "اتصل بنا عبر البريد الإلكتروني لأي سؤال أو استفسار.",
+      "call_us": "اتصل بنا عبر الهاتف لأي سؤال أو استفسار.",
+      "visit_us": "زورنا لأي سؤال أو استفسار.",
+      "taroudant": "تارودانت",
+      "morocco": "المغرب",
+      "submit": "إرسال",
+      "follow_us": "تابعنا على وسائل التواصل الاجتماعي",
+      "placeholder": {
+        "your_name": "اسمك",
+        "subject": "موضوع",
+        "your_email": "بريدك الالكتروني",
+        "your_message": "رسالتك"
+      }
     },
     "tags": {
       "most_trusted": "الأكثر اعتمادًا",
@@ -387,6 +451,22 @@
       "contact": "Kontak",
       "logout": "Keluar"
     },
+    "contact": {
+      "contact_us": "Hubungi kami",
+      "email_us": "Kirim email kepada kami untuk pertanyaan atau pertanyaan.",
+      "call_us": "Hubungi kami melalui telepon untuk pertanyaan atau pertanyaan.",
+      "visit_us": "Kunjungi kami untuk pertanyaan atau pertanyaan.",
+      "taroudant": "Taroudant",
+      "morocco": "Maroko",
+      "submit": "Kirimkan",
+      "follow_us": "Ikuti kami di media sosial",
+      "placeholder": {
+        "your_name": "Nama Anda",
+        "subject": "Subyek",
+        "your_email": "Email Anda",
+        "your_message": "Pesan Anda"
+      }
+    },
     "tags": {
       "most_trusted": "Paling Terpercaya",
       "best_prices": "Harga Terbaik",
@@ -474,6 +554,22 @@
       "properties": "Propriedades",
       "contact": "Contato",
       "logout": "Sair"
+    },
+    "contact": {
+      "contact_us": "Contate-Nos",
+      "email_us": "Envie-nos um e-mail para perguntas ou perguntas.",
+      "call_us": "Ligue-nos para perguntas ou perguntas.",
+      "visit_us": "Visite-nos para perguntas ou perguntas.",
+      "taroudant": "Taroudant",
+      "morocco": "Marrocos",
+      "submit": "Enviar",
+      "follow_us": "Siga-nos nas redes sociais",
+      "placeholder": {
+        "your_name": "Seu nome",
+        "subject": "Sujeito",
+        "your_email": "Seu email",
+        "your_message": "Sua mensagem"
+      }
     },
     "tags": {
       "most_trusted": "Mais confiável",
@@ -563,6 +659,22 @@
       "contact": "Contact",
       "logout": "Déconnexion"
     },
+    "contact": {
+      "contact_us": "Contactez nous",
+      "email_us": "Envoyez-nous un e-mail pour des questions ou des questions.",
+      "call_us": "Appelez-nous pour des questions ou des questions.",
+      "visit_us": "Visitez-nous pour des questions ou des questions.",
+      "taroudant": "Taroudant",
+      "morocco": "Maroc",
+      "submit": "Soumettre",
+      "follow_us": "Suivez-nous sur les réseaux sociaux",
+      "placeholder": {
+        "your_name": "Votre nom",
+        "subject": "Sujet",
+        "your_email": "Votre email",
+        "your_message": "Votre message"
+      }
+    },
     "tags": {
       "most_trusted": "Le plus fiable",
       "best_prices": "Meilleurs prix",
@@ -650,6 +762,22 @@
       "properties": "物件",
       "contact": "接触",
       "logout": "ログアウト"
+    },
+    "contact": {
+      "contact_us": "お問い合わせ",
+      "email_us": "質問や質問については、メールでお問い合わせください。",
+      "call_us": "質問や質問については、お電話ください。",
+      "visit_us": "質問や質問については、私たちにお問い合わせください。",
+      "taroudant": "タルーダント",
+      "morocco": "モロッコ",
+      "submit": "提出する",
+      "follow_us": "ソーシャルメディアで私たちをフォローしてください",
+      "placeholder": {
+        "your_name": "あなたの名前",
+        "subject": "件名",
+        "your_email": "あなたのメールアドレス",
+        "your_message": "あなたのメッセージ"
+      }
     },
     "tags": {
       "most_trusted": "最も信頼できる",
@@ -739,6 +867,22 @@
       "contact": "Контакт",
       "logout": "Выйти"
     },
+    "contact": {
+      "contact_us": "Свяжитесь с нами",
+      "email_us": "Если у вас есть вопросы или вопросы, пожалуйста, напишите нам по электронной почте.",
+      "call_us": "Если у вас есть вопросы или вопросы, пожалуйста, позвоните нам.",
+      "visit_us": "Если у вас есть вопросы или вопросы, пожалуйста, свяжитесь с нами.",
+      "taroudant": "Тарудант",
+      "morocco": "Марокко",
+      "submit": "Отправить",
+      "follow_us": "Подпишитесь на нас в социальных сетях",
+      "placeholder": {
+        "your_name": "Ваше имя",
+        "subject": "Тема",
+        "your_email": "Ваш адрес электронной почты",
+        "your_message": "Ваше сообщение"
+      }
+    },
     "tags": {
       "most_trusted": "Самый надежный",
       "best_prices": "Лучшие цены",
@@ -826,6 +970,22 @@
       "properties": "Eigenschaften",
       "contact": "Kontakt",
       "logout": "Ausloggen"
+    },
+    "contact": {
+      "contact_us": "Kontaktiere uns",
+      "email_us": "Wenn Sie Fragen oder Anregungen haben, schreiben Sie uns bitte eine E-Mail.",
+      "call_us": "Wenn Sie Fragen oder Anregungen haben, rufen Sie uns bitte an.",
+      "visit_us": "Wenn Sie Fragen oder Anregungen haben, kontaktieren Sie uns bitte.",
+      "taroudant": "Taroudant",
+      "morocco": "Marokko",
+      "submit": "einreichen",
+      "follow_us": "Folgen Sie uns in den sozialen Medien",
+      "placeholder": {
+        "your_name": "Dein Name",
+        "subject": "Gegenstand",
+        "your_email": "Deine E-Mail-Adresse",
+        "your_message": "Deine Nachricht"
+      }
     },
     "tags": {
       "most_trusted": "Am vertrauenswürdigsten",
