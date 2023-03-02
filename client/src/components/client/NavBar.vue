@@ -1,6 +1,8 @@
 <template>
-    <div class="navbar bg-base-100 shadow-md">
-        <div class="navbar-start">
+    <div :class="{'flex-row-reverse' : languages[$i18n.locale].rtl}"
+        class="flex flex-row p-5 bg-base-100 shadow-md">
+        <div :class="{'flex-row-reverse' : languages[$i18n.locale].rtl}"
+            class="flex flex-row basis-1/4">
             <div class="dropdown">
                 <label tabindex="0" class="btn btn-ghost lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -24,7 +26,8 @@
                 </a>
             </router-link>
         </div>
-        <div class="navbar-center hidden lg:flex">
+        <div :class="{'flex-row-reverse' : languages[$i18n.locale].rtl}"
+            class="flex flex-row hidden lg:flex lg:basis-1/2">
             <ul class="menu menu-horizontal p-0">
                 <NavLink to="/" label="Home" class="mx-1"/>
                 <NavLink to="/properties" label="Properties" class="mx-1"/>
@@ -32,8 +35,10 @@
                 <NavLink to="/contact" label="Contact" class="mx-1"/>
             </ul>
         </div>
-        <div class="navbar-end">
-            <div class="dropdown dropdown-end ml-2">
+        <div :class="{'flex-row-reverse' : languages[$i18n.locale].rtl}"
+            class="flex flex-row basis-1/4">
+            <div :class="languages[$i18n.locale].rtl ? 'dropdown' : 'dropdown dropdown-end'"
+                class="ml-2">
                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
                         <img src="https://i.pravatar.cc/300"/>
@@ -61,9 +66,15 @@ import NavLink from "./NavLink.vue";
 import ThemeDropDown from "./ThemeDropDown.vue";
 import Languages from "./Languages.vue";
 import 'boxicons';
+import languages from "../../assets/languages.json"
 
 export default {
     name: "NavBar",
+    data() {
+        return {
+            languages: languages,
+        }
+    },
     components: {
         ThemeDropDown,
         NavLink,
