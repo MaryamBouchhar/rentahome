@@ -737,6 +737,11 @@
       "description": "Beschreibung",
       "version": "Ausführung"
     },
+    "tags": {
+      "most_trusted": "Am vertrauenswürdigsten",
+      "best_prices": "Beste Preise",
+      "modern_design": "Modernes Design"
+    },
     "theme": "Thema",
     "change_theme": "Thema ändern",
     "themes": {
