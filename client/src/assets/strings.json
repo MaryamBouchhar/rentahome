@@ -26,6 +26,15 @@
       "description": "Description",
       "version": "Version"
     },
+    "navbar": {
+      "home": "Home",
+      "about": "About",
+      "profile": "Profile",
+      "settings": "Settings",
+      "properties": "Properties",
+      "contact": "Contact",
+      "logout": "Logout"
+    },
     "tags": {
       "most_trusted": "Most Trusted",
       "best_prices": "Best Prices",
@@ -104,6 +113,15 @@
       "our_story": "我们的故事",
       "description": "描述",
       "version": "版本"
+    },
+    "navbar": {
+      "home": "家",
+      "about": "关于",
+      "profile": "轮廓",
+      "settings": "设定值",
+      "properties": "财产",
+      "contact": "接触",
+      "logout": "登出"
     },
     "tags": {
       "most_trusted": "最受信任",
@@ -184,6 +202,15 @@
       "description": "Descripción",
       "version": "Versión"
     },
+    "navbar": {
+      "home": "Casa",
+      "about": "Acerca de",
+      "profile": "Perfil",
+      "settings": "Ajustes",
+      "properties": "Propiedades",
+      "contact": "Contacto",
+      "logout": "Cerrar sesión"
+    },
     "tags": {
       "most_trusted": "Más confiable",
       "best_prices": "Mejores precios",
@@ -262,6 +289,15 @@
       "our_story": "قصتنا",
       "description": "وصف",
       "version": "الإصدار"
+    },
+    "navbar": {
+      "home": "الصفحة الرئيسية",
+      "about": "حول",
+      "profile": "الملف الشخصي",
+      "settings": "الإعدادات",
+      "properties": "الخصائص",
+      "contact": "اتصل",
+      "logout": "تسجيل خروج"
     },
     "tags": {
       "most_trusted": "الأكثر اعتمادًا",
@@ -342,6 +378,15 @@
       "description": "Deskripsi",
       "version": "Versi"
     },
+    "navbar": {
+      "home": "Rumah",
+      "about": "Tentang",
+      "profile": "Profil",
+      "settings": "Pengaturan",
+      "properties": "Properti",
+      "contact": "Kontak",
+      "logout": "Keluar"
+    },
     "tags": {
       "most_trusted": "Paling Terpercaya",
       "best_prices": "Harga Terbaik",
@@ -420,6 +465,15 @@
       "our_story": "Nossa história",
       "description": "Descrição",
       "version": "Versão"
+    },
+    "navbar": {
+      "home": "Casa",
+      "about": "Sobre",
+      "profile": "Perfil",
+      "settings": "Configurações",
+      "properties": "Propriedades",
+      "contact": "Contato",
+      "logout": "Sair"
     },
     "tags": {
       "most_trusted": "Mais confiável",
@@ -500,6 +554,15 @@
       "description": "La description",
       "version": "Version"
     },
+    "navbar": {
+      "home": "Accueil",
+      "about": "Sur",
+      "profile": "Profil",
+      "settings": "Paramètres",
+      "properties": "Propriétés",
+      "contact": "Contact",
+      "logout": "Connectez - Out"
+    },
     "tags": {
       "most_trusted": "Le plus fiable",
       "best_prices": "Meilleurs prix",
@@ -578,6 +641,15 @@
       "our_story": "私たちの物語",
       "description": "説明",
       "version": "バージョン"
+    },
+    "navbar": {
+      "home": "ホーム",
+      "about": "約",
+      "profile": "プロフィール",
+      "settings": "設定",
+      "properties": "物件",
+      "contact": "接触",
+      "logout": "ログアウト"
     },
     "tags": {
       "most_trusted": "最も信頼できる",
@@ -658,6 +730,15 @@
       "description": "Описание",
       "version": "Версия"
     },
+    "navbar": {
+      "home": "Главная",
+      "about": "Около",
+      "profile": "Профиль",
+      "settings": "настройки",
+      "properties": "Свойства",
+      "contact": "Контакт",
+      "logout": "Выйти"
+    },
     "tags": {
       "most_trusted": "Самый надежный",
       "best_prices": "Лучшие цены",
@@ -736,6 +817,15 @@
       "our_story": "Unsere Geschichte",
       "description": "Beschreibung",
       "version": "Ausführung"
+    },
+    "navbar": {
+      "home": "Zuhause",
+      "about": "Über",
+      "profile": "Profil",
+      "settings": "die Einstellungen",
+      "properties": "Eigenschaften",
+      "contact": "Kontakt",
+      "logout": "Ausloggen"
     },
     "tags": {
       "most_trusted": "Am vertrauenswürdigsten",
