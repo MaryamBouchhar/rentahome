@@ -13,11 +13,10 @@
                 </label>
                 <ul tabindex="0"
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <NavLink to="/" label="Home"/>
-                    <NavLink to="/properties" label="Properties" class="my-1"/>
-                    <NavLink to="/about" label="About" class="my-1"/>
-                    <NavLink to="/contact" label="Contact" class="my-1"/>
-
+                    <NavLink to="/" v-bind:label="$t('navbar.home')"/>
+                    <NavLink to="/properties" v-bind:label="$t('navbar.properties')" class="my-1"/>
+                    <NavLink to="/about" v-bind:label="$t('navbar.about')" class="my-1"/>
+                    <NavLink to="/contact" v-bind:label="$t('navbar.contact')" class="my-1"/>
                 </ul>
             </div>
             <router-link to="/">
@@ -35,6 +34,7 @@
                 <NavLink to="/contact" label="Contact" class="mx-1"/>
             </ul>
         </div>
+        <div class="hidden lg:show lg:basis-1/2"></div>
         <div :class="{'flex-row-reverse' : languages[$i18n.locale].rtl}"
             class="flex flex-row basis-1/4">
             <div :class="languages[$i18n.locale].rtl ? 'dropdown' : 'dropdown dropdown-end'"
@@ -48,11 +48,11 @@
                     class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                     <li>
                         <router-link to="/profile">
-                            <i class='bx bx-user bx-sm'></i>Profile
+                            <i class='bx bx-user bx-sm'></i>{{ $t('navbar.profile') }}
                         </router-link>
                     </li>
-                    <li><a><i class='bx bx-cog bx-sm'></i>Settings</a></li>
-                    <li><a><i class='bx bx-power-off bx-sm'></i>Logout</a></li>
+                    <li><a><i class='bx bx-cog bx-sm'></i>{{ $t('navbar.settings') }}</a></li>
+                    <li><a><i class='bx bx-power-off bx-sm'></i>{{ $t('navbar.logout') }}</a></li>
                 </ul>
             </div>
             <ThemeDropDown/>
