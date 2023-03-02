@@ -20,6 +20,12 @@
         confirm_password: "Confirm your new password"
       }
     },
+    about: {
+      about: "About",
+      our_story: "Our Story",
+      description: "Description",
+      version: "Version"
+    },
     "tags": {
       most_trusted: "Most Trusted",
       best_prices: "Best Prices",
@@ -92,6 +98,12 @@
         new_password: "输入您的新密码",
         confirm_password: "确认您的新密码"
       }
+    },
+    about: {
+      about: "关于",
+      our_story: "我们的故事",
+      description: "描述",
+      version: "版本"
     },
     "tags": {
       most_trusted: "最受信任",
@@ -166,6 +178,12 @@
         confirm_password: "Confirme su nueva contraseña"
       }
     },
+    about: {
+      about: "Acerca de",
+      our_story: "Nuestra historia",
+      description: "Descripción",
+      version: "Versión"
+    },
     "tags": {
       most_trusted: "Más confiable",
       best_prices: "Mejores precios",
@@ -238,6 +256,12 @@
         new_password: "أدخل كلمة المرور الجديدة",
         confirm_password: "تأكيد كلمة المرور الجديدة"
       }
+    },
+    about: {
+      about: "حول",
+      our_story: "قصتنا",
+      description: "وصف",
+      version: "الإصدار"
     },
     "tags": {
       most_trusted: "الأكثر اعتمادًا",
@@ -312,6 +336,12 @@
         "confirm_password": "Konfirmasi kata sandi baru Anda"
       }
     },
+    "about": {
+      "about": "Tentang",
+      "our_story": "Kisah kami",
+      "description": "Deskripsi",
+      "version": "Versi"
+    },
     "tags": {
       "most_trusted": "Paling Terpercaya",
       "best_prices": "Harga Terbaik",
@@ -384,6 +414,12 @@
         new_password: "Digite sua nova senha",
         confirm_password: "Confirme sua nova senha"
       }
+    },
+    about: {
+      about: "Sobre",
+      our_story: "Nossa história",
+      description: "Descrição",
+      version: "Versão"
     },
     "tags": {
       most_trusted: "Mais confiável",
@@ -458,6 +494,12 @@
         confirm_password: "Confirmez votre nouveau mot de passe"
       }
     },
+    "about": {
+      about: "Sur",
+      our_story: "Notre histoire",
+      description: "La description",
+      version: "Version"
+    },
     "tags": {
       most_trusted: "Le plus fiable",
       best_prices: "Meilleurs prix",
@@ -530,6 +572,12 @@
         new_password: "あなたの新しいパスワードを入力してください",
         confirm_password: "あなたの新しいパスワードを確認してください"
       }
+    },
+    "about": {
+      about: "約",
+      our_story: "私たちの物語",
+      description: "説明",
+      version: "バージョン"
     },
     "tags": {
       most_trusted: "最も信頼できる",
@@ -604,6 +652,12 @@
         "confirm_password": "Подтвердите ваш новый пароль"
       }
     },
+    "about": {
+      "about": "Около",
+      "our_story": "Наша история",
+      "description": "Описание",
+      "version": "Версия"
+    },
     "tags": {
       "most_trusted": "Самый надежный",
       "best_prices": "Лучшие цены",
@@ -676,6 +730,12 @@
         "new_password": "Geben Sie Ihr neues Passwort ein",
         "confirm_password": "Bestätigen Sie Ihr neues Passwort"
       }
+    },
+    "about": {
+      "about": "Über",
+      "our_story": "Unsere Geschichte",
+      "description": "Beschreibung",
+      "version": "Ausführung"
     },
     "theme": "Thema",
     "change_theme": "Thema ändern",
