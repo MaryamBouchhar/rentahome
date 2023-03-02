@@ -8,6 +8,7 @@
           <div class="badge badge-outline">Most trusted</div>
           <div class="badge badge-outline">Best prices</div>
           <div class="badge badge-outline">Modern design</div>
+          <div class="badge badge-outline">{{ message }}</div>
         </div>
       </div>
     </div>
@@ -57,9 +58,55 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "About"
-}
+  name: "About",
+  data() {
+    return {
+      properties: [],
+      message: ''
+    };
+  },
+  methods: {
+    async getProperties() {
+
+      const data = {
+        name: "test",
+        email: "test@gmail.com",
+        phone: "123456789",
+        password: "test"
+      };
+
+      axios.post('http://localhost:8080/post', data)
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+
+      axios.delete('http://localhost:8080/delete/1')
+          .then(response => {
+            this.message = response.data;
+          })
+          .catch(error => {
+            console.log(error);
+          });
+
+      axios.get('http://localhost:8080/hello')
+          .then(response => {
+            this.message = response.data;
+          })
+          .catch(error => {
+            console.log(error);
+          });
+    },
+  },
+  mounted() {
+    this.getProperties();
+  },
+};
 </script>
 
 <style scoped>
