@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan } from "@mdi/js";
+import {mdiEye, mdiImageEdit, mdiTrashCan, mdiUpdate} from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
@@ -120,7 +120,7 @@ const checked = (isChecked, client) => {
           @checked="checked($event, client)"
         />
 
-        <td data-label="Name">
+        <td data-label="Id">
           {{ client.id }}
         </td>
 
@@ -169,6 +169,12 @@ const checked = (isChecked, client) => {
               :icon="mdiTrashCan"
               small
               @click="isModalDangerActive = true"
+            />
+            <BaseButton
+              color="success"
+              :icon="mdiImageEdit"
+              small
+              @click="isModalActive = true"
             />
           </BaseButtons>
         </td>

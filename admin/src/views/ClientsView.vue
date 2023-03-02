@@ -27,16 +27,7 @@ import TableClient from "@/components/TableClient.vue";
   <LayoutAuthenticated>
     <SectionMain>
       <SectionTitleLineWithButton :icon="mdiAccount" title="Clients" main>
-        <router-link to="/add-client">
-          <BaseButton
-            target="_blank"
-            :icon="mdiPlus"
-            label="Add new client"
-            color="contrast"
-            rounded-full
-            small
-          />
-        </router-link>
+
       </SectionTitleLineWithButton>
       <!--   we can call tha notification here
       <NotificationBar color="info" :icon="mdiMonitorCellphone">
