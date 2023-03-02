@@ -9,16 +9,13 @@
             {{ $t('about.our_story') }}
         </h1>
         <div class="flex justify-center space-x-2 mb-5">
-<<<<<<< HEAD
           <div class="badge badge-outline">Most trusted</div>
           <div class="badge badge-outline">Best prices</div>
           <div class="badge badge-outline">Modern design</div>
           <div class="badge badge-outline">{{ message }}</div>
-=======
           <div class="badge badge-outline">{{ $t('tags.most_trusted') }}</div>
           <div class="badge badge-outline">{{ $t('tags.best_prices') }}</div>
           <div class="badge badge-outline">{{ $t('tags.modern_design') }}</div>
->>>>>>> bd5286dabf0029fc79ffbe1b802c6a2c154526b2
         </div>
       </div>
     </div>
