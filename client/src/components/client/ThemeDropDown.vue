@@ -87,6 +87,28 @@ export default {
             languages: languages,
         }
     },
+    methods: {
+        changeTheme(theme) {
+            this.currentTheme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        },
+
+        getDefaultTheme() {
+            const theme = localStorage.getItem('theme');
+            if (theme) {
+                this.currentTheme = theme;
+            } else {
+                // get OS theme
+                const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+                if (darkModeMediaQuery.matches) {
+                    this.currentTheme = 'dracula';
+                } else {
+                    this.currentTheme = 'winter';
+                }
+            }
+        },
+    },
 }
 </script>
 
