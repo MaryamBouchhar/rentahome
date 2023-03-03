@@ -1,4 +1,5 @@
 import {RouteRecordRaw, createRouter, createWebHistory} from 'vue-router';
+import store from "../store";
 
 // @ts-ignore
 // @ts-ignore
@@ -30,15 +31,17 @@ const routes: RouteRecordRaw[] = [
         name: 'NotFound',
         component: () => import('../views/NotFound.vue')
     }
-    //TODO: Add admin routes here
-
-
 ];
 
 const router = createRouter({
     history: createWebHistory(),
     routes
 });
+
+router.beforeEach((to, from, next) => {
+    store.commit('setPath', to.path)
+    next();
+})
 
 // @ts-ignore
 export default router;
