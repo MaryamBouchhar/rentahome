@@ -73,12 +73,16 @@ export default {
     data() {
         return {
             languages: languages,
+            rtl: false
         }
     },
     components: {
         ThemeDropDown,
         NavLink,
         Languages
+    },
+    mounted() {
+        this.rtl = this.languages[this.$i18n.locale].rtl
     }
 }
 </script>
