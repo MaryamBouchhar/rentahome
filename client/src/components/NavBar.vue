@@ -80,7 +80,7 @@ import NavLink from "./NavLink.vue";
 import ThemeDropDown from "./ThemeDropDown.vue";
 import Languages from "./Languages.vue";
 import 'boxicons';
-import languages from "../../assets/languages.json"
+import languages from "../assets/languages.json"
 import {useStore} from "vuex";
 import {computed} from "vue";
 

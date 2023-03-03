@@ -46,7 +46,7 @@
 
 <script>
 
-import languages from "./../../assets/languages.json";
+import languages from "../assets/languages.json";
 import {useStore} from "vuex";
 import {computed} from "vue";
 
