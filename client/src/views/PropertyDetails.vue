@@ -22,6 +22,46 @@
           <a href="#item3" class="btn btn-xs">3</a>
           <a href="#item4" class="btn btn-xs">4</a>
         </div>
+        <!-- comments section -->
+        <h1 class="text-2xl font-bold mb-3">Comments</h1>
+        <div class="chat chat-start mb-3">
+          <div class="chat-image avatar">
+            <div class="w-10 rounded-full">
+              <img src="https://i.pravatar.cc/50" />
+            </div>
+          </div>
+          <div class="chat-bubble">It was said that you would, destroy the Sith, not join them.</div>
+        </div>
+        <div class="chat chat-start">
+          <div class="chat-image avatar">
+            <div class="w-10 rounded-full">
+              <img src="https://i.pravatar.cc/50" />
+            </div>
+          </div>
+          <div class="chat-bubble">It was you who would bring balance to the Force</div>
+        </div>
+        <div class="chat chat-start">
+          <div class="chat-image avatar">
+            <div class="w-10 rounded-full">
+              <img src="https://i.pravatar.cc/50" />
+            </div>
+          </div>
+          <div class="chat-bubble">Not leave it in Darkness</div>
+        </div>
+
+        <!-- add comment -->
+        <div class="flex flex-col mt-3">
+          <h1 class="text-2xl font-bold mb-3">Rate this property</h1>
+          <textarea class="textarea h-24 mb-3" placeholder="Your comment"></textarea>
+          <div class="rating">
+            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+          </div>
+          <button class="btn btn-wide mt-3">Add Comment</button>
+        </div>
       </div>
       <div class="property-details w-full mx-4">
         <h1 class="text-3xl font-bold mb-3">Property title</h1>
@@ -40,7 +80,7 @@
           eius error eveniet excepturi facilis illo iusto magnam magni minima molestias nam natus, perspiciatis placeat
           vel.</p>
         <h1 class="font-bold text-xl text-green-400 mb-3">$1,300</h1>
-        <div class="overflow-x-auto ">
+        <div class="overflow-x-auto mb-3">
           <table class="table w-full">
             <tbody>
             <!-- row 1 -->
@@ -61,6 +101,7 @@
             </tbody>
           </table>
         </div>
+        <button class="btn btn-wide w-full">Book now</button>
       </div>
     </div>
   </div>
