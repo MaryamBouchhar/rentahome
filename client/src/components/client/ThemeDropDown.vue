@@ -1,7 +1,8 @@
 <template>
     <!-- Theme dropdown -->
-    <div :title="$t('change_theme')">
-        <div tabindex="0">
+    <div :title="$t('change_theme')" class="dropdown dropdown-end">
+        <div tabindex="0"
+             class="btn btn-ghost gap-1 normal-case">
             <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                  class="inline-block h-5 w-5 stroke-current md:h-6 md:w-6">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
