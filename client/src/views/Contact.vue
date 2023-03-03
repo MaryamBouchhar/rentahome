@@ -60,7 +60,7 @@
                                       clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <div class="stat-value text-xl">{{ $t('contact.taroudant') }}, {{ $t('contact.morocco') }}</div>
+                        <div class="stat-value text-xl">{{ $t('contact.taroudant') }} {{ $t('contact.morocco') }}</div>
                         <div class="stat-desc">
                             {{ $t('contact.visit_us') }}
                         </div>

@@ -83,6 +83,7 @@ export default {
             this.$i18n.locale = this.locale;
             localStorage.setItem('locale', this.locale);
             this.setRtl(this.languages[this.locale].rtl);
+            document.documentElement.setAttribute('lang', this.locale);
         }
     }
 }
