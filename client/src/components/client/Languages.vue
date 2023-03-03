@@ -1,8 +1,8 @@
 <template>
     <!-- Language drop-down -->
-    <div :title="$t('change_language')" :class="languages[locale].rtl ? 'dropdown' : 'dropdown dropdown-end'">
+    <div :title="$t('change_language')" :class="rtl ? 'dropdown' : 'dropdown dropdown-end'">
         <div tabindex="0"
-             :class="languages[locale].rtl ? 'flex flex-row-reverse btn btn-ghost gap-1 normal-case' : 'btn btn-ghost gap-1 normal-case'">
+             :class="rtl ? 'flex flex-row-reverse btn btn-ghost gap-1 normal-case' : 'btn btn-ghost gap-1 normal-case'">
             <svg class="inline-block h-4 w-4 fill-current md:h-5 md:w-5" xmlns="http://www.w3.org/2000/svg"
                  width="20" height="20" viewBox="0 0 512 512">
                 <path
@@ -36,9 +36,23 @@
 <script>
 
 import languages from '../../assets/languages.json'
+import { useStore } from 'vuex';
+import {computed} from "vue";
 
 export default {
     name: 'Languages',
+    setup() {
+        const store = useStore();
+
+        function setRtl(rtl) {
+            return store.commit('setRtl', rtl);
+        }
+
+        return {
+            rtl: computed(() => store.state.rtl),
+            setRtl
+        }
+    },
     data() {
         return {
             languages: languages,
@@ -58,6 +72,7 @@ export default {
             this.locale = locale;
             this.$i18n.locale = this.locale;
             localStorage.setItem('locale', this.locale);
+            this.setRtl(this.languages[this.locale].rtl);
         }
     }
 }

@@ -5,6 +5,12 @@ const store = createStore({
         return {
             rtl: false
         };
+    },
+
+    mutations: {
+        setRtl(state: any, value: boolean) {
+            state.rtl = value;
+        }
     }
 });
 

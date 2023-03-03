@@ -15,11 +15,11 @@
 
     <!-- Section Content -->
     <div class="flex items-center justify-center flex-col">
-        <div :class="languages[$i18n.locale].rtl ? 'lg:flex-row' : 'lg:flex-row-reverse'"
+        <div :class="rtl ? 'lg:flex-row' : 'lg:flex-row-reverse'"
              class="hero-content flex container w-7/12 items-center justify-center flex-col">
             <div class="text-center">
                 <div class="stats stats-vertical h-full w-[90%] sm:w-full  shadow w-full">
-                    <div :class="languages[$i18n.locale].rtl ? 'items-end' : 'items-start'"
+                    <div :class="rtl ? 'items-end' : 'items-start'"
                          class="stat flex flex-col ">
                         <div class="stat-title">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
@@ -35,7 +35,7 @@
                         </div>
                     </div>
 
-                    <div :class="languages[$i18n.locale].rtl ? 'items-end' : 'items-start'"
+                    <div :class="rtl ? 'items-end' : 'items-start'"
                          class="stat flex flex-col items-start">
                         <div class="stat-title">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
@@ -50,7 +50,7 @@
                         </div>
                     </div>
 
-                    <div :class="languages[$i18n.locale].rtl ? 'items-end' : 'items-start'"
+                    <div :class="rtl ? 'items-end' : 'items-start'"
                          class="stat flex flex-col items-start">
                         <div class="stat-title">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
@@ -76,7 +76,7 @@
                                    v-model="name">
                         </div>
                         <div class="form-control">
-                            <input :class="languages[$i18n.locale].rtl ? 'justify-items-end' : 'justify-items-start'"
+                            <input :class="rtl ? 'justify-items-end' : 'justify-items-start'"
                                    type="text" :placeholder="$t('contact.placeholder.subject')" name="subject" required
                                    class="flex input input-bordered"
                                    v-model="subject">
@@ -100,7 +100,7 @@
 
         <!-- Social Media -->
         <h1 class="font-bold text-3xl">{{ $t('contact.follow_us') }}</h1>
-        <div :class="languages[$i18n.locale].rtl ? 'flex-row-reverse' : 'flex-row'"
+        <div :class="rtl ? 'flex-row-reverse' : 'flex-row'"
              class="mt-4 mb-10 flex items-center justify-center gap-2">
             <a :href="linkedin" target="_blank" rel="noopener noreferrer">
                 <i class='bx bxl-linkedin bx-sm transition delay-75 hover:text-primary hover:scale-125'></i>
@@ -124,9 +124,18 @@
 <script>
 import 'boxicons'
 import languages from "./../assets/languages.json";
+import {useStore} from "vuex";
+import {computed} from "vue";
 
 export default {
     name: "Contact",
+    setup() {
+        const store = useStore();
+
+        return {
+            rtl: computed(() => store.state.rtl)
+        }
+    },
     data() {
         return {
             languages: languages,

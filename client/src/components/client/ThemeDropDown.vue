@@ -1,8 +1,8 @@
 <template>
     <!-- Theme dropdown -->
-    <div :title="$t('change_theme')" :class="languages[$i18n.locale].rtl ? 'dropdown' : 'dropdown dropdown-end'">
+    <div :title="$t('change_theme')" :class="rtl ? 'dropdown' : 'dropdown dropdown-end'">
         <div tabindex="0"
-             :class="languages[$i18n.locale].rtl ? 'flex flex-row-reverse btn gap-1 normal-case btn-ghost' : 'btn gap-1 normal-case btn-ghost'">
+             :class="rtl ? 'flex flex-row-reverse btn gap-1 normal-case btn-ghost' : 'btn gap-1 normal-case btn-ghost'">
             <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                  class="inline-block h-5 w-5 stroke-current md:h-6 md:w-6">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -19,7 +19,7 @@
             class="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px max-h-96 h-[70vh] w-52 overflow-y-auto shadow-2xl mt-16">
             <div class="grid grid-cols-1 gap-3 p-3" tabindex="0">
                 <div v-for="theme in themes"
-                     class="outline-base-content overflow-hidden rounded-lg outline-2 outline-offset-2"
+                     class="flex flex-rox-reverse outline-base-content overflow-hidden rounded-lg outline-2 outline-offset-2"
                      :class="{'outline': theme === currentTheme}"
                      :title="$t(`themes.${theme}`)"
                      :data-set-theme="theme" data-act-class="outline">
@@ -47,9 +47,18 @@
 <script>
 
 import languages from "./../../assets/languages.json";
+import {useStore} from "vuex";
+import {computed} from "vue";
 
 export default {
     name: 'ThemeDropdown',
+    setup() {
+        const store = useStore();
+
+        return {
+            rtl: computed(() => store.state.rtl)
+        }
+    },
     data() {
         return {
             currentTheme: 'winter',
