@@ -1,8 +1,8 @@
 <template>
     <!-- Language drop-down -->
-    <div :title="$t('change_language')" :class="languages[locale].rtl ? 'dropdown' : 'dropdown dropdown-end'">
+    <div :title="$t('change_language')" class="dropdown dropdown-end">
         <div tabindex="0"
-             :class="languages[locale].rtl ? 'flex flex-row-reverse btn btn-ghost gap-1 normal-case' : 'btn btn-ghost gap-1 normal-case'">
+             class="btn btn-ghost gap-1 normal-case">
             <svg class="inline-block h-4 w-4 fill-current md:h-5 md:w-5" xmlns="http://www.w3.org/2000/svg"
                  width="20" height="20" viewBox="0 0 512 512">
                 <path

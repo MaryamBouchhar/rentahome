@@ -1,7 +1,7 @@
 <template>
-    <div :class="{'flex-row-reverse' : languages[$i18n.locale].rtl}"
+    <div
         class="flex flex-row p-5 bg-base-100 shadow-md">
-        <div :class="{'flex-row-reverse' : languages[$i18n.locale].rtl}"
+        <div
             class="flex flex-row basis-1/4">
             <div class="dropdown">
                 <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -25,7 +25,7 @@
                 </a>
             </router-link>
         </div>
-        <div :class="{'flex-row-reverse' : languages[$i18n.locale].rtl}"
+        <div
             class="flex flex-row hidden lg:flex lg:basis-1/2">
             <ul class="menu menu-horizontal p-0">
                 <NavLink to="/" label="Home" class="mx-1"/>
@@ -35,10 +35,9 @@
             </ul>
         </div>
         <div class="hidden lg:show lg:basis-1/2"></div>
-        <div :class="{'flex-row-reverse' : languages[$i18n.locale].rtl}"
+        <div
             class="flex flex-row basis-1/4">
-            <div :class="languages[$i18n.locale].rtl ? 'dropdown' : 'dropdown dropdown-end'"
-                class="ml-2">
+            <div class="dropdown dropdown-end ml-2">
                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
                         <img src="https://i.pravatar.cc/300"/>
