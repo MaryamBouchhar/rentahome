@@ -1,0 +1,62 @@
+{
+  "en": {
+    "name": "English",
+    "code": "en",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/0/0b/English_language.svg",
+    "rtl": false
+  },
+  "zh": {
+    "name": "中文",
+    "code": "zh",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg",
+    "rtl": false
+  },
+  "es": {
+    "name": "Español",
+    "code": "es",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg",
+    "rtl": false
+  },
+  "ar": {
+    "name": "العربية",
+    "code": "ar",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Flag_of_the_Arabic_language.svg",
+    "rtl": true
+  },
+  "id": {
+    "name": "Bahasa Indonesia",
+    "code": "id",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg",
+    "rtl": false
+  },
+  "pt": {
+    "name": "Português",
+    "code": "pt",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg",
+    "rtl": false
+  },
+  "fr": {
+    "name": "Français",
+    "code": "fr",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg",
+    "rtl": false
+  },
+  "ja": {
+    "name": "日本語",
+    "code": "ja",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg",
+    "rtl": false
+  },
+  "ru": {
+    "name": "Русский",
+    "code": "ru",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg",
+    "rtl": false
+  },
+  "de": {
+    "name": "Deutsch",
+    "code": "de",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg",
+    "rtl": false
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "en": {
+    "title": "My first blog post",
+    "body": "This is my first blog post"
+  },
+  "es": {
+    "title": "Mi primer post",
+    "body": "Este es mi primer post"
+  },
+  "fr": {
+    "title": "Mon premier post",
+    "body": "Ceci est mon premier post"
+  }
+}

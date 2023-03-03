@@ -49,6 +49,14 @@ const routes = [
     name: "addproperty",
     component: () => import("@/views/NewPropertyView.vue"),
   },
+  {
+    meta: {
+      title: "Booking Requests"
+    },
+    path: "/booking_request",
+    name: "booking_request",
+    component: () => import("@/views/ReservationView.vue"),
+  },
 
   {
     meta: {
