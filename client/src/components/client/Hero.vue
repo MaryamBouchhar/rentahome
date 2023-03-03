@@ -21,9 +21,32 @@
 <script>
 export default {
   name: "Hero",
-}
+  methods: {
+    autoplay() {
+      const images = [
+        "../../../src/assets/hero_img.jpeg",
+        "../../../src/assets/our_story.png",
+      ];
+      let i = 0;
+      setInterval(() => {
+        document.querySelector(".hero").style.backgroundImage = `url(${images[i]})`;
+        i++;
+        if (i >= images.length) {
+          i = 0;
+        }
+      }, 2000);
+    },
+  },
+
+  mounted() {
+    this.autoplay();
+  },
+};
+// make the hero autoplay images
 </script>
 
 <style scoped>
-
+.hero{
+  transition: background-image 1s ease-in-out;
+}
 </style>
