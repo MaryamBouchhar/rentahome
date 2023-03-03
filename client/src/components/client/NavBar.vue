@@ -26,7 +26,7 @@
             </router-link>
         </div>
         <div :class="{'flex-row-reverse' : rtl}"
-             class="flex flex-row hidden lg:flex lg:basis-1/2">
+             class="flex flex-row justify-center hidden lg:flex lg:basis-1/2">
             <ul class="menu menu-horizontal p-0">
                 <NavLink to="/" label="Home" class="mx-1"/>
                 <NavLink to="/properties" label="Properties" class="mx-1"/>
@@ -36,7 +36,7 @@
         </div>
         <div class="hidden lg:show lg:basis-1/2"></div>
         <div :class="{'flex-row-reverse' : rtl}"
-             class="flex flex-row basis-1/4">
+             class="flex flex-row justify-end basis-1/4">
             <div :class="rtl ? 'dropdown' : 'dropdown dropdown-end'"
                  class="ml-2">
                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
