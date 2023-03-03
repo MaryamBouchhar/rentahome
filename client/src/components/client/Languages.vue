@@ -59,7 +59,7 @@ export default {
             locale: ''
         }
     },
-    created() {
+    mounted() {
         this.setLocale();
     },
     methods: {
