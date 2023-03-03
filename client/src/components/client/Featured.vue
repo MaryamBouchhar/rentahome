@@ -1,7 +1,7 @@
 <template>
   <div class="hero bg-base-200">
-    <div class="hero-content text-center flex flex-col justify-center">
-      <div class="max-w-md">
+    <div class="hero-content flex flex-col justify-center">
+      <div class="max-w-md text-center">
         <h1 class="text-3xl font-bold">Featured Properties</h1>
         <p class="py-6">Check out our featured properties and find your dream home today!</p>
       </div>
