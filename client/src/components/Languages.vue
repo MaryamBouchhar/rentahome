@@ -21,12 +21,22 @@
             <ul class="menu menu-compact gap-1 p-3" tabindex="0">
                 <li v-for="lang in languages"
                     :title="lang.name"
-                    @click="updateLocale(lang.code)">
-                    <button :class="locale === lang.code ? 'flex active' : 'flex'"><img loading="lazy" width="20"
-                                                                                        height="20"
-                                                                                        :alt="$t(`languages.${lang.code}`)"
-                                                                                        :src="lang.flag">
-                        <span class="flex flex-1 justify-between">{{ $t(`languages.${lang.code}`) }} </span></button>
+                    @click="updateLocale(lang.code)"
+                >
+                    <button
+                        :class="{ 'active' : locale === lang.code } , { 'flex-row-reverse' : rtl } , { 'flex-row' : !rtl }"
+                        class="flex"
+                    >
+                        <img loading="lazy"
+                             width="20"
+                             height="20"
+                             :alt="$t(`languages.${lang.code}`)"
+                             :src="lang.flag"
+                        >
+                        <span class="flex">
+                            {{ $t(`languages.${lang.code}`) }}
+                        </span>
+                    </button>
                 </li>
             </ul>
         </div>
@@ -36,7 +46,7 @@
 <script>
 
 import languages from '../assets/languages.json'
-import { useStore } from 'vuex';
+import {useStore} from 'vuex';
 import {computed} from "vue";
 
 export default {
