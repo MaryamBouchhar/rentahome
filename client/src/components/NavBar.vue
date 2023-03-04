@@ -38,7 +38,7 @@
         <div class="flex basis-1/2 shrink-0 justify-end lg:hidden"></div>
         <div :class="{'flex-row-reverse' : rtl}"
              class="flex flex-row justify-end basis-1/4">
-
+            <ProfileDropDown/>
             <ThemeDropDown/>
             <Languages/>
         </div>
@@ -53,6 +53,7 @@ import 'boxicons';
 import languages from "../assets/languages.json"
 import {useStore} from "vuex";
 import {computed} from "vue";
+import ProfileDropDown from "./ProfileDropDown.vue";
 
 export default {
     name: "NavBar",
@@ -69,6 +70,7 @@ export default {
         }
     },
     components: {
+        ProfileDropDown,
         ThemeDropDown,
         NavLink,
         Languages
