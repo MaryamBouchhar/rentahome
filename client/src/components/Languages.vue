@@ -1,8 +1,8 @@
 <template>
     <!-- Language drop-down -->
-    <div :title="$t('change_language')" class="dropdown dropdown-end">
+    <div :title="$t('change_language')" :class="rtl ? 'dropdown' : 'dropdown dropdown-end'">
         <div tabindex="0"
-             class="btn btn-ghost gap-1 normal-case">
+             :class="rtl ? 'flex flex-row-reverse btn btn-ghost gap-1 normal-case' : 'btn btn-ghost gap-1 normal-case'">
             <svg class="inline-block h-4 w-4 fill-current md:h-5 md:w-5" xmlns="http://www.w3.org/2000/svg"
                  width="20" height="20" viewBox="0 0 512 512">
                 <path
@@ -21,12 +21,22 @@
             <ul class="menu menu-compact gap-1 p-3" tabindex="0">
                 <li v-for="lang in languages"
                     :title="lang.name"
-                    @click="updateLocale(lang.code)">
-                    <button :class="locale === lang.code ? 'flex active' : 'flex'"><img loading="lazy" width="20"
-                                                                                        height="20"
-                                                                                        :alt="$t(`languages.${lang.code}`)"
-                                                                                        :src="lang.flag">
-                        <span class="flex flex-1 justify-between">{{ $t(`languages.${lang.code}`) }} </span></button>
+                    @click="updateLocale(lang.code)"
+                >
+                    <button
+                        :class="{ 'active' : locale === lang.code } , { 'flex-row-reverse' : rtl } , { 'flex-row' : !rtl }"
+                        class="flex"
+                    >
+                        <img loading="lazy"
+                             width="20"
+                             height="20"
+                             :alt="$t(`languages.${lang.code}`)"
+                             :src="lang.flag"
+                        >
+                        <span class="flex">
+                            {{ $t(`languages.${lang.code}`) }}
+                        </span>
+                    </button>
                 </li>
             </ul>
         </div>
@@ -35,17 +45,31 @@
 
 <script>
 
-import languages from '../../assets/languages.json'
+import languages from '../assets/languages.json'
+import {useStore} from 'vuex';
+import {computed} from "vue";
 
 export default {
     name: 'Languages',
+    setup() {
+        const store = useStore();
+
+        function setRtl(rtl) {
+            return store.commit('setRtl', rtl);
+        }
+
+        return {
+            rtl: computed(() => store.state.rtl),
+            setRtl
+        }
+    },
     data() {
         return {
             languages: languages,
             locale: ''
         }
     },
-    created() {
+    mounted() {
         this.setLocale();
     },
     methods: {
@@ -58,6 +82,8 @@ export default {
             this.locale = locale;
             this.$i18n.locale = this.locale;
             localStorage.setItem('locale', this.locale);
+            this.setRtl(this.languages[this.locale].rtl);
+            document.documentElement.setAttribute('lang', this.locale);
         }
     }
 }

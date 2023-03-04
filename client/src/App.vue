@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NavBar from "./components/client/NavBar.vue";
+import NavBar from "./components/NavBar.vue";
 
 const allowedRoutes = ['/', '/properties', '/about', '/contact'];
 const isAllowedRoute = allowedRoutes.map(route => route === location.pathname).includes(true);

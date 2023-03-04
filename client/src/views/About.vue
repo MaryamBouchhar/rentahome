@@ -12,7 +12,6 @@
                     <div class="badge badge-outline">{{ $t('tags.most_trusted') }}</div>
                     <div class="badge badge-outline">{{ $t('tags.best_prices') }}</div>
                     <div class="badge badge-outline">{{ $t('tags.modern_design') }}</div>
-                    <div class="badge badge-outline">{{ message }}</div>
                 </div>
             </div>
         </div>
@@ -63,10 +62,19 @@
 </template>
 
 <script>
+import {useStore} from "vuex";
+import {computed} from "vue";
 import axios from "axios";
 
 export default {
     name: "About",
+    setup() {
+        const store = useStore();
+
+        return {
+            rtl: computed(() => store.state.rtl)
+        }
+    },
     data() {
         return {
             properties: [],
