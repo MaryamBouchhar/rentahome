@@ -14,7 +14,8 @@ import SectionTitle from "@/components/SectionTitle.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
 import NotificationBarInCard from "@/components/NotificationBarInCard.vue";
-
+import swal from 'sweetalert';
+window.Swal = swal;
 const selectOptions = [
   {id: 1, label: "Business development"},
   {id: 2, label: "Marketing"},
@@ -30,12 +31,7 @@ const form = reactive({
   question: "",
 });
 
-const customElementsForm = reactive({
-  checkbox: ["lorem"],
-  radio: "one",
-  switch: ["one"],
-  file: null,
-});
+
 
 const submit = () => {
   //
@@ -77,26 +73,22 @@ const formStatusSubmit = () => {
       <div class="container w-5/12 mx-auto">
       <CardBox form @submit.prevent="submit">
 
-          <FormField label="Name">
-            <FormControl type="email"/>
+          <FormField label="Name" >
+            <FormControl type="email" v-model="adminname" required/>
           </FormField>
           <FormField label="Email">
-            <FormControl  type="email"/>
+            <FormControl  type="email" v-model="email" required/>
           </FormField>
-          <FormField label="Password">
-            <FormControl type="password"/>
+          <FormField label="Password" v-model="password" required>
+            <FormControl/>
           </FormField>
-
-
-
-
 
           <BaseDivider/>
 
 
           <template #footer>
             <BaseButtons class="ml-14 mr-0">
-              <BaseButton   class="ml-20 " type="submit" color="warning" label="Add"/>
+              <BaseButton   class="ml-20 " type="submit" color="warning" label="Add" @click="addAdmin"/>
               <BaseButton  class="ml-2" type="reset" color="warning" outline label="Reset"/>
             </BaseButtons>
           </template>
@@ -107,3 +99,57 @@ const formStatusSubmit = () => {
 
   </LayoutAuthenticated>
 </template>
+
+<script>
+ import axios from "axios";
+
+ export default {
+ data(){
+return {
+adminname : "",
+email: "",
+password : "",
+}
+},
+props : [],
+methods : {
+
+  async addAdmin() {
+    const newAdmin = {
+     adminname : this.adminname,
+      email: this.email,
+      password : this.password,
+    };
+
+
+    axios.post('http://localhost:8080/manage_admin/add_admin', newAdmin
+    )
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    // await axios({
+    //   method: 'post',
+    //   url: "http://localhost:8080/manage_admin/add_admin",
+    //   data : JSON.stringify(newAdmin),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    //   .then(() => {
+    //     swal({
+    //       text: "Admin Added Successfully!",
+    //       icon: "success",
+    //       closeOnClickOutside: false,
+    //     });
+    //   })
+    //   .catch(err => console.log(err));
+
+  }
+
+}
+}
+</script>
