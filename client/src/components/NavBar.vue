@@ -14,7 +14,7 @@
                 <ul tabindex="0"
                     :class="rtl ? 'lg:flex-row-reverse dropdown dropdown-end' : 'dropdown lg:flex-row'"
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <NavLink to="/" :label="$t('navbar.home')"/>
+                    <NavLink to="/" :label="$t('navbar.home')" class="my-1"/>
                     <NavLink to="/properties" :label="$t('navbar.properties')" class="my-1"/>
                     <NavLink to="/about" :label="$t('navbar.about')" class="my-1"/>
                     <NavLink to="/contact" :label="$t('navbar.contact')" class="my-1"/>
