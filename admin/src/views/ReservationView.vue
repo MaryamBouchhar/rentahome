@@ -9,24 +9,25 @@ import {
   mdiAccountMultiple,
   mdiCartOutline,
   mdiReload,
-  mdiChartPie, mdiPlus, mdiAccount,
-}
-  from "@mdi/js";
+  mdiChartPie,  mdiPlus,
+  mdiClipboardList,
+
+} from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
 import NotificationBar from "@/components/NotificationBar.vue";
-import TableSampleClients from "@/components/TableProperty.vue";
+import TableSampleClients from "@/components/TableSampleClients.vue";
 import CardBox from "@/components/CardBox.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
-import TableClient from "@/components/TableClient.vue";
+import TableSampleReservation from "@/components/TableSampleReservation.vue";
 </script>
 
 <template>
   <LayoutAuthenticated>
     <SectionMain>
-      <SectionTitleLineWithButton :icon="mdiAccount" title="Clients" main>
+      <SectionTitleLineWithButton :icon=" mdiClipboardList" title="Booking Requests" main>
 
       </SectionTitleLineWithButton>
       <!--   we can call tha notification here
@@ -38,8 +39,10 @@ import TableClient from "@/components/TableClient.vue";
       </NotificationBar>
       -->
       <CardBox class="mb-6" has-table>
-        <TableClient/>
+        <TableSampleReservation/>
       </CardBox>
+
+
     </SectionMain>
   </LayoutAuthenticated>
 </template>

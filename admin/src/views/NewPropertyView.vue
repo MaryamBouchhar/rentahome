@@ -63,19 +63,19 @@ const formStatusSubmit = () => {
         main
       >
         <router-link to="/properties">
-        <BaseButton
+          <BaseButton
 
-          target="_blank"
-          :icon="mdiProperty"
-          label="Show properties"
-          color="contrast"
-          rounded-full
-          small
-        />
+            target="_blank"
+            :icon="mdiProperty"
+            label="Show properties"
+            color="contrast"
+            rounded-full
+            small
+          />
         </router-link>
       </SectionTitleLineWithButton>
       <CardBox form @submit.prevent="submit">
-       <FormField>
+        <FormField>
           <FormField label="Category">
             <FormControl v-model="form.department" :options="selectOptions"/>
           </FormField>
@@ -84,72 +84,61 @@ const formStatusSubmit = () => {
           </FormField>
         </FormField>
 
-<FormField>
-        <FormField label="Bathroom Count " >
-          <FormControl v-model="form.phone" type="number"
-          />
-        </FormField>
-        <FormField label="Room Count " >
-          <FormControl
-            v-model="form.phone"
-            type="number"
-          />
-        </FormField>
-</FormField>
         <FormField>
-        <FormField label="Stage Count " >
-          <FormControl v-model="form.phone" type="number"
-          />
+          <FormField label="Bathroom Count ">
+            <FormControl v-model="form.phone" type="number"
+            />
+          </FormField>
+          <FormField label="Room Count ">
+            <FormControl
+              v-model="form.phone"
+              type="number"
+            />
+          </FormField>
         </FormField>
-          <FormField label="Surface" >
+        <FormField>
+
+          <FormField label="Area">
             <FormControl v-model="form.phone" type="text"
             />
           </FormField>
         </FormField>
         <FormField>
-          <FormField label="Location" >
+          <FormField label="Location">
             <FormControl v-model="form.department" :options="selectOptions"/>
           </FormField>
-          <FormField label="Equiped" >
-<br>
-              <FormCheckRadioGroup
-                v-model="customElementsForm.radio"
-                name="sample-radio"
-                type="radio"
-                :options="{ one: 'Yes', two: 'No' }"
-              />
-            </FormField>
-          </FormField>
+          <FormField label="Equiped">
 
+            <FormCheckRadioGroup
+              v-model="customElementsForm.switch"
+              name="sample-switch"
+              type="switch"
+
+              :options="{ one: ' '}"
+            />
+          </FormField>
+        </FormField>
+
+        <FormField label="Description" class="w-full">
+          <FormControl
+            type="textarea"
+            placeholder="Put your description here"
+          />
+        </FormField>
         <FormFilePicker v-model="customElementsForm.file" label="Upload"/>
         <BaseDivider/>
 
 
-
-        <template #footer >
+        <template #footer>
 
           <BaseButtons class=" flex items-center justify-center">
-            <BaseButton  type="submit" color="warning" label="Add"/>
-            <BaseButton  type="reset" color="warning" outline label="Reset"/>
+            <BaseButton type="submit" color="warning" label="Add"/>
+            <BaseButton type="reset" color="warning" outline label="Reset"/>
           </BaseButtons>
 
         </template>
       </CardBox>
     </SectionMain>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   </LayoutAuthenticated>

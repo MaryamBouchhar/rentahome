@@ -1,4 +1,4 @@
-package edu.fpt.server.Models;
+package com.fpt.rentahome.models;
 
 public class Location {
     private int id;

@@ -1,8 +1,8 @@
-package edu.fpt.server.DB;
+package com.fpt.rentahome.DB;
 
 import org.flywaydb.core.Flyway;
 
-import static edu.fpt.server.DB.DBInfo.*;
+import static com.fpt.rentahome.DB.DBInfo.*;
 
 public class DBMigration {
     public static void main(String[] args) {

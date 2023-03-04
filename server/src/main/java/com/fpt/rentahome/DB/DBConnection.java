@@ -1,11 +1,10 @@
-package edu.fpt.server.DB;
+package com.fpt.rentahome.DB;
 
-import java.sql.Connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static edu.fpt.server.DB.DBInfo.*;
+import static com.fpt.rentahome.DB.DBInfo.*;
 
 public class DBConnection {
     private static Connection connection;

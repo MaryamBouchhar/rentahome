@@ -13,6 +13,9 @@ import {
   mdiReact,
   mdiHome, mdiAccountMultiple, mdiPlus,
   mdiAccount,
+  mdiFormatListText,
+ mdiClipboardList,
+  mdiCashRegister
 } from "@mdi/js";
 
 export default [
@@ -35,6 +38,23 @@ export default [
         label: "Add New",
         icon: mdiPlus,
         to: "/add-property",
+      },
+    ],
+  },
+  {
+
+    label: "Reservation",
+    icon: mdiFormatListText,
+    menu: [
+      {
+        label: "Requests",
+        icon: mdiClipboardList,
+        to: "/booking_request",
+      },
+      {
+        label: "Payements",
+        icon:  mdiCashRegister ,
+        to: "/manage_payements",
       },
     ],
   },

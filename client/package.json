@@ -17,7 +17,9 @@
     "mdi": "^2.2.43",
     "numeral": "^2.0.6",
     "pinia": "^2.0.32",
+    "swiper": "^9.1.0",
     "vue": "^3.2.45",
+    "vue-awesome-swiper": "^5.0.1",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6",
     "vuex": "^4.1.0"

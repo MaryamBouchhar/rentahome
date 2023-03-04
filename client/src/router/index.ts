@@ -3,6 +3,7 @@ import store from "../store";
 
 // @ts-ignore
 // @ts-ignore
+// @ts-ignore
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
@@ -30,6 +31,23 @@ const routes: RouteRecordRaw[] = [
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
         component: () => import('../views/NotFound.vue')
+    },
+    //TODO: Property routes
+    {
+        path: '/',
+        name: 'Properties',
+        children: [
+            {
+                path: '/properties',
+                name: 'Properties',
+                component: () => import('../views/Properties.vue')
+            },
+            {
+                path: '/properties/:id',
+                name: 'Property',
+                component: () => import('../views/PropertyDetails.vue')
+            }
+        ]
     }
 ];
 

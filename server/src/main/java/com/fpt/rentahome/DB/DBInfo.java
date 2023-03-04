@@ -1,4 +1,4 @@
-package edu.fpt.server.DB;
+package com.fpt.rentahome.DB;
 
 public class DBInfo {
     public static final String DB_NAME = "rentahome";
