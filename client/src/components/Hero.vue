@@ -61,10 +61,11 @@ export default defineComponent({
   data() {
     return {
       images: [
-        'https://source.unsplash.com/random?sig=1',
-        'https://source.unsplash.com/random?sig=2',
-        'https://source.unsplash.com/random?sig=3',
-        'https://source.unsplash.com/random?sig=4',
+        '../../src/assets/images/hero_img_1.jpg',
+        '../../src/assets/images/hero_img_2.jpg',
+        '../../src/assets/images/hero_img_3.jpg',
+        '../../src/assets/images/hero_img_4.jpg',
+        '../../src/assets/images/hero_img_5.jpg',
       ]
     }
   }

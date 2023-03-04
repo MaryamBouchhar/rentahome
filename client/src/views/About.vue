@@ -12,7 +12,6 @@
                     <div class="badge badge-outline">{{ $t('tags.most_trusted') }}</div>
                     <div class="badge badge-outline">{{ $t('tags.best_prices') }}</div>
                     <div class="badge badge-outline">{{ $t('tags.modern_design') }}</div>
-                    <div class="badge badge-outline">{{ message }}</div>
                 </div>
             </div>
         </div>
