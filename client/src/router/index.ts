@@ -10,7 +10,7 @@ const routes: RouteRecordRaw[] = [
         name: 'Home',
         component: () => import('../views/Home.vue')
     },
-    //TODO: Add client routes here
+
     {
         path: '/about',
         name: 'About',

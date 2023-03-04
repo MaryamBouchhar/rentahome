@@ -102,6 +102,13 @@
       "ja": "Japanese",
       "ru": "Russian",
       "de": "German"
+    },
+    "notFound": {
+      "not_found": "Not Found",
+      "oops": "Oops!",
+      "page_not_found": "Page Not Found",
+      "go_home": "Go Home",
+        "go_back": "Go Back"
     }
   },
   "zh": {
@@ -207,6 +214,13 @@
       "ja": "日语",
       "ru": "俄语",
       "de": "德语"
+    },
+    "notFound": {
+      "not_found": "没有发现",
+      "oops": "哎呀！",
+      "page_not_found": "找不到网页",
+      "go_home": "回家",
+        "go_back": "回去"
     }
   },
   "es": {
@@ -312,6 +326,13 @@
       "ja": "Japonés",
       "ru": "Ruso",
       "de": "Alemán"
+    },
+    "notFound": {
+      "not_found": "No encontrado",
+      "oops": "Uy!",
+      "page_not_found": "Página no encontrada",
+      "go_home": "Ir a casa",
+        "go_back": "Volver"
     }
   },
   "ar": {
@@ -417,6 +438,13 @@
       "ja": "اليابانية",
       "ru": "الروسية",
       "de": "الألمانية"
+    },
+    "notFound": {
+      "not_found": "لم يتم العثور على الصفحة",
+      "oops": "عفوًا!",
+      "page_not_found": "الصفحة غير موجودة",
+      "go_home": "الذهاب إلى الصفحة الرئيسية",
+        "go_back": "العودة"
     }
   },
   "id": {
@@ -522,6 +550,13 @@
       "ja": "Jepang",
       "ru": "Rusia",
       "de": "Jerman"
+    },
+    "notFound": {
+      "not_found": "Halaman tidak ditemukan",
+      "oops": "Maaf!",
+      "page_not_found": "Halaman tidak ditemukan",
+      "go_home": "Pergi ke halaman utama",
+        "go_back": "Kembali"
     }
   },
   "pt": {
@@ -627,6 +662,13 @@
       "ja": "Japonês",
       "ru": "Russo",
       "de": "Alemão"
+    },
+    "notFound": {
+      "not_found": "Página não encontrada",
+      "oops": "Desculpe!",
+      "page_not_found": "Página não encontrada",
+      "go_home": "Ir para a página inicial",
+        "go_back": "Voltar"
     }
   },
   "fr": {
@@ -732,6 +774,13 @@
       "ja": "Japonais",
       "ru": "Russe",
       "de": "Allemand"
+    },
+    "notFound": {
+      "not_found": "Page non trouvée",
+      "oops": "Désolé!",
+      "page_not_found": "Page non trouvée",
+      "go_home": "Aller à la page d'accueil",
+        "go_back": "Retour"
     }
   },
   "ja": {
@@ -837,6 +886,13 @@
       "ja": "日本語",
       "ru": "ロシア語",
       "de": "ドイツ語"
+    },
+    "notFound": {
+      "not_found": "ページが見つかりません",
+      "oops": "おっと！",
+      "page_not_found": "ページが見つかりません",
+      "go_home": "ホームに行く",
+      "go_back": "戻る"
     }
   },
   "ru": {
@@ -942,6 +998,13 @@
       "ja": "Японский",
       "ru": "Русский",
       "de": "Немецкий"
+    },
+    "notFound": {
+      "not_found": "Страница не найдена",
+      "oops": "Упс!",
+      "page_not_found": "Страница не найдена",
+      "go_home": "Вернуться домой",
+      "go_back": "Вернуться назад"
     }
   },
   "de": {
@@ -1047,6 +1110,13 @@
       "ja": "Japanisch",
       "ru": "Russisch",
       "de": "Deutsch"
+    },
+    "notFound": {
+      "not_found": "Seite nicht gefunden",
+      "oops": "Hoppla!",
+      "page_not_found": "Seite nicht gefunden",
+      "go_home": "Gehe nach Hause",
+      "go_back": "Geh zurück"
     }
   }
 }
