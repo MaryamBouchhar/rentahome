@@ -27,7 +27,7 @@
         <div class="chat chat-start mb-3">
           <div class="chat-image avatar">
             <div class="w-10 rounded-full">
-              <img src="https://i.pravatar.cc/50" />
+              <img src="https://i.pravatar.cc/50"/>
             </div>
           </div>
           <div class="chat-bubble">It was said that you would, destroy the Sith, not join them.</div>
@@ -35,7 +35,7 @@
         <div class="chat chat-start">
           <div class="chat-image avatar">
             <div class="w-10 rounded-full">
-              <img src="https://i.pravatar.cc/50" />
+              <img src="https://i.pravatar.cc/50"/>
             </div>
           </div>
           <div class="chat-bubble">It was you who would bring balance to the Force</div>
@@ -43,7 +43,7 @@
         <div class="chat chat-start">
           <div class="chat-image avatar">
             <div class="w-10 rounded-full">
-              <img src="https://i.pravatar.cc/50" />
+              <img src="https://i.pravatar.cc/50"/>
             </div>
           </div>
           <div class="chat-bubble">Not leave it in Darkness</div>
@@ -52,13 +52,13 @@
         <!-- add comment -->
         <div class="flex flex-col mt-3">
           <h1 class="text-2xl font-bold mb-3">Rate this property</h1>
-          <textarea class="textarea h-24 mb-3" placeholder="Your comment"></textarea>
+          <textarea class="textarea h-24 textarea-secondary mb-3" placeholder="Your comment"></textarea>
           <div class="rating">
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
+            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked/>
+            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
+            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
+            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
           </div>
           <button class="btn btn-wide mt-3">Add Comment</button>
         </div>
@@ -101,6 +101,11 @@
             </tbody>
           </table>
         </div>
+        <iframe
+            class="mb-3"
+            src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCUwB_Qhwh8EswnSDcmb2Hqe2rDceyti14&center=40.712776,-74.005974&zoom=18"
+            width="800" height="340" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         <button class="btn btn-wide w-full">Book now</button>
       </div>
     </div>
