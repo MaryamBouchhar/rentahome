@@ -125,7 +125,7 @@ methods : {
 
     await axios({
       method: 'post',
-      url: baseURL+"manage_admin",
+      url: "http://localhost:8080/manage_admin/add_admin",
       data : JSON.stringify(newAdmin),
       headers: {
         'Content-Type': 'application/json'
