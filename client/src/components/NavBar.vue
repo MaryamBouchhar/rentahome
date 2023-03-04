@@ -1,6 +1,6 @@
 <template>
     <div :class="{'flex-row-reverse' : rtl}"
-         class="flex flex-row p-5 bg-base-100 shadow-md">
+         class="navbar bg-base-100">
         <div :class="{'flex-row-reverse' : rtl}"
              class="flex flex-row basis-1/4">
             <div :class="rtl ? 'dropdown dropdown-end' : 'dropdown'">

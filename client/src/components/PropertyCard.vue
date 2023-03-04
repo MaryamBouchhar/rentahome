@@ -1,5 +1,5 @@
 <template>
-  <div class="card w-96 bg-base-100 shadow-xl">
+  <div class="card w-full bg-base-100 shadow-xl">
     <figure><img src="../assets/hero_img.jpeg" alt="Shoes"/></figure>
     <div class="card-body">
       <div class="flex justify-between">
