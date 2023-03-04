@@ -16,6 +16,10 @@ public class AdminController {
 
     private AdminService adminService;
 
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
+    }
+
     @PostMapping("/add_admin")
     public ResponseEntity<ApiResponse> createAdmin( @RequestBody Admin admin) {
 //        if (Objects.nonNull(categoryService.readCategory(category.getCategoryName()))) {
