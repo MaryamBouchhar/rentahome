@@ -1,6 +1,6 @@
-package com.fpt.rentahome.controllers;
+package com.fpt.rentahome.Controllers;
 
-import com.fpt.rentahome.models.Client;
+import com.fpt.rentahome.Models.Client;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
