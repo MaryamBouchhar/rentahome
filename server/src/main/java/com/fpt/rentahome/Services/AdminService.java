@@ -12,7 +12,6 @@ public class AdminService {
     private AdminRepository adminRepository;
 
     public void createAdmin(Admin admin) {
-
         adminRepository.save(admin);
     }
 }
