@@ -1,7 +1,7 @@
 package com.fpt.rentahome.Services;
 
 import com.fpt.rentahome.Models.Admin;
-import com.fpt.rentahome.Ripositories.AdminRepository;
+import com.fpt.rentahome.Repositories.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
