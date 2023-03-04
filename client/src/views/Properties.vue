@@ -71,7 +71,7 @@
 <script setup>
 import {ref, onMounted} from 'vue'
 import 'boxicons'
-import PropertyCard from "../components/client/PropertyCard.vue";
+import PropertyCard from "../components/PropertyCard.vue";
 
 const property_categories = ref([
   'House',
