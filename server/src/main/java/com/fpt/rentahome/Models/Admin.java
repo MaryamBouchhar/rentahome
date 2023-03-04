@@ -1,20 +1,25 @@
-package com.fpt.rentahome.models;
+package com.fpt.rentahome.Models;
 
-public class Client {
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="admin")
+public class Admin {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String email;
-    private String phone;
     private String password;
 
-    public Client() {
+    public Admin() {
     }
 
-    public Client(int id, String name, String email, String phone, String password) {
+    public Admin(int id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.phone = phone;
         this.password = password;
     }
 
@@ -40,14 +45,6 @@ public class Client {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getPassword() {
