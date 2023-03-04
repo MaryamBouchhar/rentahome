@@ -121,24 +121,32 @@ methods : {
       password : this.password,
     };
 
-    const baseURL =  "http://localhost:8080/";
 
-    await axios({
-      method: 'post',
-      url: "http://localhost:8080/manage_admin/add_admin",
-      data : JSON.stringify(newAdmin),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(() => {
-        swal({
-          text: "Admin Added Successfully!",
-          icon: "success",
-          closeOnClickOutside: false,
-        });
+    axios.post('http://localhost:8080/manage_admin/add_admin', newAdmin
+    )
+      .then(response => {
+        console.log(response.data);
       })
-      .catch(err => console.log(err));
+      .catch(error => {
+        console.log(error);
+      });
+
+    // await axios({
+    //   method: 'post',
+    //   url: "http://localhost:8080/manage_admin/add_admin",
+    //   data : JSON.stringify(newAdmin),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    //   .then(() => {
+    //     swal({
+    //       text: "Admin Added Successfully!",
+    //       icon: "success",
+    //       closeOnClickOutside: false,
+    //     });
+    //   })
+    //   .catch(err => console.log(err));
 
   }
 
