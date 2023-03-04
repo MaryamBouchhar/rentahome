@@ -1,4 +1,4 @@
-package com.fpt.rentahome.Ripositories;
+package com.fpt.rentahome.Repositories;
 
 import com.fpt.rentahome.Models.Admin;
 
