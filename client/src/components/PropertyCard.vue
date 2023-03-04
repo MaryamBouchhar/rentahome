@@ -1,8 +1,6 @@
 <template>
-  <div class="card hover:cursor-pointer w-96 bg-base-100 shadow-xl w-full">
-    <figure>
-      <img src="../../../src/assets/hero_img.jpeg" alt="Shoes"/>
-    </figure>
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <figure><img src="../assets/hero_img.jpeg" alt="Shoes"/></figure>
     <div class="card-body">
       <div class="flex justify-between">
         <h2 class="card-title">

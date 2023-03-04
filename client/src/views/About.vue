@@ -63,10 +63,19 @@
 </template>
 
 <script>
+import {useStore} from "vuex";
+import {computed} from "vue";
 import axios from "axios";
 
 export default {
     name: "About",
+    setup() {
+        const store = useStore();
+
+        return {
+            rtl: computed(() => store.state.rtl)
+        }
+    },
     data() {
         return {
             properties: [],
