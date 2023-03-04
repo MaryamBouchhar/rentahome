@@ -59,7 +59,7 @@
                     </li>
                     <li>
                         <a class="flex flex-row items-center">
-                            <i class='flex bx bx-cog bx-sm'></i>{{ $t('navbar.settings') }}
+                            <i class='flex bx bx-heart bx-sm'></i>{{ $t('navbar.wishlist') }}
                         </a>
                     </li>
                     <li>

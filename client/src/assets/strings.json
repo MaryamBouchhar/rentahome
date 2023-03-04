@@ -31,6 +31,7 @@
       "about": "About",
       "profile": "Profile",
       "settings": "Settings",
+      "wishlist": "Wishlist",
       "properties": "Properties",
       "contact": "Contact",
       "logout": "Logout"
@@ -135,6 +136,7 @@
       "about": "关于",
       "profile": "轮廓",
       "settings": "设定值",
+      "wishlist": "愿望清单",
       "properties": "财产",
       "contact": "接触",
       "logout": "登出"
@@ -239,6 +241,7 @@
       "about": "Acerca de",
       "profile": "Perfil",
       "settings": "Ajustes",
+      "wishlist": "Lista de deseos",
       "properties": "Propiedades",
       "contact": "Contacto",
       "logout": "Cerrar sesión"
@@ -343,6 +346,7 @@
       "about": "حول",
       "profile": "الملف الشخصي",
       "settings": "الإعدادات",
+      "wishlist": "قائمة الامنيات",
       "properties": "الخصائص",
       "contact": "اتصل",
       "logout": "تسجيل خروج"
@@ -447,6 +451,7 @@
       "about": "Tentang",
       "profile": "Profil",
       "settings": "Pengaturan",
+      "wishlist": "Daftar keinginan",
       "properties": "Properti",
       "contact": "Kontak",
       "logout": "Keluar"
@@ -551,6 +556,7 @@
       "about": "Sobre",
       "profile": "Perfil",
       "settings": "Configurações",
+      "wishlist": "Lista de Desejos",
       "properties": "Propriedades",
       "contact": "Contato",
       "logout": "Sair"
@@ -655,6 +661,7 @@
       "about": "Sur",
       "profile": "Profil",
       "settings": "Paramètres",
+      "wishlist": "Liste de souhaits",
       "properties": "Propriétés",
       "contact": "Contact",
       "logout": "Déconnexion"
@@ -759,6 +766,7 @@
       "about": "約",
       "profile": "プロフィール",
       "settings": "設定",
+      "wishlist": "ウィッシュリスト",
       "properties": "物件",
       "contact": "接触",
       "logout": "ログアウト"
@@ -863,6 +871,7 @@
       "about": "Около",
       "profile": "Профиль",
       "settings": "настройки",
+      "wishlist": "Список пожеланий",
       "properties": "Свойства",
       "contact": "Контакт",
       "logout": "Выйти"
@@ -967,6 +976,7 @@
       "about": "Über",
       "profile": "Profil",
       "settings": "die Einstellungen",
+      "wishlist": "Wunschzettel",
       "properties": "Eigenschaften",
       "contact": "Kontakt",
       "logout": "Ausloggen"
