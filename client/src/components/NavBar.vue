@@ -29,7 +29,7 @@
         <div class="flex justify-center hidden lg:flex lg:basis-1/2">
             <ul :class="rtl ? 'lg:flex-row-reverse dropdown dropdown-end' : 'dropdown lg:flex-row'"
                 class="md:menu md:menu-horizontal p-0">
-                <NavLink to="/" :label="$t('navbar.home')" class="mx-1"/>
+                <NavLink to="/" :label="$t('navbar.home')"/>
                 <NavLink to="/properties" :label="$t('navbar.properties')" class="mx-1"/>
                 <NavLink to="/about" :label="$t('navbar.about')" class="mx-1"/>
                 <NavLink to="/contact" :label="$t('navbar.contact')" class="mx-1"/>
