@@ -1,4 +1,4 @@
-package com.fpt.rentahome.models;
+package com.fpt.rentahome.Models;
 
 public class Location {
     private int id;
