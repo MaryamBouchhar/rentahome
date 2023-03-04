@@ -1,9 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 
-import swal from 'sweetalert';
-window.Swal = swal;
-
 import App from "./App.vue";
 import router from "./router";
 import { useMainStore } from "@/stores/main.js";

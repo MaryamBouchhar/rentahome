@@ -1,4 +1,4 @@
-package com.fpt.rentahome.Models;
+package com.fpt.rentahome.models;
 
 import java.util.Date;
 
