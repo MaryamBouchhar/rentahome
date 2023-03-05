@@ -11,10 +11,13 @@
         <div :class="rtl ? 'flex-row-reverse' : 'flex-row'"
              class="flex overflow-x-scroll scrollbar-hide shadow-md p-2 bg-base-100"
         >
-            <div class="cursor-pointer m-1">
+            <div
+                class="cursor-pointer m-1"
+                @click="selectCategory(null)"
+            >
                 <span
                     class="badge badge-primary badge-lg w-fit"
-                    :class="{'btn-outline': selectedCategory}"
+                    :class="{'btn-outline': selectedCategory !== null}"
                 >
                     {{ $t('wishlist.all') }}
                 </span>
@@ -24,6 +27,7 @@
                 class="cursor-pointer m-1"
                 v-for="category in categories"
                 :key="category.id"
+                @click="selectCategory(category)"
             >
                     <span
                         class="badge badge-primary badge-lg w-fit"
@@ -51,118 +55,108 @@ export default {
     setup() {
         const store = useStore();
 
-        const state = reactive([
-            // categories & properties here
-            {
-                id: 1,
-                name: 'Category_1',
-                properties: [
-                    { id: 1, name: 'House 1' },
-                    { id: 2, name: 'House 2' },
-                    { id: 3, name: 'House 3' }
-                ]
-            },
-            {
-                id: 2,
-                name: 'Category_2',
-                properties: [
-                    { id: 1, name: 'House 1' },
-                    { id: 2, name: 'House 2' },
-                    { id: 3, name: 'House 3' }
-                ]
-            },
-            {
-                id: 3,
-                name: 'Category_3',
-                properties: [
-                    { id: 1, name: 'House 1' },
-                    { id: 2, name: 'House 2' },
-                    { id: 3, name: 'House 3' }
-                ]
-            },
-            {
-                id: 4,
-                name: 'Category_4',
-                properties: [
-                    { id: 1, name: 'House 1' },
-                    { id: 2, name: 'House 2' },
-                    { id: 3, name: 'House 3' }
-                ]
-            },
-            {
-                id: 5,
-                name: 'Category_5',
-                properties: [
-                    { id: 1, name: 'House 1' },
-                    { id: 2, name: 'House 2' },
-                    { id: 3, name: 'House 3' }
-                ]
-            },
-            {
-                id: 6,
-                name: 'Category_6',
-                properties: [
-                    { id: 1, name: 'House 1' },
-                    { id: 2, name: 'House 2' },
-                    { id: 3, name: 'House 3' }
-                ]
-            },
-            {
-                id: 7,
-                name: 'Category_7',
-                properties: [
-                    { id: 1, name: 'House 1' },
-                    { id: 2, name: 'House 2' },
-                    { id: 3, name: 'House 3' }
-                ]
-            },
-            {
-                id: 8,
-                name: 'Category_8',
-                properties: [
-                    { id: 1, name: 'House 1' },
-                    { id: 2, name: 'House 2' },
-                    { id: 3, name: 'House 3' }
-                ]
-            },
-            {
-                id: 9,
-                name: 'Category_9',
-                properties: [
-                    { id: 1, name: 'House 1' },
-                    { id: 2, name: 'House 2' },
-                    { id: 3, name: 'House 3' }
-                ]
-            }
-        ]);
-
-        const categories = computed(() => state.map(category => {
-            return {
-                id: category.id,
-                name: category.name
-            }
-        }));
-
-        const selectedCategory = reactive(null);
-
-        const selectCategory = (category) => {
-            selectedCategory = category ? category : null;
-        }
-
         return {
             rtl: computed(() => store.state.rtl),
-            categories,
-            selectedCategory,
-            selectCategory
         }
     },
     data() {
         return {
-
+            categories: [
+                // categories & properties here
+                {
+                    id: 1,
+                    name: 'Category_1',
+                    properties: [
+                        {id: 1, name: 'House 1'},
+                        {id: 2, name: 'House 2'},
+                        {id: 3, name: 'House 3'}
+                    ]
+                },
+                {
+                    id: 2,
+                    name: 'Category_2',
+                    properties: [
+                        {id: 1, name: 'House 1'},
+                        {id: 2, name: 'House 2'},
+                        {id: 3, name: 'House 3'}
+                    ]
+                },
+                {
+                    id: 3,
+                    name: 'Category_3',
+                    properties: [
+                        {id: 1, name: 'House 1'},
+                        {id: 2, name: 'House 2'},
+                        {id: 3, name: 'House 3'}
+                    ]
+                },
+                {
+                    id: 4,
+                    name: 'Category_4',
+                    properties: [
+                        {id: 1, name: 'House 1'},
+                        {id: 2, name: 'House 2'},
+                        {id: 3, name: 'House 3'}
+                    ]
+                },
+                {
+                    id: 5,
+                    name: 'Category_5',
+                    properties: [
+                        {id: 1, name: 'House 1'},
+                        {id: 2, name: 'House 2'},
+                        {id: 3, name: 'House 3'}
+                    ]
+                },
+                {
+                    id: 6,
+                    name: 'Category_6',
+                    properties: [
+                        {id: 1, name: 'House 1'},
+                        {id: 2, name: 'House 2'},
+                        {id: 3, name: 'House 3'}
+                    ]
+                },
+                {
+                    id: 7,
+                    name: 'Category_7',
+                    properties: [
+                        {id: 1, name: 'House 1'},
+                        {id: 2, name: 'House 2'},
+                        {id: 3, name: 'House 3'}
+                    ]
+                },
+                {
+                    id: 8,
+                    name: 'Category_8',
+                    properties: [
+                        {id: 1, name: 'House 1'},
+                        {id: 2, name: 'House 2'},
+                        {id: 3, name: 'House 3'}
+                    ]
+                },
+                {
+                    id: 9,
+                    name: 'Category_9',
+                    properties: [
+                        {id: 1, name: 'House 1'},
+                        {id: 2, name: 'House 2'},
+                        {id: 3, name: 'House 3'}
+                    ]
+                }
+            ],
+            selectedCategory: null
+        }
+    },
+    methods: {
+        selectCategory(category) {
+            this.selectedCategory = category ? category.id : null;
+            console.log(this.selectedCategory);
         }
     },
     mounted() {
         console.log(this.categories);
+        console.log(this.selectedCategory);
     }
 }
 </script>
