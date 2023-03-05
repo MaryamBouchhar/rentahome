@@ -86,8 +86,6 @@ const checked = (isChecked, admin) => {
     button="danger"
     has-cancel
   >
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
   </CardBoxModal>
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
@@ -145,12 +143,15 @@ const checked = (isChecked, admin) => {
             small
             @click="isModalDangerActive = true"
           />
+
+<!--          <router-link to="/update_admin">-->
           <BaseButton
             color="success"
             :icon="mdiHumanEdit"
+            to="/update-admin"
             small
-            @click="isModalDangerActive = true"
           />
+<!--          </router-link>-->
         </BaseButtons>
       </td>
     </tr>
