@@ -55,7 +55,7 @@ const formStatusSubmit = () => {
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiPlus"
-        title="New Admin"
+        title="Update Admin"
         main
       >
         <router-link to="/admins">
@@ -88,8 +88,7 @@ const formStatusSubmit = () => {
 
           <template #footer>
             <BaseButtons class="ml-14 mr-0">
-              <BaseButton   class="ml-20 " type="submit" color="warning" label="Add" @click="addAdmin"/>
-              <BaseButton  class="ml-2" type="reset" color="warning" outline label="Reset"/>
+              <BaseButton   class="ml-20 " type="submit" color="warning" label="Update Admin" @click="addAdmin"/>
             </BaseButtons>
           </template>
       </CardBox>
