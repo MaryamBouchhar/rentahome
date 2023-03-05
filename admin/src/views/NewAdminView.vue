@@ -79,8 +79,8 @@ const formStatusSubmit = () => {
           <FormField label="Email">
             <FormControl  type="email" v-model="email" required/>
           </FormField>
-          <FormField label="Password" v-model="password" required>
-            <FormControl/>
+          <FormField label="Password" >
+            <FormControl v-model="password" required/>
           </FormField>
 
           <BaseDivider/>
@@ -116,40 +116,26 @@ methods : {
 
   async addAdmin() {
     const newAdmin = {
-     name : this.name,
+      name: this.name,
       email: this.email,
-      password : this.password,
+      password: this.password,
     };
 
 
     axios.post('http://localhost:8080/manage_admin/add_admin', newAdmin
     )
-      .then(response => {
-        console.log(response.data);
+      .then(() => {
+        swal({
+          text: "Admin Added Successfully!",
+          icon: "success",
+          closeOnClickOutside: false,
+        });
       })
       .catch(error => {
         console.log(error);
       });
 
-    // await axios({
-    //   method: 'post',
-    //   url: "http://localhost:8080/manage_admin/add_admin",
-    //   data : JSON.stringify(newAdmin),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    //   .then(() => {
-    //     swal({
-    //       text: "Admin Added Successfully!",
-    //       icon: "success",
-    //       closeOnClickOutside: false,
-    //     });
-    //   })
-    //   .catch(err => console.log(err));
-
   }
-
 }
 }
 </script>
