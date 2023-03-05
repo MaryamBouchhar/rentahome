@@ -16,10 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/manage_admin")
 public class AdminController {
-
-    private AdminService adminService;
     @Autowired
-    private AdminRepository adminRepository;
+    private AdminService adminService;
 
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
@@ -34,10 +32,10 @@ public class AdminController {
         return new ResponseEntity<>(new ApiResponse(true, "created the admin"), HttpStatus.CREATED);
     }
 
-
+    //FETCH ALL ADMINS
     @GetMapping("/admins")
     public List<Admin> getAllAdmins() {
-        return (List<Admin>) adminRepository.findAll();
+        return adminService.getAllAdmins();
     }
 
 

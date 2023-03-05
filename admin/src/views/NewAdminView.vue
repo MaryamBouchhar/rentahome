@@ -108,7 +108,7 @@ const formStatusSubmit = () => {
 return {
 name : "",
 email: "",
-password : "",
+password : ""
 }
 },
 props : [],
@@ -118,7 +118,7 @@ methods : {
     const newAdmin = {
      name : this.name,
       email: this.email,
-      password : this.password,
+      password : this.password
     };
 
 
