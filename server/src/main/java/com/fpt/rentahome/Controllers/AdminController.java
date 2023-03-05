@@ -35,7 +35,7 @@ public class AdminController {
     }
 
     //just for test
-    @PostMapping("/fetch_admins")
+    @GetMapping("/admins")
     public List<Admin> getAllAdmins() {
         return (List<Admin>) adminRepository.findAll();
     }
