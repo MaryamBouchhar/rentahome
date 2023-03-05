@@ -8,6 +8,7 @@ import BaseLevel from "@/components/BaseLevel.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import UserAvatar from "@/components/UserAvatar.vue";
+import adminService from "@/services/AdminService";
 
 defineProps({
   checkable: Boolean,
@@ -15,13 +16,14 @@ defineProps({
 
 const mainStore = useMainStore();
 
-const items = computed(() => mainStore.admins);
+
+const items = computed(() => (adminService.getAdmins().toString()));
 
 const isModalActive = ref(false);
 
 const isModalDangerActive = ref(false);
 
-const perPage = ref(5);
+const perPage = ref(4);
 
 const currentPage = ref(0);
 
@@ -109,20 +111,20 @@ const checked = (isChecked, admin) => {
     </tr>
     </thead>
     <tbody>
-    <tr v-for="admin in admins" :key="admin.id">
+    <tr v-for="admin in admins " :key="admin.id">
       <TableCheckboxCell
         v-if="checkable"
         @checked="checked($event, admin)"
       />
 
-      <td data-label="Name">
+      <td data-label="Id">
         {{ admin.id }}
       </td>
 
       <td data-label="Name">
         {{ admin.name }}
       </td>
-      <td data-label="Company">
+      <td data-label="Email">
         {{ admin.email }}
       </td>
 
