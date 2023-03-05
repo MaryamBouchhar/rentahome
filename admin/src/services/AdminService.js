@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 const ADMIN_API_BASE_URL = "http://localhost:8080/manage_admin/admins";
 class AdminService {
   getAdmins() {
