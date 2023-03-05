@@ -37,14 +37,7 @@ import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
           />
         </router-link>
       </SectionTitleLineWithButton>
-      <!--   we can call tha notification here
-      <NotificationBar color="info" :icon="mdiMonitorCellphone">
-        <b>Responsive table.</b> Collapses on mobile
-      </NotificationBar>
-          <NotificationBar color="danger" :icon="mdiTableOff">
-        <b>Empty table.</b> When there's nothing to show
-      </NotificationBar>
-      -->
+
       <CardBox class="mb-6" has-table>
         <TableAdmin/>
       </CardBox>

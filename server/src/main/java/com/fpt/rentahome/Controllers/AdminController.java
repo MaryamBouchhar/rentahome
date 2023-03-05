@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 ;import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -38,5 +39,25 @@ public class AdminController {
         return adminService.getAllAdmins();
     }
 
+    @PutMapping("/update_admin/{id}")
+    public ResponseEntity<ApiResponse> updateAdmin(@PathVariable("id") int id, @RequestBody Admin admin) {
 
-}
+        ApiResponse response = new ApiResponse();
+        HttpStatus status;
+
+        // Call the service method to update the admin with the given ID
+        boolean success = adminService.updateAdmin(id, admin);
+
+        if (success) {
+            response.setMessage("Admin updated successfully");
+            status = HttpStatus.OK;
+        } else {
+            response.setMessage("Admin not found");
+            status = HttpStatus.NOT_FOUND;
+        }
+
+        return new ResponseEntity<>(response, status);
+    }
+    }
+
+

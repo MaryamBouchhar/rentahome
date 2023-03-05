@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan,mdiImageEdit } from "@mdi/js";
+import { mdiEye, mdiTrashCan,mdiHumanEdit} from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
@@ -87,8 +87,6 @@ const checked = (isChecked, admin) => {
     button="danger"
     has-cancel
   >
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
   </CardBoxModal>
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
@@ -108,6 +106,8 @@ const checked = (isChecked, admin) => {
       <th>Id</th>
       <th>Name</th>
       <th>Email</th>
+      <th>Password</th>
+
     <th/>
     </tr>
     </thead>
@@ -128,6 +128,9 @@ const checked = (isChecked, admin) => {
       <td data-label="Email">
         {{ admin.email }}
       </td>
+      <td data-label="Password">
+        {{ admin.password }}
+      </td>
 
 
 
@@ -141,12 +144,15 @@ const checked = (isChecked, admin) => {
             small
             @click="isModalDangerActive = true"
           />
+
+<!--          <router-link to="/update_admin">-->
           <BaseButton
             color="success"
-            :icon="mdiImageEdit"
+            :icon="mdiHumanEdit"
+            to="/update-admin"
             small
-            @click="isModalDangerActive = true"
           />
+<!--          </router-link>-->
         </BaseButtons>
       </td>
     </tr>
@@ -171,10 +177,12 @@ const checked = (isChecked, admin) => {
 </template>
 <script>
 
+
 import axios from 'axios';
 
+
 export default {
-  name: "admins",
+  name: "AdminView",
   data(){
     return{
       admins:[],
@@ -183,6 +191,7 @@ export default {
 
   },
   methods : {
+
     async getAdmins() {
     await axios.get(this.ADMIN_API_BASE_URL)
       .then(response=>this.admins=response.data)
@@ -190,6 +199,7 @@ export default {
   }
   },
     mounted(){
+
     this.getAdmins();
   }
 
