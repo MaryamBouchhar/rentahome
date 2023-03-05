@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div class="border-b border-t p-5">
             <h1
                 class="text-2xl font-bold text-center"
             >
@@ -9,7 +9,7 @@
         </div>
         <!-- create a horizontal scroller -->
         <div :class="rtl ? 'flex-row-reverse' : 'flex-row'"
-             class="flex overflow-x-scroll scrollbar-hide shadow-md p-2 bg-base-100"
+             class="flex overflow-x-scroll scrollbar-hide shadow-md p-2 mt-2 bg-base-100"
         >
             <div
                 class="cursor-pointer m-1"
@@ -39,8 +39,26 @@
         </div>
     </div>
 
-    <div class="flex flex-col flex-1">
-
+    <div
+        v-if="isLoaded"
+        class="flex flex-1"
+    >
+        <div
+            :class="rtl ? 'flex-row-reverse' : 'flex-row'"
+            class="flex grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 p-5"
+        >
+            <PropertyCard
+                v-for="property in properties"
+                :key="property.id"
+            />
+        </div>
+    </div>
+    <div
+        v-else
+    >
+        <div class="flex flex-1 justify-center items-center">
+            <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
+        </div>
     </div>
 </template>
 
@@ -48,10 +66,11 @@
 
 import {useStore} from 'vuex';
 import {computed} from "vue";
-import {reactive} from "vue";
+import PropertyCard from "../components/PropertyCard.vue";
 
 export default {
     name: 'Wishlist',
+    components: {PropertyCard},
     setup() {
         const store = useStore();
 
@@ -145,18 +164,34 @@ export default {
                     ]
                 }
             ],
-            selectedCategory: null
+            selectedCategory: null,
+            properties: [],
+            isLoaded: false
         }
     },
     methods: {
         selectCategory(category) {
+            this.isLoaded = false;
             this.selectedCategory = category ? category.id : null;
-            console.log(this.selectedCategory);
+            this.getProperties();
+        },
+        getProperties() {
+            if (this.selectedCategory === null) {
+                let props = this.categories.map(category => category.properties).flat();
+                this.isLoaded = true;
+                this.properties = props;
+            } else {
+                let props = this.categories.find(category => category.id === this.selectedCategory).properties;
+                this.isLoaded = true;
+                this.properties = props;
+            }
         }
     },
     mounted() {
         console.log(this.categories);
         console.log(this.selectedCategory);
+        this.getProperties();
+        this.isLoaded = true;
     }
 }
 </script>
