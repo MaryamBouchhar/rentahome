@@ -8,6 +8,7 @@ import BaseLevel from "@/components/BaseLevel.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import UserAvatar from "@/components/UserAvatar.vue";
+import adminService from "@/services/AdminService";
 
 defineProps({
   checkable: Boolean,
@@ -15,13 +16,14 @@ defineProps({
 
 const mainStore = useMainStore();
 
-const items = computed(() => mainStore.clients);
+
+const items = computed(() => (adminService.getAdmins().toString()));
 
 const isModalActive = ref(false);
 
 const isModalDangerActive = ref(false);
 
-const perPage = ref(5);
+const perPage = ref(4);
 
 const currentPage = ref(0);
 
@@ -60,13 +62,13 @@ const remove = (arr, cb) => {
   return newArr;
 };
 
-const checked = (isChecked, client) => {
+const checked = (isChecked, admin) => {
   if (isChecked) {
-    checkedRows.value.push(client);
+    checkedRows.value.push(admin);
   } else {
     checkedRows.value = remove(
       checkedRows.value,
-      (row) => row.id === client.id
+      (row) => row.id === admin.id
     );
   }
 };
@@ -105,27 +107,25 @@ const checked = (isChecked, client) => {
       <th>Id</th>
       <th>Name</th>
       <th>Email</th>
-
-
-      <th />
+    <th/>
     </tr>
     </thead>
     <tbody>
-    <tr v-for="client in itemsPaginated" :key="client.id">
+    <tr v-for="admin in admins " :key="admin.id">
       <TableCheckboxCell
         v-if="checkable"
-        @checked="checked($event, client)"
+        @checked="checked($event, admin)"
       />
 
-      <td data-label="Name">
-        {{ client.id }}
+      <td data-label="Id">
+        {{ admin.id }}
       </td>
 
       <td data-label="Name">
-        {{ client.name }}
+        {{ admin.name }}
       </td>
-      <td data-label="Company">
-        {{ client.company }}
+      <td data-label="Email">
+        {{ admin.email }}
       </td>
 
 
@@ -168,3 +168,28 @@ const checked = (isChecked, client) => {
     </BaseLevel>
   </div>
 </template>
+<script>
+import AdminService from "@/services/AdminService";
+
+export default {
+  name: "admins",
+  data(){
+    return{
+      admins:[]
+    }
+
+  },
+  methods : {
+
+  getAdmins() {
+    AdminService.getAdmins().then((response)=>{
+      this.admins=response.data;
+    })
+  }
+ },
+  created() {
+    this.getAdmins();
+  }
+
+}
+</script>
