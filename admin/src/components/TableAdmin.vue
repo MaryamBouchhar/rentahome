@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan,mdiImageEdit } from "@mdi/js";
+import { mdiEye, mdiTrashCan,mdiHumanEdit} from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
@@ -107,6 +107,8 @@ const checked = (isChecked, admin) => {
       <th>Id</th>
       <th>Name</th>
       <th>Email</th>
+      <th>Password</th>
+
     <th/>
     </tr>
     </thead>
@@ -127,6 +129,9 @@ const checked = (isChecked, admin) => {
       <td data-label="Email">
         {{ admin.email }}
       </td>
+      <td data-label="Password">
+        {{ admin.password }}
+      </td>
 
 
 
@@ -142,7 +147,7 @@ const checked = (isChecked, admin) => {
           />
           <BaseButton
             color="success"
-            :icon="mdiImageEdit"
+            :icon="mdiHumanEdit"
             small
             @click="isModalDangerActive = true"
           />
@@ -170,9 +175,10 @@ const checked = (isChecked, admin) => {
 </template>
 <script>
 import AdminService from "@/services/AdminService";
+import axios from "axios"
 
 export default {
-  name: "admins",
+  name: "AdminView",
   data(){
     return{
       admins:[]
@@ -181,13 +187,13 @@ export default {
   },
   methods : {
 
-  getAdmins() {
-    AdminService.getAdmins().then((response)=>{
+  async getAdmins() {
+    await axios.get("http://localhost:8080/manage_admin/admins").then((response)=>{
       this.admins=response.data;
     })
   }
  },
-  created() {
+  mounted() {
     this.getAdmins();
   }
 
