@@ -5,6 +5,7 @@ import App from './App.vue'
 import { createI18n } from "vue-i18n";
 import store from "./store";
 
+
 import strings from './assets/strings.json'
 
 // Create VueI18n instance with options

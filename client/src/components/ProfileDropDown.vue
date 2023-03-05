@@ -13,9 +13,18 @@
                 <router-link
                     to="/profile"
                     class="flex flex-row items-center"
-                    :class="{ 'flex-row-revers' : rtl }"
+                    :class="{ 'flex-row-revers' : rtl }, { 'active' : path === '/profile' }"
                 >
                     <i class='bx bx-user bx-sm'></i>{{ $t('navbar.profile') }}
+                </router-link>
+            </li>
+            <li>
+                <router-link
+                    to="/wishlist"
+                    class="flex flex-row items-center"
+                    :class="{ 'flex-row-revers' : rtl }, { 'active' : path === '/wishlist' }"
+                >
+                    <i class='bx bx-heart bx-sm'></i>{{ $t('navbar.wishlist') }}
                 </router-link>
             </li>
             <li>
@@ -38,5 +47,7 @@ import {computed} from "vue";
 
 const store = useStore();
 
-const rtl = computed(() => store.state.rtl)
+const rtl = computed(() => store.state.rtl);
+
+const path = computed(() => store.state.path);
 </script>

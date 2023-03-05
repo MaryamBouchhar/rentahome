@@ -30,6 +30,7 @@
       "home": "Home",
       "about": "About",
       "profile": "Profile",
+      "wishlist": "Wishlist",
       "settings": "Settings",
       "properties": "Properties",
       "contact": "Contact",
@@ -50,6 +51,13 @@
         "your_email": "Your email",
         "your_message": "Your message"
       }
+    },
+    "wishlist": {
+      "all": "All",
+      "wishlist": "Wishlist",
+      "no_properties": "No properties found",
+      "add_to_wishlist": "Add to Wishlist",
+      "remove_from_wishlist": "Remove from Wishlist"
     },
     "tags": {
       "most_trusted": "Most Trusted",
@@ -101,6 +109,13 @@
       "ja": "Japanese",
       "ru": "Russian",
       "de": "German"
+    },
+    "notFound": {
+      "not_found": "Not Found",
+      "oops": "Oops!",
+      "page_not_found": "Page Not Found",
+      "go_home": "Go Home",
+      "go_back": "Go Back"
     }
   },
   "zh": {
@@ -134,6 +149,7 @@
       "home": "家",
       "about": "关于",
       "profile": "轮廓",
+      "wishlist": "愿望清单",
       "settings": "设定值",
       "properties": "财产",
       "contact": "接触",
@@ -154,6 +170,13 @@
         "your_email": "你的电子邮件",
         "your_message": "你的信息"
       }
+    },
+    "wishlist": {
+      "all": "所有",
+      "wishlist": "愿望清单",
+      "no_properties": "未找到属性",
+      "add_to_wishlist": "添加到愿望清单",
+      "remove_from_wishlist": "从愿望清单中删除"
     },
     "tags": {
       "most_trusted": "最受信任",
@@ -205,6 +228,13 @@
       "ja": "日语",
       "ru": "俄语",
       "de": "德语"
+    },
+    "notFound": {
+      "not_found": "没有发现",
+      "oops": "哎呀！",
+      "page_not_found": "找不到网页",
+      "go_home": "回家",
+      "go_back": "回去"
     }
   },
   "es": {
@@ -238,6 +268,7 @@
       "home": "Casa",
       "about": "Acerca de",
       "profile": "Perfil",
+      "wishlist": "Lista de deseos",
       "settings": "Ajustes",
       "properties": "Propiedades",
       "contact": "Contacto",
@@ -258,6 +289,13 @@
         "your_email": "Tu correo electrónico",
         "your_message": "Tu mensaje"
       }
+    },
+    "wishlist": {
+      "all": "Todas",
+      "wishlist": "Lista de deseos",
+      "no_properties": "No se encontraron propiedades",
+      "add_to_wishlist": "Añadir a la lista de deseos",
+      "remove_from_wishlist": "Eliminar de la lista de deseos"
     },
     "tags": {
       "most_trusted": "Más confiable",
@@ -309,6 +347,13 @@
       "ja": "Japonés",
       "ru": "Ruso",
       "de": "Alemán"
+    },
+    "notFound": {
+      "not_found": "No encontrado",
+      "oops": "Uy!",
+      "page_not_found": "Página no encontrada",
+      "go_home": "Ir a casa",
+      "go_back": "Volver"
     }
   },
   "ar": {
@@ -342,6 +387,7 @@
       "home": "الصفحة الرئيسية",
       "about": "حول",
       "profile": "الملف الشخصي",
+      "wishlist": "قائمة الامنيات",
       "settings": "الإعدادات",
       "properties": "الخصائص",
       "contact": "اتصل",
@@ -362,6 +408,13 @@
         "your_email": "بريدك الالكتروني",
         "your_message": "رسالتك"
       }
+    },
+    "wishlist": {
+      "all": "الكل",
+      "wishlist": "قائمة الامنيات",
+      "no_properties": "لا توجد خصائص في قائمة الامنيات",
+      "add_to_wishlist": "أضف إلى قائمة الامنيات",
+      "remove_from_wishlist": "إزالة من قائمة الامنيات"
     },
     "tags": {
       "most_trusted": "الأكثر اعتمادًا",
@@ -413,6 +466,13 @@
       "ja": "اليابانية",
       "ru": "الروسية",
       "de": "الألمانية"
+    },
+    "notFound": {
+      "not_found": "لم يتم العثور على الصفحة",
+      "oops": "عفوًا!",
+      "page_not_found": "الصفحة غير موجودة",
+      "go_home": "الذهاب إلى الصفحة الرئيسية",
+      "go_back": "العودة"
     }
   },
   "id": {
@@ -446,6 +506,7 @@
       "home": "Rumah",
       "about": "Tentang",
       "profile": "Profil",
+      "wishlist": "Daftar keinginan",
       "settings": "Pengaturan",
       "properties": "Properti",
       "contact": "Kontak",
@@ -466,6 +527,13 @@
         "your_email": "Email Anda",
         "your_message": "Pesan Anda"
       }
+    },
+    "wishlist": {
+      "all": "Semua",
+      "wishlist": "Daftar keinginan",
+      "no_properties": "Tidak ada properti yang ditambahkan ke daftar keinginan Anda.",
+      "add_to_wishlist": "Tambahkan ke daftar keinginan",
+      "remove_from_wishlist": "Hapus dari daftar keinginan"
     },
     "tags": {
       "most_trusted": "Paling Terpercaya",
@@ -517,6 +585,13 @@
       "ja": "Jepang",
       "ru": "Rusia",
       "de": "Jerman"
+    },
+    "notFound": {
+      "not_found": "Halaman tidak ditemukan",
+      "oops": "Maaf!",
+      "page_not_found": "Halaman tidak ditemukan",
+      "go_home": "Pergi ke halaman utama",
+      "go_back": "Kembali"
     }
   },
   "pt": {
@@ -550,6 +625,7 @@
       "home": "Casa",
       "about": "Sobre",
       "profile": "Perfil",
+      "wishlist": "Lista de Desejos",
       "settings": "Configurações",
       "properties": "Propriedades",
       "contact": "Contato",
@@ -570,6 +646,13 @@
         "your_email": "Seu email",
         "your_message": "Sua mensagem"
       }
+    },
+    "wishlist": {
+      "all": "Tudo",
+      "wishlist": "Lista de Desejos",
+      "no_properties": "Nenhuma propriedade adicionada à sua lista de desejos.",
+      "add_to_wishlist": "Adicionar à lista de desejos",
+      "remove_from_wishlist": "Remover da lista de desejos"
     },
     "tags": {
       "most_trusted": "Mais confiável",
@@ -621,6 +704,13 @@
       "ja": "Japonês",
       "ru": "Russo",
       "de": "Alemão"
+    },
+    "notFound": {
+      "not_found": "Página não encontrada",
+      "oops": "Desculpe!",
+      "page_not_found": "Página não encontrada",
+      "go_home": "Ir para a página inicial",
+      "go_back": "Voltar"
     }
   },
   "fr": {
@@ -652,8 +742,9 @@
     },
     "navbar": {
       "home": "Accueil",
-      "about": "Sur",
+      "about": "A propos",
       "profile": "Profil",
+      "wishlist": "Liste de souhaits",
       "settings": "Paramètres",
       "properties": "Propriétés",
       "contact": "Contact",
@@ -674,6 +765,13 @@
         "your_email": "Votre email",
         "your_message": "Votre message"
       }
+    },
+    "wishlist": {
+      "all": "Tout",
+      "wishlist": "Liste de souhaits",
+      "no_properties": "Aucune propriété ajoutée à votre liste de souhaits.",
+      "add_to_wishlist": "Ajouter à la liste de souhaits",
+      "remove_from_wishlist": "Retirer de la liste de souhaits"
     },
     "tags": {
       "most_trusted": "Le plus fiable",
@@ -725,6 +823,13 @@
       "ja": "Japonais",
       "ru": "Russe",
       "de": "Allemand"
+    },
+    "notFound": {
+      "not_found": "Page non trouvée",
+      "oops": "Désolé!",
+      "page_not_found": "Page non trouvée",
+      "go_home": "Aller à la page d'accueil",
+      "go_back": "Retour"
     }
   },
   "ja": {
@@ -758,6 +863,7 @@
       "home": "ホーム",
       "about": "約",
       "profile": "プロフィール",
+      "wishlist": "ウィッシュリスト",
       "settings": "設定",
       "properties": "物件",
       "contact": "接触",
@@ -778,6 +884,13 @@
         "your_email": "あなたのメールアドレス",
         "your_message": "あなたのメッセージ"
       }
+    },
+    "wishlist": {
+      "all": "すべて",
+      "wishlist": "ウィッシュリスト",
+      "no_properties": "物件が見つかりませんでした",
+      "add_to_wishlist": "ウィッシュリストに追加",
+      "remove_from_wishlist": "ウィッシュリストから削除"
     },
     "tags": {
       "most_trusted": "最も信頼できる",
@@ -829,6 +942,13 @@
       "ja": "日本語",
       "ru": "ロシア語",
       "de": "ドイツ語"
+    },
+    "notFound": {
+      "not_found": "ページが見つかりません",
+      "oops": "おっと！",
+      "page_not_found": "ページが見つかりません",
+      "go_home": "ホームに行く",
+      "go_back": "戻る"
     }
   },
   "ru": {
@@ -862,6 +982,7 @@
       "home": "Главная",
       "about": "Около",
       "profile": "Профиль",
+      "wishlist": "Список пожеланий",
       "settings": "настройки",
       "properties": "Свойства",
       "contact": "Контакт",
@@ -882,6 +1003,13 @@
         "your_email": "Ваш адрес электронной почты",
         "your_message": "Ваше сообщение"
       }
+    },
+    "wishlist": {
+      "all": "Все",
+      "wishlist": "Список пожеланий",
+      "no_properties": "Нет свойств в списке желаний",
+      "add_to_wishlist": "Добавить в список желаний",
+      "remove_from_wishlist": "Удалить из списка желаний"
     },
     "tags": {
       "most_trusted": "Самый надежный",
@@ -933,6 +1061,13 @@
       "ja": "Японский",
       "ru": "Русский",
       "de": "Немецкий"
+    },
+    "notFound": {
+      "not_found": "Страница не найдена",
+      "oops": "Упс!",
+      "page_not_found": "Страница не найдена",
+      "go_home": "Вернуться домой",
+      "go_back": "Вернуться назад"
     }
   },
   "de": {
@@ -966,6 +1101,7 @@
       "home": "Zuhause",
       "about": "Über",
       "profile": "Profil",
+      "wishlist": "Wunschzettel",
       "settings": "die Einstellungen",
       "properties": "Eigenschaften",
       "contact": "Kontakt",
@@ -986,6 +1122,13 @@
         "your_email": "Deine E-Mail-Adresse",
         "your_message": "Deine Nachricht"
       }
+    },
+    "wishlist": {
+      "all": "Alle",
+      "wishlist": "Wunschzettel",
+      "no_properties": "Keine Immobilien auf der Wunschliste",
+      "add_to_wishlist": "Zur Wunschliste hinzufügen",
+      "remove_from_wishlist": "Von der Wunschliste entfernen"
     },
     "tags": {
       "most_trusted": "Am vertrauenswürdigsten",
@@ -1037,6 +1180,13 @@
       "ja": "Japanisch",
       "ru": "Russisch",
       "de": "Deutsch"
+    },
+    "notFound": {
+      "not_found": "Seite nicht gefunden",
+      "oops": "Hoppla!",
+      "page_not_found": "Seite nicht gefunden",
+      "go_home": "Gehe nach Hause",
+      "go_back": "Geh zurück"
     }
   }
 }

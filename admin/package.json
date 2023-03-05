@@ -1,5 +1,5 @@
 {
-  "name": "admin-one-vue-tailwind",
+  "name": "Admin Dashbroard",
   "version": "3.1.0",
   "scripts": {
     "dev": "vite",
