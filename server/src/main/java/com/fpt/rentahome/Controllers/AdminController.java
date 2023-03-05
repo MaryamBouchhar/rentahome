@@ -35,7 +35,7 @@ public class AdminController {
         return new ResponseEntity<>(new ApiResponse(true, "created the admin"), HttpStatus.CREATED);
     }
 
-    //just for test
+
     @GetMapping("/admins")
     public List<Admin> getAllAdmins() {
         return (List<Admin>) adminRepository.findAll();
