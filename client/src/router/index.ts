@@ -1,7 +1,6 @@
 import {RouteRecordRaw, createRouter, createWebHistory} from 'vue-router';
 import store from "../store";
 
-// @ts-ignore
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
