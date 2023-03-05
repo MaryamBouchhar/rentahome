@@ -5,7 +5,11 @@ import com.fpt.rentahome.Repositories.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.util.List;
+
 import java.util.Optional;
+
 
 @Service
 public class AdminService {
@@ -16,6 +20,10 @@ public class AdminService {
     public void createAdmin(Admin admin) {
         adminRepository.save(admin);
     }
+
+    public List<Admin> getAllAdmins() {
+        return adminRepository.findAll();
+
 
 
     public boolean updateAdmin(int id, Admin updatedAdmin) {
@@ -36,5 +44,6 @@ public class AdminService {
         adminRepository.save(admin);
 
         return true;
+
     }
 }
