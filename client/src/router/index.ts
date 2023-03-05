@@ -2,31 +2,37 @@ import {RouteRecordRaw, createRouter, createWebHistory} from 'vue-router';
 import store from "../store";
 
 // @ts-ignore
-// @ts-ignore
-// @ts-ignore
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'Home',
         component: () => import('../views/Home.vue')
     },
-    //TODO: Add client routes here
+
     {
         path: '/about',
         name: 'About',
-        component: () => import('../../src/views/About.vue')
+        component: () => import('../views/About.vue')
     },
 
     {
         path: '/contact',
         name: 'Contact',
-        component: () => import('../../src/views/Contact.vue')
+        component: () => import('../views/Contact.vue')
     },
+
     {
         path: '/profile',
         name: 'Profile',
-        component: () => import('../../src/views/Profile.vue')
+        component: () => import('../views/Profile.vue')
     },
+
+    {
+        path: '/wishlist',
+        name: 'Wishlist',
+        component: () => import('../views/Wishlist.vue')
+    },
+
     {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
