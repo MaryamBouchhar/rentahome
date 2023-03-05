@@ -53,6 +53,7 @@
       }
     },
     "wishlist": {
+      "all": "All",
       "wishlist": "Wishlist",
       "no_properties": "No properties found",
       "add_to_wishlist": "Add to Wishlist",
@@ -171,6 +172,7 @@
       }
     },
     "wishlist": {
+      "all": "所有",
       "wishlist": "愿望清单",
       "no_properties": "未找到属性",
       "add_to_wishlist": "添加到愿望清单",
@@ -289,6 +291,7 @@
       }
     },
     "wishlist": {
+      "all": "Todas",
       "wishlist": "Lista de deseos",
       "no_properties": "No se encontraron propiedades",
       "add_to_wishlist": "Añadir a la lista de deseos",
@@ -407,6 +410,7 @@
       }
     },
     "wishlist": {
+      "all": "الكل",
       "wishlist": "قائمة الامنيات",
       "no_properties": "لا توجد خصائص في قائمة الامنيات",
       "add_to_wishlist": "أضف إلى قائمة الامنيات",
@@ -525,6 +529,7 @@
       }
     },
     "wishlist": {
+      "all": "Semua",
       "wishlist": "Daftar keinginan",
       "no_properties": "Tidak ada properti yang ditambahkan ke daftar keinginan Anda.",
       "add_to_wishlist": "Tambahkan ke daftar keinginan",
@@ -643,6 +648,7 @@
       }
     },
     "wishlist": {
+      "all": "Tudo",
       "wishlist": "Lista de Desejos",
       "no_properties": "Nenhuma propriedade adicionada à sua lista de desejos.",
       "add_to_wishlist": "Adicionar à lista de desejos",
@@ -761,6 +767,7 @@
       }
     },
     "wishlist": {
+      "all": "Tout",
       "wishlist": "Liste de souhaits",
       "no_properties": "Aucune propriété ajoutée à votre liste de souhaits.",
       "add_to_wishlist": "Ajouter à la liste de souhaits",
@@ -879,6 +886,7 @@
       }
     },
     "wishlist": {
+      "all": "すべて",
       "wishlist": "ウィッシュリスト",
       "no_properties": "物件が見つかりませんでした",
       "add_to_wishlist": "ウィッシュリストに追加",
@@ -997,6 +1005,7 @@
       }
     },
     "wishlist": {
+      "all": "Все",
       "wishlist": "Список пожеланий",
       "no_properties": "Нет свойств в списке желаний",
       "add_to_wishlist": "Добавить в список желаний",
@@ -1115,6 +1124,7 @@
       }
     },
     "wishlist": {
+      "all": "Alle",
       "wishlist": "Wunschzettel",
       "no_properties": "Keine Immobilien auf der Wunschliste",
       "add_to_wishlist": "Zur Wunschliste hinzufügen",
