@@ -52,6 +52,12 @@
         "your_message": "Your message"
       }
     },
+    "wishlist": {
+      "wishlist": "Wishlist",
+      "no_properties": "No properties found",
+      "add_to_wishlist": "Add to Wishlist",
+      "remove_from_wishlist": "Remove from Wishlist"
+    },
     "tags": {
       "most_trusted": "Most Trusted",
       "best_prices": "Best Prices",
@@ -108,7 +114,7 @@
       "oops": "Oops!",
       "page_not_found": "Page Not Found",
       "go_home": "Go Home",
-        "go_back": "Go Back"
+      "go_back": "Go Back"
     }
   },
   "zh": {
@@ -163,6 +169,12 @@
         "your_email": "你的电子邮件",
         "your_message": "你的信息"
       }
+    },
+    "wishlist": {
+      "wishlist": "愿望清单",
+      "no_properties": "未找到属性",
+      "add_to_wishlist": "添加到愿望清单",
+      "remove_from_wishlist": "从愿望清单中删除"
     },
     "tags": {
       "most_trusted": "最受信任",
@@ -220,7 +232,7 @@
       "oops": "哎呀！",
       "page_not_found": "找不到网页",
       "go_home": "回家",
-        "go_back": "回去"
+      "go_back": "回去"
     }
   },
   "es": {
@@ -275,6 +287,12 @@
         "your_email": "Tu correo electrónico",
         "your_message": "Tu mensaje"
       }
+    },
+    "wishlist": {
+      "wishlist": "Lista de deseos",
+      "no_properties": "No se encontraron propiedades",
+      "add_to_wishlist": "Añadir a la lista de deseos",
+      "remove_from_wishlist": "Eliminar de la lista de deseos"
     },
     "tags": {
       "most_trusted": "Más confiable",
@@ -332,7 +350,7 @@
       "oops": "Uy!",
       "page_not_found": "Página no encontrada",
       "go_home": "Ir a casa",
-        "go_back": "Volver"
+      "go_back": "Volver"
     }
   },
   "ar": {
@@ -387,6 +405,12 @@
         "your_email": "بريدك الالكتروني",
         "your_message": "رسالتك"
       }
+    },
+    "wishlist": {
+      "wishlist": "قائمة الامنيات",
+      "no_properties": "لا توجد خصائص في قائمة الامنيات",
+      "add_to_wishlist": "أضف إلى قائمة الامنيات",
+      "remove_from_wishlist": "إزالة من قائمة الامنيات"
     },
     "tags": {
       "most_trusted": "الأكثر اعتمادًا",
@@ -444,7 +468,7 @@
       "oops": "عفوًا!",
       "page_not_found": "الصفحة غير موجودة",
       "go_home": "الذهاب إلى الصفحة الرئيسية",
-        "go_back": "العودة"
+      "go_back": "العودة"
     }
   },
   "id": {
@@ -499,6 +523,12 @@
         "your_email": "Email Anda",
         "your_message": "Pesan Anda"
       }
+    },
+    "wishlist": {
+      "wishlist": "Daftar keinginan",
+      "no_properties": "Tidak ada properti yang ditambahkan ke daftar keinginan Anda.",
+      "add_to_wishlist": "Tambahkan ke daftar keinginan",
+      "remove_from_wishlist": "Hapus dari daftar keinginan"
     },
     "tags": {
       "most_trusted": "Paling Terpercaya",
@@ -556,7 +586,7 @@
       "oops": "Maaf!",
       "page_not_found": "Halaman tidak ditemukan",
       "go_home": "Pergi ke halaman utama",
-        "go_back": "Kembali"
+      "go_back": "Kembali"
     }
   },
   "pt": {
@@ -611,6 +641,12 @@
         "your_email": "Seu email",
         "your_message": "Sua mensagem"
       }
+    },
+    "wishlist": {
+      "wishlist": "Lista de Desejos",
+      "no_properties": "Nenhuma propriedade adicionada à sua lista de desejos.",
+      "add_to_wishlist": "Adicionar à lista de desejos",
+      "remove_from_wishlist": "Remover da lista de desejos"
     },
     "tags": {
       "most_trusted": "Mais confiável",
@@ -668,7 +704,7 @@
       "oops": "Desculpe!",
       "page_not_found": "Página não encontrada",
       "go_home": "Ir para a página inicial",
-        "go_back": "Voltar"
+      "go_back": "Voltar"
     }
   },
   "fr": {
@@ -723,6 +759,12 @@
         "your_email": "Votre email",
         "your_message": "Votre message"
       }
+    },
+    "wishlist": {
+      "wishlist": "Liste de souhaits",
+      "no_properties": "Aucune propriété ajoutée à votre liste de souhaits.",
+      "add_to_wishlist": "Ajouter à la liste de souhaits",
+      "remove_from_wishlist": "Retirer de la liste de souhaits"
     },
     "tags": {
       "most_trusted": "Le plus fiable",
@@ -780,7 +822,7 @@
       "oops": "Désolé!",
       "page_not_found": "Page non trouvée",
       "go_home": "Aller à la page d'accueil",
-        "go_back": "Retour"
+      "go_back": "Retour"
     }
   },
   "ja": {
@@ -835,6 +877,12 @@
         "your_email": "あなたのメールアドレス",
         "your_message": "あなたのメッセージ"
       }
+    },
+    "wishlist": {
+      "wishlist": "ウィッシュリスト",
+      "no_properties": "物件が見つかりませんでした",
+      "add_to_wishlist": "ウィッシュリストに追加",
+      "remove_from_wishlist": "ウィッシュリストから削除"
     },
     "tags": {
       "most_trusted": "最も信頼できる",
@@ -948,6 +996,12 @@
         "your_message": "Ваше сообщение"
       }
     },
+    "wishlist": {
+      "wishlist": "Список пожеланий",
+      "no_properties": "Нет свойств в списке желаний",
+      "add_to_wishlist": "Добавить в список желаний",
+      "remove_from_wishlist": "Удалить из списка желаний"
+    },
     "tags": {
       "most_trusted": "Самый надежный",
       "best_prices": "Лучшие цены",
@@ -1059,6 +1113,12 @@
         "your_email": "Deine E-Mail-Adresse",
         "your_message": "Deine Nachricht"
       }
+    },
+    "wishlist": {
+      "wishlist": "Wunschzettel",
+      "no_properties": "Keine Immobilien auf der Wunschliste",
+      "add_to_wishlist": "Zur Wunschliste hinzufügen",
+      "remove_from_wishlist": "Von der Wunschliste entfernen"
     },
     "tags": {
       "most_trusted": "Am vertrauenswürdigsten",
