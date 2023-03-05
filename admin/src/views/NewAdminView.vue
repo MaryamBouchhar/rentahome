@@ -74,7 +74,7 @@ const formStatusSubmit = () => {
       <CardBox form @submit.prevent="submit">
 
           <FormField label="Name" >
-            <FormControl type="email" v-model="adminname" required/>
+            <FormControl type="email" v-model="name" required/>
           </FormField>
           <FormField label="Email">
             <FormControl  type="email" v-model="email" required/>
@@ -106,7 +106,7 @@ const formStatusSubmit = () => {
  export default {
  data(){
 return {
-adminname : "",
+name : "",
 email: "",
 password : "",
 }
@@ -116,7 +116,7 @@ methods : {
 
   async addAdmin() {
     const newAdmin = {
-     adminname : this.adminname,
+     name : this.name,
       email: this.email,
       password : this.password,
     };
