@@ -11,63 +11,72 @@ import {
   mdiResponsive,
   mdiPalette,
   mdiReact,
-  mdiHome,
+  mdiHome, mdiAccountMultiple, mdiPlus,
+  mdiAccount,
+  mdiFormatListText,
+ mdiClipboardList,
+  mdiCashRegister
 } from "@mdi/js";
 
 export default [
   {
-    to: "/",
+    to: "/dashboard",
     icon: mdiMonitor,
     label: "Dashboard",
   },
-
-
-
-
   {
 
     label: "Properties",
     icon: mdiHome,
     menu: [
       {
-        label: "Show Properties",
+        label: "View All",
+        icon: mdiViewList,
         to: "/properties",
       },
       {
-        label: "New property",
+        label: "Add New",
+        icon: mdiPlus,
         to: "/add-property",
       },
     ],
   },
   {
-    to: "/forms",
-    label: "Forms",
-    icon: mdiSquareEditOutline,
-  },
 
-  {
-    to: "/login",
-    label: "Login",
-    icon: mdiLock,
-  },
-
-  {
-    label: "Dropdown",
-    icon: mdiViewList,
+    label: "Reservation",
+    icon: mdiFormatListText,
     menu: [
       {
-        label: "Item One",
+        label: "Requests",
+        icon: mdiClipboardList,
+        to: "/booking_request",
       },
       {
-        label: "Item Two",
+        label: "Payements",
+        icon:  mdiCashRegister ,
+        to: "/manage_payements",
       },
     ],
   },
 
   {
-    to: "/profile",
-    label: "Profile",
-    icon: mdiAccountCircle,
+
+    label: "Users",
+    icon: mdiAccountMultiple,
+    menu: [
+      {
+        label: "Clients",
+        icon: mdiAccount,
+        to: "/clients",
+      },
+      {
+        label: "Admins",
+        icon: mdiLock,
+        to: "/admins",
+      },
+    ],
   },
+
+
 
 ];

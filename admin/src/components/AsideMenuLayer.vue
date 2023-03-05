@@ -5,6 +5,8 @@ import { useStyleStore } from "@/stores/style.js";
 import AsideMenuList from "@/components/AsideMenuList.vue";
 import AsideMenuItem from "@/components/AsideMenuItem.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
+import {color} from "chart.js/helpers";
+import {colorsOutline} from "@/colors";
 
 defineProps({
   menu: {
@@ -71,8 +73,8 @@ const asideLgCloseClick = (event) => {
         <AsideMenuList :menu="menu" @menu-click="menuClick" style="margin-top: 50px" />
       </div>
 
-      <ul>
-        <AsideMenuItem :item="logoutItem" @menu-click="menuClick" />
+      <ul >
+        <AsideMenuItem :item="logoutItem"   @menu-click="menuClick" />
       </ul>
     </div>
   </aside>

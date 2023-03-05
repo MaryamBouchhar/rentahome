@@ -1,19 +1,28 @@
-import { createApp } from "vue";
-import { createPinia } from "pinia";
+import {createApp} from "vue";
+import {createPinia} from "pinia";
+
+import swal from 'sweetalert';
+window.Swal = swal;
 
 import App from "./App.vue";
 import router from "./router";
-import { useMainStore } from "@/stores/main.js";
-import { useStyleStore } from "@/stores/style.js";
-import { darkModeKey, styleKey } from "@/config.js";
+import {useMainStore} from "@/stores/main.js";
+import {useStyleStore} from "@/stores/style.js";
+import {darkModeKey, styleKey} from "@/config.js";
+
 
 import "./css/main.css";
+import strings from "./assets/strings.json";
 
 /* Init Pinia */
 const pinia = createPinia();
 
+
 /* Create Vue app */
-createApp(App).use(router).use(pinia).mount("#app");
+createApp(App)
+  .use(router)
+  .use(pinia)
+  .mount("#app");
 
 /* Init Pinia stores */
 const mainStore = useMainStore(pinia);

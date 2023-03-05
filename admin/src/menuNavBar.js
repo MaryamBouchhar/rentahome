@@ -15,6 +15,7 @@ import {
 export default [
 
 
+
   {
     isCurrentUser: true,
     menu: [
@@ -24,6 +25,13 @@ export default [
         to: "/profile",
       },
 
+
+
+
+      {
+        icon: mdiEmail,
+        label: "Messages",
+      },
 
       {
         isDivider: true,

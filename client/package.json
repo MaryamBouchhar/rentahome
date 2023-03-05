@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "install": "npm install --legacy-peer-deps"
   },
   "dependencies": {
     "@mdi/js": "^7.1.96",
@@ -18,7 +19,10 @@
     "numeral": "^2.0.6",
     "pinia": "^2.0.32",
     "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "vue-awesome-swiper": "^5.0.1",
+    "vue-i18n": "^9.2.2",
+    "vue-router": "^4.1.6",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@types/vue-router": "^2.0.0",

@@ -1,5 +1,5 @@
-import {createRouter, createWebHashHistory} from "vue-router";
-import Style from "@/views/StyleView.vue";
+import { createRouter, createWebHistory } from "vue-router";
+
 import Home from "@/views/HomeView.vue";
 
 const routes = [
@@ -7,21 +7,38 @@ const routes = [
     // Document title tag
     // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
     meta: {
-      title: "Dashboard",
+      title: "Login",
     },
 
     path: "/",
 
-    name: "dashboard",
-    component: Home,
-  }, {
-    meta: {
-      title: "Properties"
-    },
-    path: "/properties",
-    name: "properties",
-    component: () => import("@/views/PropertiesView.vue"),
+    name: "login",
+    component: import("@/views/LoginView.vue"),
   },
+  {
+    meta: {
+      title: "Profile"
+    },
+    path: "/profile",
+    name: "profile",
+    component: () => import("@/views/ProfileView.vue"),
+  },
+  {
+    meta: {
+      title: "Dashboard"
+    },
+    path: "/dashboard",
+    name: "dashboard",
+    component: () => import("@/views/HomeView.vue"),
+  },
+  {
+  meta: {
+  title: "Properties"
+},
+  path: "/properties",
+  name: "properties",
+  component: () => import("@/views/PropertiesView.vue"),
+},
   {
 
 
@@ -34,48 +51,51 @@ const routes = [
   },
   {
     meta: {
-      title: "Profile",
+      title: "Booking Requests"
     },
-    path: "/profile",
-    name: "profile",
-    component: () => import("@/views/ProfileView.vue"),
+    path: "/booking_request",
+    name: "booking_request",
+    component: () => import("@/views/ReservationView.vue"),
+  },
+
+  {
+    meta: {
+      title: "Admin"
+    },
+    path: "/admins",
+    name: "admins",
+    component: () => import("@/views/AdminView.vue"),
   },
   {
     meta: {
-      title: "Ui",
+      title: "Clients"
     },
-    path: "/ui",
-    name: "ui",
-    component: () => import("@/views/UiView.vue"),
+    path: "/clients",
+    name: "clients",
+    component: () => import("@/views/ClientsView.vue"),
   },
   {
     meta: {
-      title: "Responsive layout",
+      title: "AddAdmin"
     },
-    path: "/responsive",
-    name: "responsive",
-    component: () => import("@/views/ResponsiveView.vue"),
+    path: "/add-admin",
+    name: "addadmin",
+    component: () => import("@/views/NewAdminView.vue"),
   },
   {
     meta: {
-      title: "Login",
+      title: "AddClient"
     },
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/LoginView.vue"),
+    path: "/add-client",
+    name: "addclient",
+    component: () => import("@/views/NewClientView.vue"),
   },
-  {
-    meta: {
-      title: "Error",
-    },
-    path: "/error",
-    name: "error",
-    component: () => import("@/views/ErrorView.vue"),
-  },
+
+
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || {top: 0};
