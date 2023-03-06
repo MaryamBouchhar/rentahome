@@ -1,8 +1,9 @@
 <template>
-    <div>
-        <Hero/>
-        <Featured/>
-    </div>
+  <div>
+    <Hero/>
+    <Featured/>
+    <Footer/>
+  </div>
 </template>
 
 <script>
@@ -13,15 +14,15 @@ import {useStore} from "vuex";
 import {computed} from "vue";
 
 export default {
-    name: "Home",
-    setup() {
-        const store = useStore();
+  name: "Home",
+  setup() {
+    const store = useStore();
 
-        return {
-            rtl: computed(() => store.state.rtl)
-        }
-    },
-    components: {Hero, Featured, Footer}
+    return {
+      rtl: computed(() => store.state.rtl)
+    }
+  },
+  components: {Hero, Featured, Footer}
 }
 </script>
 
