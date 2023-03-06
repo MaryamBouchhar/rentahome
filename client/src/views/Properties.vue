@@ -56,22 +56,22 @@
       </div>
       <div class="flex flex-col w-full content-center mx-4">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 flex justify-center mx-auto">
-          <PropertyCard/>
-          <PropertyCard/>
-          <PropertyCard/>
-          <PropertyCard/>
-          <PropertyCard/>
-          <PropertyCard/>
+          <router-link v-for="property in properties" :key="property.id"
+                       :to="{name: 'PropertyDetails', params: {id: property.id}}">
+            <PropertyCard :property="property"/>
+          </router-link>
         </div>
       </div>
     </div>
   </div>
+  <Footer/>
 </template>
 
 <script setup>
 import {ref, onMounted} from 'vue'
 import 'boxicons'
 import PropertyCard from "../components/PropertyCard.vue";
+import Footer from "../components/Footer.vue";
 
 const property_categories = ref([
   'House',
@@ -91,6 +91,75 @@ const cities = ref([
   'Edmonton',
   'Winnipeg',
 ])
+
+const properties = ref([
+  {
+    id: 1,
+    title: 'House in Toronto',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+    price: 1000,
+    rating: 4,
+    status: 'For Rent',
+    category: 'House',
+    city: 'Toronto',
+    image: 'https://picsum.photos/500/300?random=1',
+  },
+  {
+    id: 2,
+    title: 'Apartment in Ottawa',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+    price: 1000,
+    rating: 4,
+    status: 'For Rent',
+    category: 'Apartment',
+    city: 'Ottawa',
+    image: 'https://picsum.photos/500/300?random=2',
+  },
+  {
+    id: 3,
+    title: 'Condo in Montreal',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+    price: 1000,
+    rating: 4,
+    status: 'For Rent',
+    category: 'Condo',
+    city: 'Montreal',
+    image: 'https://picsum.photos/500/300?random=3',
+  },
+  {
+    id: 4,
+    title: 'Townhouse in Vancouver',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+    price: 1000,
+    rating: 4,
+    status: 'For Rent',
+    category: 'Townhouse',
+    city: 'Vancouver',
+    image: 'https://picsum.photos/500/300?random=4',
+  },
+  {
+    id: 5,
+    title: 'Villa in Calgary',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+    price: 1000,
+    rating: 2,
+    status: 'For Rent',
+    category: 'Villa',
+    city: 'Calgary',
+    image: 'https://picsum.photos/500/300?random=5',
+  },
+  {
+    id: 6,
+    title: 'Bungalow in Edmonton',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+    price: 1000,
+    rating: 4,
+    status: 'For Rent',
+    category: 'Bungalow',
+    city: 'Edmonton',
+    image: 'https://picsum.photos/500/300?random=6',
+  },
+]);
 </script>
 
 <style scoped>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import NavBar from "./components/NavBar.vue";
-import Footer from "./components/Footer.vue";
 
 const allowedRoutes = ['/', '/properties', '/about', '/contact'];
 const isAllowedRoute = allowedRoutes.map(route => route === location.pathname).includes(true);
@@ -16,7 +15,6 @@ const isAllowedRoute = allowedRoutes.map(route => route === location.pathname).i
             </div>
         </transition>
     </router-view>
-    <Footer/>
 </template>
 
 <style scoped>

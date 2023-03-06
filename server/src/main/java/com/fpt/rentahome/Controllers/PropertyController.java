@@ -29,4 +29,5 @@ public class PropertyController {
         return propertyService.getAllProperties();
     }
 
+
 }
