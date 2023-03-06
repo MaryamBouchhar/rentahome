@@ -1,5 +1,6 @@
 <template>
-  <div class="card w-full bg-base-100 shadow-xl hover:shadow-2xl hover:cursor-pointer transition duration-500 ease-in-out">
+  <div
+      class="card w-full bg-base-100 shadow-xl hover:shadow-2xl hover:cursor-pointer transition duration-500 ease-in-out">
     <figure class="relative h-52">
       <img :src="property.image" :alt="property.title" class="card-image object-cover w-full h-full"/>
     </figure>
@@ -9,8 +10,8 @@
           {{ property.title }}
           <div class="badge badge-secondary"> {{ property.status }}</div>
         </h2>
-        <h2 class="font-bold text-xl text-green-400">${{ property.price }}</h2>
       </div>
+      <h2 class="font-bold text-xl text-green-400">${{ property.price }}</h2>
       <p>{{ property.description }}</p>
       <div class="card-actions justify-end">
         <div class="badge badge-outline" v-for="category in property.categories" :key="category">
