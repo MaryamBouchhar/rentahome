@@ -56,12 +56,7 @@
       </div>
       <div class="flex flex-col w-full content-center mx-4">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 flex justify-center mx-auto">
-          <PropertyCard/>
-          <PropertyCard/>
-          <PropertyCard/>
-          <PropertyCard/>
-          <PropertyCard/>
-          <PropertyCard/>
+          <PropertyCard v-for="property in properties" :key="property.id" :property="property"/>
         </div>
       </div>
     </div>
@@ -93,6 +88,69 @@ const cities = ref([
   'Edmonton',
   'Winnipeg',
 ])
+
+const properties = ref([
+  {
+    id: 1,
+    title: 'House in Toronto',
+    price: 1000,
+    rating: 4,
+    status: 'For Rent',
+    categories: ['House', 'Toronto'],
+    city: 'Toronto',
+    image: 'https://picsum.photos/500/300?random=1',
+  },
+  {
+    id: 2,
+    title: 'Apartment in Ottawa',
+    price: 1000,
+    rating: 4,
+    status: 'For Rent',
+    categories: ['Apartment', 'Ottawa'],
+    city: 'Ottawa',
+    image: 'https://picsum.photos/500/300?random=2',
+  },
+  {
+    id: 3,
+    title: 'Condo in Montreal',
+    price: 1000,
+    rating: 4,
+    status: 'For Rent',
+    categories: ['Condo', 'Montreal'],
+    city: 'Montreal',
+    image: 'https://picsum.photos/500/300?random=3',
+  },
+  {
+    id: 4,
+    title: 'Townhouse in Vancouver',
+    price: 1000,
+    rating: 4,
+    status: 'For Rent',
+    categories: ['Townhouse', 'Vancouver'],
+    city: 'Vancouver',
+    image: 'https://picsum.photos/500/300?random=4',
+  },
+  {
+    id: 5,
+    title: 'Villa in Calgary',
+    price: 1000,
+    rating: 2,
+    status: 'For Rent',
+    categories: ['Villa', 'Calgary'],
+    city: 'Calgary',
+    image: 'https://picsum.photos/500/300?random=5',
+  },
+  {
+    id: 6,
+    title: 'Bungalow in Edmonton',
+    price: 1000,
+    rating: 4,
+    status: 'For Rent',
+    categories: ['Bungalow', 'Edmonton'],
+    city: 'Edmonton',
+    image: 'https://picsum.photos/500/300?random=6',
+  },
+]);
 </script>
 
 <style scoped>
