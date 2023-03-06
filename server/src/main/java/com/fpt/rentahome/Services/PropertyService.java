@@ -24,8 +24,15 @@ public class PropertyService {
     public List<Property> getRecentProperties() {
         List<Property> properties = propertyRepository.findAll();
         List<Property> recentProperties = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            recentProperties.add(properties.get(i));
+
+        if (properties.size() > 5) {
+            for (int i = 0; i < 5; i++) {
+                recentProperties.add(properties.get(i));
+            }
+        } else {
+            for (int i = 0; i < properties.size(); i++) {
+                recentProperties.add(properties.get(i));
+            }
         }
         return recentProperties;
     }

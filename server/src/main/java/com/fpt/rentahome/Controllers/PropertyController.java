@@ -14,7 +14,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/manage-property")
+@RequestMapping("/manage-properties")
 public class PropertyController {
     @Autowired
     private PropertyService propertyService;
