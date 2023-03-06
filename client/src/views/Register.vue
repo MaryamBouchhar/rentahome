@@ -3,7 +3,6 @@
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-center text-neutral-content">
       <div class="card flex-shrink-0 w-[460px] shadow-2xl bg-base-100">
-        <h1 class="text-center font-bold text-3xl py-2">Create account</h1>
         <div class="card-body">
           <div class="form-control">
             <label class="label">
