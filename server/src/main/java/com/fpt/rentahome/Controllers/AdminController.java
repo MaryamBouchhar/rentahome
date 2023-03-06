@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/manage_admin")
+@RequestMapping("/manage-admin")
 public class AdminController {
     @Autowired
     private AdminService adminService;
@@ -24,7 +24,7 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @PostMapping("/add_admin")
+    @PostMapping("/add-admin")
     public ResponseEntity<ApiResponse> createAdmin(@RequestBody Admin admin) {
 //        if (Objects.nonNull(categoryService.readCategory(category.getCategoryName()))) {
 //            return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category already exists"), HttpStatus.CONFLICT);
@@ -39,7 +39,7 @@ public class AdminController {
         return adminService.getAllAdmins();
     }
 
-    @PutMapping("/update_admin/{id}")
+    @PutMapping("/update-admin/{id}")
     public ResponseEntity<ApiResponse> updateAdmin(@PathVariable("id") int id, @RequestBody Admin admin) {
 
         ApiResponse response = new ApiResponse();
