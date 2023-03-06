@@ -17,7 +17,7 @@ defineProps({
 
 const mainStore = useMainStore();
 
-const items = computed(() => mainStore.clients);
+const items = computed(() => mainStore.properties);
 
 const isModalActive = ref(false);
 
@@ -138,45 +138,46 @@ const checked = (isChecked, client) => {
     </tr>
     </thead>
     <tbody>
-    <tr v-for="client in itemsPaginated" :key="client.id">
+    <tr v-for="property in properties" :key="property.id">
       <TableCheckboxCell
         v-if="checkable"
-        @checked="checked($event, client)"
+        @checked="checked($event, property)"
       />
 
       <td data-label="Id">
-        {{ client.id }}
+        {{ property.id }}
       </td>
 
-      <td data-label="Name">
-        {{ client.name }}
+      <td data-label="Category">
+        {{ property.category }}
       </td>
-      <td data-label="Company">
-        {{ client.company }}
+      <td data-label="Type">
+        {{ property.rent_type }}
       </td>
       <td data-label="City">
-        {{ client.city }}
+        {{ property.location }}
       </td>
-      <td data-label="Progress" class="lg:w-32">
-        <progress
+      <td data-label="Equipped" class="lg:w-32">
+       <progress
           class="flex w-2/5 self-center lg:w-full"
           max="100"
-          :value="client.progress"
+          :value="property.progress"
         >
-          {{ client.progress }}
-        </progress>
+
+          {{ property.is_equipped }}
+       </progress>
       </td>
-      <td data-label="Company">
-        {{ client.company }}
+      <td data-label="Price">
+        {{ property.price }}
       </td>
-      <td data-label="City">
-        {{ client.city }}
+      <td data-label="Status">
+        {{ property.status }}
       </td>
       <td data-label="Created" class="lg:w-1 whitespace-nowrap">
         <small
           class="text-gray-500 dark:text-slate-400"
-          :title="client.created"
-        >{{ client.created }}</small
+          :title="property.publish_date"
+        >{{ property.publish_date }}</small
         >
       </td>
 
@@ -222,3 +223,28 @@ const checked = (isChecked, client) => {
     </BaseLevel>
   </div>
 </template>
+<script>
+import axios from 'axios';
+export default {
+  name: "PropertyView",
+  data() {
+    return {
+      properties: [],
+      PROPERTY_API_BASE_URL: "http://localhost:8080/manage-property/properties",
+    };
+
+  },
+  methods: {
+
+    async getProperties() {
+      await axios.get(this.PROPERTY_API_BASE_URL)
+        .then(response => this.properties = response.data)
+        .catch(error => console.log(error))
+    }
+  },
+  mounted() {
+    this.getProperties();
+  }
+
+};
+</script>
