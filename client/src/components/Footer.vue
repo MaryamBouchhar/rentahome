@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+  <footer class="footer footer-center p-4 mt-4 bg-base-300 text-base-content">
     <div>
       <p>Copyright © {{year}} {{app_name}}. All rights reserved.</p>
     </div>
