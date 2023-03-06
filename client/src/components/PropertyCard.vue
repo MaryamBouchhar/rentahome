@@ -25,7 +25,7 @@
           <input class="mask mask-star-2 bg-orange-400" v-for="star in property.rating" :key="star"/>
         </div>
         <span class="wishlist" @click="toggleWishlist">
-          <i class='bx bxs-heart bx-sm'></i>
+          <i :class="{ 'bx bxs-heart bx-sm': is_favorite, 'bx bx-heart bx-sm': !is_favorite }"></i>
         </span>
       </div>
     </div>
@@ -43,15 +43,14 @@ export default {
       required: true
     }
   },
-  setup() {
-    const toggleWishlist = () => {
-      const wishlist = document.querySelector('.wishlist i')
-      wishlist.classList.remove('bx-heart')
-      wishlist.classList.add('bxs-heart')
-    }
-
+  data() {
     return {
-      toggleWishlist
+      is_favorite: false
+    }
+  },
+  methods: {
+    toggleWishlist() {
+      this.is_favorite = !this.is_favorite
     }
   }
 }
