@@ -38,26 +38,8 @@
     <div class="flex basis-1/2 shrink-0 justify-end lg:hidden"></div>
     <div :class="{'flex-row-reverse' : rtl}"
          class="flex flex-row justify-end basis-1/4">
-      <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost avatar">
-          <i class='bx bx-user bx-sm'></i>
-        </label>
-        <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-          <li>
-            <a class="flex content-start gap-2">
-              <i class='bx bx-user bx-sm'></i>
-              Login
-            </a>
-          </li>
-          <li>
-            <a class="flex content-start gap-2">
-              <i class='bx bx-user-plus bx-sm'></i>
-              Register
-            </a>
-          </li>
-        </ul>
-      </div>
       <!--            <ProfileDropDown/>-->
+      <AuthDropDown/>
       <ThemeDropDown/>
       <Languages/>
     </div>
@@ -73,6 +55,7 @@ import languages from "../assets/languages.json"
 import {useStore} from "vuex";
 import {computed} from "vue";
 import ProfileDropDown from "./ProfileDropDown.vue";
+import AuthDropDown from "./AuthDropDown.vue";
 
 export default {
   name: "NavBar",
@@ -90,6 +73,7 @@ export default {
   },
   components: {
     ProfileDropDown,
+    AuthDropDown,
     ThemeDropDown,
     NavLink,
     Languages
