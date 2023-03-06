@@ -1,6 +1,6 @@
 <template>
   <div
-      class="card w-full bg-base-100 shadow-xl hover:shadow-2xl hover:cursor-pointer transition duration-500 ease-in-out">
+      class="card w-full bg-base-100 shadow-xl">
     <figure class="relative h-52">
       <img :src="property.image" :alt="property.title" class="card-image object-cover w-full h-full"/>
     </figure>
@@ -61,6 +61,11 @@ export default {
 
 .wishlist i {
   color: red;
+}
+
+.card:hover {
+  transform: scale(1.01);
+  transition: all 0.3s ease-in-out;
 }
 
 .card-image {

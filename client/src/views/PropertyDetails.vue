@@ -1,19 +1,19 @@
 <template>
   <div>
     <div class="flex flex-col lg:flex-row my-5">
-      <div class="property-images w-full lg:w-full px-4">
-        <div class="carousel w-full">
+      <div class="property-images px-4">
+        <div class="carousel w-full" id="images">
           <div id="item1" class="carousel-item w-full">
-            <img src="../assets/hero_img.jpeg" class="w-full"/>
+            <img src="../assets/images/hero_img_1.jpg" class="w-full"/>
           </div>
           <div id="item2" class="carousel-item w-full">
-            <img src="../assets/hero_img.jpeg" class="w-full"/>
+            <img src="../assets/images/hero_img_2.jpg" class="w-full"/>
           </div>
           <div id="item3" class="carousel-item w-full">
-            <img src="../assets/hero_img.jpeg" class="w-full"/>
+            <img src="../assets/images/hero_img_3.jpg" class="w-full"/>
           </div>
           <div id="item4" class="carousel-item w-full">
-            <img src="../assets/hero_img.jpeg" class="w-full"/>
+            <img src="../assets/images/hero_img_4.jpg" class="w-full"/>
           </div>
         </div>
         <div class="flex justify-center w-full py-2 gap-2">
@@ -113,8 +113,28 @@
 </template>
 
 <script>
+
 export default {
-  name: "PropertyDetails"
+  name: "PropertyDetails",
+  data() {
+    return {
+      active: 1,
+      property_id: this.$route.params.id,
+      property: {
+        id: 3,
+        title: 'Condo in Montreal',
+        price: 1000,
+        rating: 4,
+        status: 'For Rent',
+        categories: ['Condo', 'Montreal'],
+        city: 'Montreal',
+        image: 'https://picsum.photos/500/300?random=3',
+      },
+    };
+  },
+  mounted() {
+    console.log(this.property_id)
+  },
 }
 </script>
 
