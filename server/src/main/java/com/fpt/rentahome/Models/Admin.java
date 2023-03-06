@@ -1,8 +1,10 @@
 package com.fpt.rentahome.Models;
 
 
-import javax.persistence.*;
+import lombok.Builder;
 
+import javax.persistence.*;
+@Builder
 @Entity
 @Table(name="admin")
 public class Admin {

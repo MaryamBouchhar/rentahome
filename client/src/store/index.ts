@@ -1,4 +1,4 @@
-// @ts-ignore
+
 import { createStore } from 'vuex';
 
 const store = createStore({
