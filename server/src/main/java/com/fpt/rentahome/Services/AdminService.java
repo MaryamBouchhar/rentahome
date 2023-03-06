@@ -25,8 +25,6 @@ public class AdminService {
         return adminRepository.findAll();
     }
 
-    }
-
     public boolean updateAdmin(int id, Admin updatedAdmin) {
         // Check if an admin with the given ID exists
         Optional<Admin> adminOptional = adminRepository.findById(id);
