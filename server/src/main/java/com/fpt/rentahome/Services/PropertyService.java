@@ -1,22 +1,22 @@
 package com.fpt.rentahome.Services;
 
-import com.fpt.rentahome.Models.Admin;
 import com.fpt.rentahome.Models.Client;
-import com.fpt.rentahome.Repositories.AdminRepository;
+import com.fpt.rentahome.Models.Property;
 import com.fpt.rentahome.Repositories.ClientRepository;
+import com.fpt.rentahome.Repositories.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ClientService {
+public class PropertyService {
     @Autowired
-    private ClientRepository clientRepository;
+    private PropertyRepository propertyRepository;
 
 
-    public List<Client> getAllClients() {
-        return clientRepository.findAll();
+    public List<Property> getAllProperties() {
+        return propertyRepository.findAll();
 
     }
 }
