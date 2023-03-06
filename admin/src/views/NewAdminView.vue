@@ -123,7 +123,7 @@ methods : {
     };
 
 
-    axios.post('http://localhost:8080/manage_admin/add_admin', newAdmin
+    axios.post('http://localhost:8080/manage-admin/add-admin', newAdmin
     )
       .then(() => {
         swal({

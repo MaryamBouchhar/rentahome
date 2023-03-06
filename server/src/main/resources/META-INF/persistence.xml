@@ -7,7 +7,8 @@
     <persistence-unit name="bdd_rentahome_UP">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.fpt.rentahome.Models.Admin</class>
-
+        <class>com.fpt.rentahome.Models.Client</class>
+        <class>com.fpt.rentahome.Models.Property</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rentahome" />
@@ -16,6 +17,7 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 </persistence>

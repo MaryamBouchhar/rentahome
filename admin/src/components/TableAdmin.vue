@@ -1,7 +1,7 @@
 <script setup>
-import { computed, ref } from "vue";
-import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan,mdiHumanEdit} from "@mdi/js";
+import {computed, ref} from "vue";
+import {useMainStore} from "@/stores/main";
+import {mdiEye, mdiTrashCan, mdiHumanEdit} from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
@@ -11,14 +11,14 @@ import UserAvatar from "@/components/UserAvatar.vue";
 import AdminService from "@/services/AdminService";
 
 
+
 defineProps({
   checkable: Boolean,
 });
 
 const mainStore = useMainStore();
-
-
 const items = computed(() => AdminService.getAdmins().toString());
+
 
 const isModalActive = ref(false);
 
@@ -38,16 +38,12 @@ const itemsPaginated = computed(() =>
 );
 
 const numPages = computed(() => Math.ceil(items.value.length / perPage.value));
-
 const currentPageHuman = computed(() => currentPage.value + 1);
-
 const pagesList = computed(() => {
   const pagesList = [];
-
   for (let i = 0; i < numPages.value; i++) {
     pagesList.push(i);
   }
-
   return pagesList;
 });
 
@@ -102,13 +98,13 @@ const checked = (isChecked, admin) => {
   <table>
     <thead>
     <tr>
-      <th v-if="checkable" />
+      <th v-if="checkable"/>
       <th>Id</th>
       <th>Name</th>
       <th>Email</th>
       <th>Password</th>
 
-    <th/>
+      <th/>
     </tr>
     </thead>
     <tbody>
@@ -121,7 +117,6 @@ const checked = (isChecked, admin) => {
       <td data-label="Id">
         {{ admin.id }}
       </td>
-
       <td data-label="Name">
         {{ admin.name }}
       </td>
@@ -131,8 +126,6 @@ const checked = (isChecked, admin) => {
       <td data-label="Password">
         {{ admin.password }}
       </td>
-
-
 
 
       <td class="before:hidden lg:w-1 whitespace-nowrap">
@@ -145,14 +138,14 @@ const checked = (isChecked, admin) => {
             @click="isModalDangerActive = true"
           />
 
-<!--          <router-link to="/update_admin">-->
+          <!--<router-link to="/update_admin">-->
           <BaseButton
             color="success"
             :icon="mdiHumanEdit"
             to="/update-admin"
             small
           />
-<!--          </router-link>-->
+          <!--          </router-link>-->
         </BaseButtons>
       </td>
     </tr>
@@ -176,30 +169,25 @@ const checked = (isChecked, admin) => {
   </div>
 </template>
 <script>
-
-
 import axios from 'axios';
-
-
 export default {
   name: "AdminView",
-  data(){
-    return{
-      admins:[],
-      ADMIN_API_BASE_URL : "http://localhost:8080/manage_admin/admins",
+  data() {
+    return {
+      admins: [],
+      ADMIN_API_BASE_URL: "http://localhost:8080/manage-admin/admins",
     };
 
   },
-  methods : {
+  methods: {
 
     async getAdmins() {
-    await axios.get(this.ADMIN_API_BASE_URL)
-      .then(response=>this.admins=response.data)
-      .catch(error=>console.log(error))
-  }
+      await axios.get(this.ADMIN_API_BASE_URL)
+        .then(response => this.admins = response.data)
+        .catch(error => console.log(error))
+    }
   },
-    mounted(){
-
+  mounted() {
     this.getAdmins();
   }
 

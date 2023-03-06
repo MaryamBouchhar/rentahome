@@ -8,6 +8,7 @@ import BaseLevel from "@/components/BaseLevel.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import UserAvatar from "@/components/UserAvatar.vue";
+import ClientService from "@/services/ClientService";
 
 defineProps({
   checkable: Boolean,
@@ -21,7 +22,7 @@ const isModalActive = ref(false);
 
 const isModalDangerActive = ref(false);
 
-const perPage = ref(5);
+const perPage = ref(2);
 
 const currentPage = ref(0);
 
@@ -35,16 +36,12 @@ const itemsPaginated = computed(() =>
 );
 
 const numPages = computed(() => Math.ceil(items.value.length / perPage.value));
-
 const currentPageHuman = computed(() => currentPage.value + 1);
-
 const pagesList = computed(() => {
   const pagesList = [];
-
   for (let i = 0; i < numPages.value; i++) {
     pagesList.push(i);
   }
-
   return pagesList;
 });
 
@@ -111,28 +108,25 @@ const checked = (isChecked, client) => {
     </tr>
     </thead>
     <tbody>
-    <tr v-for="client in itemsPaginated" :key="client.id">
+    <tr v-for="client in clients" :key="client.id">
       <TableCheckboxCell
         v-if="checkable"
         @checked="checked($event, client)"
       />
 
-      <td data-label="Name">
+      <td data-label="Id">
         {{ client.id }}
       </td>
 
       <td data-label="Name">
         {{ client.name }}
       </td>
-      <td data-label="Company">
-        {{ client.company }}
+      <td data-label="Email">
+        {{ client.email }}
       </td>
-      <td data-label="Company">
-        {{ client.company }}
+      <td data-label="Phone">
+        {{ client.phone }}
       </td>
-
-
-
       <td class="before:hidden lg:w-1 whitespace-nowrap">
         <BaseButtons type="justify-start lg:justify-end" no-wrap>
 
@@ -165,3 +159,27 @@ const checked = (isChecked, client) => {
     </BaseLevel>
   </div>
 </template>
+<script>
+import axios from 'axios';
+export default {
+  name: "ClientView",
+  data(){
+    return{
+      clients:[],
+      CLIENT_API_BASE_URL : "http://localhost:8080/manage-client/clients",
+    };
+
+  },
+  methods : {
+
+    async getClients() {
+      await axios.get(this.CLIENT_API_BASE_URL)
+        .then(response=>this.clients=response.data)
+        .catch(error=>console.log(error))
+    }
+  },
+  mounted(){
+ this.getClients();
+  }
+};
+</script>
