@@ -2,12 +2,16 @@
   <div
       class="card w-full bg-base-100 shadow-xl">
     <figure class="relative h-52">
-      <img :src="property.image" :alt="property.title" class="card-image object-cover w-full h-full"/>
+      <router-link :key="property.id" :to="'/properties/' + property.id">
+        <img :src="property.image" :alt="property.title" class="card-image object-cover w-full h-full"/>
+      </router-link>
     </figure>
     <div class="card-body">
       <div class="flex justify-between">
         <h2 class="card-title">
-          {{ property.title }}
+          <router-link :key="property.id" :to="'/properties/' + property.id">
+            {{ property.title }}
+          </router-link>
           <div class="badge badge-secondary"> {{ property.status }}</div>
         </h2>
       </div>
@@ -21,7 +25,7 @@
           <input class="mask mask-star-2 bg-orange-400" v-for="star in property.rating" :key="star"/>
         </div>
         <span class="wishlist" @click="toggleWishlist">
-          <i class='bx bxs-heart bx-sm'></i>
+          <i :class="{ 'bx bxs-heart bx-sm': is_favorite, 'bx bx-heart bx-sm': !is_favorite }"></i>
         </span>
       </div>
     </div>
@@ -39,14 +43,14 @@ export default {
       required: true
     }
   },
-  setup() {
-    const toggleWishlist = () => {
-      const wishlist = document.querySelector('.wishlist i')
-      wishlist.classList.toggle('bx-heart')
-    }
-
+  data() {
     return {
-      toggleWishlist
+      is_favorite: false
+    }
+  },
+  methods: {
+    toggleWishlist() {
+      this.is_favorite = !this.is_favorite
     }
   }
 }

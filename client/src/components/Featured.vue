@@ -7,9 +7,7 @@
       </div>
       <!-- Property Cards -->
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <router-link v-for="property in properties" :key="property.id" :to="'/properties/' + property.id">
-          <PropertyCard :property="property"/>
-        </router-link>
+        <PropertyCard v-for="property in properties" :key="property.id" :property="property"/>
       </div>
 
       <!-- view all button -->
