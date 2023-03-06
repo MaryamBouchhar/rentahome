@@ -1,11 +1,14 @@
 package com.fpt.rentahome;
 
 import com.fpt.rentahome.Models.Admin;
+import com.fpt.rentahome.Models.Client;
 import com.fpt.rentahome.Repositories.AdminRepository;
+import com.fpt.rentahome.Repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 public class RentahomeApplication implements CommandLineRunner {
@@ -15,22 +18,17 @@ public class RentahomeApplication implements CommandLineRunner {
     }
 
     @Autowired
-    private AdminRepository adminRepository;
+    private ClientRepository clientRepository;
 
     @Override
     public void run(String... args) throws Exception {
-       /*Admin admin1 = Admin.builder()
-                .name("naima")
-                .email("adardor")
-               .password("123")
-                .build();
+       Client client1 = Client.builder()
+               .name("naima")
+               .email("adardor")
+              .phone("123")
+              .password("123")
+              .build();
 
-        Admin admin2 = Admin.builder()
-                .name("saad")
-                .email("libourki")
-                .password("1134")
-                .build();
-        adminRepository.save(admin1);
-        adminRepository.save(admin2);*/
+       clientRepository.save(client1);
     }
 }

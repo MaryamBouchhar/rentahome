@@ -3,39 +3,27 @@ package com.fpt.rentahome.Controllers;
 import com.fpt.rentahome.Models.Admin;
 import com.fpt.rentahome.Models.Client;
 
+import com.fpt.rentahome.Services.AdminService;
+import com.fpt.rentahome.Services.ClientService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-@RestController
 @CrossOrigin
+@RestController
+
+@RequestMapping("/manage-client")
 public class ClientController {
 
-    @GetMapping("/")
-    public String hello() {
-        return "Test 1";
+    @Autowired
+    private ClientService clientService;
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
     }
-
-    @GetMapping("/hello")
-    public String hello2() {
-        return "Hello from GET";
-    }
-
-    @PostMapping("/post")
-    public String helloPost(@RequestBody Client client) {
-        //string json to object
-        System.out.printf("Name: %s", client.getName());
-        System.out.printf("Email: %s", client.getEmail());
-        System.out.printf("Phone: %s", client.getPhone());
-        System.out.printf("Password: %s", client.getPassword());
-
-        return "Hello from POST, " + client.getName();
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public String helloDelete(@PathVariable int id) {
-        System.out.println(id);
-        return "Delete " + id;
+    //FETCH ALL Clients
+    @GetMapping("/clients")
+    public List<Client> getAllClients() {
+        return clientService.getAllClients();
     }
 
 }

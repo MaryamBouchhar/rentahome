@@ -186,7 +186,7 @@ export default {
   data(){
     return{
       admins:[],
-      ADMIN_API_BASE_URL : "http://localhost:8080/manage_admin/admins",
+      ADMIN_API_BASE_URL : "http://localhost:8080/manage-admin/admins",
     };
 
   },

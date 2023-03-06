@@ -1,12 +1,12 @@
 package com.fpt.rentahome.Models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Builder
 @Entity
 @Table(name="client")
@@ -18,6 +18,7 @@ public class Client {
     private String email;
     private String phone;
     private String password;
+
 
 
 }

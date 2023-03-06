@@ -24,7 +24,7 @@ public class AdminService {
     public List<Admin> getAllAdmins() {
         return adminRepository.findAll();
 
-
+    }
 
     public boolean updateAdmin(int id, Admin updatedAdmin) {
         // Check if an admin with the given ID exists
