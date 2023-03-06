@@ -1,7 +1,17 @@
 package com.fpt.rentahome.Models;
 
-import java.util.Date;
+import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.Date;
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@Entity
+@Table(name="property")
 public class Property {
     private int id;
     private String category;
@@ -16,3 +26,4 @@ public class Property {
     private boolean is_equipped;
     private Date publish_date;
 
+}
