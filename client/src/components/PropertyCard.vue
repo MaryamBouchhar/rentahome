@@ -14,9 +14,7 @@
       <h2 class="font-bold text-xl text-green-400">${{ property.price }}</h2>
       <p>{{ property.description }}</p>
       <div class="card-actions justify-end">
-        <div class="badge badge-outline" v-for="category in property.categories" :key="category">
-          {{ category }}
-        </div>
+        <div class="badge badge-outline">{{ property.category }}</div>
       </div>
       <div class="flex flex-row justify-between">
         <div class="rating rating-sm">
