@@ -13,7 +13,7 @@ export const useMainStore = defineStore("main", {
     isFieldFocusRegistered: false,
 
     /* Sample data (commonly used) */
-    admins:[],
+    admins: [],
     clients: [],
     history: [],
   }),

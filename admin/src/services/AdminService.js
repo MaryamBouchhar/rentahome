@@ -1,5 +1,5 @@
 import axios from "axios";
-const ADMIN_API_BASE_URL = "http://localhost:8080/manage_admin/admins";
+const ADMIN_API_BASE_URL = "http://localhost:8080/manage-admin/admins";
 class AdminService {
   getAdmins() {
     return axios.get(ADMIN_API_BASE_URL);
