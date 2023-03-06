@@ -66,12 +66,14 @@
       </div>
     </div>
   </div>
+  <Footer/>
 </template>
 
 <script setup>
 import {ref, onMounted} from 'vue'
 import 'boxicons'
 import PropertyCard from "../components/PropertyCard.vue";
+import Footer from "../components/Footer.vue";
 
 const property_categories = ref([
   'House',
