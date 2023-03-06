@@ -2,12 +2,16 @@
   <div
       class="card w-full bg-base-100 shadow-xl">
     <figure class="relative h-52">
-      <img :src="property.image" :alt="property.title" class="card-image object-cover w-full h-full"/>
+      <router-link :key="property.id" :to="'/properties/' + property.id">
+        <img :src="property.image" :alt="property.title" class="card-image object-cover w-full h-full"/>
+      </router-link>
     </figure>
     <div class="card-body">
       <div class="flex justify-between">
         <h2 class="card-title">
-          {{ property.title }}
+          <router-link :key="property.id" :to="'/properties/' + property.id">
+            {{ property.title }}
+          </router-link>
           <div class="badge badge-secondary"> {{ property.status }}</div>
         </h2>
       </div>
@@ -42,7 +46,8 @@ export default {
   setup() {
     const toggleWishlist = () => {
       const wishlist = document.querySelector('.wishlist i')
-      wishlist.classList.toggle('bx-heart')
+      wishlist.classList.remove('bx-heart')
+      wishlist.classList.add('bxs-heart')
     }
 
     return {
