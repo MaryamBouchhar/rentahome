@@ -13,13 +13,13 @@
               <label class="label">
                 <span class="label-text">Email</span>
               </label>
-              <input type="email" placeholder="email" class="input input-bordered"/>
+              <input type="email" placeholder="Email" class="input input-bordered"/>
             </div>
             <div class="form-control">
               <label class="label">
                 <span class="label-text">Password</span>
               </label>
-              <input type="password" placeholder="password" class="input input-bordered"/>
+              <input type="password" placeholder="Password" class="input input-bordered"/>
               <label class="label">
               <span class="label-text">
                 <router-link to="/forgot-password" class="text-primary">Forgot password?</router-link>

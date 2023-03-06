@@ -38,6 +38,11 @@
             <div class="form-control mt-4">
               <button class="btn btn-primary" type="submit">Register</button>
             </div>
+            <label class="label">
+              <span class="label-text">
+                Already have an account? <router-link to="/login" class="text-primary">Login</router-link>
+              </span>
+            </label>
           </div>
         </form>
       </div>
