@@ -56,7 +56,9 @@
       </div>
       <div class="flex flex-col w-full content-center mx-4">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 flex justify-center mx-auto">
-          <PropertyCard v-for="property in properties" :key="property.id" :property="property"/>
+          <router-link v-for="property in properties" :key="property.id" :to="'/properties/' + property.id">
+            <PropertyCard :property="property"/>
+          </router-link>
         </div>
       </div>
     </div>
