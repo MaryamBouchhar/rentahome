@@ -3,6 +3,10 @@
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-center text-neutral-content">
       <div class="card flex-shrink-0 w-[460px] shadow-2xl bg-base-100">
+        <h1 class="text-3xl font-bold text-primary mt-4">
+          LOG<span class="text-secondary">IN</span>
+        </h1>
+        <div class="h-1 w-20 bg-primary rounded-full mx-auto my-1"></div>
         <div class="card-body">
           <div class="form-control">
             <label class="label">
@@ -21,8 +25,8 @@
               </span>
             </label>
           </div>
-          <div class="form-control mt-6">
-            <button class="btn btn-primary">Register</button>
+          <div class="form-control mt-4">
+            <button class="btn btn-primary">Login</button>
           </div>
           <label class="label">
             <span class="label-text">
