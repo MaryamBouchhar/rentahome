@@ -32,6 +32,7 @@
       "profile": "Profile",
       "wishlist": "Wishlist",
       "settings": "Settings",
+      "wishlist": "Wishlist",
       "properties": "Properties",
       "contact": "Contact",
       "logout": "Logout"
@@ -151,6 +152,7 @@
       "profile": "轮廓",
       "wishlist": "愿望清单",
       "settings": "设定值",
+      "wishlist": "愿望清单",
       "properties": "财产",
       "contact": "接触",
       "logout": "登出"
@@ -270,6 +272,7 @@
       "profile": "Perfil",
       "wishlist": "Lista de deseos",
       "settings": "Ajustes",
+      "wishlist": "Lista de deseos",
       "properties": "Propiedades",
       "contact": "Contacto",
       "logout": "Cerrar sesión"
@@ -389,6 +392,7 @@
       "profile": "الملف الشخصي",
       "wishlist": "قائمة الامنيات",
       "settings": "الإعدادات",
+      "wishlist": "قائمة الامنيات",
       "properties": "الخصائص",
       "contact": "اتصل",
       "logout": "تسجيل خروج"
@@ -508,6 +512,7 @@
       "profile": "Profil",
       "wishlist": "Daftar keinginan",
       "settings": "Pengaturan",
+      "wishlist": "Daftar keinginan",
       "properties": "Properti",
       "contact": "Kontak",
       "logout": "Keluar"
@@ -627,6 +632,7 @@
       "profile": "Perfil",
       "wishlist": "Lista de Desejos",
       "settings": "Configurações",
+      "wishlist": "Lista de Desejos",
       "properties": "Propriedades",
       "contact": "Contato",
       "logout": "Sair"
@@ -746,6 +752,7 @@
       "profile": "Profil",
       "wishlist": "Liste de souhaits",
       "settings": "Paramètres",
+      "wishlist": "Liste de souhaits",
       "properties": "Propriétés",
       "contact": "Contact",
       "logout": "Déconnexion"
@@ -865,6 +872,7 @@
       "profile": "プロフィール",
       "wishlist": "ウィッシュリスト",
       "settings": "設定",
+      "wishlist": "ウィッシュリスト",
       "properties": "物件",
       "contact": "接触",
       "logout": "ログアウト"
@@ -984,6 +992,7 @@
       "profile": "Профиль",
       "wishlist": "Список пожеланий",
       "settings": "настройки",
+      "wishlist": "Список пожеланий",
       "properties": "Свойства",
       "contact": "Контакт",
       "logout": "Выйти"
@@ -1103,6 +1112,7 @@
       "profile": "Profil",
       "wishlist": "Wunschzettel",
       "settings": "die Einstellungen",
+      "wishlist": "Wunschzettel",
       "properties": "Eigenschaften",
       "contact": "Kontakt",
       "logout": "Ausloggen"
