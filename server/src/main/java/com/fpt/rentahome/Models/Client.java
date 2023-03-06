@@ -1,6 +1,7 @@
 package com.fpt.rentahome.Models;
 
 import javax.persistence.*;
+
 import lombok.*;
 
 @NoArgsConstructor
@@ -9,7 +10,7 @@ import lombok.*;
 @Setter
 @Builder
 @Entity
-@Table(name="client")
+@Table(name = "client")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +19,4 @@ public class Client {
     private String email;
     private String phone;
     private String password;
-
-
-
 }
