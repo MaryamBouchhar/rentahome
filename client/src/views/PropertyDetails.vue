@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="property-details w-full mx-4">
-        <h1 class="text-3xl font-bold mb-3">Property title</h1>
+        <h1 class="text-3xl font-bold mb-3">{{ property.title }}</h1>
         <div class="flex flex-row items-center gap-2 mb-3">
           <div class="rating rating-sm">
             <input class="mask mask-star-2 bg-orange-400"/>
@@ -73,30 +73,27 @@
             <input class="mask mask-star-2 bg-orange-400"/>
             <input class="mask mask-star-2 bg-orange-400"/>
           </div>
-          <span class="rate-count">(143)</span>
+          <span class="rate-count">({{ property.total_rating }})</span>
         </div>
-        <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium autem commodi corporis cum
-          deleniti
-          eius error eveniet excepturi facilis illo iusto magnam magni minima molestias nam natus, perspiciatis placeat
-          vel.</p>
-        <h1 class="font-bold text-xl text-green-400 mb-3">$1,300</h1>
+        <p class="mb-3">{{ property.description }}</p>
+        <h1 class="font-bold text-xl text-green-400 mb-3">${{ property.price }} / month</h1>
         <div class="overflow-x-auto mb-3">
           <table class="table w-full">
             <tbody>
             <!-- row 1 -->
             <tr>
               <th class="font-bold text-lg">Category</th>
-              <td>Cy Ganderton</td>
+              <td>{{ property.category }}</td>
             </tr>
             <!-- row 2 -->
             <tr class="active">
               <th class="font-bold text-lg">Rent type</th>
-              <td>Hart Hagerty</td>
+              <td>{{ property.rent_type }}</td>
             </tr>
             <!-- row 3 -->
             <tr>
               <th class="font-bold text-lg">Rooms count</th>
-              <td>Brice Swyre</td>
+              <td>{{ property.rooms_count }}</td>
             </tr>
             </tbody>
           </table>
@@ -123,10 +120,14 @@ export default {
       property: {
         id: 3,
         title: 'Condo in Montreal',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
         price: 1000,
         rating: 4,
+        total_rating: 143,
         status: 'For Rent',
-        categories: ['Condo', 'Montreal'],
+        category: 'Condo',
+        rent_type: 'Monthly',
+        rooms_count: 3,
         city: 'Montreal',
         image: 'https://picsum.photos/500/300?random=3',
       },
