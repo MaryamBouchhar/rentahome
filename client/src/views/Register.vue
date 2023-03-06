@@ -3,37 +3,43 @@
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-center text-neutral-content">
       <div class="card flex-shrink-0 w-[460px] shadow-2xl bg-base-100">
-        <div class="card-body">
-          <div class="form-control">
-            <label class="label">
-              <span class="label-text">Full name</span>
-            </label>
-            <input type="text" placeholder="Full name" class="input input-bordered"/>
-          </div>
-          <div class="form-control">
-            <label class="label">
-              <span class="label-text">Email</span>
-            </label>
-            <input type="email" placeholder="email" class="input input-bordered"/>
-          </div>
-          <div class="form-control grid grid-cols-2 gap-2">
+        <h1 class="text-3xl font-bold text-primary mt-4">
+          REG<span class="text-secondary">ISTER</span>
+        </h1>
+        <div class="h-1 w-20 bg-primary rounded-full mx-auto my-1"></div>
+        <form action="" method="post">
+          <div class="card-body">
             <div class="form-control">
               <label class="label">
-                <span class="label-text">Password</span>
+                <span class="label-text">Full name</span>
               </label>
-              <input type="password" placeholder="password" class="input input-bordered"/>
+              <input type="text" placeholder="Full name" class="input input-bordered"/>
             </div>
             <div class="form-control">
               <label class="label">
-                <span class="label-text">Confirm password</span>
+                <span class="label-text">Email</span>
               </label>
-              <input type="password" placeholder="Confirm password" class="input input-bordered"/>
+              <input type="email" placeholder="Email" class="input input-bordered"/>
+            </div>
+            <div class="form-control grid grid-cols-2 gap-2">
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Password</span>
+                </label>
+                <input type="password" placeholder="Password" class="input input-bordered"/>
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Confirm password</span>
+                </label>
+                <input type="password" placeholder="Confirm password" class="input input-bordered"/>
+              </div>
+            </div>
+            <div class="form-control mt-4">
+              <button class="btn btn-primary">Register</button>
             </div>
           </div>
-          <div class="form-control mt-6">
-            <button class="btn btn-primary">Register</button>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
