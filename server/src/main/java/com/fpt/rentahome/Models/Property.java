@@ -2,8 +2,7 @@ package com.fpt.rentahome.Models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -14,15 +13,19 @@ import java.util.Date;
 @Entity
 @Table(name = "property")
 public class Property {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String category;
     private String description;
     private float price;
     private float area;
     private String status;
-    private int location_id;
+
+    private int location;
     private String rent_type;
-    private int bathroom_count;
+
+    private int batthroom_count;
     private int room_count;
     private boolean is_equipped;
     private Date publish_date;
