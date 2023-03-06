@@ -2,7 +2,6 @@
     <div>
         <Hero/>
         <Featured/>
-        <Footer/>
     </div>
 </template>
 

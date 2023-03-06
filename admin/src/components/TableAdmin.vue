@@ -8,7 +8,8 @@ import BaseLevel from "@/components/BaseLevel.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import UserAvatar from "@/components/UserAvatar.vue";
-import adminService from "@/services/AdminService";
+import AdminService from "@/services/AdminService";
+
 
 defineProps({
   checkable: Boolean,
@@ -17,7 +18,7 @@ defineProps({
 const mainStore = useMainStore();
 
 
-const items = computed(() => (adminService.getAdmins().toString()));
+const items = computed(() => AdminService.getAdmins().toString());
 
 const isModalActive = ref(false);
 
@@ -111,7 +112,7 @@ const checked = (isChecked, admin) => {
     </tr>
     </thead>
     <tbody>
-    <tr v-for="admin in admins " :key="admin.id">
+    <tr v-for="admin in admins" :key="admin.id">
       <TableCheckboxCell
         v-if="checkable"
         @checked="checked($event, admin)"
@@ -175,28 +176,32 @@ const checked = (isChecked, admin) => {
   </div>
 </template>
 <script>
-import AdminService from "@/services/AdminService";
-import axios from "axios"
+
+
+import axios from 'axios';
+
 
 export default {
   name: "AdminView",
   data(){
     return{
-      admins:[]
-    }
+      admins:[],
+      ADMIN_API_BASE_URL : "http://localhost:8080/manage_admin/admins",
+    };
 
   },
   methods : {
 
-  async getAdmins() {
-    await axios.get("http://localhost:8080/manage_admin/admins").then((response)=>{
-      this.admins = response.data;
-    })
+    async getAdmins() {
+    await axios.get(this.ADMIN_API_BASE_URL)
+      .then(response=>this.admins=response.data)
+      .catch(error=>console.log(error))
   }
- },
-  mounted() {
+  },
+    mounted(){
+
     this.getAdmins();
   }
 
-}
+};
 </script>
