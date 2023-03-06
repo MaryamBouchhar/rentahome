@@ -1,11 +1,16 @@
 package com.fpt.rentahome.Controllers;
 
+import com.fpt.rentahome.Models.Admin;
 import com.fpt.rentahome.Models.Client;
+
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
 public class ClientController {
+
     @GetMapping("/")
     public String hello() {
         return "Test 1";
@@ -32,4 +37,5 @@ public class ClientController {
         System.out.println(id);
         return "Delete " + id;
     }
+
 }

@@ -3,8 +3,10 @@ package com.fpt.rentahome.Helpers;
 import java.time.LocalDateTime;
 
 public class ApiResponse {
-    private final boolean success;
-    private final String message;
+    private  boolean success;
+    private String message;
+
+    public ApiResponse(){}
 
     public ApiResponse(boolean success, String message) {
         this.success = success;
@@ -23,4 +25,11 @@ public class ApiResponse {
         return LocalDateTime.now().toString();
     }
 
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+}

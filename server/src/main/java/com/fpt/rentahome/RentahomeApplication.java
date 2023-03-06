@@ -19,16 +19,16 @@ public class RentahomeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-       /* Admin admin1 = Admin.builder()
+       /*Admin admin1 = Admin.builder()
                 .name("naima")
                 .email("adardor")
-
+               .password("123")
                 .build();
 
         Admin admin2 = Admin.builder()
                 .name("saad")
                 .email("libourki")
-
+                .password("1134")
                 .build();
         adminRepository.save(admin1);
         adminRepository.save(admin2);*/

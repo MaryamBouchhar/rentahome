@@ -11,15 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 ;import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/manage_admin")
 public class AdminController {
-
-    private AdminService adminService;
     @Autowired
-    private AdminRepository adminRepository;
+    private AdminService adminService;
 
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
@@ -34,11 +33,31 @@ public class AdminController {
         return new ResponseEntity<>(new ApiResponse(true, "created the admin"), HttpStatus.CREATED);
     }
 
-    //just for test
-    @PostMapping("/fetch_admins")
+    //FETCH ALL ADMINS
+    @GetMapping("/admins")
     public List<Admin> getAllAdmins() {
-        return (List<Admin>) adminRepository.findAll();
+        return adminService.getAllAdmins();
+    }
+
+    @PutMapping("/update_admin/{id}")
+    public ResponseEntity<ApiResponse> updateAdmin(@PathVariable("id") int id, @RequestBody Admin admin) {
+
+        ApiResponse response = new ApiResponse();
+        HttpStatus status;
+
+        // Call the service method to update the admin with the given ID
+        boolean success = adminService.updateAdmin(id, admin);
+
+        if (success) {
+            response.setMessage("Admin updated successfully");
+            status = HttpStatus.OK;
+        } else {
+            response.setMessage("Admin not found");
+            status = HttpStatus.NOT_FOUND;
+        }
+
+        return new ResponseEntity<>(response, status);
+    }
     }
 
 
-}

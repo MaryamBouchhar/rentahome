@@ -1,13 +1,15 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan,mdiImageEdit } from "@mdi/js";
+import { mdiEye, mdiTrashCan,mdiHumanEdit} from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import UserAvatar from "@/components/UserAvatar.vue";
+import AdminService from "@/services/AdminService";
+
 
 defineProps({
   checkable: Boolean,
@@ -15,13 +17,14 @@ defineProps({
 
 const mainStore = useMainStore();
 
-const items = computed(() => mainStore.clients);
+
+const items = computed(() => AdminService.getAdmins().toString());
 
 const isModalActive = ref(false);
 
 const isModalDangerActive = ref(false);
 
-const perPage = ref(5);
+const perPage = ref(4);
 
 const currentPage = ref(0);
 
@@ -60,13 +63,13 @@ const remove = (arr, cb) => {
   return newArr;
 };
 
-const checked = (isChecked, client) => {
+const checked = (isChecked, admin) => {
   if (isChecked) {
-    checkedRows.value.push(client);
+    checkedRows.value.push(admin);
   } else {
     checkedRows.value = remove(
       checkedRows.value,
-      (row) => row.id === client.id
+      (row) => row.id === admin.id
     );
   }
 };
@@ -84,8 +87,6 @@ const checked = (isChecked, client) => {
     button="danger"
     has-cancel
   >
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
   </CardBoxModal>
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
@@ -105,27 +106,30 @@ const checked = (isChecked, client) => {
       <th>Id</th>
       <th>Name</th>
       <th>Email</th>
+      <th>Password</th>
 
-
-      <th />
+    <th/>
     </tr>
     </thead>
     <tbody>
-    <tr v-for="client in itemsPaginated" :key="client.id">
+    <tr v-for="admin in admins" :key="admin.id">
       <TableCheckboxCell
         v-if="checkable"
-        @checked="checked($event, client)"
+        @checked="checked($event, admin)"
       />
 
-      <td data-label="Name">
-        {{ client.id }}
+      <td data-label="Id">
+        {{ admin.id }}
       </td>
 
       <td data-label="Name">
-        {{ client.name }}
+        {{ admin.name }}
       </td>
-      <td data-label="Company">
-        {{ client.company }}
+      <td data-label="Email">
+        {{ admin.email }}
+      </td>
+      <td data-label="Password">
+        {{ admin.password }}
       </td>
 
 
@@ -140,12 +144,15 @@ const checked = (isChecked, client) => {
             small
             @click="isModalDangerActive = true"
           />
+
+<!--          <router-link to="/update_admin">-->
           <BaseButton
             color="success"
-            :icon="mdiImageEdit"
+            :icon="mdiHumanEdit"
+            to="/update-admin"
             small
-            @click="isModalDangerActive = true"
           />
+<!--          </router-link>-->
         </BaseButtons>
       </td>
     </tr>
@@ -168,3 +175,33 @@ const checked = (isChecked, client) => {
     </BaseLevel>
   </div>
 </template>
+<script>
+
+
+import axios from 'axios';
+
+
+export default {
+  name: "AdminView",
+  data(){
+    return{
+      admins:[],
+      ADMIN_API_BASE_URL : "http://localhost:8080/manage_admin/admins",
+    };
+
+  },
+  methods : {
+
+    async getAdmins() {
+    await axios.get(this.ADMIN_API_BASE_URL)
+      .then(response=>this.admins=response.data)
+      .catch(error=>console.log(error))
+  }
+  },
+    mounted(){
+
+    this.getAdmins();
+  }
+
+};
+</script>

@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import AdminService from "@/services/AdminService";
 
 export const useMainStore = defineStore("main", {
   state: () => ({
@@ -12,6 +13,7 @@ export const useMainStore = defineStore("main", {
     isFieldFocusRegistered: false,
 
     /* Sample data (commonly used) */
+    admins:[],
     clients: [],
     history: [],
   }),
@@ -27,7 +29,6 @@ export const useMainStore = defineStore("main", {
         this.userAvatar = payload.avatar;
       }
     },
-
     fetch(sampleDataKey) {
       axios
         .get(`data-sources/${sampleDataKey}.json`)
