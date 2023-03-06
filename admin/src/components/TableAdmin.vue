@@ -190,7 +190,7 @@ export default {
 
   async getAdmins() {
     await axios.get("http://localhost:8080/manage_admin/admins").then((response)=>{
-      this.admins=response.data;
+      this.admins = response.data;
     })
   }
  },
