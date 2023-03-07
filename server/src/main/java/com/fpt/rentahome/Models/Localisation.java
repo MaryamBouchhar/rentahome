@@ -1,59 +1,25 @@
 package com.fpt.rentahome.Models;
 
-public class Localisation {
+import lombok.*;
+
+import javax.persistence.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@Entity
+@Table(name = "location")
+public class Location {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String address;
     private String city;
     private Double longitude;
     private Double latitude;
+    @OneToOne(mappedBy = "location")
+    private Property property;
 
-    public Localisation() {
-    }
-
-    public Localisation(int id, String address, Double longitude, Double latitude) {
-        this.id = id;
-        this.address = address;
-        this.longitude = longitude;
-        this.latitude = latitude;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
 }

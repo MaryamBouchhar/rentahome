@@ -22,7 +22,11 @@ public class Property {
     private float price;
     private float area;
     private String status;
-    private int location;
+
+    //One to one relationship
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location", referencedColumnName = "id")
+    private Location location;
     private String rent_type;
     private int bathroom_count;
     private int room_count;
