@@ -1,16 +1,16 @@
 package com.fpt.rentahome.Models;
 
-public class Location {
+public class Localisation {
     private int id;
     private String address;
     private String city;
     private Double longitude;
     private Double latitude;
 
-    public Location() {
+    public Localisation() {
     }
 
-    public Location(int id, String address, Double longitude, Double latitude) {
+    public Localisation(int id, String address, Double longitude, Double latitude) {
         this.id = id;
         this.address = address;
         this.longitude = longitude;
