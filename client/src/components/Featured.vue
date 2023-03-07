@@ -7,13 +7,7 @@
       </div>
       <!-- Property Cards -->
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <PropertyCard/>
-        <PropertyCard/>
-        <PropertyCard/>
-        <PropertyCard/>
-        <PropertyCard/>
-        <PropertyCard/>
-        <PropertyCard/>
+        <PropertyCard v-for="property in properties" :key="property.id" :property="property"/>
       </div>
 
       <!-- view all button -->
@@ -29,7 +23,81 @@ import PropertyCard from "./PropertyCard.vue";
 
 export default {
   name: "Featured",
-  components: {PropertyCard}
+  components: {PropertyCard},
+  data() {
+    return {
+      properties: [
+        {
+          id: 1,
+          title: 'House in Toronto',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+          price: 1000,
+          rating: 4,
+          status: 'For Rent',
+          category: 'House',
+          city: 'Toronto',
+          image: 'https://picsum.photos/500/300?random=1',
+        },
+        {
+          id: 2,
+          title: 'Apartment in Ottawa',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+          price: 1000,
+          rating: 4,
+          status: 'For Rent',
+          category: 'Apartment',
+          city: 'Ottawa',
+          image: 'https://picsum.photos/500/300?random=2',
+        },
+        {
+          id: 3,
+          title: 'Condo in Montreal',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+          price: 1000,
+          rating: 4,
+          status: 'For Rent',
+          category: 'Condo',
+          city: 'Montreal',
+          image: 'https://picsum.photos/500/300?random=3',
+        },
+        {
+          id: 4,
+          title: 'Townhouse in Vancouver',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+          price: 1000,
+          rating: 4,
+          status: 'For Rent',
+          category: 'Townhouse',
+          city: 'Vancouver',
+          image: 'https://picsum.photos/500/300?random=4',
+        },
+        {
+          id: 5,
+          title: 'Villa in Calgary',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+          price: 1000,
+          rating: 2,
+          status: 'For Rent',
+          category: 'Villa',
+          city: 'Calgary',
+          image: 'https://picsum.photos/500/300?random=5',
+        },
+        {
+          id: 6,
+          title: 'Bungalow in Edmonton',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
+          price: 1000,
+          rating: 4,
+          status: 'For Rent',
+          category: 'Bungalow',
+          city: 'Edmonton',
+          image: 'https://picsum.photos/500/300?random=6',
+        },
+      ],
+      property_categories: [],
+      cities: []
+    }
+  },
 }
 </script>
 

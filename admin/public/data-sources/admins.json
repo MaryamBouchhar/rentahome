@@ -3,23 +3,21 @@
     {
       "id": 1,
       "name": "naima",
-      "email": "naima",
-      "phone": "788900",
+      "email": "adardor",
       "password": "123"
     },
     {
       "id": 2,
-      "name": "naima",
-      "email": "adardor",
-      "phone": "123",
-      "password": "123"
+      "name": "saad",
+      "email": "libourki",
+      "password": "1134"
     },
     {
       "id": 3,
       "name": "naima",
       "email": "adardor",
-      "phone": "123",
       "password": "123"
     }
+
   ]
 }

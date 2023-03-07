@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#navbar-link .router-link-active {
+    @apply bg-primary;
+    @apply rounded-lg;
+}
