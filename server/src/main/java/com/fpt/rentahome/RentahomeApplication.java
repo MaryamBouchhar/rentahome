@@ -23,12 +23,13 @@ public class RentahomeApplication implements CommandLineRunner {
         SpringApplication.run(RentahomeApplication.class, args);
     }
 
-   // @Autowired
-   // private PropertyRepository propertyRepository;
-@Autowired
-private PropertyRepository propertyRepository;
+    // @Autowired
+    // private PropertyRepository propertyRepository;
+  /*  @Autowired
+    private PropertyRepository propertyRepository;
     @Autowired
-    private LocationRepository addressRepository;
+    private LocationRepository addressRepository;*/
+
     @Override
     public void run(String... args) throws Exception {
        /* Property property = Property.builder()
@@ -46,7 +47,7 @@ private PropertyRepository propertyRepository;
  .build();
 
         propertyRepository.save(property);*/
-        Property property = Property.builder()
+       /* Property property = Property.builder()
                 .category("villa")
                 .description("beautifuuuuul")
                 .status("pending")
@@ -67,8 +68,8 @@ private PropertyRepository propertyRepository;
 
         location.setProperty(property);
         property.setLocation(location);
-        Location savedAddress = addressRepository.save(location);
-        Property savedPerson= propertyRepository.save(property);
-
+     addressRepository.save(location);
+     propertyRepository.save(property);
+*/
     }
 }

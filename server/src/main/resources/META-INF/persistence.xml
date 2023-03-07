@@ -9,6 +9,9 @@
         <class>com.fpt.rentahome.Models.Admin</class>
         <class>com.fpt.rentahome.Models.Client</class>
         <class>com.fpt.rentahome.Models.Property</class>
+        <class>com.fpt.rentahome.Models.Location</class>
+        <class>com.fpt.rentahome.Models.Reservation</class>
+
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rentahome" />

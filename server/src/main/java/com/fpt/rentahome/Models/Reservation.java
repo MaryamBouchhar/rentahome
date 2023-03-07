@@ -15,9 +15,9 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "property_id")
-    private Property property;
+    Property property;
     private int  client_id;
     private  String status;
     private Date start_date;
