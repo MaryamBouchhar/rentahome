@@ -1,5 +1,4 @@
 <script setup>
-import {reactive, ref} from "vue";
 import { mdiPlus, mdiLock} from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
 import CardBox from "@/components/CardBox.vue";
@@ -60,8 +59,6 @@ window.Swal = swal;
       </CardBox>
       </div>
     </SectionMain>
-
-
   </LayoutAuthenticated>
 </template>
 
@@ -81,11 +78,6 @@ window.Swal = swal;
   }
   },
    props : [],
-   mounted() {
-
-    this.getAdminById()
-
-   },
 
    methods : {
 
@@ -96,13 +88,12 @@ window.Swal = swal;
       })
     },
 
-
     updateAdmin() {
-    const updatedAdmin = {
+      const updatedAdmin = {
       name: this.data.name,
       email: this.data.email,
       password: this.data.password,
-    };
+      };
 
     axios.put(`http://localhost:8080/manage-admin/update/${this.data.id}`, updatedAdmin
     )
@@ -117,7 +108,14 @@ window.Swal = swal;
         console.log(error);
       });
 
-  }
-}
-}
+    }
+
+   },
+   mounted() {
+
+     this.getAdminById()
+
+   },
+
+ }
 </script>
