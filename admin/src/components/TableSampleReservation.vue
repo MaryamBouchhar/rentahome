@@ -111,32 +111,32 @@ const checked = (isChecked, client) => {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="client in itemsPaginated" :key="client.id">
+      <tr v-for="reservation in reservations" :key="reservation.id">
         <TableCheckboxCell
           v-if="checkable"
-          @checked="checked($event, client)"
+          @checked="checked($event, reservation)"
         />
 
         <td data-label="Name">
-          {{ client.id }}
+          {{ reservation.id }}
         </td>
 
         <td data-label="Name">
-          {{ client.name }}
+          {{ reservation.id_property}}
         </td>
         <td data-label="Company">
-          {{ client.company }}
+          {{ reservation.client_id}}
         </td>
         <td >
-          <div class="badge badge-success" v-if="client.status=='Confirmed'">{{client.status}}</div>
-          <div class="badge badge-error" v-else="client.status=='Rejected'">{{client.status}}</div>
+          <div class="badge badge-success" v-if="reservation.status=='Confirmed'">{{reservation.status}}</div>
+          <div class="badge badge-error" v-else="client.status=='Rejected'">{{reservation.status}}</div>
 
         </td>
         <td data-label="Created" class="lg:w-1 whitespace-nowrap">
           <small
             class="text-gray-500 dark:text-slate-400"
-            :title="client.created"
-            >{{ client.created }}</small
+            :title="reservation.created"
+            >{{ reservation.start_date }}</small
           >
         </td>
 
@@ -176,3 +176,27 @@ const checked = (isChecked, client) => {
     </BaseLevel>
   </div>
 </template>
+<script>
+import axios from 'axios';
+export default {
+  name: "ReservationView",
+  data(){
+    return{
+      reservations:[],
+      RESERVATION_API_BASE_URL : "http://localhost:8080/manage-reservation/reservations",
+    };
+
+  },
+  methods : {
+
+    async getReservations() {
+      await axios.get(this.RESERVATION_API_BASE_URL)
+        .then(response=>this.reservations=response.data)
+        .catch(error=>console.log(error))
+    }
+  },
+  mounted(){
+    this.getReservations();
+  }
+};
+</script>
