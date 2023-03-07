@@ -16,9 +16,12 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
     @ManyToOne
-    @JoinColumn(name = "property_id")
+    @JoinColumn(name = "property")
     Property property;
-    private int  client_id;
+    @ManyToOne
+    @JoinColumn(name = "client")
+    Client client;
+
     private  String status;
     private Date start_date;
     private Date end_date;
