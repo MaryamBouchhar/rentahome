@@ -24,6 +24,7 @@ public class AdminController {
         this.adminService = adminService;
     }
 
+    //ADD AN ADMIN
     @PostMapping("/add-admin")
     public ResponseEntity<ApiResponse> createAdmin(@RequestBody Admin admin) {
 //        if (Objects.nonNull(categoryService.readCategory(category.getCategoryName()))) {
@@ -39,6 +40,7 @@ public class AdminController {
         return adminService.getAllAdmins();
     }
 
+    //UPDATE AN ADMIN
     @PutMapping("/update-admin/{id}")
     public ResponseEntity<ApiResponse> updateAdmin(@PathVariable("id") int id, @RequestBody Admin admin) {
 
@@ -58,6 +60,6 @@ public class AdminController {
 
         return new ResponseEntity<>(response, status);
     }
-    }
+}
 
 
