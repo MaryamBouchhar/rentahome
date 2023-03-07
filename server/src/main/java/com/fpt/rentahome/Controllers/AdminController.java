@@ -21,6 +21,9 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private AdminRepository adminRepository;
+
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
     }
@@ -40,17 +43,19 @@ public class AdminController {
         return adminService.getAllAdmins();
     }
 
-//    @GetMapping("/admins/{id}")
-//    public ResponseEntity<Data> getDataById(@PathVariable int id) {
-//        Optional<Admin> data = adminService.findById(id);
-//        if (data != null) {
-//            return ResponseEntity.ok(data);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @GetMapping("/admins/{id}")
+    public ResponseEntity<Admin> getDataById(@PathVariable("id") int id) {
+        Optional<Admin> admin = adminService.getAdminById(id);
+        if (admin == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Admin getedadmin = admin.get();
+        return new ResponseEntity<>(getedadmin, HttpStatus.OK);
+    }
 
-    @PutMapping("/update_admin/{id}")
+
+
+    @PutMapping("/update/{id}")
     public ResponseEntity<ApiResponse> updateAdmin(@PathVariable("id") int id, @RequestBody Admin admin) {
 
         ApiResponse response = new ApiResponse();

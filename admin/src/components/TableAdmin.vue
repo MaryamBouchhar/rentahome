@@ -143,7 +143,8 @@ const checked = (isChecked, admin) => {
             color="success"
             :icon="mdiHumanEdit"
 
-          to="/update-admin/${admin.id}"
+            :to = "'/update-admin/' + admin.id"
+
             small
           />
           <!--          </router-link>-->
@@ -182,12 +183,7 @@ export default {
   },
   methods: {
 
-    editAdmin(id) {
-      // store the ID of the selected row in a variable
-      this.$store.commit("setSelectedId", id);
-      // redirect the user to the edit form
-      this.$router.push({ name: "updateadmin" });
-    },
+
 
     async getAdmins() {
       await axios.get(this.ADMIN_API_BASE_URL)
