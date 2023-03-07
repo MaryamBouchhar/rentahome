@@ -3,11 +3,9 @@ import { computed, ref, onMounted } from "vue";
 import { useMainStore } from "@/stores/main";
 import {
   mdiAccountMultiple,
-  mdiCartOutline,
   mdiChartTimelineVariant,
-  mdiMonitorCellphone,
   mdiReload,
-  mdiGithub,
+  mdiHome,
   mdiChartPie,
 } from "@mdi/js";
 import * as chartConfig from "@/components/Charts/chart.config.js";
@@ -16,13 +14,11 @@ import SectionMain from "@/components/SectionMain.vue";
 import CardBoxWidget from "@/components/CardBoxWidget.vue";
 import CardBox from "@/components/CardBox.vue";
 import TableSampleClients from "@/components/TableProperty.vue";
-import NotificationBar from "@/components/NotificationBar.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import CardBoxTransaction from "@/components/CardBoxTransaction.vue";
 import CardBoxClient from "@/components/CardBoxClient.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
-import SectionBannerStarOnGitHub from "@/components/SectionBannerStarOnGitHub.vue";
 
 const chartData = ref(null);
 
@@ -50,15 +46,6 @@ const transactionBarItems = computed(() => mainStore.history);
         title="Overview"
         main
       >
-        <BaseButton
-          href="https://github.com/justboil/admin-one-vue-tailwind"
-          target="_blank"
-          :icon="mdiGithub"
-          label="Star on GitHub"
-          color="contrast"
-          rounded-full
-          small
-        />
       </SectionTitleLineWithButton>
 
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
@@ -74,10 +61,10 @@ const transactionBarItems = computed(() => mainStore.history);
           trend="12%"
           trend-type="down"
           color="text-blue-500"
-          :icon="mdiCartOutline"
+          :icon="mdiHome"
           :number="7770"
           prefix="$"
-          label="Sales"
+          label="Properties"
         />
         <CardBoxWidget
           trend="Overflow"
