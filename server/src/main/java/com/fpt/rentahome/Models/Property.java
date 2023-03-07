@@ -21,6 +21,8 @@ public class Property {
     private float price;
     private float area;
     private String status;
+
+    //One to one relationship
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location", referencedColumnName = "id")
     private Location location;
