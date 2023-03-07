@@ -142,7 +142,9 @@ const checked = (isChecked, admin) => {
           <BaseButton
             color="success"
             :icon="mdiHumanEdit"
-            to="/update-admin"
+
+            :to = "'/update-admin/' + admin.id"
+
             small
           />
           <!--          </router-link>-->
@@ -180,6 +182,8 @@ export default {
 
   },
   methods: {
+
+
 
     async getAdmins() {
       await axios.get(this.ADMIN_API_BASE_URL)

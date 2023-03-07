@@ -74,13 +74,13 @@ const formStatusSubmit = () => {
       <CardBox form @submit.prevent="submit">
 
           <FormField label="Name" >
-            <FormControl type="email" v-model="name" required/>
+            <FormControl type="email" v-model="data.name" required/>
           </FormField>
           <FormField label="Email">
-            <FormControl  type="email" v-model="email" required/>
+            <FormControl  type="email" v-model="data.email" required/>
           </FormField>
           <FormField label="Password" >
-            <FormControl v-model="password" required/>
+            <FormControl v-model="data.password" required/>
           </FormField>
 
           <BaseDivider/>
@@ -88,7 +88,7 @@ const formStatusSubmit = () => {
 
           <template #footer>
             <BaseButtons class="ml-14 mr-0">
-              <BaseButton   class="ml-20 " type="submit" color="warning" label="Update Admin" @click="addAdmin"/>
+              <BaseButton   class="ml-20 " type="submit" color="warning" label="Update Admin" @click="updateAdmin"/>
             </BaseButtons>
           </template>
       </CardBox>
@@ -103,29 +103,40 @@ const formStatusSubmit = () => {
  import axios from "axios";
 
  export default {
- data(){
-return {
-name : "",
-email: "",
-password : "",
-}
-},
-props : [],
-methods : {
+  data(){
+   return {
 
-  async addAdmin() {
-    const newAdmin = {
-      name: this.name,
-      email: this.email,
-      password: this.password,
+     data: {
+       id: null,
+       name: '',
+       email: '',
+       password:'',
+     },
+  }
+  },
+   props : [],
+   mounted() {
+
+  const id = this.$route.params.id
+     axios.get(`http://localhost:8080/manage-admin/admins/${id}`).then((response) => {
+       this.data = response.data
+     })
+   },
+   methods : {
+
+  async updateAdmin() {
+    const updatedAdmin = {
+      name: this.data.name,
+      email: this.data.email,
+      password: this.data.password,
     };
 
 
-    axios.post('http://localhost:8080/manage_admin/add_admin', newAdmin
+    axios.put(`http://localhost:8080/manage-admin/update/${this.data.id}`, updatedAdmin
     )
       .then(() => {
         swal({
-          text: "Admin Added Successfully!",
+          text: "Admin Updated Successfully!",
           icon: "success",
           closeOnClickOutside: false,
         });

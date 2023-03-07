@@ -96,7 +96,7 @@ const routes = [
     meta: {
       title: "UpdateAdmin"
     },
-    path: "/update-admin",
+    path: "/update-admin/:id",
     name: "updateadmin",
     component: () => import("@/views/UpdateAdminView.vue"),
   },
