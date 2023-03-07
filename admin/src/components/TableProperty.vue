@@ -10,6 +10,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import UserAvatar from "@/components/UserAvatar.vue";
 import TableClient from "@/components/TableClient.vue";
 import CardBox from "@/components/CardBox.vue";
+import PropertyService from "@/services/PropertyService";
 
 defineProps({
   checkable: Boolean,
@@ -17,7 +18,7 @@ defineProps({
 
 const mainStore = useMainStore();
 
-const items = computed(() => mainStore.properties);
+const items = computed(() => PropertyService.getProperties().toString());
 
 const isModalActive = ref(false);
 
@@ -62,13 +63,13 @@ const remove = (arr, cb) => {
   return newArr;
 };
 
-const checked = (isChecked, client) => {
+const checked = (isChecked, property) => {
   if (isChecked) {
-    checkedRows.value.push(client);
+    checkedRows.value.push(property);
   } else {
     checkedRows.value = remove(
       checkedRows.value,
-      (row) => row.id === client.id
+      (row) => row.id === property.id
     );
   }
 };
@@ -161,7 +162,7 @@ const checked = (isChecked, client) => {
        <progress
           class="flex w-2/5 self-center lg:w-full"
           max="100"
-          :value="property.progress"
+          :value="property.is_equipped"
         >
 
           {{ property.is_equipped }}
@@ -230,7 +231,7 @@ export default {
   data() {
     return {
       properties: [],
-      PROPERTY_API_BASE_URL: "http://localhost:8080/manage-property/properties",
+      PROPERTY_API_BASE_URL: "http://localhost:8080/manage-properties/properties",
     };
 
   },
