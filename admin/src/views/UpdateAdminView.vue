@@ -117,8 +117,8 @@ const formStatusSubmit = () => {
    props : [],
    mounted() {
 
-     const id = this.$route.params.id
-     axios.get(`http://localhost:8080/manage_admin/admins/${id}`).then((response) => {
+  const id = this.$route.params.id
+     axios.get(`http://localhost:8080/manage-admin/admins/${id}`).then((response) => {
        this.data = response.data
      })
    },
@@ -126,13 +126,13 @@ const formStatusSubmit = () => {
 
   async updateAdmin() {
     const updatedAdmin = {
-      name: this.name,
-      email: this.email,
-      password: this.password,
+      name: this.data.name,
+      email: this.data.email,
+      password: this.data.password,
     };
 
 
-    axios.put(`http://localhost:8080/manage_admin/update/${this.data.id}`, updatedAdmin
+    axios.put(`http://localhost:8080/manage-admin/update/${this.data.id}`, updatedAdmin
     )
       .then(() => {
         swal({
