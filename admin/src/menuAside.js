@@ -1,16 +1,8 @@
 import {
-  mdiAccountCircle,
+
   mdiMonitor,
-  mdiGithub,
   mdiLock,
-  mdiAlertCircle,
-  mdiSquareEditOutline,
-  mdiTable,
   mdiViewList,
-  mdiTelevisionGuide,
-  mdiResponsive,
-  mdiPalette,
-  mdiReact,
   mdiHome, mdiAccountMultiple, mdiPlus,
   mdiAccount,
   mdiFormatListText,
