@@ -43,6 +43,7 @@ public class AdminController {
         return adminService.getAllAdmins();
     }
 
+    //get admin by id
     @GetMapping("/admins/{id}")
     public ResponseEntity<Admin> getDataById(@PathVariable("id") int id) {
         Optional<Admin> admin = adminService.getAdminById(id);
@@ -54,7 +55,7 @@ public class AdminController {
     }
 
 
-
+    //update admin
     @PutMapping("/update/{id}")
     public ResponseEntity<ApiResponse> updateAdmin(@PathVariable("id") int id, @RequestBody Admin admin) {
 
