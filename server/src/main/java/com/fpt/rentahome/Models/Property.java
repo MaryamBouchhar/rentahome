@@ -21,8 +21,9 @@ public class Property {
     private float price;
     private float area;
     private String status;
-
-    private int location;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location", referencedColumnName = "id")
+    private Location location;
     private String rent_type;
 
     private int batthroom_count;
