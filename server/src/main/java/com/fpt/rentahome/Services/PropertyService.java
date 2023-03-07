@@ -36,4 +36,8 @@ public class PropertyService {
         }
         return recentProperties;
     }
+
+    public void createProperty(Property property) {
+        propertyRepository.save(property);
+    }
 }
