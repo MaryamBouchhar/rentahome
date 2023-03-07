@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -41,6 +42,18 @@ public class PropertyController {
     }
 
 
+    //get property
+    @GetMapping("/properties/{id}")
+    public ResponseEntity<Property> getPropertyById(@PathVariable("id") int id) {
+        Optional<Property> property = propertyService.getPropertyById(id);
+        if (property == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Property getedproperty= property.get();
+        return new ResponseEntity<>(getedproperty, HttpStatus.OK);
+    }
+
+
     //add a property
     @PostMapping("/add-property")
     public ResponseEntity<ApiResponse> createProperty(@RequestBody Property property) {
@@ -48,7 +61,28 @@ public class PropertyController {
         return new ResponseEntity<>(new ApiResponse(true, "created the property"), HttpStatus.CREATED);
     }
 
-    
+
+
+    //update property
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiResponse> updateProperty(@PathVariable("id") int id, @RequestBody Property property) {
+
+        ApiResponse apiResponse = new ApiResponse();
+        HttpStatus status;
+
+        // Call the service method to update the admin with the given ID
+        boolean success = propertyService.updateProperty(id, property);
+
+        if (success) {
+            apiResponse.setMessage("Property updated successfully");
+            status = HttpStatus.OK;
+        } else {
+            apiResponse.setMessage("Property not found");
+            status = HttpStatus.NOT_FOUND;
+        }
+
+        return new ResponseEntity<>(apiResponse, status);
+    }
 
     //fetch recent properties
     @GetMapping("/recent-properties")
