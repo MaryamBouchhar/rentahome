@@ -1,7 +1,7 @@
 <h1 align="center">RentaHome: Renting Home Web App</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Java-Jakarta%2010-orange" alt="Java Jakarta 10">
+  <img src="https://img.shields.io/badge/Spring Boot-2.5.6-green" alt="Spring Boot">
   <img src="https://img.shields.io/badge/Vue.js-3.x-brightgreen" alt="Vue.js 3.x">
   <img src="https://img.shields.io/badge/Vite.js-2.x-yellowgreen" alt="Vite.js 2.x">
   <img src="https://img.shields.io/badge/Tailwind%20CSS-2.x-blue" alt="Tailwind CSS 3.x">
@@ -54,7 +54,7 @@
 
 3. Open server directory in another window
 
-4. Start the Tomcat server
+4. Start the server
 
 5. Enjoy :)
 
