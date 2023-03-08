@@ -49,20 +49,22 @@ public class PropertyService {
 
     public boolean updateProperty(int id, Property updatedProperty) {
 
-        // Check if an admin with the given ID exists
-        Optional<Property> propertyOptional = propertyRepository.findById(id);
-        if (!propertyOptional.isPresent()) {
-            return false;
-        }
+            // Check if an admin with the given ID exists
+            Optional<Property> propertyOptional = propertyRepository.findById( id);
+            if (!propertyOptional.isPresent()) {
+                return false;
+            }
 
-        // Update the admin object
-        Property property = propertyOptional.get();
+            // Update the admin object
+             Property  property = propertyOptional.get();
 
 
-        // Save the updated admin to the database
-        propertyRepository.save(property);
 
-        return true;
+            // Save the updated admin to the database
+            propertyRepository.save(property);
+
+            return true;
+
 
 
     }

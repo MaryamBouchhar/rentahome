@@ -156,7 +156,7 @@ const checked = (isChecked, property) => {
         {{ property.rent_type }}
       </td>
       <td data-label="City">
-        {{ property.location }}
+        {{ property.location.city }}
       </td>
       <td data-label="Equipped" class="lg:w-32">
        <progress
@@ -240,7 +240,9 @@ export default {
     async getProperties() {
       await axios.get(this.PROPERTY_API_BASE_URL)
         .then(response => this.properties = response.data)
+
         .catch(error => console.log(error))
+      console.log(this.properties);
     }
   },
   mounted() {
