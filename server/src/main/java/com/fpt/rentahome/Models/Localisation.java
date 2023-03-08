@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "location")
-public class Location {
+public class Localisation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
