@@ -46,7 +46,7 @@ public class PropertyController {
     @GetMapping("/properties/{id}")
     public ResponseEntity<Property> getPropertyById(@PathVariable("id") int id) {
         Optional<Property> property = propertyService.getPropertyById(id);
-        if (property == null) {
+        if (property.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Property getedproperty= property.get();
@@ -88,16 +88,5 @@ public class PropertyController {
     @GetMapping("/recent-properties")
     public List<Property> getFeaturedProperties() {
         return propertyService.getRecentProperties();
-    }
-
-    //add a comment
-    @GetMapping("/{propertyId}/add-comment")
-    public Comment addComment(@PathVariable Long propertyId, @RequestBody Comment comment) {
-        Property property = propertyRepository.findById(propertyId).orElse(null);
-        if (property == null) {
-            throw new RuntimeException("Property not found");
-        }
-        comment.setProperty(property);
-        return commentRepository.save(comment);
     }
 }
