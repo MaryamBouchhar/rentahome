@@ -92,7 +92,7 @@ public class PropertyController {
 
     //add a comment
     @GetMapping("/{propertyId}/add-comment")
-    public Comment addComment(@PathVariable Long propertyId, @RequestBody Comment comment) {
+    public Comment addComment(@PathVariable int propertyId, @RequestBody Comment comment) {
         Property property = propertyRepository.findById(propertyId).orElse(null);
         if (property == null) {
             throw new RuntimeException("Property not found");

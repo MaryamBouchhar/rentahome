@@ -44,13 +44,13 @@ public class PropertyService {
     }
 
     public Optional<Property> getPropertyById(int id) {
-        return propertyRepository.findById((long) id);
+        return propertyRepository.findById(id);
     }
 
     public boolean updateProperty(int id, Property updatedProperty) {
 
             // Check if an admin with the given ID exists
-            Optional<Property> propertyOptional = propertyRepository.findById((long) id);
+            Optional<Property> propertyOptional = propertyRepository.findById( id);
             if (!propertyOptional.isPresent()) {
                 return false;
             }
