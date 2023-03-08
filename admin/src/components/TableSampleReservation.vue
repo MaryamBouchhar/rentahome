@@ -125,7 +125,7 @@ const checked = (isChecked, client) => {
           {{ reservation.id_property}}
         </td>
         <td data-label="Company">
-          {{ reservation.client_id}}
+          {{ reservation.client_id }}
         </td>
         <td >
           <div class="badge badge-success" v-if="reservation.status=='Confirmed'">{{reservation.status}}</div>
@@ -191,7 +191,8 @@ export default {
 
     async getReservations() {
       await axios.get(this.RESERVATION_API_BASE_URL)
-        .then(response=>this.reservations=response.data)
+        .then(response=>
+          this.reservations=response.data)
         .catch(error=>console.log(error))
     }
   },
