@@ -25,8 +25,8 @@ public class Property {
 
     //One to one relationship
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "localisation", referencedColumnName = "id")
-    private Localisation location;
+    @JoinColumn(name = "location", referencedColumnName = "id")
+    private Location location;
     private String rent_type;
     private int bathroom_count;
     private int room_count;
