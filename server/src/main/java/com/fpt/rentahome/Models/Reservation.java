@@ -1,5 +1,6 @@
 package com.fpt.rentahome.Models;
 
+import com.fpt.rentahome.Dto.ReservationDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,7 +26,17 @@ public class Reservation {
     private  String status;
     private Date start_date;
     private Date end_date;
+    private Date created_at;
+    private Date updated_at;
 
-
+    public Reservation(ReservationDto reservationDto, Property property, Client client) {
+        this.status = reservationDto.getStatus();
+        this.start_date = reservationDto.getStart_date();
+        this.end_date = reservationDto.getEnd_date();
+        this.property = property;
+        this.client = client;
+        this.created_at = new Date();
+        this.updated_at = new Date();
+    }
 
 }
