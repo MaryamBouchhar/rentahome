@@ -18,7 +18,7 @@ public class PropertyService {
     private PropertyRepository propertyRepository;
 
     //get all properties
-    public List<Property> getAllProperties() {
+    public List<Property> getAllProperties() {SSSS
         return propertyRepository.findAll();
     }
 
