@@ -2,7 +2,7 @@ package com.fpt.rentahome;
 
 import com.fpt.rentahome.Models.Admin;
 import com.fpt.rentahome.Models.Client;
-import com.fpt.rentahome.Models.Location;
+import com.fpt.rentahome.Models.Localisation;
 import com.fpt.rentahome.Models.Property;
 import com.fpt.rentahome.Repositories.AdminRepository;
 import com.fpt.rentahome.Repositories.ClientRepository;
