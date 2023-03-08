@@ -47,10 +47,10 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
 
         <FormField>
           <FormField label="Bathroom Count">
-            <FormControl type="number" v-model="property.bathroomCount"/>
+            <FormControl type="number" v-model="property.bathroom_count"/>
           </FormField>
           <FormField label="Room Count ">
-            <FormControl type="number" v-model="property.roomCount"/>
+            <FormControl type="number" v-model="property.room_count"/>
           </FormField>
         </FormField>
         <FormField>
@@ -73,7 +73,7 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
               name="sample-switch"
               type="switch"
               :options="{ one: ' '}"
-              v-model="property.equiped"
+              v-model="property._equiped"
             />
           </FormField>
         </FormField>
@@ -124,13 +124,13 @@ export default {
       ],
       property: {
         category: "",
-        type: "",
-        bathroomCount: "",
-        roomCount: "",
+        rent_type: "",
+        bathroom_count: "",
+        room_count: "",
         area: "",
         price: "",
         location: "",
-        equiped: false,
+        _equiped: false,
         description: "",
         image: "",
       },
