@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,10 +28,14 @@ public class Property {
     @JoinColumn(name = "location", referencedColumnName = "id")
     private Location location;
     private String rent_type;
-
-    private int batthroom_count;
+    private int bathroom_count;
     private int room_count;
     private boolean is_equipped;
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    private List<Comment> comments;
     private Date publish_date;
 
+    public List<Comment> getComments() {
+        return comments;
+    }
 }

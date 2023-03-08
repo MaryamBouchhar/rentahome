@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Home from "@/views/HomeView.vue";
-
 const routes = [
   {
     // Document title tag
@@ -96,7 +94,7 @@ const routes = [
     meta: {
       title: "UpdateAdmin"
     },
-    path: "/update-admin",
+    path: "/update-admin/:id",
     name: "updateadmin",
     component: () => import("@/views/UpdateAdminView.vue"),
   },

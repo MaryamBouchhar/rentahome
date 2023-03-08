@@ -9,8 +9,15 @@
         <class>com.fpt.rentahome.Models.Admin</class>
         <class>com.fpt.rentahome.Models.Client</class>
         <class>com.fpt.rentahome.Models.Property</class>
-        <class>com.fpt.rentahome.Models.Location</class>
+
         <class>com.fpt.rentahome.Models.Reservation</class>
+        <class>com.fpt.rentahome.Models.Comment</class>
+        <class>com.fpt.rentahome.Models.Image</class>
+      
+
+        <class>com.fpt.rentahome.Models.Location</class>
+     
+
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />

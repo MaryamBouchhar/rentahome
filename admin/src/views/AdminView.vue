@@ -1,15 +1,5 @@
 <script setup>
-import {
-  mdiMonitorCellphone,
-  mdiTableBorder,
-  mdiTableOff,
-  mdiGithub,
-  mdiHome,
-  mdiChartTimelineVariant,
-  mdiAccountMultiple,
-  mdiCartOutline,
-  mdiReload,
-  mdiChartPie, mdiPlus, mdiLock,
+import { mdiPlus, mdiLock,
 }
   from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
@@ -19,7 +9,7 @@ import CardBox from "@/components/CardBox.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import CardBoxComponentEmpty from "@/components/CardBoxComponentEmpty.vue";
+
 </script>
 
 <template>

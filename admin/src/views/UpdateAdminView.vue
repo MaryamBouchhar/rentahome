@@ -1,53 +1,18 @@
 <script setup>
-import {reactive, ref} from "vue";
-import {mdiBallotOutline, mdiAccount, mdiMail, mdiGithub, mdiPlus, mdiLock} from "@mdi/js";
+import { mdiPlus, mdiLock} from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
 import CardBox from "@/components/CardBox.vue";
-import FormCheckRadioGroup from "@/components/FormCheckRadioGroup.vue";
-import FormFilePicker from "@/components/FormFilePicker.vue";
 import FormField from "@/components/FormField.vue";
 import FormControl from "@/components/FormControl.vue";
 import BaseDivider from "@/components/BaseDivider.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
-import SectionTitle from "@/components/SectionTitle.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
-import NotificationBarInCard from "@/components/NotificationBarInCard.vue";
+
 import swal from 'sweetalert';
 window.Swal = swal;
-const selectOptions = [
-  {id: 1, label: "Business development"},
-  {id: 2, label: "Marketing"},
-  {id: 3, label: "Sales"},
-];
 
-const form = reactive({
-  name: "John Doe",
-  email: "john.doe@example.com",
-  phone: "",
-  department: selectOptions[0],
-  subject: "",
-  question: "",
-});
-
-
-
-const submit = () => {
-  //
-};
-
-const formStatusWithHeader = ref(true);
-
-const formStatusCurrent = ref(0);
-
-const formStatusOptions = ["info", "success", "danger", "warning"];
-
-const formStatusSubmit = () => {
-  formStatusCurrent.value = formStatusOptions[formStatusCurrent.value + 1]
-    ? formStatusCurrent.value + 1
-    : 0;
-};
 </script>
 
 <template>
@@ -74,13 +39,13 @@ const formStatusSubmit = () => {
       <CardBox form @submit.prevent="submit">
 
           <FormField label="Name" >
-            <FormControl type="email" v-model="name" required/>
+            <FormControl type="text" v-model="data.name"  autocomplete required/>
           </FormField>
           <FormField label="Email">
-            <FormControl  type="email" v-model="email" required/>
+            <FormControl  type="email" v-model="data.email" required/>
           </FormField>
           <FormField label="Password" >
-            <FormControl v-model="password" required/>
+            <FormControl v-model="data.password" required/>
           </FormField>
 
           <BaseDivider/>
@@ -88,14 +53,12 @@ const formStatusSubmit = () => {
 
           <template #footer>
             <BaseButtons class="ml-14 mr-0">
-              <BaseButton   class="ml-20 " type="submit" color="warning" label="Update Admin" @click="addAdmin"/>
+              <BaseButton   class="ml-20 " type="submit" color="warning" label="Update Admin" @click="updateAdmin"/>
             </BaseButtons>
           </template>
       </CardBox>
       </div>
     </SectionMain>
-
-
   </LayoutAuthenticated>
 </template>
 
@@ -103,38 +66,56 @@ const formStatusSubmit = () => {
  import axios from "axios";
 
  export default {
- data(){
-return {
-name : "",
-email: "",
-password : "",
-}
-},
-props : [],
-methods : {
+  data(){
+   return {
 
-  async addAdmin() {
-    const newAdmin = {
-      name: this.name,
-      email: this.email,
-      password: this.password,
-    };
+     data: {
+       id: null,
+       name: '',
+       email: '',
+       password:'',
+     },
+  }
+  },
+   props : [],
 
+   methods : {
 
-    axios.post('http://localhost:8080/manage_admin/add_admin', newAdmin
+    getAdminById(){
+      const id = this.$route.params.id;
+      axios.get(`http://localhost:8080/manage-admin/admins/${id}`).then((response) => {
+        this.data = response.data
+      })
+    },
+
+    updateAdmin() {
+      const updatedAdmin = {
+      name: this.data.name,
+      email: this.data.email,
+      password: this.data.password,
+      };
+
+    axios.put(`http://localhost:8080/manage-admin/update/${this.data.id}`, updatedAdmin
     )
       .then(() => {
         swal({
-          text: "Admin Added Successfully!",
+          text: "Admin Updated Successfully!",
           icon: "success",
           closeOnClickOutside: false,
-        });
+        });;
       })
       .catch(error => {
         console.log(error);
       });
 
-  }
-}
-}
+    }
+
+   },
+   mounted() {
+
+     this.getAdminById()
+
+   },
+
+ }
 </script>

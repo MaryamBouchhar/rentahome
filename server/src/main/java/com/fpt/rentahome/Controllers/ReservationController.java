@@ -30,7 +30,7 @@ public class ReservationController {
     private ClientRepository clientRepository;
     @PostMapping("/add-reservation")
     public ResponseEntity<ApiResponse> createReservation(@RequestBody ReservationDto reservation) {
-        Optional<Property> propertyOptional = propertyRepository.findById(reservation.getId_property());
+        Optional<Property> propertyOptional = propertyRepository.findById((long) reservation.getId_property());
         Optional<Client> clientOptional = clientRepository.findById(reservation.getClient_id());
 
         if (!propertyOptional.isPresent()) {

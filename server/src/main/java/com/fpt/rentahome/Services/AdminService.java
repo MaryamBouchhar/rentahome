@@ -47,4 +47,9 @@ public class AdminService {
         return true;
 
     }
+
+
+    public Optional<Admin> getAdminById(int id) {
+        return adminRepository.findById(id);
+    }
 }

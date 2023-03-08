@@ -22,5 +22,4 @@ public class Location {
     @OneToOne(mappedBy = "location")
     private Property property;
 
-
 }

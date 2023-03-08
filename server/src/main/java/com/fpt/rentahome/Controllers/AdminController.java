@@ -10,7 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-;import java.util.List;
+;import javax.xml.crypto.Data;
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -19,6 +20,9 @@ import java.util.Optional;
 public class AdminController {
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private AdminRepository adminRepository;
 
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
@@ -40,8 +44,20 @@ public class AdminController {
         return adminService.getAllAdmins();
     }
 
-    //UPDATE AN ADMIN
-    @PutMapping("/update-admin/{id}")
+    //get admin by id
+    @GetMapping("/admins/{id}")
+    public ResponseEntity<Admin> getDataById(@PathVariable("id") int id) {
+        Optional<Admin> admin = adminService.getAdminById(id);
+        if (admin == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Admin getedadmin = admin.get();
+        return new ResponseEntity<>(getedadmin, HttpStatus.OK);
+    }
+
+
+    //update admin
+    @PutMapping("/update/{id}")
     public ResponseEntity<ApiResponse> updateAdmin(@PathVariable("id") int id, @RequestBody Admin admin) {
 
         ApiResponse response = new ApiResponse();

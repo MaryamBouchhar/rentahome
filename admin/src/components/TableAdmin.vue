@@ -138,14 +138,12 @@ const checked = (isChecked, admin) => {
             @click="isModalDangerActive = true"
           />
 
-          <!--<router-link to="/update_admin">-->
           <BaseButton
             color="success"
             :icon="mdiHumanEdit"
-            to="/update-admin"
+            :to = "'/update-admin/' + admin.id"
             small
           />
-          <!--          </router-link>-->
         </BaseButtons>
       </td>
     </tr>
