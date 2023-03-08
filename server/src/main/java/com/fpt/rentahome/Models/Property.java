@@ -24,19 +24,20 @@ public class Property {
     private String status;
 
     //One to one relationship
-  //  @OneToOne(cascade = CascadeType.ALL)
-   // @JoinColumn(name = "location", referencedColumnName = "id")
-    private int location;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location", referencedColumnName = "id")
+    private Location location;
     private String rent_type;
-    private int batthroom_count;
+    private int bathroom_count;
     private int room_count;
     private boolean is_equipped;
-
-
-    //private List<Comment> comments;
+//    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+//    private List<Comment> comments;
     private Date publish_date;
 
-   /* public List<Comment> getComments() {
-        return comments;
-    }*/
+//    public List<Comment> getComments() {
+//        return comments;
+//    }
 }

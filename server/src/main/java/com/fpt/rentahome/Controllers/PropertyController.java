@@ -10,13 +10,6 @@ import com.fpt.rentahome.Repositories.PropertyRepository;
 import com.fpt.rentahome.Services.ClientService;
 import com.fpt.rentahome.Services.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 
 @CrossOrigin
 @RestController
@@ -100,7 +92,7 @@ public class PropertyController {
 
     //add a comment
     @GetMapping("/{propertyId}/add-comment")
-    public Comment addComment(@PathVariable Integer propertyId, @RequestBody Comment comment) {
+    public Comment addComment(@PathVariable int propertyId, @RequestBody Comment comment) {
         Property property = propertyRepository.findById(propertyId).orElse(null);
         if (property == null) {
             throw new RuntimeException("Property not found");

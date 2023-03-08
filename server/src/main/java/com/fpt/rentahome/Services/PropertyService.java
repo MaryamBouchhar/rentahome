@@ -18,7 +18,7 @@ public class PropertyService {
     private PropertyRepository propertyRepository;
 
     //get all properties
-    public List<Property> getAllProperties() {SSSS
+    public List<Property> getAllProperties() {
         return propertyRepository.findAll();
     }
 
@@ -50,7 +50,7 @@ public class PropertyService {
     public boolean updateProperty(int id, Property updatedProperty) {
 
             // Check if an admin with the given ID exists
-            Optional<Property> propertyOptional = propertyRepository.findById(id);
+            Optional<Property> propertyOptional = propertyRepository.findById( id);
             if (!propertyOptional.isPresent()) {
                 return false;
             }

@@ -1,5 +1,5 @@
 <script setup>
-import {computed, onMounted, ref} from "vue";
+import {computed, ref} from "vue";
 import {useMainStore} from "@/stores/main";
 import {mdiEye, mdiImageEdit, mdiTrashCan, mdiUpdate} from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
@@ -11,32 +11,14 @@ import UserAvatar from "@/components/UserAvatar.vue";
 import TableClient from "@/components/TableClient.vue";
 import CardBox from "@/components/CardBox.vue";
 import PropertyService from "@/services/PropertyService";
-import propertyService from "@/services/PropertyService";
-import axios from "axios";
 
 defineProps({
   checkable: Boolean,
 });
 
 const mainStore = useMainStore();
-const properties = ref([]);
-const PROPERTY_API_BASE_URL = ref("http://localhost:8080/manage-properties/properties");
 
-const getProperties = async () => {
-  await axios.get(PROPERTY_API_BASE_URL.value)
-    .then(response => {
-      properties.value = response.data;
-    })
-    .catch(error => {
-      console.log(error);
-    });
-}
-
-onMounted(() => {
-  getProperties();
-});
-
-const items = computed(() => properties.value);
+const items = computed(() => PropertyService.getProperties().toString());
 
 const isModalActive = ref(false);
 
@@ -174,17 +156,17 @@ const checked = (isChecked, property) => {
         {{ property.rent_type }}
       </td>
       <td data-label="City">
-        {{ property.location }}
+        {{ property.location.city }}
       </td>
       <td data-label="Equipped" class="lg:w-32">
-        <progress
+       <progress
           class="flex w-2/5 self-center lg:w-full"
           max="100"
           :value="property.is_equipped"
         >
 
           {{ property.is_equipped }}
-        </progress>
+       </progress>
       </td>
       <td data-label="Price">
         {{ property.price }}
@@ -243,7 +225,7 @@ const checked = (isChecked, property) => {
   </div>
 </template>
 <script>
-
+import axios from 'axios';
 export default {
   name: "PropertyView",
   data() {
@@ -253,6 +235,19 @@ export default {
     };
 
   },
+  methods: {
+
+    async getProperties() {
+      await axios.get(this.PROPERTY_API_BASE_URL)
+        .then(response => this.properties = response.data)
+
+        .catch(error => console.log(error))
+      console.log(this.properties);
+    }
+  },
+  mounted() {
+    this.getProperties();
+  }
 
 };
 </script>
