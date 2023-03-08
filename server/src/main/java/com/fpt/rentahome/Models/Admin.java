@@ -4,14 +4,17 @@ package com.fpt.rentahome.Models;
 import lombok.Builder;
 
 import javax.persistence.*;
+import java.io.Serializable;
+
 @Builder
 @Entity
 @Table(name="admin")
-public class Admin {
+public class Admin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Column(unique = true)
     private String email;
     private String password;
 

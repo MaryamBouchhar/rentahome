@@ -19,6 +19,4 @@ public class Location {
     private String city;
     private Double longitude;
     private Double latitude;
-
-
 }
