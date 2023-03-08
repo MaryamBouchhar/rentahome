@@ -51,7 +51,7 @@ const asideLgCloseClick = (event) => {
         <div
           class="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0"
         >
-          <img src="../images/logo-rentahome.png"
+          <img src="../assets/images/logo-rentahome.png"
                  alt="image"
           style=" margin-top:130px ;margin-bottom: 10px ; height: 200px;width: 400px"/>
         </div>
