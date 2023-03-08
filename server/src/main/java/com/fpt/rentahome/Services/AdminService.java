@@ -6,16 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import javax.validation.constraints.Email;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Optional;
 
 
 @Service
-public class AdminService {
+public class AdminService  {
 
     @Autowired
     private AdminRepository adminRepository;
+
+
+
+//    @Override
+//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+//        Admin admin = adminRepository.findByEmail(email);
+//        if (admin == null) {
+//            throw new UsernameNotFoundException("Admin not found");
+//        }
+//        return new org.springframework.security.core.userdetails.User(admin.getEmail(), admin.getPassword(),
+//                new ArrayList<>());
+//    }
 
     public void createAdmin(Admin admin) {
         adminRepository.save(admin);
@@ -51,5 +65,10 @@ public class AdminService {
 
     public Optional<Admin> getAdminById(int id) {
         return adminRepository.findById(id);
+    }
+
+    public Admin findByEmail(String email) {
+        return adminRepository.findByEmail(email);
+
     }
 }
