@@ -1,6 +1,7 @@
 package com.fpt.rentahome.Services;
 
 import com.fpt.rentahome.Dto.ReservationDto;
+import com.fpt.rentahome.Models.Admin;
 import com.fpt.rentahome.Models.Client;
 import com.fpt.rentahome.Models.Property;
 import com.fpt.rentahome.Models.Reservation;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -24,7 +26,8 @@ public class ReservationService {
         reservation.setEnd_date(reservationDto.getEnd_date());
         reservation.setProperty(property);
         reservation.setClient(client);
-
+        reservation.setCreated_at(reservationDto.getCreated_at());
+        reservation.setUpdated_at(reservationDto.getUpdated_at());
         reservation.setEnd_date(reservationDto.getEnd_date());
         reservationRepository.save(reservation);
     }
@@ -37,8 +40,11 @@ public class ReservationService {
 
         reservationDto.setEnd_date(reservationDto.getEnd_date());
         reservationDto.setId_property(reservation.getProperty().getId());
-        reservationDto.setClient_id(reservation.getClient().getId());
+        reservationDto.setClient(reservation.getClient());
         reservationDto.setId(reservation.getId());
+        reservationDto.setCreated_at(reservation.getCreated_at());
+        reservationDto.setUpdated_at(reservation.getUpdated_at());
+
         return reservationDto;
     }
 
@@ -50,5 +56,19 @@ public class ReservationService {
             reservationDto.add(getReservationDto(reservation));
         }
         return reservationDto;
+    }
+    public static ReservationDto getDtoFromReservation(Reservation reservation) {
+        ReservationDto reservationDto = new ReservationDto(reservation);
+        return reservationDto;
+    }
+    public static Reservation getReservationFromDto(ReservationDto reservationDto,Property property, Client client) {
+        Reservation reservation = new Reservation(reservationDto, property, client);
+        return reservation;
+    }
+
+    public void updateReservation(Integer reservationID, ReservationDto reservationDto, Property property, Client client) {
+        Reservation reservation = getReservationFromDto(reservationDto, property,client);
+        reservation.setId(reservationID);
+        reservationRepository.save(reservation);
     }
 }
