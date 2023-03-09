@@ -1,15 +1,11 @@
 import {RouteRecordRaw, createRouter, createWebHistory} from 'vue-router';
-import store from "../store";
+import store from '../store';
 
-interface RouteInterface {
-    path: string;
-    name: string;
+interface RouteInterface extends RouteRecordRaw {
     requireAuth: boolean;
-    component: () => Promise<typeof import('*.vue')>;
 }
 
-// @ts-ignore
-const routes: RouteInterface = [
+const routes: RouteInterface[] = [
     {
         path: '/',
         name: 'Home',
@@ -90,9 +86,14 @@ const router = createRouter({
     routes
 });
 
-// @ts-ignore
-router.beforeEach((to: RouteInterface, from: RouteInterface, next) => {
-    if (to.requireAuth && !store.state.isAuthenticated) {
+router.beforeEach((to, from, next) => {
+    // @ts-ignore
+    const route = routes.find(route => route.path === to.path);
+    // @ts-ignore
+    const requireAuth = route.requireAuth || false;
+    const isAuthenticated = store.getters.isAuthenticated;
+    // @ts-ignore
+    if (requireAuth && !isAuthenticated) {
         store.commit('setPath', '/login')
         next('/login');
     } else {
@@ -101,5 +102,4 @@ router.beforeEach((to: RouteInterface, from: RouteInterface, next) => {
     }
 });
 
-// @ts-ignore
 export default router;

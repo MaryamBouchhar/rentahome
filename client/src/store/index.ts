@@ -32,6 +32,12 @@ const store = createStore({
         }
     },
 
+    getters: {
+        isAuthenticated(state) {
+            return state.isAuthenticated;
+        }
+    },
+
     actions: {
         async login({commit}, {email, password}) {
             // send login request to backend
