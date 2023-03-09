@@ -35,7 +35,7 @@ public class ClientAuthController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername(), userDetails.getPassword()));
+        return ResponseEntity.ok(new JwtResponse(token, authenticationRequest.getUsername(), authenticationRequest.getPassword()));
     }
 
     @CrossOrigin
@@ -46,6 +46,10 @@ public class ClientAuthController {
     }
 
     private void authenticate(String username, String password) throws Exception {
-
+        try {
+            clientService.findByUsername(username);
+        } catch (Exception e) {
+            throw new Exception("USER_NOT_FOUND", e);
+        }
     }
 }
