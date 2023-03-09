@@ -9,7 +9,7 @@ const store = createStore({
             rtl: false,
             path: '/',
             isAuthenticated: false,
-            token: null,
+            token: localStorage.getItem('token') || '',
             user: null
         };
     },
@@ -89,6 +89,15 @@ const store = createStore({
                 console.log(error);
             });
         },
+        async logout({commit}) {
+            // remove token from local storage
+            localStorage.removeItem('token');
+
+            // set authentication status in store
+            commit('setToken', '');
+            commit('setIsAuthenticated', false);
+            commit('setUser', null);
+        }
     },
 });
 
