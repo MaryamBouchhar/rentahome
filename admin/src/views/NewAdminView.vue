@@ -1,6 +1,6 @@
 <script setup>
 
-import { mdiPlus, mdiLock} from "@mdi/js";
+import {mdiPlus, mdiLock} from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
 import CardBox from "@/components/CardBox.vue";
 
@@ -46,7 +46,7 @@ window.Swal = swal;
           <FormField label="Email">
             <FormControl type="email" v-model="email" required/>
           </FormField>
-          <FormField label="Password" >
+          <FormField label="Password">
             <FormControl v-model="password" required/>
           </FormField>
 
@@ -69,42 +69,41 @@ window.Swal = swal;
 
 <script>
 
- import axios from "axios";
+import axios from "axios";
 
- export default {
- data(){
-  return {
-    name : "",
-    email: "",
-    password : "",
-  }
- },
- props : [],
- methods : {
+export default {
+  data() {
+    return {
+      name: "",
+      email: "",
+      password: "",
+    }
+  },
+  props: [],
+  methods: {
 
-  async addAdmin() {
-    const newAdmin = {
-      name: this.name,
-      email: this.email,
-      password: this.password,
-    };
+    async addAdmin() {
+      const newAdmin = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+      };
 
 
-    axios.post('http://localhost:8080/manage-admin/add-admin', newAdmin
-    )
-      .then(() => {
-        swal({
-          text: "Admin Added Successfully!",
-          icon: "success",
-          closeOnClickOutside: false,
+      axios.post('http://localhost:8080/manage-admin/add-admin', newAdmin)
+        .then(() => {
+          swal({
+            text: "Admin Added Successfully!",
+            icon: "success",
+            closeOnClickOutside: false,
+          });
+        })
+        .catch(error => {
+          console.log(error);
         });
-      })
-      .catch(error => {
-        console.log(error);
-      });
 
+    }
   }
-}
 
 }
 </script>

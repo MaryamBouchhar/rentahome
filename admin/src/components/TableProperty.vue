@@ -134,7 +134,7 @@ const checked = (isChecked, property) => {
       <th>Equiped</th>
       <th>Price</th>
       <th>status</th>
-      <th>Added at</th>
+      <th>Date</th>
       <th/>
     </tr>
     </thead>
@@ -158,21 +158,18 @@ const checked = (isChecked, property) => {
       <td data-label="City">
         {{ property.location.city }}
       </td>
-      <td data-label="Equipped" class="lg:w-32">
-       <progress
-          class="flex w-2/5 self-center lg:w-full"
-          max="100"
-          :value="property.is_equipped"
-        >
-
-          {{ property.is_equipped }}
-       </progress>
+      <td data-label="Equipped" class="lg:w-42">
+        <div v-if="property._equipped" class="badge badge-outline badge-success">Equipped</div>
+        <div v-else class="badge badge-outline badge-error">Not equipped</div>
       </td>
       <td data-label="Price">
         {{ property.price }}
       </td>
       <td data-label="Status">
-        {{ property.status }}
+        <div v-if="property.status == 'Pending'" class="badge badge-success">{{ property.status }}</div>
+        <div v-else-if="property.status == 'Reserved'" class="badge badge-error">{{ property.status }}</div>
+        <div v-else class="badge badge-warning">{{ property.status }}</div>
+
       </td>
       <td data-label="Created" class="lg:w-1 whitespace-nowrap">
         <small
@@ -226,6 +223,7 @@ const checked = (isChecked, property) => {
 </template>
 <script>
 import axios from 'axios';
+
 export default {
   name: "PropertyView",
   data() {
@@ -239,7 +237,12 @@ export default {
 
     async getProperties() {
       await axios.get(this.PROPERTY_API_BASE_URL)
-        .then(response => this.properties = response.data)
+        .then(response => {
+          this.properties = response.data
+          this.properties.forEach(property => {
+            property.publish_date = new Date(property.publish_date).toLocaleDateString();
+          })
+        })
 
         .catch(error => console.log(error))
       console.log(this.properties);

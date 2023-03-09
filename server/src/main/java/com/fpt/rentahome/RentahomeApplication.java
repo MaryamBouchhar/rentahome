@@ -24,7 +24,7 @@ public class RentahomeApplication implements CommandLineRunner {
                 .category("villa")
                 .description("beautifuuuuul")
                 .status("pending")
-                .rent_type("daily")
+                .rent_type("daily")SSS
                 .area(234)
                 .bathroom_count(3)
                 .price(10000)
