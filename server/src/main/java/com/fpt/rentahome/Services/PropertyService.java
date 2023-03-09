@@ -2,6 +2,7 @@ package com.fpt.rentahome.Services;
 
 import com.fpt.rentahome.Models.Admin;
 import com.fpt.rentahome.Models.Comment;
+import com.fpt.rentahome.Models.Location;
 import com.fpt.rentahome.Models.Property;
 
 import com.fpt.rentahome.Repositories.PropertyRepository;
@@ -40,6 +41,13 @@ public class PropertyService {
     }
 
     public void createProperty(Property property) {
+        Location location = new Location();
+        location.setAddress(property.getLocation().getAddress());
+        location.setCity(property.getLocation().getCity());
+        location.setLongitude(property.getLocation().getLongitude());
+        location.setLatitude(property.getLocation().getLatitude());
+
+        property.setLocation(location);
         propertyRepository.save(property);
     }
 
@@ -49,22 +57,20 @@ public class PropertyService {
 
     public boolean updateProperty(int id, Property updatedProperty) {
 
-            // Check if an admin with the given ID exists
-            Optional<Property> propertyOptional = propertyRepository.findById( id);
-            if (!propertyOptional.isPresent()) {
-                return false;
-            }
+        // Check if an admin with the given ID exists
+        Optional<Property> propertyOptional = propertyRepository.findById(id);
+        if (!propertyOptional.isPresent()) {
+            return false;
+        }
 
-            // Update the admin object
-             Property  property = propertyOptional.get();
+        // Update the admin object
+        Property property = propertyOptional.get();
 
 
+        // Save the updated admin to the database
+        propertyRepository.save(property);
 
-            // Save the updated admin to the database
-            propertyRepository.save(property);
-
-            return true;
-
+        return true;
 
 
     }
