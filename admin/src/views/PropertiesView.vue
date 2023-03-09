@@ -3,7 +3,7 @@ import {
   mdiHome,
   mdiPlus,
 }
-from "@mdi/js";
+  from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
 import TableProperty from "@/components/TableProperty.vue";
 import CardBox from "@/components/CardBox.vue";
@@ -28,7 +28,7 @@ import BaseButton from "@/components/BaseButton.vue";
         </router-link>
       </SectionTitleLineWithButton>
       <CardBox class="mb-6" has-table>
-          <TableProperty/>
+        <TableProperty/>
       </CardBox>
     </SectionMain>
   </LayoutAuthenticated>
