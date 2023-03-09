@@ -126,7 +126,7 @@ const checked = (isChecked, client) => {
         {{ reservation.client.name }}
       </td>
       <td>
-        <div class="badge badge-success" v-if="reservation.status=='Confirmed'">{{ reservation.status }}</div>
+        <div class="badge badge-success" v-if="reservation.status=='Approved'">{{ reservation.status }}</div>
         <div class="badge badge-warning" v-else-if="reservation.status=='Pending'">{{ reservation.status }}</div>
         <div class="badge badge-error" v-else>{{ reservation.status }}</div>
       </td>
@@ -223,7 +223,7 @@ export default {
         .then((willDelete) => {
           if (willDelete) {
             const reservation = this.getReservationById(id);
-            reservation.status = "Confirmed";
+            reservation.status = "Approved";
 
             axios.put(this.RESERVATION_API_BASE_URL + "/update/" + id, reservation)
               .then(response => {
