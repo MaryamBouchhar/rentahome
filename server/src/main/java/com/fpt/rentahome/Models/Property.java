@@ -23,9 +23,7 @@ public class Property {
     private float area;
     private String status;
 
-    //One to one relationship
-
-
+    //One to one relationship with Location
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location", referencedColumnName = "id")
     private Location location;
