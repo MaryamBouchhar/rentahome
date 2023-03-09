@@ -1,22 +1,38 @@
 package com.fpt.rentahome.Services;
 
-import com.fpt.rentahome.Models.Admin;
-import com.fpt.rentahome.Models.Comment;
-import com.fpt.rentahome.Models.Location;
-import com.fpt.rentahome.Models.Property;
+import com.fpt.rentahome.Controllers.PropertyController;
+import com.fpt.rentahome.Models.*;
 
+import com.fpt.rentahome.Repositories.ImageRepository;
 import com.fpt.rentahome.Repositories.PropertyRepository;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.context.ServletContextAware;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import org.apache.commons.io.FilenameUtils;
+
+import javax.servlet.ServletContext;
 
 @Service
-public class PropertyService {
+public class PropertyService implements ServletContextAware {
     @Autowired
     private PropertyRepository propertyRepository;
+
+    @Autowired
+    private ImageRepository imageRepository;
+    @Autowired
+    private ImageService imageService;
+    private ServletContext servletContext;
 
     //get all properties
     public List<Property> getAllProperties() {
@@ -40,15 +56,36 @@ public class PropertyService {
         return recentProperties;
     }
 
-    public void createProperty(Property property) {
+    public void createProperty(Property property, List<MultipartFile> images) throws Exception {
+        //create the location
         Location location = new Location();
         location.setAddress(property.getLocation().getAddress());
         location.setCity(property.getLocation().getCity());
         location.setLongitude(property.getLocation().getLongitude());
         location.setLatitude(property.getLocation().getLatitude());
 
+        //save the property
         property.setLocation(location);
         propertyRepository.save(property);
+
+        //save the images
+        int count = 0;
+
+        for (MultipartFile image : images) {
+            System.out.println("image name: " + image.getOriginalFilename());
+
+            String name = saveImage(image);
+
+            Image img = new Image();
+            img.setUrl(name);
+            img.setProperty(property);
+            //check if theres an already existing image with same name
+            if (imageService.checkImageExist(name) == null) {
+                imageRepository.save(img);
+            }
+            count++;
+        }
+        System.out.println("Total images: " + count);
     }
 
     public Optional<Property> getPropertyById(int id) {
@@ -71,7 +108,30 @@ public class PropertyService {
         propertyRepository.save(property);
 
         return true;
+    }
 
+    //get the latest property id
+    public int getLatestPropertyId() {
+        List<Property> properties = propertyRepository.findAll();
+        return properties.get(properties.size() - 1).getId();
+    }
 
+    //save image
+    public String saveImage(MultipartFile image) {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyyHHmmss");
+            String name = formatter.format(new Date()) + image.getOriginalFilename();
+            byte[] bytes = image.getBytes();
+            Path path = Paths.get(this.servletContext.getRealPath("/uploads/images/" + name));
+            Files.write(path, bytes);
+            return name;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public void setServletContext(ServletContext servletContext) {
+        this.servletContext = servletContext;
     }
 }
