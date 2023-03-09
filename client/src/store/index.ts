@@ -41,7 +41,7 @@ const store = createStore({
     actions: {
         async login({commit}, {email, password}) {
             // send login request to backend
-            axios.post(API_BASE_URL + 'login', {
+            axios.post(API_BASE_URL + 'auth/login', {
                 email: email,
                 password: password
             }).then(response => {
@@ -60,7 +60,7 @@ const store = createStore({
         },
         async register({commit}, {name, email, password}) {
             // send registration request to backend
-            axios.post(API_BASE_URL + 'register', {
+            axios.post(API_BASE_URL + 'auth/register', {
                 name: name,
                 email: email,
                 password: password
@@ -80,7 +80,7 @@ const store = createStore({
         },
         async getProtectedData({state}) {
             // send request to backend with authorization header
-            axios.get(API_BASE_URL + 'protected', {
+            axios.get(API_BASE_URL + 'auth/protected', {
                 headers: {
                     Authorization: `Bearer ${state.token}`
                 }
