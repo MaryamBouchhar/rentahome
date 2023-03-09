@@ -25,6 +25,7 @@ public class ClientAuthController {
     @Autowired
     private ClientService clientService;
 
+    @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
@@ -37,6 +38,7 @@ public class ClientAuthController {
         return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername(), userDetails.getPassword()));
     }
 
+    @CrossOrigin
     @PostMapping("/register")
     public ResponseEntity<?> saveClient(@RequestBody ClientDto clientDto) throws Exception {
         Client user = clientService.findByUsername(clientDto.getUsername());
