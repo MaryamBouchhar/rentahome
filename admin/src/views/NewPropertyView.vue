@@ -40,8 +40,8 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
           <FormField label="Category">
             <FormControl type="text" :options="selectOptions" v-model="property.category"/>
           </FormField>
-          <FormField label="Type">
-            <FormControl type="text" :options="selectOptions" v-model="property.type"/>
+          <FormField label="Rent Type">
+            <FormControl type="text" :options="selectOptions" v-model="property.rent_type"/>
           </FormField>
         </FormField>
 
@@ -82,13 +82,11 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
           <div id="map"></div>
 
           <FormField label="Equiped">
-
             <FormCheckRadioGroup
               name="sample-switch"
               type="switch"
               :options="{ one: ' '}"
-              v-model="property._equiped"
-            />
+              v-model="property._equipped"/>
           </FormField>
         </FormField>
 
@@ -99,9 +97,15 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
             v-model="property.description"
           />
         </FormField>
-        <FormFilePicker label="Upload"/>
+        <FormField label="Images">
+          <input type="file"
+                 id="images"
+                 name="images"
+                 class="file-input file-input-bordered file-input-info w-full max-w-xs"
+                 @change="onImageSelected"
+                 multiple/>
+        </FormField>
         <BaseDivider/>
-
 
         <template #footer>
 
@@ -113,8 +117,6 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
         </template>
       </CardBox>
     </SectionMain>
-
-
   </LayoutAuthenticated>
 </template>
 
@@ -138,27 +140,38 @@ export default {
       ],
       property: {
         description: "",
-        category: "",
+        category: "House",
         price: 0,
         area: 0,
-        status: "Pending",
+        status: "Available",
         location: {
           address: "",
           city: "",
           longitude: 0,
           latitude: 0,
         },
-        rent_type: "",
+        rent_type: "Daily",
         bathroom_count: 0,
         room_count: 0,
-        _equiped: false,
-        publish_date: Date.now(),
+        _equipped: false,
+        publish_date: "2021-05-01",
       },
+      images: [],
     };
   },
   methods: {
     async addNewProperty() {
-      await axios.post(this.RESERVATION_API_BASE_URL + "/add-property", this.property)
+      const formData = new FormData();
+      formData.append("property", JSON.stringify(this.property));
+      for (let i = 0; i < this.images.length; i++) {
+        formData.append("images", this.images[i]);
+      }
+
+      const headers = {
+        'Content-Type': 'multipart/form-data'
+      }
+      //send property and images to backend
+      await axios.post(this.RESERVATION_API_BASE_URL + "/add-property", formData, headers)
         .then(() => {
           swal({
             text: "Property Added Successfully!",
@@ -189,6 +202,30 @@ export default {
           console.log(error);
         });
     },
+    //change the status of is equiped
+    onSwitchChange() {
+      this.property._equipped = !this.property._equipped;
+      console.log("switchListener", this.property._equipped);
+    },
+    //multiple file upload
+    onImageSelected(e) {
+      for (let i = 0; i < e.target.files.length; i++) {
+        this.images.push(e.target.files[i]);
+      }
+      console.log(this.property.images)
+    },
+    async latestPropertyId() {
+      const current_property_id = 0;
+      await axios.get(this.RESERVATION_API_BASE_URL + "/latest-property-id")
+        .then(response => {
+          current_property_id = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      return current_property_id;
+    }
   },
   mounted() {
     const map = new google.maps.Map(document.getElementById("map"), {
