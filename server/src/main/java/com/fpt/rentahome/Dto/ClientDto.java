@@ -20,4 +20,8 @@ public class ClientDto {
         this.phone = phone;
         this.password = password;
     }
+
+    public String getUsername() {
+        return this.email;
+    }
 }
