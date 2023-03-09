@@ -38,7 +38,7 @@
                             </label>
                         </div>
                         <div class="form-control mt-4">
-                            <button class="btn btn-primary" type="submit">Login</button>
+                            <button class="btn btn-primary" @click.prevent="login">Login</button>
                         </div>
                         <label class="label">
               <span class="label-text">

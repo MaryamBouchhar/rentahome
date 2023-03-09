@@ -30,7 +30,7 @@ const routes: RouteInterface[] = [
         requireAuth: false,
         component: () => import('../views/Register.vue')
     },
-    
+
     {
         // @ts-ignore
         path: '/about',
