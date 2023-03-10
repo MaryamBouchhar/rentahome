@@ -1,4 +1,4 @@
-package com.fpt.rentahome.Conf;
+package com.fpt.rentahome.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
