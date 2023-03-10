@@ -39,4 +39,27 @@ public class ClientAuthController {
 
         return ResponseEntity.ok().body(new ApiResponse(true, "Client registered successfully"));
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> authenticateClient(@RequestBody ClientLoginRequest clientLoginRequest) {
+        // Get client by email
+        Optional<Client> clientOptional = clientService.getClientByEmail(clientLoginRequest.getEmail());
+
+        if (!clientOptional.isPresent()) {
+            return ResponseEntity.badRequest().body(new ApiResponse(false, "Invalid email or password"));
+        }
+
+        Client client = clientOptional.get();
+
+        // Check if password matches
+        if (!passwordEncoder.matches(clientLoginRequest.getPassword(), client.getPassword())) {
+            return ResponseEntity.badRequest().body(new ApiResponse(false, "Invalid email or password"));
+        }
+
+        // Generate JWT token
+        String token = jwtTokenUtil.generateToken(client.getEmail());
+
+        // Return token in response
+        return ResponseEntity.ok(new JwtResponse(token));
+    }
 }
