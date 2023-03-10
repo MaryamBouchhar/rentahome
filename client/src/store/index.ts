@@ -1,7 +1,7 @@
 import {createStore} from 'vuex';
 import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:8080/';
+const API_BASE_URL = 'http://localhost:8080/api/auth/';
 
 const store = createStore({
     state() {
@@ -41,7 +41,7 @@ const store = createStore({
     actions: {
         async login({commit}, {email, password}) {
             // send login request to backend
-            axios.post(API_BASE_URL + 'auth/login', {
+            axios.post(API_BASE_URL + 'login', {
                 email: email,
                 password: password
             }).then(response => {
@@ -60,7 +60,7 @@ const store = createStore({
         },
         async register({commit}, {name, email, password}) {
             // send registration request to backend
-            axios.post(API_BASE_URL + 'auth/register', {
+            axios.post(API_BASE_URL + 'register', {
                 name: name,
                 email: email,
                 password: password
