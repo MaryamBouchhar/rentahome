@@ -1,5 +1,6 @@
 package com.fpt.rentahome.config;
 
+import com.fpt.rentahome.Filters.JWTAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.fpt.rentahome.Filters.JWTAuthorizationFilter;
 import com.fpt.rentahome.Services.CustomUserDetailsService;
 
 @Configuration
