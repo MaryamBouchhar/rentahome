@@ -1,6 +1,7 @@
 package com.fpt.rentahome.config;
 
 import com.fpt.rentahome.Filters.JWTAuthorizationFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +20,7 @@ import com.fpt.rentahome.Services.CustomUserDetailsService;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
     @Override
