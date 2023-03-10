@@ -26,4 +26,8 @@ public class ClientDetailsServiceImpl implements UserDetailsService {
         return new User(client.getEmail(), client.getPassword(),
                 new ArrayList<>());
     }
+
+    public String getEmail() {
+        return clientRepository.findByEmail(getEmail()).getEmail();
+    }
 }
