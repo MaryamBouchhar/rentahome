@@ -31,7 +31,7 @@ public class ClientAuthController {
     @PostMapping("/register")
     public ResponseEntity<ApiResponse> registerClient(@RequestBody ClientRegistrationRequest clientRegistrationRequest) {
         // Check if email already exists
-        if (!clientService.existsByEmail(clientRegistrationRequest.getEmail())) {
+        if (clientService.existsByEmail(clientRegistrationRequest.getEmail())) {
             return ResponseEntity.badRequest().body(new ApiResponse(false, "Email address is already taken"));
         }
 
