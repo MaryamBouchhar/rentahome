@@ -6,7 +6,6 @@ import com.fpt.rentahome.Models.Property;
 import com.fpt.rentahome.Repositories.AdminRepository;
 import com.fpt.rentahome.Repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,15 +21,8 @@ public class ClientService {
         return clientRepository.findAll();
 
     }
+
     public Optional<Client> getClientById(int id) {
         return clientRepository.findById(id);
-    }
-
-    public Client findByUsername(String username) {
-        Client client = clientRepository.findByEmail(username);
-        if (client == null) {
-            return null;
-        }
-        return client;
     }
 }
