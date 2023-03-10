@@ -73,33 +73,33 @@ const checked = (isChecked, property) => {
     );
   }
 };
+
 </script>
 
 <template>
 
   <CardBoxModal v-model="isModalActive" title="View Detail Property">
 
-    <span> <b>Category :</b></span>
-    <span class="flex justify-center flex">Villa</span>
-
+    <span > <b>Categpry :</b></span><span>{{selectedProperty.category}}</span>
     <br>
-    <span> <b>Type :</b></span><span>Villa</span>
+    <span> <b>Bathroom Count :</b></span><span>{{selectedProperty.bathroom_count}}</span>
     <br>
-    <span> <b>Bathroom Count :</b></span><span>Villa</span>
+    <span> <b>Room Count :</b></span><span>{{selectedProperty.room_count}}</span>
     <br>
-    <span> <b>Room Count :</b></span><span>Villa</span>
+    <span> <b>Area :</b></span><span>{{selectedProperty.area}}</span>
     <br>
-    <span> <b>Area :</b></span><span>Villa</span>
+    <span> <b>Rent Type:</b></span><span>{{selectedProperty.rent_type}}</span>
     <br>
-    <span> <b>Price :</b></span><span>Villa</span>
+    <span> <b>Price :</b></span><span>{{selectedProperty.price}}</span>
     <br>
-    <span> <b>Location :</b></span><span>Villa</span>
+    <span> <b>Location :</b></span><span>{{selectedProperty.location}}</span>
     <br>
-    <span> <b>Publish Date :</b></span><span>Villa</span>
+    <span> <b>Publish Date :</b></span><span>{{selectedProperty.category}}</span>
     <br>
-    <span> <b>Equipped :</b></span><span>Villa</span>
+    <span> <b>Equipped :</b></span><span v-if="selectedProperty._equipped">Equipped</span>
+    <span v-else>Not Equipped</span>
     <br>
-    <span> <b>Status :</b></span><span>Villa</span>
+    <span> <b>Status :</b></span><span>{{selectedProperty.status}}</span>
     <br>
   </CardBoxModal>
 
@@ -183,7 +183,7 @@ const checked = (isChecked, property) => {
             color="info"
             :icon="mdiEye"
             small
-            @click="isModalActive = true"
+            @click="isModalActive=true,getProperty(property)"
           />
           <BaseButton
             color="danger"
@@ -195,7 +195,6 @@ const checked = (isChecked, property) => {
             color="success"
             :icon="mdiImageEdit"
             small
-            @click="isModalActive = true"
           />
         </BaseButtons>
       </td>
@@ -227,7 +226,11 @@ export default {
   data() {
     return {
       properties: [],
-      PROPERTY_API_BASE_URL: "http://localhost:8080/manage-properties/properties",
+      selectedProperty:{
+
+      },
+      isModalActive:false,
+      PROPERTY_API_BASE_URL: `http://localhost:8080/manage-properties/properties`,
     };
 
   },
@@ -244,6 +247,16 @@ export default {
 
         .catch(error => console.log(error))
       console.log(this.properties);
+    },
+    async getProperty(property){
+
+      await axios.get(this.PROPERTY_API_BASE_URL+`/${property.id}`)
+        .then(response =>{
+          this.selectedProperty = response.data
+        })
+        .catch(error => console.log(error))
+      console.log(this.selectedProperty.location.city)
+
     }
   },
   mounted() {

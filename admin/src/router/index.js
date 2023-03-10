@@ -1,17 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
+import store from "../stores/index"
 
 const routes = [
   {
     // Document title tag
     // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
     meta: {
-      title: "Login",
+      title: "Login"
     },
 
     path: "/",
-
+    requireAuth: false,
     name: "login",
-    component: import("@/views/LoginView.vue"),
+    component: import("@/views/LoginView.vue")
   },
   {
     meta: {
@@ -19,7 +20,8 @@ const routes = [
     },
     path: "/profile",
     name: "profile",
-    component: () => import("@/views/ProfileView.vue"),
+    requireAuth: true,
+    component: () => import("@/views/ProfileView.vue")
   },
   {
     meta: {
@@ -27,25 +29,28 @@ const routes = [
     },
     path: "/dashboard",
     name: "dashboard",
-    component: () => import("@/views/HomeView.vue"),
+    requireAuth: true,
+    component: () => import("@/views/HomeView.vue")
   },
   {
-  meta: {
-  title: "Properties"
-},
-  path: "/properties",
-  name: "properties",
-  component: () => import("@/views/PropertiesView.vue"),
-},
+    meta: {
+      title: "Properties"
+    },
+    path: "/properties",
+    name: "properties",
+    requireAuth: true,
+    component: () => import("@/views/PropertiesView.vue")
+  },
   {
 
 
     meta: {
-      title: "AddProperty",
+      title: "AddProperty"
     },
     path: "/add-property",
     name: "addproperty",
-    component: () => import("@/views/NewPropertyView.vue"),
+    requireAuth: true,
+    component: () => import("@/views/NewPropertyView.vue")
   },
   {
     meta: {
@@ -53,7 +58,8 @@ const routes = [
     },
     path: "/booking_request",
     name: "booking_request",
-    component: () => import("@/views/ReservationView.vue"),
+    requireAuth: true,
+    component: () => import("@/views/ReservationView.vue")
   },
 
   {
@@ -62,7 +68,8 @@ const routes = [
     },
     path: "/admins",
     name: "admins",
-    component: () => import("@/views/AdminView.vue"),
+    requireAuth: true,
+    component: () => import("@/views/AdminView.vue")
   },
   {
     meta: {
@@ -70,7 +77,8 @@ const routes = [
     },
     path: "/clients",
     name: "clients",
-    component: () => import("@/views/ClientsView.vue"),
+    requireAuth: true,
+    component: () => import("@/views/ClientsView.vue")
   },
   {
     meta: {
@@ -78,7 +86,8 @@ const routes = [
     },
     path: "/add-admin",
     name: "addadmin",
-    component: () => import("@/views/NewAdminView.vue"),
+    requireAuth: true,
+    component: () => import("@/views/NewAdminView.vue")
   },
 
   {
@@ -87,7 +96,8 @@ const routes = [
     },
     path: "/add-client",
     name: "addclient",
-    component: () => import("@/views/NewClientView.vue"),
+    requireAuth: true,
+    component: () => import("@/views/NewClientView.vue")
   },
 
   {
@@ -96,8 +106,9 @@ const routes = [
     },
     path: "/update-admin/:id",
     name: "updateadmin",
-    component: () => import("@/views/UpdateAdminView.vue"),
-  },
+    requireAuth: true,
+    component: () => import("@/views/UpdateAdminView.vue")
+  }
 
 ];
 
@@ -105,8 +116,13 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    return savedPosition || {top: 0};
-  },
+    return savedPosition || { top: 0 };
+  }
 });
+
+router.beforeEach((to, from, next) => {
+  store.commit('setPath', to.path)
+  next();
+})
 
 export default router;
