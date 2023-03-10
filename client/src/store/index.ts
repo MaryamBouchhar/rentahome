@@ -1,11 +1,16 @@
+import {createStore} from 'vuex';
+import axios from "axios";
 
-import { createStore } from 'vuex';
+const API_BASE_URL = 'http://localhost:8080/';
 
 const store = createStore({
     state() {
         return {
             rtl: false,
-            path: '/'
+            path: '/',
+            isAuthenticated: false,
+            token: localStorage.getItem('token') || '',
+            user: null
         };
     },
 
@@ -15,8 +20,91 @@ const store = createStore({
         },
         setPath(state, path) {
             state.path = path
+        },
+        setToken(state, token) {
+            state.token = token;
+        },
+        setIsAuthenticated(state, isAuthenticated) {
+            state.isAuthenticated = isAuthenticated;
+        },
+        setUser(state, user) {
+            state.user = user;
         }
-    }
+    },
+
+    getters: {
+        isAuthenticated(state) {
+            return state.isAuthenticated;
+        }
+    },
+
+    actions: {
+        async login({commit}, {email, password}) {
+            // send login request to backend
+            axios.post(API_BASE_URL + 'auth/login', {
+                email: email,
+                password: password
+            }).then(response => {
+                console.log(response);
+
+                // save token to local storage
+                const {token} = response.data;
+                localStorage.setItem('token', token);
+
+                // set authentication status in store
+                commit('setToken', token);
+                commit('setIsAuthenticated', true);
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        async register({commit}, {name, email, password}) {
+            // send registration request to backend
+            axios.post(API_BASE_URL + 'auth/register', {
+                name: name,
+                email: email,
+                password: password
+            }).then(response => {
+                console.log(response);
+
+                // save token to local storage
+                const {token} = response.data;
+                localStorage.setItem('token', token);
+
+                // set authentication status in store
+                commit('setToken', token);
+                commit('setIsAuthenticated', true);
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        async getProtectedData({state}) {
+            // send request to backend with authorization header
+            axios.get(API_BASE_URL + 'auth/protected', {
+                headers: {
+                    Authorization: `Bearer ${state.token}`
+                }
+            }).then(response => {
+                console.log(response);
+
+                // save user to store
+                const {user} = response.data;
+                // @ts-ignore
+                commit('setUser', user);
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        async logout({commit}) {
+            // remove token from local storage
+            localStorage.removeItem('token');
+
+            // set authentication status in store
+            commit('setToken', '');
+            commit('setIsAuthenticated', false);
+            commit('setUser', null);
+        }
+    },
 });
 
 export default store;
