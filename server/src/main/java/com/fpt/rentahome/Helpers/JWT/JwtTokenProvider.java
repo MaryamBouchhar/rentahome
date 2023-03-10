@@ -21,13 +21,12 @@ public class JwtTokenProvider {
     @Value("${app.jwtExpirationInMs}")
     private int jwtExpirationInMs;
 
-    public String generateToken(Authentication authentication) {
-        ClientDetailsServiceImpl clientDetails = (ClientDetailsServiceImpl) authentication.getPrincipal();
+    public String generateToken(String email) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
 
         return Jwts.builder()
-                .setSubject(clientDetails.getEmail())
+                .setSubject(email)
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
