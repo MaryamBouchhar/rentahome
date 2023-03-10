@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuthServiceImpl implements AuthService {
 
@@ -32,7 +34,7 @@ public class AuthServiceImpl implements AuthService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private List<UserDetailsService> userDetailsService;
 
     @Override
     public AuthResponse register(ClientRegistrationRequest clientRegistrationRequest) {
@@ -60,7 +62,7 @@ public class AuthServiceImpl implements AuthService {
     public AuthResponse login(String email, String password) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-            UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+            UserDetails userDetails = userDetailsService.get(0).loadUserByUsername(email);
             String accessToken = jwtTokenProvider.generateToken(email);
             return new AuthResponse(true, "Login Successful", accessToken);
         } catch (AuthenticationException e) {
