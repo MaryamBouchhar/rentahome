@@ -1,39 +1,22 @@
 package com.fpt.rentahome.Models;
 
+import lombok.*;
+
+import javax.persistence.*;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "image")
 public class Image {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @ManyToOne
+    @JoinColumn(name = "property", nullable = false)
+    private Property property;
     private String url;
-    private int property_id;
-
-    public Image() {
-    }
-    public Image(int id, String url, int property_id) {
-        this.id = id;
-        this.url = url;
-        this.property_id = property_id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public int getProperty_id() {
-        return property_id;
-    }
-
-    public void setProperty_id(int property_id) {
-        this.property_id = property_id;
-    }
 }
