@@ -1,6 +1,6 @@
 package com.fpt.rentahome.services.Impl;
 
-import com.fpt.rentahome.Dto.requests.ClientRegistrationRequest;
+import com.fpt.rentahome.Dto.ClientRequestDto;
 import com.fpt.rentahome.Dto.responses.AuthResponse;
 import com.fpt.rentahome.Helpers.ApiResponse;
 import com.fpt.rentahome.Models.Client;

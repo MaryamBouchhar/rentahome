@@ -25,4 +25,16 @@ public class ClientService {
     public Optional<Client> getClientById(int id) {
         return clientRepository.findById(id);
     }
+
+    public void createClient(Client client) {
+        clientRepository.save(client);
+    }
+
+    public boolean existsByEmail(String email) {
+        return clientRepository.findByEmail(email) != null;
+    }
+
+    public Optional<Client> getClientByEmail(String email) {
+        return Optional.ofNullable(clientRepository.findByEmail(email));
+    }
 }

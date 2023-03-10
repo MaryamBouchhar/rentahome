@@ -1,5 +1,6 @@
 package com.fpt.rentahome.Controllers.Auth;
 
+import com.fpt.rentahome.Dto.ClientLoginRequest;
 import com.fpt.rentahome.Helpers.ApiResponse;
 import com.fpt.rentahome.Models.Client;
 import com.fpt.rentahome.Services.ClientService;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -22,7 +25,7 @@ public class ClientAuthController {
     @PostMapping("/register")
     public ResponseEntity<ApiResponse> registerClient(@RequestBody ClientRegistrationRequest clientRegistrationRequest) {
         // Check if email already exists
-        if (clientService.getClientByEmail(clientRegistrationRequest.getEmail()).isPresent()) {
+        if (!clientService.existsByEmail(clientRegistrationRequest.getEmail())) {
             return ResponseEntity.badRequest().body(new ApiResponse(false, "Email address is already taken"));
         }
 
@@ -35,7 +38,7 @@ public class ClientAuthController {
                 .build();
 
         // Save client to database
-        clientService.saveClient(client);
+        clientService.createClient(client);
 
         return ResponseEntity.ok().body(new ApiResponse(true, "Client registered successfully"));
     }
