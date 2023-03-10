@@ -38,43 +38,55 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
       <CardBox form @submit.prevent="submit">
         <FormField>
           <FormField label="Category">
-            <FormControl :options="selectOptions" v-model="property.category"/>
+            <FormControl type="text" :options="selectOptions" v-model="property.category"/>
           </FormField>
-          <FormField label="Type">
-            <FormControl :options="selectOptions" v-model="property.type"/>
+          <FormField label="Rent Type">
+            <FormControl type="text" :options="selectOptions" v-model="property.rent_type"/>
           </FormField>
         </FormField>
 
         <FormField>
           <FormField label="Bathroom Count">
-            <FormControl type="number" v-model="property.bathroomCount"/>
+            <FormControl type="number" v-model="property.bathroom_count"/>
           </FormField>
           <FormField label="Room Count ">
-            <FormControl type="number" v-model="property.roomCount"/>
+            <FormControl type="number" v-model="property.room_count"/>
           </FormField>
         </FormField>
         <FormField>
           <FormField label="Area">
-            <FormControl type="text" v-model="property.area"/>
+            <FormControl type="number" v-model="property.area"/>
           </FormField>
           <FormField label="Price">
-            <FormControl :options="selectOptions" v-model="property.price"/>
+            <FormControl type="number" :options="selectOptions" v-model="property.price"/>
           </FormField>
         </FormField>
         <FormField>
-          <FormField label="Location">
-            <FormControl :options="selectOptions" v-model="property.location"/>
+          <!--          <FormField label="Location">-->
+          <!--            <FormControl :options="selectOptions" v-model="property.location"/>-->
+          <!--          </FormField>-->
+          <FormField label="City">
+            <FormControl type="text" :options="selectOptions" v-model="property.location.city"/>
+          </FormField>
+          <FormField label="Address">
+            <FormControl type="text" :options="selectOptions" v-model="property.location.address"/>
+          </FormField>
+          <FormField>
+            <FormField label="Longitute">
+              <FormControl type="number" :options="selectOptions" v-model="property.location.longitude"/>
+            </FormField>
+            <FormField label="Latitude">
+              <FormControl type="number" :options="selectOptions" v-model="property.location.latitude"/>
+            </FormField>
           </FormField>
           <div id="map"></div>
 
           <FormField label="Equiped">
-
             <FormCheckRadioGroup
               name="sample-switch"
               type="switch"
               :options="{ one: ' '}"
-              v-model="property.equiped"
-            />
+              v-model="property._equipped"/>
           </FormField>
         </FormField>
 
@@ -85,9 +97,15 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
             v-model="property.description"
           />
         </FormField>
-        <FormFilePicker label="Upload"/>
+        <FormField label="Images">
+          <input type="file"
+                 id="images"
+                 name="images"
+                 class="file-input file-input-bordered file-input-info w-full max-w-xs"
+                 @change="onImageSelected"
+                 multiple/>
+        </FormField>
         <BaseDivider/>
-
 
         <template #footer>
 
@@ -99,8 +117,6 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
         </template>
       </CardBox>
     </SectionMain>
-
-
   </LayoutAuthenticated>
 </template>
 
@@ -123,22 +139,39 @@ export default {
         {value: "three", label: "Three"},
       ],
       property: {
-        category: "",
-        type: "",
-        bathroomCount: "",
-        roomCount: "",
-        area: "",
-        price: "",
-        location: "",
-        equiped: false,
         description: "",
-        image: "",
+        category: "House",
+        price: 0,
+        area: 0,
+        status: "Available",
+        location: {
+          address: "",
+          city: "",
+          longitude: 0,
+          latitude: 0,
+        },
+        rent_type: "Daily",
+        bathroom_count: 0,
+        room_count: 0,
+        _equipped: false,
+        publish_date: "2021-05-01",
       },
+      images: [],
     };
   },
   methods: {
     async addNewProperty() {
-      await axios.post(this.RESERVATION_API_BASE_URL + "/add-property", this.property)
+      const formData = new FormData();
+      formData.append("property", JSON.stringify(this.property));
+      for (let i = 0; i < this.images.length; i++) {
+        formData.append("images", this.images[i]);
+      }
+
+      const headers = {
+        'Content-Type': 'multipart/form-data'
+      }
+      //send property and images to backend
+      await axios.post(this.RESERVATION_API_BASE_URL + "/add-property", formData, headers)
         .then(() => {
           swal({
             text: "Property Added Successfully!",
@@ -151,6 +184,48 @@ export default {
         });
       console.log(this.property);
     },
+    async getCategories() {
+      await axios.get(this.RESERVATION_API_BASE_URL + "/categories")
+        .then(response => {
+          this.categories = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    async getRentTypes() {
+      await axios.get(this.RESERVATION_API_BASE_URL + "/rent-types")
+        .then(response => {
+          this.types = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    //change the status of is equiped
+    onSwitchChange() {
+      this.property._equipped = !this.property._equipped;
+      console.log("switchListener", this.property._equipped);
+    },
+    //multiple file upload
+    onImageSelected(e) {
+      for (let i = 0; i < e.target.files.length; i++) {
+        this.images.push(e.target.files[i]);
+      }
+      console.log(this.property.images)
+    },
+    async latestPropertyId() {
+      const current_property_id = 0;
+      await axios.get(this.RESERVATION_API_BASE_URL + "/latest-property-id")
+        .then(response => {
+          current_property_id = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      return current_property_id;
+    }
   },
   mounted() {
     const map = new google.maps.Map(document.getElementById("map"), {

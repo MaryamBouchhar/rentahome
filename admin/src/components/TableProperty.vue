@@ -166,10 +166,8 @@ const checked = (isChecked, property) => {
         {{ property.price }}
       </td>
       <td data-label="Status">
-        <div v-if="property.status == 'Pending'" class="badge badge-success">{{ property.status }}</div>
-        <div v-else-if="property.status == 'Reserved'" class="badge badge-error">{{ property.status }}</div>
-        <div v-else class="badge badge-warning">{{ property.status }}</div>
-
+        <div v-if="property.status == 'Available'" class="badge badge-success">{{ property.status }}</div>
+        <div v-else class="badge badge-error">{{ property.status }}</div>
       </td>
       <td data-label="Created" class="lg:w-1 whitespace-nowrap">
         <small
