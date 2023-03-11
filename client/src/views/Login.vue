@@ -9,6 +9,20 @@
                 <div class="h-1 w-20 bg-primary rounded-full mx-auto my-1"></div>
                 <form action="">
                     <div class="card-body">
+                        <!-- error alert -->
+                        <div v-show="message"
+                             class="alert alert-error shadow-lg my-2"
+                        >
+                            <div>
+                                <svg @click="$store.commit('setAuthError', null)"
+                                     xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
+                                     fill="none" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span>{{ message }}</span>
+                            </div>
+                        </div>
                         <div class="form-control">
                             <label class="label">
                                 <span class="label-text">Email</span>
@@ -41,9 +55,11 @@
                             <button class="btn btn-primary" @click.prevent="login">Login</button>
                         </div>
                         <label class="label">
-              <span class="label-text">
-                Don't have an account? <router-link to="/register" class="text-primary">Register</router-link>
-              </span>
+                            <span class="label-text">
+                              Don't have an account? <router-link
+                                :to="toRegister"
+                                class="text-primary">Register</router-link>
+                            </span>
                         </label>
                     </div>
                 </form>
@@ -54,22 +70,24 @@
 
 <script>
 
-import { useStore } from 'vuex';
-import { computed } from 'vue';
+import {useStore} from 'vuex';
+import {computed} from 'vue';
 
 export default {
     name: "Login",
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            toRegister: '/register'
         }
     },
     setup() {
         const store = useStore();
 
         return {
-            rtl: computed(() => store.state.rtl)
+            rtl: computed(() => store.state.rtl),
+            message: computed(() => store.state.auth_error)
         }
     },
     methods: {
@@ -77,12 +95,11 @@ export default {
             this.$store.dispatch('login', {
                 email: this.email,
                 password: this.password
-            }).then(() => {
-                this.$router.push('/profile');
-            }).catch((error) => {
-                console.log(error);
-            });
+            })
         }
+    },
+    created() {
+        this.toRegister += this.$router.currentRoute.value.query.redirect ? '?redirect=' + this.$router.currentRoute.value.query.redirect : '';
     }
 }
 </script>
