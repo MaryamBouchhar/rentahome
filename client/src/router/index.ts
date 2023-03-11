@@ -108,7 +108,7 @@ router.beforeEach((to, from, next) => {
     // @ts-ignore
     if (requireAuth && !isAuthenticated) {
         store.commit('setPath', '/login')
-        next('/login');
+        next('/login?redirect=' + to.path);
     } else {
         store.commit('setPath', to.path)
         next();
