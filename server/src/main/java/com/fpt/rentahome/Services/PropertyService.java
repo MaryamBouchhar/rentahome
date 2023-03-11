@@ -5,7 +5,7 @@ import com.fpt.rentahome.Models.*;
 
 import com.fpt.rentahome.Repositories.ImageRepository;
 import com.fpt.rentahome.Repositories.PropertyRepository;
-import org.apache.commons.io.FileUtils;
+//import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import org.apache.commons.io.FilenameUtils;
+//import org.apache.commons.io.FilenameUtils;
 
 import javax.servlet.ServletContext;
 
