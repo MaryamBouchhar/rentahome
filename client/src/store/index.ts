@@ -73,31 +73,39 @@ const store = createStore({
                     // @ts-ignore
                     router.push(redirect)
                 } else {
-                    commit('setAuthError', "Invalid credentials");
+                    commit('setAuthError', response.data.message);
                 }
             }).catch(error => {
                 console.log(error);
                 commit('setAuthError', error.response.data.message);
             });
         },
-        async register({commit}, {name, email, password}) {
+        async register({commit}, {name, email, password, phone}) {
             // send registration request to backend
             axios.post(API_BASE_URL + 'register', {
                 name: name,
                 email: email,
-                password: password
+                password: password,
+                phone: phone
             }).then(response => {
-                console.log(response);
+                if (response.data.success) {
+                    // save token to local storage
+                    const {accessToken} = response.data.accessToken;
+                    localStorage.setItem('token', accessToken);
 
-                // save token to local storage
-                const {token} = response.data;
-                localStorage.setItem('token', token);
+                    // set authentication status in store
+                    commit('setToken', accessToken);
+                    commit('setIsAuthenticated', true);
 
-                // set authentication status in store
-                commit('setToken', token);
-                commit('setIsAuthenticated', true);
+                    let redirect = router.currentRoute.value.query.redirect || '/';
+                    // @ts-ignore
+                    router.push(redirect)
+                } else {
+                    commit('setAuthError', response.data.message);
+                }
             }).catch(error => {
                 console.log(error);
+                commit('setAuthError', error.response.data.message);
             });
         },
         async getProtectedData({state}) {
@@ -107,8 +115,6 @@ const store = createStore({
                     Authorization: `Bearer ${state.token}`
                 }
             }).then(response => {
-                console.log(response);
-
                 // save user to store
                 const {user} = response.data;
                 // @ts-ignore
@@ -125,6 +131,8 @@ const store = createStore({
             commit('setToken', '');
             commit('setIsAuthenticated', false);
             commit('setUser', null);
+
+            router.push('/');
         }
     },
 });
