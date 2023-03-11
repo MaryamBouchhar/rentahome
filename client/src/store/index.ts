@@ -10,7 +10,8 @@ const store = createStore({
             path: '/',
             isAuthenticated: false,
             token: localStorage.getItem('token') || '',
-            user: null
+            user: null,
+            auth_error: null,
         };
     },
 
@@ -29,12 +30,24 @@ const store = createStore({
         },
         setUser(state, user) {
             state.user = user;
+        },
+        setAuthError(state, error) {
+            state.auth_error = error;
+            setTimeout(() => {
+                state.auth_error = null;
+            }, 3000)
         }
     },
 
     getters: {
         isAuthenticated(state) {
             return state.isAuthenticated;
+        },
+        user(state) {
+            return state.user;
+        },
+        authError(state) {
+            return state.auth_error;
         }
     },
 
@@ -45,17 +58,20 @@ const store = createStore({
                 email: email,
                 password: password
             }).then(response => {
-                console.log(response);
+                if (response.data.success) {
+                    // save token to local storage
+                    const {token} = response.data;
+                    localStorage.setItem('token', token);
 
-                // save token to local storage
-                const {token} = response.data;
-                localStorage.setItem('token', token);
-
-                // set authentication status in store
-                commit('setToken', token);
-                commit('setIsAuthenticated', true);
+                    // set authentication status in store
+                    commit('setToken', token);
+                    commit('setIsAuthenticated', true);
+                } else {
+                    commit('setAuthError', "Invalid credentials");
+                }
             }).catch(error => {
                 console.log(error);
+                commit('setAuthError', "Invalid credentials");
             });
         },
         async register({commit}, {name, email, password}) {
