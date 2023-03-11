@@ -27,10 +27,10 @@ public class ClientAuthController {
     private JwtTokenProvider jwtTokenUtil;
 
     @PostMapping("/register")
-    public ResponseEntity<ApiResponse> registerClient(@RequestBody ClientRegistrationRequest clientRegistrationRequest) {
+    public ResponseEntity<AuthResponse> registerClient(@RequestBody ClientRegistrationRequest clientRegistrationRequest) {
         // Check if email already exists
         if (clientService.existsByEmail(clientRegistrationRequest.getEmail())) {
-            return ResponseEntity.badRequest().body(new ApiResponse(false, "Email address is already taken"));
+            return ResponseEntity.badRequest().body(new AuthResponse(false, "Email address is already taken", null));
         }
 
         // Create client object from request
@@ -44,7 +44,10 @@ public class ClientAuthController {
         // Save client to database
         clientService.createClient(client);
 
-        return ResponseEntity.ok().body(new ApiResponse(true, "Client registered successfully"));
+        // Generate JWT token
+        String token = jwtTokenUtil.generateToken(client.getEmail());
+
+        return ResponseEntity.ok().body(new AuthResponse(true, "Client registered successfully", token));
     }
 
     @PostMapping("/login")
