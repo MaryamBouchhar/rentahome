@@ -215,7 +215,7 @@ export default {
       console.log(this.property.images)
     },
     async latestPropertyId() {
-      const current_property_id = 0;
+      let current_property_id = 0;
       await axios.get(this.RESERVATION_API_BASE_URL + "/latest-property-id")
         .then(response => {
           current_property_id = response.data;
