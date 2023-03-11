@@ -179,7 +179,7 @@ export default {
         'Content-Type': 'multipart/form-data'
       }
       //send property and images to backend
-      await axios.post(this.RESERVATION_API_BASE_URL + "/add-property", formData, headers)
+      await axios.post(this.RESERVATION_API_BASE_URL + "/add-property", formData)
         .then(() => {
           swal({
             text: "Property Added Successfully!",
