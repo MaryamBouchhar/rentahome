@@ -1,5 +1,6 @@
 import {createStore} from 'vuex';
 import axios from "axios";
+import router from "../router";
 
 const API_BASE_URL = 'http://localhost:8080/api/auth/';
 
@@ -10,7 +11,8 @@ const store = createStore({
             path: '/',
             isAuthenticated: false,
             token: localStorage.getItem('token') || '',
-            user: null
+            user: null,
+            auth_error: null,
         };
     },
 
@@ -29,12 +31,24 @@ const store = createStore({
         },
         setUser(state, user) {
             state.user = user;
+        },
+        setAuthError(state, error) {
+            state.auth_error = error;
+            setTimeout(() => {
+                state.auth_error = null;
+            }, 3000)
         }
     },
 
     getters: {
         isAuthenticated(state) {
             return state.isAuthenticated;
+        },
+        user(state) {
+            return state.user;
+        },
+        authError(state) {
+            return state.auth_error;
         }
     },
 
@@ -45,37 +59,53 @@ const store = createStore({
                 email: email,
                 password: password
             }).then(response => {
-                console.log(response);
+                if (response.data.success) {
+                    // save token to local storage
+                    const {token} = response.data;
+                    localStorage.setItem('token', token);
 
-                // save token to local storage
-                const {token} = response.data;
-                localStorage.setItem('token', token);
+                    // set authentication status in store
+                    commit('setToken', token);
+                    commit('setIsAuthenticated', true);
 
-                // set authentication status in store
-                commit('setToken', token);
-                commit('setIsAuthenticated', true);
+                    let redirect = router.currentRoute.value.query.redirect || '/';
+
+                    // @ts-ignore
+                    router.push(redirect)
+                } else {
+                    commit('setAuthError', response.data.message);
+                }
             }).catch(error => {
                 console.log(error);
+                commit('setAuthError', error.response.data.message);
             });
         },
-        async register({commit}, {name, email, password}) {
+        async register({commit}, {name, email, password, phone}) {
             // send registration request to backend
             axios.post(API_BASE_URL + 'register', {
                 name: name,
                 email: email,
-                password: password
+                password: password,
+                phone: phone
             }).then(response => {
-                console.log(response);
+                if (response.data.success) {
+                    // save token to local storage
+                    const {accessToken} = response.data.accessToken;
+                    localStorage.setItem('token', accessToken);
 
-                // save token to local storage
-                const {token} = response.data;
-                localStorage.setItem('token', token);
+                    // set authentication status in store
+                    commit('setToken', accessToken);
+                    commit('setIsAuthenticated', true);
 
-                // set authentication status in store
-                commit('setToken', token);
-                commit('setIsAuthenticated', true);
+                    let redirect = router.currentRoute.value.query.redirect || '/';
+                    // @ts-ignore
+                    router.push(redirect)
+                } else {
+                    commit('setAuthError', response.data.message);
+                }
             }).catch(error => {
                 console.log(error);
+                commit('setAuthError', error.response.data.message);
             });
         },
         async getProtectedData({state}) {
@@ -85,8 +115,6 @@ const store = createStore({
                     Authorization: `Bearer ${state.token}`
                 }
             }).then(response => {
-                console.log(response);
-
                 // save user to store
                 const {user} = response.data;
                 // @ts-ignore
@@ -103,6 +131,8 @@ const store = createStore({
             commit('setToken', '');
             commit('setIsAuthenticated', false);
             commit('setUser', null);
+
+            router.push('/');
         }
     },
 });
