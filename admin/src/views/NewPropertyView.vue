@@ -270,7 +270,11 @@ export default {
     // Add an event listener to the map to move the marker to the clicked location
     map.on('click', (event) => {
       const [longitude, latitude] = transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+      //fill the location object
+      this.property.location.longitude = longitude;
+      this.property.location.latitude = latitude;
       console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+      console.log("location", this.property.location);
       marker.setGeometry(new Point(event.coordinate));
     });
   },
