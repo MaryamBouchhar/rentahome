@@ -124,7 +124,8 @@ export default {
                 this.$store.dispatch("register", {
                     name: this.name,
                     email: this.email,
-                    password: this.password
+                    password: this.password,
+                    phone: this.phone
                 });
             }
         },
