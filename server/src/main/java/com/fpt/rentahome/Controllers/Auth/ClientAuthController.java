@@ -67,6 +67,6 @@ public class ClientAuthController {
         String token = jwtTokenUtil.generateToken(client.getEmail());
 
         // Return token in response
-        return ResponseEntity.ok(new AuthResponse(token));
+        return ResponseEntity.ok(new AuthResponse(true, "Successfully logged in", token));
     }
 }

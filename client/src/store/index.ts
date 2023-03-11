@@ -1,5 +1,6 @@
 import {createStore} from 'vuex';
 import axios from "axios";
+import router from "../router";
 
 const API_BASE_URL = 'http://localhost:8080/api/auth/';
 
@@ -66,12 +67,14 @@ const store = createStore({
                     // set authentication status in store
                     commit('setToken', token);
                     commit('setIsAuthenticated', true);
+
+                    router.push('/')
                 } else {
                     commit('setAuthError', "Invalid credentials");
                 }
             }).catch(error => {
                 console.log(error);
-                commit('setAuthError', "Invalid credentials");
+                commit('setAuthError', error.response.data.message);
             });
         },
         async register({commit}, {name, email, password}) {
