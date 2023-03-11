@@ -68,7 +68,10 @@ const store = createStore({
                     commit('setToken', token);
                     commit('setIsAuthenticated', true);
 
-                    router.push('/')
+                    let redirect = router.currentRoute.value.query.redirect || '/';
+
+                    // @ts-ignore
+                    router.push(redirect)
                 } else {
                     commit('setAuthError', "Invalid credentials");
                 }
