@@ -62,9 +62,9 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
           </FormField>
         </FormField>
         <FormField>
-          <!--          <FormField label="Location">-->
-          <!--            <FormControl :options="selectOptions" v-model="property.location"/>-->
-          <!--          </FormField>-->
+          <FormField label="Location">
+            <div ref="mapContainer" style="height: 344px;"></div>
+          </FormField>
           <FormField label="City">
             <FormControl type="text" :options="selectOptions" v-model="property.location.city"/>
           </FormField>
@@ -122,6 +122,14 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
 
 <script>
 import axios from "axios";
+import {Map, View} from 'ol';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
+import VectorSource from 'ol/source/Vector';
+import VectorLayer from 'ol/layer/Vector';
+import {transform} from 'ol/proj';
 
 export default {
   name: "NewPropertyView",
@@ -171,7 +179,7 @@ export default {
         'Content-Type': 'multipart/form-data'
       }
       //send property and images to backend
-      await axios.post(this.RESERVATION_API_BASE_URL + "/add-property", formData, headers)
+      await axios.post(this.RESERVATION_API_BASE_URL + "/add-property", formData)
         .then(() => {
           swal({
             text: "Property Added Successfully!",
@@ -228,11 +236,48 @@ export default {
     }
   },
   mounted() {
-    const map = new google.maps.Map(document.getElementById("map"), {
-      center: {lat: 37.7749, lng: -122.4194},
-      zoom: 12,
+    // Define the map view
+    const view = new View({
+      center: [0, 0],
+      zoom: 2,
+      projection: 'EPSG:3857'
     });
-  }
+
+    // Define the map layer
+    const layer = new TileLayer({
+      source: new OSM(),
+    });
+
+    // Create the marker feature
+    const marker = new Feature({
+      geometry: new Point([0, 0]),
+    });
+
+    // Create the vector layer for the marker
+    const vectorLayer = new VectorLayer({
+      source: new VectorSource({
+        features: [marker],
+      }),
+    });
+
+    // Create the map object and set it as the view's target
+    const map = new Map({
+      target: this.$refs.mapContainer,
+      layers: [layer, vectorLayer],
+      view: view,
+    });
+
+    // Add an event listener to the map to move the marker to the clicked location
+    map.on('click', (event) => {
+      const [longitude, latitude] = transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+      //fill the location object
+      this.property.location.longitude = longitude;
+      this.property.location.latitude = latitude;
+      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+      console.log("location", this.property.location);
+      marker.setGeometry(new Point(event.coordinate));
+    });
+  },
 };
 </script>
 
