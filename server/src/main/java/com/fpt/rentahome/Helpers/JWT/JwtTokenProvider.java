@@ -78,5 +78,13 @@ public class JwtTokenProvider {
                 .getBody()
                 .setId(null);
     }
+
+    public boolean isSessionValid(String sessionId) {
+        return Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(sessionId)
+                .getBody()
+                .getId() != null;
+    }
 }
 
