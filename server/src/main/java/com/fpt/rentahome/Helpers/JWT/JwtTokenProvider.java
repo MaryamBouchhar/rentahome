@@ -59,5 +59,13 @@ public class JwtTokenProvider {
         }
         return false;
     }
+
+    public String getSessionIdFromToken(String token) {
+        return Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody()
+                .getId();
+    }
 }
 
