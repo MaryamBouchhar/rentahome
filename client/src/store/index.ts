@@ -124,15 +124,23 @@ const store = createStore({
             });
         },
         async logout({commit}) {
-            // remove token from local storage
-            localStorage.removeItem('token');
+            axios.post(API_BASE_URL + 'logout', {}, {
+                headers: {'Authorization': 'Bearer ' + store.state.token}
+            }).then(response => {
+                console.log(response);
 
-            // set authentication status in store
-            commit('setToken', '');
-            commit('setIsAuthenticated', false);
-            commit('setUser', null);
+                // remove token from local storage
+                localStorage.removeItem('token');
 
-            router.push('/');
+                // set authentication status in store
+                commit('setToken', '');
+                commit('setIsAuthenticated', false);
+                commit('setUser', null);
+
+                router.push('/');
+            }).catch(error => {
+                console.log(error);
+            });
         }
     },
 });
