@@ -61,11 +61,11 @@ const store = createStore({
             }).then(response => {
                 if (response.data.success) {
                     // save token to local storage
-                    const {token} = response.data;
-                    localStorage.setItem('token', token);
+                    const {accessToken} = response.data;
+                    localStorage.setItem('token', accessToken);
 
                     // set authentication status in store
-                    commit('setToken', token);
+                    commit('setToken', accessToken);
                     commit('setIsAuthenticated', true);
 
                     let redirect = router.currentRoute.value.query.redirect || '/';
@@ -90,7 +90,7 @@ const store = createStore({
             }).then(response => {
                 if (response.data.success) {
                     // save token to local storage
-                    const {accessToken} = response.data.accessToken;
+                    const {accessToken} = response.data;
                     localStorage.setItem('token', accessToken);
 
                     // set authentication status in store
