@@ -32,25 +32,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/**")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-
-        http
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").authenticated()
-                .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .and()
                 .logout()
                 .logoutUrl("/api/auth/logout")
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID");
+                .deleteCookies("JSESSIONID")
+                .and()
+                .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+
     }
 
     @Bean
