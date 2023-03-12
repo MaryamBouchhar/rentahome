@@ -61,6 +61,9 @@ public class JwtTokenProvider {
     }
 
     public String getSessionIdFromToken(String token) {
+        if (!validateToken(token)) {
+            return null;
+        }
         return Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
