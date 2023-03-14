@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="property-details w-full mx-4">
-        <h1 class="text-3xl font-bold mb-3">{{ property.title }}</h1>
+        <h1 class="text-3xl font-bold mb-3"> {{ property.category }} in {{ property.category }}</h1>
         <div class="flex flex-row items-center gap-2 mb-3">
           <div class="rating rating-sm">
             <input class="mask mask-star-2 bg-orange-400"/>
@@ -73,10 +73,10 @@
             <input class="mask mask-star-2 bg-orange-400"/>
             <input class="mask mask-star-2 bg-orange-400"/>
           </div>
-          <span class="rate-count">({{ property.total_rating }})</span>
+          <span class="rate-count">()</span>
         </div>
         <p class="mb-3">{{ property.description }}</p>
-        <h1 class="font-bold text-xl text-green-400 mb-3">${{ property.price }} / month</h1>
+        <h1 class="font-bold text-xl text-green-400 mb-3">${{ property.price }} </h1>
         <div class="overflow-x-auto mb-3">
           <table class="table w-full">
             <tbody>
@@ -93,7 +93,7 @@
             <!-- row 3 -->
             <tr>
               <th class="font-bold text-lg">Rooms count</th>
-              <td>{{ property.rooms_count }}</td>
+              <td>{{ property.room_count }}</td>
             </tr>
             </tbody>
           </table>
@@ -110,32 +110,24 @@
 </template>
 
 <script>
-
+import axios from "axios";
 export default {
   name: "PropertyDetails",
   data() {
     return {
       active: 1,
-      property_id: this.$route.params.id,
-      property: {
-        id: 3,
-        title: 'Condo in Montreal',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-        price: 1000,
-        rating: 4,
-        total_rating: 143,
-        status: 'For Rent',
-        category: 'Condo',
-        rent_type: 'Monthly',
-        rooms_count: 3,
-        city: 'Montreal',
-        image: 'https://picsum.photos/500/300?random=3',
-      },
+      property: [],
     };
   },
-  mounted() {
-    console.log(this.property_id)
+
+  created() {
+    const id = this.$route.params.id;
+    axios.get(`http://localhost:8080/manage-properties/properties/${id}`).then((response) => {
+      this.property = response.data;
+    });
   },
+
+
 }
 </script>
 

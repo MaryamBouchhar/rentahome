@@ -52,13 +52,16 @@ public class PropertyController {
 
     //get property
     @GetMapping("/properties/{id}")
-    public ResponseEntity<Property> getPropertyById(@PathVariable("id") int id) {
+    /*public ResponseEntity<Property> getPropertyById(@PathVariable("id") int id) {
         Optional<Property> property = propertyService.getPropertyById(id);
         if (property == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Property getedproperty = property.get();
         return new ResponseEntity<>(getedproperty, HttpStatus.OK);
+    }*/
+    public Property getProperty(@PathVariable Integer id) {
+        return propertyService.getProperty(id);
     }
 
 
