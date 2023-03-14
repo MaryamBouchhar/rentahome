@@ -41,7 +41,7 @@ public class AuthServiceImpl implements AuthService {
         Client existingClient = clientRepository.findByEmail(clientRegistrationRequest.getEmail());
 
         if (existingClient != null) {
-            return new AuthResponse(false, "Email already exists", null);
+            return new AuthResponse(null, false, "Email address is already taken", null);
         }
 
         Client client = Client.builder()
@@ -55,7 +55,7 @@ public class AuthServiceImpl implements AuthService {
 
         String accessToken = jwtTokenProvider.generateToken(client.getEmail());
 
-        return new AuthResponse(true, "Registration Successful", accessToken);
+        return new AuthResponse(accessToken, true, "Registration Successful", client);
     }
 
     @Override
@@ -63,10 +63,11 @@ public class AuthServiceImpl implements AuthService {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
             UserDetails userDetails = userDetailsService.get(0).loadUserByUsername(email);
+            Client client = clientRepository.findByEmail(email);
             String accessToken = jwtTokenProvider.generateToken(email);
-            return new AuthResponse(true, "Login Successful", accessToken);
+            return new AuthResponse(accessToken, true, "Login Successful", client);
         } catch (AuthenticationException e) {
-            return new AuthResponse(false, "Invalid email/password supplied", null);
+            return new AuthResponse(null, false, "Invalid email or password", null);
         }
     }
 }
