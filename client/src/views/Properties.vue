@@ -5,7 +5,7 @@
     </h1>
     <!-- TODO: Add filter options in sidebar -->
     <div class="flex flex-col lg:flex-row">
-      <div class="filter-bar w-full lg:w-1/4 px-4">
+      <div class="filter-bar w-full lg:w-1/4 px-4 rounded-lg border border-gray-400 py-3 ml-2 shadow-lg">
         <!-- Search -->
         <div class="form-control mb-2">
           <div class="input-group">
