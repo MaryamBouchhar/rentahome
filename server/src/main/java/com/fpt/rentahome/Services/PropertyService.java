@@ -44,8 +44,8 @@ public class PropertyService implements ServletContextAware {
         List<Property> properties = propertyRepository.findAll();
         List<Property> recentProperties = new ArrayList<>();
 
-        if (properties.size() > 5) {
-            for (int i = 0; i < 5; i++) {
+        if (properties.size() > 6) {
+            for (int i = 0; i < 6; i++) {
                 recentProperties.add(properties.get(i));
             }
         } else {
