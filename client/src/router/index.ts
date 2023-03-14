@@ -102,8 +102,12 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     // @ts-ignore
     const route = routes.find(route => route.path === to.path);
+
     // @ts-ignore
-    const requireAuth = route.requireAuth || false;
+    let requireAuth = false;
+
+    route ? requireAuth = route.requireAuth : requireAuth = false;
+
     const isAuthenticated = store.getters.isAuthenticated;
     // @ts-ignore
     if (requireAuth && !isAuthenticated) {

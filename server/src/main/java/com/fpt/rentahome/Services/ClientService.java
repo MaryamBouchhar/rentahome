@@ -37,4 +37,14 @@ public class ClientService {
     public Optional<Client> getClientByEmail(String email) {
         return Optional.ofNullable(clientRepository.findByEmail(email));
     }
+
+    public Client updateClient(int id, Client client) {
+        Client client1 = clientRepository.findById(id).get();
+        client1.setName(client.getName());
+        client1.setEmail(client.getEmail());
+        client1.setPhone(client.getPhone());
+        client1.setPassword(client.getPassword());
+        clientRepository.save(client1);
+        return client1;
+    }
 }

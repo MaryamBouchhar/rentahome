@@ -11,18 +11,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @CrossOrigin
 @RestController
-@RequestMapping("/manage-client")
+@RequestMapping("/api/clients")
 public class ClientController {
 
     @Autowired
     private ClientService clientService;
-    public ClientController(ClientService clientService) {
-        this.clientService = clientService;
-    }
+
     //FETCH ALL Clients
     @GetMapping("/clients")
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
 
+    //Update Client BY ID
+    @PutMapping("/clients/{id}")
+    public Client updateClient(@PathVariable int id, @RequestBody Client client) {
+        return clientService.updateClient(id, client);
+    }
 }
