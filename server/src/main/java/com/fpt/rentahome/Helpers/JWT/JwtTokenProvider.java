@@ -1,11 +1,9 @@
 package com.fpt.rentahome.Helpers.JWT;
 
-import com.fpt.rentahome.Services.Impl.ClientDetailsServiceImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -60,15 +58,14 @@ public class JwtTokenProvider {
         return false;
     }
 
-    public String getSessionIdFromToken(String token) {
+    public Claims getSessionFromToken(String token) {
         if (!validateToken(token)) {
             return null;
         }
         return Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
-                .getBody()
-                .getId();
+                .getBody();
     }
 
     public void invalidateSession(String sessionId) {
