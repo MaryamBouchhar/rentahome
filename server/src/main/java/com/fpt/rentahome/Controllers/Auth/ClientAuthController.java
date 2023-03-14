@@ -23,7 +23,7 @@ import java.util.Optional;
 
 import static org.springframework.data.relational.core.sql.Assignments.value;
 
-@CrossOrigin(origins = "http://localhost:5173/**", maxAge = 3600)
+@CrossOrigin
 @RestController
 @RequestMapping("/api/auth")
 public class ClientAuthController {
@@ -120,6 +120,7 @@ public class ClientAuthController {
         return ResponseEntity.ok(new ApiResponse(true, "Successfully logged out"));
     }
 
+    @CrossOrigin(origins = "http://localhost:5173/")
     @PostMapping("/check")
     public ResponseEntity<?> checkClient(@RequestBody TokenRequest request) {
         String token = request.getToken();
