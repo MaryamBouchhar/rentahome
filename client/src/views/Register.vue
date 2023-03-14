@@ -56,6 +56,18 @@
                                 v-model="phone"
                             />
                         </div>
+                        <!-- select avatar -->
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-texr">Avatar</span>
+                            </label>
+                            <input
+                                type="file"
+                                class="file-input file-input-bordered w-full"
+                                accept="image/*"
+                                @change="onFileChange"
+                            >
+                        </div>
                         <div class="form-control grid grid-cols-2 gap-2">
                             <div class="form-control">
                                 <label class="label">
@@ -106,6 +118,7 @@ export default {
             name: "",
             email: "",
             phone: "",
+            file: null,
             password: "",
             confirmPassword: ""
         };
@@ -127,6 +140,9 @@ export default {
                     password: this.password,
                     phone: this.phone
                 });
+                if (this.file) {
+                    this.$store.dispatch("uploadAvatar", this.file);
+                }
             }
         },
         validateForm() {
@@ -151,6 +167,9 @@ export default {
                 return false;
             }
             return true;
+        },
+        onFileChange(e) {
+            this.file = e.target.files[0];
         }
     },
 }

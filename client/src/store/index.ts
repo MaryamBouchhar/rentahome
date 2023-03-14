@@ -156,6 +156,9 @@ const store = createStore({
                 commit('setIsAuthenticated', false);
                 commit('setUser', null);
             });
+        },
+        uploadAvatar({commit}, {avatar}) {
+
         }
     },
 });
