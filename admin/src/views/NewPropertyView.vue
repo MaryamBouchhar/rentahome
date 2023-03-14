@@ -38,10 +38,10 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
       <CardBox form @submit.prevent="submit">
         <FormField>
           <FormField label="Category">
-            <FormControl type="text" :options="selectOptions" v-model="property.category"/>
+            <FormControl type="text" :options="categories" v-model="property.category"/>
           </FormField>
           <FormField label="Rent Type">
-            <FormControl type="text" :options="selectOptions" v-model="property.rent_type"/>
+            <FormControl type="text" :options="types" v-model="property.rent_type"/>
           </FormField>
         </FormField>
 
@@ -58,7 +58,7 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
             <FormControl type="number" v-model="property.area"/>
           </FormField>
           <FormField label="Price">
-            <FormControl type="number" :options="selectOptions" v-model="property.price"/>
+            <FormControl type="number" v-model="property.price"/>
           </FormField>
         </FormField>
         <FormField>
@@ -66,17 +66,17 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
             <div ref="mapContainer" style="height: 344px;"></div>
           </FormField>
           <FormField label="City">
-            <FormControl type="text" :options="selectOptions" v-model="property.location.city"/>
+            <FormControl type="text" v-model="property.location.city"/>
           </FormField>
           <FormField label="Address">
-            <FormControl type="text" :options="selectOptions" v-model="property.location.address"/>
+            <FormControl type="text" v-model="property.location.address"/>
           </FormField>
           <FormField>
             <FormField label="Longitute">
-              <FormControl type="number" :options="selectOptions" v-model="property.location.longitude"/>
+              <FormControl type="number" v-model="property.location.longitude"/>
             </FormField>
             <FormField label="Latitude">
-              <FormControl type="number" :options="selectOptions" v-model="property.location.latitude"/>
+              <FormControl type="number" v-model="property.location.latitude"/>
             </FormField>
           </FormField>
           <div id="map"></div>
@@ -85,8 +85,8 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
             <FormCheckRadioGroup
               name="sample-switch"
               type="switch"
-              :options="{ one: ' '}"
-              v-model="property._equipped"/>
+              :options="{ one: ''}"
+              @change="onSwitchChange"/>
           </FormField>
         </FormField>
 
@@ -137,14 +137,14 @@ export default {
     return {
       RESERVATION_API_BASE_URL: "http://localhost:8080/manage-properties",
       categories: [
-        {value: "one", label: "One"},
-        {value: "two", label: "Two"},
-        {value: "three", label: "Three"},
+        {value: "House", label: "House"},
+        {value: "Apartment", label: "Apartment"},
+        {value: "Villa", label: "Villa"},
+        {value: "Office", label: "Office"},
       ],
       types: [
-        {value: "one", label: "One"},
-        {value: "two", label: "Two"},
-        {value: "three", label: "Three"},
+        {value: "Daily", label: "Daily"},
+        {value: "Monthly", label: "Monthly"},
       ],
       property: {
         description: "",
@@ -161,14 +161,19 @@ export default {
         rent_type: "Daily",
         bathroom_count: 0,
         room_count: 0,
-        _equipped: false,
-        publish_date: "2021-05-01",
+        _equipped: null,
+        publish_date: null,
       },
       images: [],
+      is_equipped: false,
     };
   },
   methods: {
     async addNewProperty() {
+      this.property.category = this.property.category.value;
+      this.property.rent_type = this.property.rent_type.value;
+      this.property._equipped = this.is_equipped;
+
       const formData = new FormData();
       formData.append("property", JSON.stringify(this.property));
       for (let i = 0; i < this.images.length; i++) {
@@ -211,9 +216,9 @@ export default {
         });
     },
     //change the status of is equiped
-    onSwitchChange() {
-      this.property._equipped = !this.property._equipped;
-      console.log("switchListener", this.property._equipped);
+    onSwitchChange(e) {
+      this.is_equipped = e.target.checked;
+      console.log("IS EQUIPED: " + this.is_equipped);
     },
     //multiple file upload
     onImageSelected(e) {
@@ -223,7 +228,9 @@ export default {
       console.log(this.property.images)
     },
     async latestPropertyId() {
+
       let current_property_id = 0;
+
       await axios.get(this.RESERVATION_API_BASE_URL + "/latest-property-id")
         .then(response => {
           current_property_id = response.data;
@@ -242,6 +249,7 @@ export default {
       zoom: 2,
       projection: 'EPSG:3857'
     });
+
 
     // Define the map layer
     const layer = new TileLayer({
@@ -278,6 +286,7 @@ export default {
       marker.setGeometry(new Point(event.coordinate));
     });
   },
+
 };
 </script>
 

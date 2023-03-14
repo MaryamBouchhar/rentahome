@@ -104,7 +104,7 @@ const checked = (isChecked, client) => {
       <th>Email</th>
       <th>Phone number</th>
 
-      <th />
+
     </tr>
     </thead>
     <tbody>
@@ -127,18 +127,7 @@ const checked = (isChecked, client) => {
       <td data-label="Phone">
         {{ client.phone }}
       </td>
-      <td class="before:hidden lg:w-1 whitespace-nowrap">
-        <BaseButtons type="justify-start lg:justify-end" no-wrap>
 
-          <BaseButton
-            color="danger"
-            :icon="mdiTrashCan"
-            small
-            @click="isModalDangerActive = true"
-          />
-
-        </BaseButtons>
-      </td>
     </tr>
     </tbody>
   </table>

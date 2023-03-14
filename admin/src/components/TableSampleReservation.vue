@@ -105,7 +105,7 @@ const checked = (isChecked, client) => {
       <th v-if="checkable"/>
 
       <th>Property ID</th>
-      <th>Client ID</th>
+      <th>Client </th>
       <th>Status</th>
       <th>Added at</th>
       <th/>
