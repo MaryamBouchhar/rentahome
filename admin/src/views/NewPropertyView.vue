@@ -35,7 +35,7 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
           />
         </router-link>
       </SectionTitleLineWithButton>
-      <CardBox form @submit.prevent="submit">
+      <CardBox form>
         <FormField>
           <FormField label="Category">
             <FormControl type="text" :options="categories" v-model="property.category"/>
@@ -82,11 +82,10 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
           <div id="map"></div>
 
           <FormField label="Equiped">
-            <FormCheckRadioGroup
-              name="sample-switch"
-              type="switch"
-              :options="{ one: ''}"
-              @change="onSwitchChange"/>
+            <div class="flex items-center">
+              <input checked id="checked-checkbox" type="checkbox" value="" v-model="property._equipped"
+                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            </div>
           </FormField>
         </FormField>
 
@@ -139,8 +138,11 @@ export default {
       categories: [
         {value: "House", label: "House"},
         {value: "Apartment", label: "Apartment"},
+        {value: "Condo", label: "Condo"},
+        {value: "Townhouse", label: "Townhouse"},
         {value: "Villa", label: "Villa"},
-        {value: "Office", label: "Office"},
+        {value: "Studio", label: "Studio"},
+        {value: "Other", label: "Other"},
       ],
       types: [
         {value: "Daily", label: "Daily"},
@@ -161,18 +163,16 @@ export default {
         rent_type: "Daily",
         bathroom_count: 0,
         room_count: 0,
-        _equipped: null,
+        _equipped: false,
         publish_date: null,
       },
       images: [],
-      is_equipped: false,
     };
   },
   methods: {
     async addNewProperty() {
       this.property.category = this.property.category.value;
       this.property.rent_type = this.property.rent_type.value;
-      this.property._equipped = this.is_equipped;
 
       const formData = new FormData();
       formData.append("property", JSON.stringify(this.property));
@@ -191,6 +191,7 @@ export default {
             icon: "success",
             closeOnClickOutside: false,
           });
+          this.$router.go();
         })
         .catch(error => {
           console.log(error);
@@ -217,8 +218,8 @@ export default {
     },
     //change the status of is equiped
     onSwitchChange(e) {
-      this.is_equipped = e.target.checked;
-      console.log("IS EQUIPED: " + this.is_equipped);
+      this.property._equipped = e.target.checked;
+      console.log("IS EQUIPED: " + this.property._equipped);
     },
     //multiple file upload
     onImageSelected(e) {
