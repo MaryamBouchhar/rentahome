@@ -129,7 +129,9 @@ public class PropertyService implements ServletContextAware {
             return null;
         }
     }
-
+    public Property getProperty(Integer id) {
+        return propertyRepository.findById(id).orElseThrow();
+    }
     @Override
     public void setServletContext(ServletContext servletContext) {
         this.servletContext = servletContext;
