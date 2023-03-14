@@ -38,7 +38,7 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
       <CardBox form @submit.prevent="submit">
         <FormField>
           <FormField label="Category">
-            <FormControl type="text" :options="selectOptions" v-model="property.category"/>
+            <FormControl type="text" :options="categories" v-model="property.category"/>
           </FormField>
           <FormField label="Rent Type">
             <FormControl type="text" :options="selectOptions" v-model="property.rent_type"/>
@@ -215,7 +215,7 @@ export default {
       console.log(this.property.images)
     },
     async latestPropertyId() {
-      const current_property_id = 0;
+       current_property_id = 0;
       await axios.get(this.RESERVATION_API_BASE_URL + "/latest-property-id")
         .then(response => {
           current_property_id = response.data;
@@ -232,6 +232,7 @@ export default {
       center: {lat: 37.7749, lng: -122.4194},
       zoom: 12,
     });
+    this.getCategories();
   }
 };
 </script>
