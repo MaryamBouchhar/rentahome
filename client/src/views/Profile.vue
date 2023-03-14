@@ -11,7 +11,7 @@
                 </div>
                 <div class="avatar online">
                     <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        <img src="https://i.pravatar.cc/300"/>
+                        <img :src="user.avatar || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'"/>
                     </div>
                 </div>
             </div>
@@ -26,16 +26,7 @@
                     <span class="label-text font-bold text-lg font-bold text-lg">{{ $t('profile.first_name') }}</span>
                 </label>
                 <input type="text" :placeholder="$t('profile.placeholder.first_name')"
-                       :value="$t('profile.placeholder.first_name')"
-                       class="input input-primary input-bordered w-full"/>
-            </div>
-
-            <div class="form-control w-full flex flex-col content-center items-center">
-                <label class="label">
-                    <span class="label-text font-bold text-lg">{{ $t('profile.last_name') }}</span>
-                </label>
-                <input type="text" :placeholder="$t('profile.placeholder.last_name')"
-                       :value="$t('profile.placeholder.last_name')"
+                       v-model="user.name"
                        class="input input-primary input-bordered w-full"/>
             </div>
 
@@ -44,7 +35,7 @@
                     <span class="label-text font-bold text-lg">{{ $t('profile.email') }}</span>
                 </label>
                 <input type="text" :placeholder="$t('profile.placeholder.email')"
-                       :value="$t('profile.placeholder.email')"
+                       v-model="user.email"
                        class="input input-primary input-bordered w-full"/>
             </div>
 
@@ -53,7 +44,7 @@
                     <span class="label-text font-bold text-lg">{{ $t('profile.phone') }}</span>
                 </label>
                 <input type="text" :placeholder="$t('profile.placeholder.phone')"
-                       :value="$t('profile.placeholder.phone')"
+                          v-model="user.phone"
                        class="input input-primary input-bordered w-full"/>
             </div>
 
@@ -81,7 +72,7 @@
                        class="input input-primary input-bordered w-full"/>
             </div>
 
-            <button class="btn btn-wide w-full col-span-full">{{ $t('profile.update') }}</button>
+            <button class="btn btn-wide w-full col-span-full" @click.prevent="updateProfile">{{ $t('profile.update') }}</button>
         </div>
     </form>
 </template>
@@ -89,9 +80,16 @@
 <script>
 import {useStore} from "vuex";
 import {computed} from "vue";
+import axios from "axios";
 
 export default {
     name: "Profile",
+    data() {
+        return {
+            user: {},
+            API_BASE_URL: import.meta.env.API_BASE_URL
+        }
+    },
     setup() {
         const store = useStore();
 
@@ -99,6 +97,31 @@ export default {
             rtl: computed(() => store.state.rtl)
         }
     },
+    methods: {
+        updateProfile() {
+            axios.put('/api/clients/' + this.user.id, this.user)
+                .then(res => {
+                    this.$store.commit('setUser', res.data);
+                    this.$notify({
+                        title: this.$t('profile.success'),
+                        type: 'success',
+                        position: 'top-right',
+                        duration: 3000
+                    });
+                })
+                .catch(err => {
+                    this.$notify({
+                        title: this.$t('profile.error'),
+                        type: 'error',
+                        position: 'top-right',
+                        duration: 3000
+                    });
+                })
+        }
+    },
+    created() {
+        this.user = this.$store.state.user;
+    }
 }
 </script>
 
