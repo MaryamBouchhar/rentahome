@@ -20,11 +20,46 @@
 
 <script>
 import PropertyCard from "./PropertyCard.vue";
-
+import axios from 'axios';
 export default {
   name: "Featured",
   components: {PropertyCard},
-  data() {
+
+    data() {
+      return {
+        properties: [],
+        selectedProperty:{
+
+        },
+        isModalActive:false,
+        PROPERTY_API_BASE_URL: `http://localhost:8080/manage-properties/properties`,
+      };
+
+    },
+    methods: {
+
+      async getProperties() {
+        await axios.get(this.PROPERTY_API_BASE_URL)
+            .then(response => {
+              this.properties = response.data
+              this.properties.forEach(property => {
+                property.publish_date = new Date(property.publish_date).toLocaleDateString();
+              })
+            })
+
+            .catch(error => console.log(error))
+        console.log(this.properties);
+
+
+      }
+    },
+    mounted() {
+      this.getProperties();
+
+    }
+
+
+  /*data() {
     return {
       properties: [
         {
@@ -97,7 +132,7 @@ export default {
       property_categories: [],
       cities: []
     }
-  },
+  },*/
 }
 </script>
 
