@@ -229,7 +229,9 @@ export default {
       console.log(this.property.images)
     },
     async latestPropertyId() {
+
       let current_property_id = 0;
+
       await axios.get(this.RESERVATION_API_BASE_URL + "/latest-property-id")
         .then(response => {
           current_property_id = response.data;
@@ -248,6 +250,7 @@ export default {
       zoom: 2,
       projection: 'EPSG:3857'
     });
+
 
     // Define the map layer
     const layer = new TileLayer({
@@ -284,6 +287,7 @@ export default {
       marker.setGeometry(new Point(event.coordinate));
     });
   },
+
 };
 </script>
 

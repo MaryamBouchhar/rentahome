@@ -61,12 +61,14 @@ const store = createStore({
             }).then(response => {
                 if (response.data.success) {
                     // save token to local storage
-                    const {token} = response.data;
-                    localStorage.setItem('token', token);
+                    const {accessToken} = response.data;
+                    localStorage.setItem('token', accessToken);
 
                     // set authentication status in store
-                    commit('setToken', token);
+                    commit('setToken', accessToken);
                     commit('setIsAuthenticated', true);
+                    commit('setAuthError', null);
+                    commit('setUser', response.data.client);
 
                     let redirect = router.currentRoute.value.query.redirect || '/';
 
@@ -90,12 +92,14 @@ const store = createStore({
             }).then(response => {
                 if (response.data.success) {
                     // save token to local storage
-                    const {accessToken} = response.data.accessToken;
+                    const {accessToken} = response.data;
                     localStorage.setItem('token', accessToken);
 
                     // set authentication status in store
                     commit('setToken', accessToken);
                     commit('setIsAuthenticated', true);
+                    commit('setAuthError', null);
+                    commit('setUser', response.data.client);
 
                     let redirect = router.currentRoute.value.query.redirect || '/';
                     // @ts-ignore
@@ -108,31 +112,53 @@ const store = createStore({
                 commit('setAuthError', error.response.data.message);
             });
         },
-        async getProtectedData({state}) {
-            // send request to backend with authorization header
-            axios.get(API_BASE_URL + 'auth/protected', {
-                headers: {
-                    Authorization: `Bearer ${state.token}`
-                }
+        async logout({commit}) {
+            axios.post(API_BASE_URL + 'logout', {
+                token: store.state.token
             }).then(response => {
-                // save user to store
-                const {user} = response.data;
-                // @ts-ignore
-                commit('setUser', user);
+                console.log(response);
+
+                // remove token from local storage
+                localStorage.removeItem('token');
+
+                // set authentication status in store
+                commit('setToken', '');
+                commit('setIsAuthenticated', false);
+                commit('setUser', null);
+
+                router.push('/');
             }).catch(error => {
                 console.log(error);
             });
         },
-        async logout({commit}) {
-            // remove token from local storage
-            localStorage.removeItem('token');
+        async checkSession({commit}) {
+            // @ts-ignore
+            axios.post(API_BASE_URL + 'check', {
+                token: store.state.token
+            }).then(response => {
+                if (response.data.success) {
+                    // set authentication status in store
+                    commit('setIsAuthenticated', true);
+                    commit('setAuthError', null);
+                    commit('setUser', response.data.client);
+                } else {
+                    // remove token from local storage
+                    localStorage.removeItem('token');
 
-            // set authentication status in store
-            commit('setToken', '');
-            commit('setIsAuthenticated', false);
-            commit('setUser', null);
+                    // set authentication status in store
+                    commit('setToken', '');
+                    commit('setIsAuthenticated', false);
+                    commit('setUser', null);
+                }
+            }).catch(error => {
+                console.log(error);
+                commit('setToken', '');
+                commit('setIsAuthenticated', false);
+                commit('setUser', null);
+            });
+        },
+        uploadAvatar({commit}, {avatar}) {
 
-            router.push('/');
         }
     },
 });

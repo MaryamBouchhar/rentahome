@@ -67,13 +67,66 @@
   <Footer/>
 </template>
 
-<script setup>
+<script >
 import {ref, onMounted} from 'vue'
 import 'boxicons'
 import PropertyCard from "../components/PropertyCard.vue";
 import Footer from "../components/Footer.vue";
+import axios from 'axios';
+export default {
+  name: "Properties",
+  components: {PropertyCard},
 
-const property_categories = ref([
+  data() {
+    return {
+      properties: [],
+      selectedProperty: {},
+      isModalActive: false,
+      PROPERTY_API_BASE_URL: `http://localhost:8080/manage-properties/properties`,
+      property_categories: [
+        'House',
+        'Apartment',
+        'Condo',
+        'Townhouse',
+        'Villa',
+        'Bungalow',
+      ],
+      cities: [
+        'Toronto',
+        'Ottawa',
+        'Montreal',
+        'Vancouver',
+        'Calgary',
+        'Edmonton',
+        'Winnipeg',
+      ],
+
+    };
+
+  },
+  methods: {
+
+    async getProperties() {
+      await axios.get(this.PROPERTY_API_BASE_URL)
+          .then(response => {
+            this.properties = response.data
+            this.properties.forEach(property => {
+              property.publish_date = new Date(property.publish_date).toLocaleDateString();
+            })
+          })
+
+          .catch(error => console.log(error))
+      console.log(this.properties);
+
+
+    }
+  },
+  mounted() {
+    this.getProperties();
+
+  }
+}
+/*const property_categories = ref([
   'House',
   'Apartment',
   'Condo',
@@ -159,7 +212,7 @@ const properties = ref([
     city: 'Edmonton',
     image: 'https://picsum.photos/500/300?random=6',
   },
-]);
+]);*/
 </script>
 
 <style scoped>

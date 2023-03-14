@@ -6,6 +6,8 @@ import com.fpt.rentahome.Models.Admin;
 import com.fpt.rentahome.Repositories.AdminRepository;
 import com.fpt.rentahome.Services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,8 +42,13 @@ public class AdminController {
 
     //FETCH ALL ADMINS
     @GetMapping("/admins")
-    public List<Admin> getAllAdmins() {
-        return adminService.getAllAdmins();
+    public List<Admin> getAllAdmins(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size)
+     {
+         Pageable paging = PageRequest.of(page, size);
+
+        return adminRepository.findAll(paging).getContent();
     }
 
     //get admin by id

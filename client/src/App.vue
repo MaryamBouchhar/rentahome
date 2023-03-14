@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import NavBar from "./components/NavBar.vue";
+import {useStore} from "vuex";
 
 const allowedRoutes = ['/', '/properties', '/about', '/contact'];
 const isAllowedRoute = allowedRoutes.map(route => route === location.pathname).includes(true);
+
+const store = useStore();
 
 </script>
 
@@ -16,6 +19,25 @@ const isAllowedRoute = allowedRoutes.map(route => route === location.pathname).i
         </transition>
     </router-view>
 </template>
+
+<script lang="ts">
+import {useStore} from "vuex";
+import {computed} from "vue";
+
+export default {
+    name: "App",
+    methods: {
+        checkSession() {
+            // @ts-ignore
+            this.$store.dispatch('checkSession');
+        }
+    },
+    created() {
+        // @ts-ignore
+        this.checkSession();
+    },
+}
+</script>
 
 <style scoped>
 * {

@@ -3,7 +3,7 @@
          class="ml-2">
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
             <div class="w-10 rounded-full">
-                <img src="https://i.pravatar.cc/300"/>
+                <img :src="user.avatar || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'"/>
             </div>
         </label>
         <ul tabindex="0"
@@ -53,6 +53,7 @@ export default {
         return {
             rtl: computed(() => store.state.rtl),
             path: computed(() => store.state.path),
+            user: computed(() => store.state.user),
             logout: () => {
                 store.dispatch('logout');
             }

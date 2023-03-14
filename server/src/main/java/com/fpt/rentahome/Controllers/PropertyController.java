@@ -129,4 +129,10 @@ public class PropertyController {
     public int getLatestPropertyId() {
         return propertyService.getLatestPropertyId();
     }
+  //  @GetMapping("/categories")
+   // public ResponseEntity<List<String>> getEnumValues() {
+      //  List<String> enumValues = propertyRepository.findAllValues();
+       // return ResponseEntity.ok(enumValues);
+  //  }
+
 }

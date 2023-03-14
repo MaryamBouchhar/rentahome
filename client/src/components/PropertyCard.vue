@@ -3,16 +3,17 @@
       class="card w-full bg-base-100 shadow-xl">
     <figure class="relative h-52">
       <router-link :key="property.id" :to="'/properties/' + property.id">
-        <img :src="property.image" :alt="property.title" class="card-image object-cover w-full h-full"/>
+        <img src='https://picsum.photos/500/300?random=5' :alt="property.category" class="card-image object-cover w-full h-full"/>
       </router-link>
     </figure>
     <div class="card-body">
       <div class="flex justify-between">
         <h2 class="card-title">
           <router-link :key="property.id" :to="'/properties/' + property.id">
-            {{ property.title }}
+            {{ property.category }} in {{ property.location.city }}
           </router-link>
-          <div class="badge badge-secondary"> {{ property.status }}</div>
+          <div v-if="property.status == 'Available'" class="badge badge-success">{{ property.status }}</div>
+          <div v-else class="badge badge-error">{{ property.status }}</div>
         </h2>
       </div>
       <h2 class="font-bold text-xl text-green-400">${{ property.price }}</h2>
