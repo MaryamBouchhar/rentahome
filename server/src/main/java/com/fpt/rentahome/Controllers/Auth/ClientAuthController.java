@@ -1,12 +1,14 @@
 package com.fpt.rentahome.Controllers.Auth;
 
 import com.fpt.rentahome.Dto.ClientLoginRequest;
+import com.fpt.rentahome.Dto.TokenRequest;
 import com.fpt.rentahome.Helpers.ApiResponse;
 import com.fpt.rentahome.Helpers.AuthResponse;
 import com.fpt.rentahome.Helpers.JWT.JwtTokenProvider;
 import com.fpt.rentahome.Models.Client;
 import com.fpt.rentahome.Services.ClientService;
 import com.fpt.rentahome.Dto.ClientRegistrationRequest;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +21,9 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+import static org.springframework.data.relational.core.sql.Assignments.value;
+
+@CrossOrigin(origins = "http://localhost:5173/**", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class ClientAuthController {
@@ -35,7 +39,7 @@ public class ClientAuthController {
     public ResponseEntity<AuthResponse> registerClient(@RequestBody ClientRegistrationRequest clientRegistrationRequest, HttpServletRequest request, HttpServletResponse response) {
         // Check if email already exists
         if (clientService.existsByEmail(clientRegistrationRequest.getEmail())) {
-            return ResponseEntity.badRequest().body(new AuthResponse(false, "Email address is already taken", null));
+            return ResponseEntity.badRequest().body(new AuthResponse(null, false, "Email address is already taken", null));
         }
 
         // Create client object from request
@@ -62,7 +66,7 @@ public class ClientAuthController {
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        return ResponseEntity.ok().body(new AuthResponse(true, "Client registered successfully", token));
+        return ResponseEntity.ok().body(new AuthResponse(token, true, "Client successfully registered", client));
     }
 
     @PostMapping("/login")
@@ -97,14 +101,16 @@ public class ClientAuthController {
         servletResponse.addCookie(cookie);
 
         // Return token in response
-        return ResponseEntity.ok(new AuthResponse(true, "Successfully logged in", token));
+        return ResponseEntity.ok(new AuthResponse(token, true, "Successfully logged in", client));
     }
 
-    @CrossOrigin(origins = "*", maxAge = 3600)
+    @CrossOrigin(origins = "http://localhost:5173/")
     @PostMapping("/logout")
-    public ResponseEntity<?> logoutClient(@CookieValue("token") String token) {
+    public ResponseEntity<?> logoutClient(@RequestBody TokenRequest request) {
+        String token = request.getToken();
+
         // Get session ID from token
-        String sessionId = jwtTokenUtil.getSessionIdFromToken(token);
+        String sessionId = jwtTokenUtil.getSessionFromToken(token).getId();
 
         System.out.println("Session ID: " + sessionId);
 
@@ -114,39 +120,26 @@ public class ClientAuthController {
         return ResponseEntity.ok(new ApiResponse(true, "Successfully logged out"));
     }
 
-    @GetMapping("/check")
-    public ResponseEntity<?> checkClient(@CookieValue("token") String token) {
-        // Get session ID from token
-        String sessionId = jwtTokenUtil.getSessionIdFromToken(token);
+    @PostMapping("/check")
+    public ResponseEntity<?> checkClient(@RequestBody TokenRequest request) {
+        String token = request.getToken();
+        System.out.println("Token: " + token);
 
-        // Check if session is valid
-        if (jwtTokenUtil.isSessionValid(sessionId)) {
-            return ResponseEntity.ok(new ApiResponse(true, "Session is valid"));
+
+        if (token == null || token.isEmpty()) {
+            return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
+        } else {
+            // Get session ID from token
+            Claims session = jwtTokenUtil.getSessionFromToken(token);
+
+            String sessionId = session.getId();
+
+            // Check if session is valid
+            if (jwtTokenUtil.isSessionValid(sessionId)) {
+                return ResponseEntity.ok(new AuthResponse(token, true, "Session is valid", session.get("client", Client.class)));
+            }
         }
 
         return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
-    }
-
-    @GetMapping("/protected")
-    public ResponseEntity<?> protectedClient(@CookieValue("token") String token, HttpServletRequest request) {
-        // Get session ID from token
-        String sessionId = jwtTokenUtil.getSessionIdFromToken(token);
-
-        HttpSession session = request.getSession(false);
-
-        // Check if session is valid
-        if (jwtTokenUtil.isSessionValid(sessionId)) {
-            return ResponseEntity.ok(new ApiResponse(true, "You are authorized to access this resource"));
-        }
-
-        Client attribute = (Client) session.getAttribute("client");
-
-        class response {
-            boolean success = true;
-            Client client = attribute;
-            LocalDateTime timestamp = LocalDateTime.now();
-        }
-
-        return ResponseEntity.ok(new response());
     }
 }
