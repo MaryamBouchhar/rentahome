@@ -1,11 +1,9 @@
 package com.fpt.rentahome.Helpers.JWT;
 
-import com.fpt.rentahome.Services.Impl.ClientDetailsServiceImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -58,6 +56,32 @@ public class JwtTokenProvider {
             logger.error("JWT claims string is empty.");
         }
         return false;
+    }
+
+    public Claims getSessionFromToken(String token) {
+        if (!validateToken(token)) {
+            return null;
+        }
+        return Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    public void invalidateSession(String sessionId) {
+        Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(sessionId)
+                .getBody()
+                .setId(null);
+    }
+
+    public boolean isSessionValid(String sessionId) {
+        return Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(sessionId)
+                .getBody()
+                .getId() != null;
     }
 }
 
