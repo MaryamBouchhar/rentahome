@@ -26,8 +26,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping("/manage-properties")
 public class PropertyController {
     @Autowired
@@ -63,6 +63,7 @@ public class PropertyController {
 
 
     //add a property
+    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/add-property")
     public ResponseEntity<ApiResponse> createProperty(MultipartHttpServletRequest request) {
         System.out.println("REQUEST:");

@@ -32,7 +32,7 @@
                     <i class='flex bx bx-cog bx-sm'></i>{{ $t('navbar.settings') }}
                 </a>
             </li>
-            <li>
+            <li @click="logout">
                 <a>
                     <i class='flex bx bx-power-off bx-sm'></i>{{ $t('navbar.logout') }}
                 </a>
@@ -41,13 +41,22 @@
     </div>
 </template>
 
-<script setup>
+<script>
 import {useStore} from "vuex";
 import {computed} from "vue";
 
-const store = useStore();
+export default {
+    name: "ProfileDropDown",
+    setup() {
+        const store = useStore();
 
-const rtl = computed(() => store.state.rtl);
-
-const path = computed(() => store.state.path);
+        return {
+            rtl: computed(() => store.state.rtl),
+            path: computed(() => store.state.path),
+            logout: () => {
+                store.dispatch('logout');
+            }
+        }
+    }
+}
 </script>
