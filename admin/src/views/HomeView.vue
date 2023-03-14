@@ -102,26 +102,7 @@ const transactionBarItems = computed(() => mainStore.history);
         </div>
       </div>
 
-
-
-      <SectionTitleLineWithButton :icon="mdiChartPie" title="Trends overview">
-        <BaseButton
-          :icon="mdiReload"
-          color="whiteDark"
-          @click="fillChartData"
-        />
-      </SectionTitleLineWithButton>
-
-      <CardBox class="mb-6">
-        <div v-if="chartData">
-          <line-chart :data="chartData" class="h-96" />
-        </div>
-      </CardBox>
-
       <SectionTitleLineWithButton :icon="mdiAccountMultiple" title="Clients" />
-
-
-
       <CardBox has-table>
         <TableSampleClients />
       </CardBox>
