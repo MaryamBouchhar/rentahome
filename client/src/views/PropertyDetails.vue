@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="property-details w-full mx-4">
-        <h1 class="text-3xl font-bold mb-3"> {{ property.category }} in {{ property.category }}</h1>
+        <h1 class="text-3xl font-bold mb-3"> {{ property.title }} </h1>
         <div class="flex flex-row items-center gap-2 mb-3">
           <div class="rating rating-sm">
             <input class="mask mask-star-2 bg-orange-400"/>
@@ -91,8 +91,10 @@
             src="https://www.google.com/maps/embed/v1/view?key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8&center=40.712776,-74.005974&zoom=18"
             width="800" height="340" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <button class="btn btn-wide w-full">Book now</button>
-      </div>
+        <div class="flex justify-center">
+        <button class="btn btn-wide "  v-if="property.status=='Available'">Book now</button>
+          <button v-else disabled  class="btn btn-wide cursor-not-allowed opacity-70 " title="this property is Rented in this period" >Book now</button>
+      </div></div>
     </div>
   </div>
 </template>
@@ -139,15 +141,42 @@ export default {
     },
   }
   ,
+      status: 'Available',
+      id :this.$route.params.id,
+    };
+  },
+methods: {
+
+  checkAvailability() {
+  axios.get('http://localhost:8080/manage-properties/property/${id}/availability')
+      .then(response => {
+        this.status = response.data
+      })
+      .catch(error => {
+        console.error(error)
+      })
+}},
+  mounted() {
+    this.checkAvailability()
+},
   created() {
     axios.get(`http://localhost:8080/manage-properties/properties/${this.id}`).then((response) => {
       this.property = response.data;
     });
     this.getPropertyImages();
+      this.property.title = this.property.category + ' in ' + this.property.location.city
+
+      console.log("Properties: ", this.property);
+    })
+        .catch((error) => {
+          console.log(error);
+        });
   },
 }
 </script>
 
 <style scoped>
-
+.disabled-btn {
+  cursor: not-allowed;
+}
 </style>
