@@ -10,7 +10,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface WishlistRepository extends JpaRepository<Wishlist,Integer> {
+public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
 
-    List<Wishlist> findByClient(Client client);
+    // find all the properties saved to wishlist for a user
+    // sort by latest created date
+    List<Wishlist> findAllByClientOrderByCreatedDateDesc(Client client);
+
 }
