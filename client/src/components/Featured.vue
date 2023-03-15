@@ -27,8 +27,7 @@ export default {
   components: {PropertyCard},
   data() {
     return {
-      properties: [
-      ],
+      properties: [],
       property_categories: [],
       cities: []
     }
