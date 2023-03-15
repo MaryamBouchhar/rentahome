@@ -79,7 +79,7 @@ const store = createStore({
                 }
             }).catch(error => {
                 console.log(error);
-                commit('setAuthError', error.response.data.message);
+                commit('setAuthError', error.message);
             });
         },
         async register({commit}, {name, email, password, phone}) {
@@ -109,7 +109,7 @@ const store = createStore({
                 }
             }).catch(error => {
                 console.log(error);
-                commit('setAuthError', error.response.data.message);
+                commit('setAuthError', error.message);
             });
         },
         async logout({commit}) {
