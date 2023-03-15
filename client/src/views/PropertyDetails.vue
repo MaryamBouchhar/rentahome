@@ -103,8 +103,10 @@
             src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCUwB_Qhwh8EswnSDcmb2Hqe2rDceyti14&center=40.712776,-74.005974&zoom=18"
             width="800" height="340" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <button class="btn btn-wide w-full">Book now</button>
-      </div>
+        <div class="flex justify-center">
+        <button class="btn btn-wide "  v-if="property.status=='Available'">Book now</button>
+          <button v-else disabled  class="btn btn-wide cursor-not-allowed opacity-70 " title="this property is Rented in this period" >Book now</button>
+      </div></div>
     </div>
   </div>
 </template>
@@ -117,9 +119,24 @@ export default {
     return {
       active: 1,
       property: [],
+      status: 'Available',
+      id :this.$route.params.id,
     };
   },
+methods: {
 
+  checkAvailability() {
+  axios.get('http://localhost:8080/manage-properties/property/${id}/availability')
+      .then(response => {
+        this.status = response.data
+      })
+      .catch(error => {
+        console.error(error)
+      })
+}},
+  mounted() {
+    this.checkAvailability()
+},
   created() {
     const id = this.$route.params.id;
     axios.get(`http://localhost:8080/manage-properties/properties/${id}`).then((response) => {
@@ -138,5 +155,7 @@ export default {
 </script>
 
 <style scoped>
-
+.disabled-btn {
+  cursor: not-allowed;
+}
 </style>
