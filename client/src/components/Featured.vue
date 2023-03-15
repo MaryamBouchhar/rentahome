@@ -2,8 +2,8 @@
   <div class="hero bg-base-200">
     <div class="hero-content flex flex-col justify-center">
       <div class="max-w-md text-center">
-        <h1 class="text-3xl font-bold">Featured Properties</h1>
-        <p class="py-6">Check out our featured properties and find your dream home today!</p>
+        <h1 class="text-3xl font-bold">Recent Properties</h1>
+        <p class="py-6">Check out our latest properties for sale and rent today.</p>
       </div>
       <!-- Property Cards -->
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -20,7 +20,8 @@
 
 <script>
 import PropertyCard from "./PropertyCard.vue";
-import axios from 'axios';
+import axios from "axios";
+
 export default {
   name: "Featured",
   components: {PropertyCard},
@@ -57,86 +58,11 @@ export default {
     mounted() {
       this.getProperties();
 
-    }
-
-
-  /*data() {
-    return {
-      properties: [
-        {
-          id: 1,
-          title: 'House in Toronto',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-          price: 1000,
-          rating: 4,
-          status: 'For Rent',
-          category: 'House',
-          city: 'Toronto',
-          image: 'https://picsum.photos/500/300?random=1',
-        },
-        {
-          id: 2,
-          title: 'Apartment in Ottawa',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-          price: 1000,
-          rating: 4,
-          status: 'For Rent',
-          category: 'Apartment',
-          city: 'Ottawa',
-          image: 'https://picsum.photos/500/300?random=2',
-        },
-        {
-          id: 3,
-          title: 'Condo in Montreal',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-          price: 1000,
-          rating: 4,
-          status: 'For Rent',
-          category: 'Condo',
-          city: 'Montreal',
-          image: 'https://picsum.photos/500/300?random=3',
-        },
-        {
-          id: 4,
-          title: 'Townhouse in Vancouver',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-          price: 1000,
-          rating: 4,
-          status: 'For Rent',
-          category: 'Townhouse',
-          city: 'Vancouver',
-          image: 'https://picsum.photos/500/300?random=4',
-        },
-        {
-          id: 5,
-          title: 'Villa in Calgary',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-          price: 1000,
-          rating: 2,
-          status: 'For Rent',
-          category: 'Villa',
-          city: 'Calgary',
-          image: 'https://picsum.photos/500/300?random=5',
-        },
-        {
-          id: 6,
-          title: 'Bungalow in Edmonton',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-          price: 1000,
-          rating: 4,
-          status: 'For Rent',
-          category: 'Bungalow',
-          city: 'Edmonton',
-          image: 'https://picsum.photos/500/300?random=6',
-        },
-      ],
-      property_categories: [],
-      cities: []
-    }
-  },*/
-}
+    }}
 </script>
 
-<style scoped>
 
-</style>
+
+
+ 
+  
