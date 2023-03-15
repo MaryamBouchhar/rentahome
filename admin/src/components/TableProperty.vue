@@ -191,11 +191,6 @@ const checked = (isChecked, property) => {
             small
             @click="isModalDangerActive = true"
           />
-          <BaseButton
-            color="success"
-            :icon="mdiImageEdit"
-            small
-          />
         </BaseButtons>
       </td>
     </tr>
@@ -244,9 +239,8 @@ export default {
             property.publish_date = new Date(property.publish_date).toLocaleDateString();
           })
         })
-
         .catch(error => console.log(error))
-      console.log(this.properties);
+         console.log(this.properties);
     },
     async getProperty(property){
 
@@ -255,8 +249,7 @@ export default {
           this.selectedProperty = response.data
         })
         .catch(error => console.log(error))
-      console.log(this.selectedProperty.location.city)
-
+         console.log(this.selectedProperty.location.city)
     }
   },
   mounted() {
