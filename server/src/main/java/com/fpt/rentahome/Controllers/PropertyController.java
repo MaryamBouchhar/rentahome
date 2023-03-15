@@ -51,19 +51,24 @@ public class PropertyController {
 
 
     //get property
+    @CrossOrigin(origins = "*")
     @GetMapping("/properties/{id}")
-    public ResponseEntity<Property> getPropertyById(@PathVariable("id") int id) {
+    /*public ResponseEntity<Property> getPropertyById(@PathVariable("id") int id) {
         Optional<Property> property = propertyService.getPropertyById(id);
         if (property == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Property getedproperty = property.get();
         return new ResponseEntity<>(getedproperty, HttpStatus.OK);
+    }*/
+    public Property getProperty(@PathVariable("id") int id) {
+        return propertyService.getProperty(id);
     }
 
 
     //add a property
-    @CrossOrigin(origins = "http://localhost:5173")
+    //accept all origins
+    @CrossOrigin(origins = "*")
     @PostMapping("/add-property")
     public ResponseEntity<ApiResponse> createProperty(MultipartHttpServletRequest request) {
         System.out.println("REQUEST:");
@@ -133,5 +138,11 @@ public class PropertyController {
       //  List<String> enumValues = propertyRepository.findAllValues();
        // return ResponseEntity.ok(enumValues);
   //  }
+    //check the status of the property
+    @GetMapping("/property/{id}/availability")
+    public String checkPropertyStatus(@PathVariable int id) {
+        return propertyService.checkPropertyStatus(id);
+
+    }
 
 }

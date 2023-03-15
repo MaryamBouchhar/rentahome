@@ -5,7 +5,7 @@
     </h1>
     <!-- TODO: Add filter options in sidebar -->
     <div class="flex flex-col lg:flex-row">
-      <div class="filter-bar w-full lg:w-1/4 px-4">
+      <div class="filter-bar w-full lg:w-1/4 px-4 rounded-lg border border-gray-400 py-3 ml-2 shadow-lg">
         <!-- Search -->
         <div class="form-control mb-2">
           <div class="input-group">
@@ -67,12 +67,13 @@
   <Footer/>
 </template>
 
-<script >
+<script>
 import {ref, onMounted} from 'vue'
 import 'boxicons'
 import PropertyCard from "../components/PropertyCard.vue";
 import Footer from "../components/Footer.vue";
 import axios from 'axios';
+
 export default {
   name: "Properties",
   components: {PropertyCard},
@@ -105,7 +106,6 @@ export default {
 
   },
   methods: {
-
     async getProperties() {
       await axios.get(this.PROPERTY_API_BASE_URL)
           .then(response => {
@@ -113,13 +113,27 @@ export default {
             this.properties.forEach(property => {
               property.publish_date = new Date(property.publish_date).toLocaleDateString();
             })
-          })
-
-          .catch(error => console.log(error))
+            console.log("Properties: ", this.properties)
+            //get each property's image
+            this.getPropertyImage();
+          }).catch(error => console.log(error))
       console.log(this.properties);
-
-
-    }
+    },
+    async getPropertyImage() {
+      //get each property's image
+      for (let i = 0; i < this.properties.length; i++) {
+        await axios.get('http://localhost:8080/uploads/properties/' + this.properties[i].id + '/first', {responseType: 'arraybuffer'})
+            .then(response => {
+              console.log("Property Image: ", response.data)
+              const imageBlob = new Blob([response.data], {type: 'image/jpeg'});
+              this.properties[i].image = URL.createObjectURL(imageBlob)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+      }
+      console.log("Properties: ", this.properties)
+    },
   },
   mounted() {
     this.getProperties();
