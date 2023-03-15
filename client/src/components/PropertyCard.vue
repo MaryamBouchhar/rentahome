@@ -42,16 +42,36 @@ export default {
     property: {
       type: Object,
       required: true
+    },
+    item:{
+      client:{
+        id:""
+      },
+      property:{
+        id:""
+      }
     }
   },
   data() {
     return {
+      WishList_API_BASE_URL: "http://localhost:8080/wishlist",
       is_favorite: false
     }
   },
   methods: {
     toggleWishlist() {
       this.is_favorite = !this.is_favorite
+    },
+    async addItemToWishlist(){
+      axios.post(this.RESERVATION_API_BASE_URL+'/add',this.item)
+          .then(response=>{
+            console.log(response.data())
+          })
+          .catch(error=>{
+            console.log(error)
+          })
+
+
     }
   }
 }
