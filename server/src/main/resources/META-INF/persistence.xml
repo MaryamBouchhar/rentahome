@@ -13,6 +13,7 @@
         <class>com.fpt.rentahome.Models.Reservation</class>
         <class>com.fpt.rentahome.Models.Comment</class>
         <class>com.fpt.rentahome.Models.Image</class>
+        <class>com.fpt.rentahome.Models.Wishlist</class>
       
 
         <class>com.fpt.rentahome.Models.Location</class>
