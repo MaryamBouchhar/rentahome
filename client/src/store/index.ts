@@ -108,8 +108,8 @@ const store = createStore({
                     commit('setAuthError', response.data.message);
                 }
             }).catch(error => {
-                console.log(error);
-                commit('setAuthError', error.response.data.message);
+                console.log("ERROR: ", error);
+                commit('setAuthError', error.message);
             });
         },
         async logout({commit}) {

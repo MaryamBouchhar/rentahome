@@ -5,6 +5,7 @@ import com.fpt.rentahome.Models.*;
 import com.fpt.rentahome.Repositories.CommentRepository;
 import com.fpt.rentahome.Repositories.PropertyRepository;
 import com.fpt.rentahome.Services.ClientService;
+import com.fpt.rentahome.Services.CommentService;
 import com.fpt.rentahome.Services.PropertyService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,8 @@ public class PropertyController {
     private PropertyRepository propertyRepository;
 
     @Autowired
-    private CommentRepository commentRepository;
+    private CommentService commentService;
+
 
     public PropertyController(PropertyService propertyService) {
         this.propertyService = propertyService;
@@ -117,14 +119,14 @@ public class PropertyController {
     }
 
     //add a comment
-    @GetMapping("/{propertyId}/add-comment")
-    public Comment addComment(@PathVariable int propertyId, @RequestBody Comment comment) {
+    @PostMapping("/{propertyId}/add-comment")
+    public void addComment(@PathVariable int propertyId, @RequestBody Comment comment) {
         Property property = propertyRepository.findById(propertyId).orElse(null);
         if (property == null) {
             throw new RuntimeException("Property not found");
         }
         comment.setProperty(property);
-        return commentRepository.save(comment);
+        commentService.addComment(comment);
     }
 
     //get latest property id
