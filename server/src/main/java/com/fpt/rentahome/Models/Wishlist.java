@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Builder
 @Setter
@@ -18,11 +20,14 @@ public class Wishlist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name="client_id")
-    private Client client ;
+    @OneToOne(targetEntity = Client.class, fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "client_id")
+    private Client client;
 
-    @ManyToOne
+    @Column(name = "created_date")
+    private Date createdDate;
+
+    @ManyToOne()
     @JoinColumn(name = "property_id")
     private Property property;
 }
