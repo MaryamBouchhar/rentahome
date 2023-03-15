@@ -105,9 +105,10 @@ public class ClientAuthController {
     }
 
     @CrossOrigin(origins = "http://localhost:5173/")
-    @PostMapping("/logout")
+    @PostMapping("/finish")
     public ResponseEntity<?> logoutClient(@RequestBody TokenRequest request) {
         String token = request.getToken();
+        System.out.println("Request token: " + token);
 
         // Get session ID from token
         String sessionId = jwtTokenUtil.getSessionFromToken(token).getId();
@@ -125,19 +126,12 @@ public class ClientAuthController {
         String token = request.getToken();
         System.out.println("Token: " + token);
 
+        // Get session ID from token
+        Claims session = jwtTokenUtil.getSessionFromToken(token);
 
-        if (token == null || token.isEmpty()) {
-            return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
-        } else {
-            // Get session ID from token
-            Claims session = jwtTokenUtil.getSessionFromToken(token);
-
-            String sessionId = session.getId();
-
-            // Check if session is valid
-            if (jwtTokenUtil.isSessionValid(sessionId)) {
-                return ResponseEntity.ok(new AuthResponse(token, true, "Session is valid", session.get("client", Client.class)));
-            }
+        // Check if session is valid
+        if (jwtTokenUtil.isSessionValid(token)) {
+            return ResponseEntity.ok(new AuthResponse(token, true, "Session is valid", session.get("client", Client.class)));
         }
 
         return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
