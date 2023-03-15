@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="property-details w-full mx-4">
-        <h1 class="text-3xl font-bold mb-3"> {{ property.category }} in {{ property.category }}</h1>
+        <h1 class="text-3xl font-bold mb-3"> {{ property.title }} </h1>
         <div class="flex flex-row items-center gap-2 mb-3">
           <div class="rating rating-sm">
             <input class="mask mask-star-2 bg-orange-400"/>
@@ -124,7 +124,13 @@ export default {
     const id = this.$route.params.id;
     axios.get(`http://localhost:8080/manage-properties/properties/${id}`).then((response) => {
       this.property = response.data;
-    });
+      this.property.title = this.property.category + ' in ' + this.property.location.city
+
+      console.log("Properties: ", this.property);
+    })
+        .catch((error) => {
+          console.log(error);
+        });
   },
 
 

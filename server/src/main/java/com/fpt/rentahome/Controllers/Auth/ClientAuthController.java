@@ -125,22 +125,17 @@ public class ClientAuthController {
     public ResponseEntity<?> checkClient(@RequestBody TokenRequest request) {
         String token = request.getToken();
         System.out.println("Token: " + token);
-
-
         if (token == null || token.isEmpty()) {
             return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
         } else {
             // Get session ID from token
             Claims session = jwtTokenUtil.getSessionFromToken(token);
-
             String sessionId = session.getId();
-
             // Check if session is valid
             if (jwtTokenUtil.isSessionValid(sessionId)) {
                 return ResponseEntity.ok(new AuthResponse(token, true, "Session is valid", session.get("client", Client.class)));
             }
         }
-
         return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
     }
 }
