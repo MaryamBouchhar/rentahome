@@ -137,5 +137,11 @@ public class PropertyController {
       //  List<String> enumValues = propertyRepository.findAllValues();
        // return ResponseEntity.ok(enumValues);
   //  }
+    //check the status of the property
+    @GetMapping("/property/{id}/availability")
+    public String checkPropertyStatus(@PathVariable int id) {
+        return propertyService.checkPropertyStatus(id);
+
+    }
 
 }
