@@ -1,3 +1,4 @@
+
 <template>
   <div
       class="card w-full bg-base-100 shadow-xl">
@@ -25,7 +26,7 @@
         <div class="rating rating-sm">
           <input class="mask mask-star-2 bg-orange-400" v-for="star in property.rating" :key="star"/>
         </div>
-        <span class="wishlist" @click="toggleWishlist">
+        <span class="wishlist" @click="toggleWishlist,addItemToWishlist(property.id)">
           <i :class="{ 'bx bxs-heart bx-sm': is_favorite, 'bx bx-heart bx-sm': !is_favorite }"></i>
         </span>
       </div>
@@ -35,6 +36,7 @@
 
 <script>
 import 'boxicons'
+import axios from "axios";
 
 export default {
   name: "PropertyCard",
@@ -43,14 +45,7 @@ export default {
       type: Object,
       required: true
     },
-    item:{
-      client:{
-        id:""
-      },
-      property:{
-        id:""
-      }
-    }
+
   },
   data() {
     return {
@@ -62,8 +57,9 @@ export default {
     toggleWishlist() {
       this.is_favorite = !this.is_favorite
     },
-    async addItemToWishlist(){
-      axios.post(this.RESERVATION_API_BASE_URL+'/add',this.item)
+    async addItemToWishlist(propertyId){
+
+      axios.post(this.RESERVATION_API_BASE_URL+'/add',propertyId)
           .then(response=>{
             console.log(response.data())
           })
