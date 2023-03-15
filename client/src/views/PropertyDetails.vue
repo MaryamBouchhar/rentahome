@@ -88,13 +88,20 @@
         </div>
         <iframe
             class="mb-3"
-            src="https://www.google.com/maps/embed/v1/view?key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8&center=40.712776,-74.005974&zoom=18"
-            width="800" height="340" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            width="700"
+            height="500"
+            frameborder="0"
+            style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?q=12.33,23.33&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8"
+            allowfullscreen
+        ></iframe>
         <div class="flex justify-center">
-        <button class="btn btn-wide "  v-if="property.status=='Available'">Book now</button>
-          <button v-else disabled  class="btn btn-wide cursor-not-allowed opacity-70 " title="this property is Rented in this period" >Book now</button>
-      </div></div>
+          <button class="btn btn-wide " v-if="property.status=='Available'">Book now</button>
+          <button v-else disabled class="btn btn-wide cursor-not-allowed opacity-70 "
+                  title="this property is Rented in this period">Book now
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -110,6 +117,7 @@ export default {
       property: [],
       images_count: 0,
       id: this.$route.params.id,
+      status: 'Available',
     };
   },
   methods: {
@@ -139,39 +147,30 @@ export default {
             console.log("Property Image Count: ", this.images_count)
           })
     },
-  }
-  ,
-      status: 'Available',
-      id :this.$route.params.id,
-    };
+    checkAvailability() {
+      axios.get(`http://localhost:8080/manage-properties/property/${this.id}/availability`)
+          .then(response => {
+            this.status = response.data
+          })
+          .catch(error => {
+            console.error(error)
+          })
+    }
   },
-methods: {
-
-  checkAvailability() {
-  axios.get('http://localhost:8080/manage-properties/property/${id}/availability')
-      .then(response => {
-        this.status = response.data
-      })
-      .catch(error => {
-        console.error(error)
-      })
-}},
   mounted() {
     this.checkAvailability()
-},
-  created() {
-    axios.get(`http://localhost:8080/manage-properties/properties/${this.id}`).then((response) => {
-      this.property = response.data;
-    });
     this.getPropertyImages();
-      this.property.title = this.property.category + ' in ' + this.property.location.city
-
-      console.log("Properties: ", this.property);
-    })
-        .catch((error) => {
-          console.log(error);
-        });
   },
+  created() {
+    axios.get('http://localhost:8080/manage-properties/properties/' + this.id)
+        .then(response => {
+          this.property = response.data;
+          console.log("Property: ", this.property)
+        })
+        .catch(error => {
+          console.error(error)
+        })
+  }
 }
 </script>
 
