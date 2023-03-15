@@ -50,6 +50,7 @@
       <PropertyCard
           v-for="property in properties"
           :key="property.id"
+          :property="property"
       />
     </div>
   </div>
@@ -69,6 +70,7 @@ import {useStore} from 'vuex';
 import {computed} from "vue";
 import PropertyCard from "../components/PropertyCard.vue";
 import Footer from "../components/Footer.vue";
+import axios from "axios";
 
 export default {
   name: 'Wishlist',
@@ -81,92 +83,22 @@ export default {
 
     return {
       rtl: computed(() => store.state.rtl),
+      user: computed(() => store.state.user)
     }
   },
   data() {
     return {
+
+
       categories: [
-        // categories & properties here
         {
           id: 1,
-          name: 'Category_1',
-          properties: [
-            {id: 1, name: 'House 1'},
-            {id: 2, name: 'House 2'},
-            {id: 3, name: 'House 3'}
-          ]
-        },
-        {
-          id: 2,
-          name: 'Category_2',
-          properties: [
-            {id: 1, name: 'House 1'},
-            {id: 2, name: 'House 2'},
-            {id: 3, name: 'House 3'}
-          ]
-        },
-        {
-          id: 3,
-          name: 'Category_3',
-          properties: [
-            {id: 1, name: 'House 1'},
-            {id: 2, name: 'House 2'},
-            {id: 3, name: 'House 3'}
-          ]
-        },
-        {
-          id: 4,
-          name: 'Category_4',
-          properties: [
-            {id: 1, name: 'House 1'},
-            {id: 2, name: 'House 2'},
-            {id: 3, name: 'House 3'}
-          ]
-        },
-        {
-          id: 5,
-          name: 'Category_5',
-          properties: [
-            {id: 1, name: 'House 1'},
-            {id: 2, name: 'House 2'},
-            {id: 3, name: 'House 3'}
-          ]
-        },
-        {
-          id: 6,
-          name: 'Category_6',
-          properties: [
-            {id: 1, name: 'House 1'},
-            {id: 2, name: 'House 2'},
-            {id: 3, name: 'House 3'}
-          ]
-        },
-        {
-          id: 7,
-          name: 'Category_7',
-          properties: [
-            {id: 1, name: 'House 1'},
-            {id: 2, name: 'House 2'},
-            {id: 3, name: 'House 3'}
-          ]
-        },
-        {
-          id: 8,
-          name: 'Category_8',
-          properties: [
-            {id: 1, name: 'House 1'},
-            {id: 2, name: 'House 2'},
-            {id: 3, name: 'House 3'}
-          ]
-        },
-        {
-          id: 9,
-          name: 'Category_9',
-          properties: [
-            {id: 1, name: 'House 1'},
-            {id: 2, name: 'House 2'},
-            {id: 3, name: 'House 3'}
-          ]
+          category: 'Appartements',
+          description: 'Lorem ipsum dolore...',
+          price: 120,
+          area: 120,
+          status: 'rented',
+
         }
       ],
       selectedCategory: null,
@@ -180,7 +112,15 @@ export default {
       this.selectedCategory = category ? category.id : null;
       this.getProperties();
     },
-    getProperties() {
+    async getProperties() {
+
+      axios.get(`http://localhost:8080/api/wishlist/${this.user.id}`)
+          .then(response => {
+            this.properties = response.data
+          })
+          .catch(error => {
+            console.log(error)
+          })
       if (this.selectedCategory === null) {
         let props = this.categories.map(category => category.properties).flat();
         this.isLoaded = true;
