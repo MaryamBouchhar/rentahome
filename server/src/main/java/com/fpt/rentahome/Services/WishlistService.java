@@ -3,8 +3,10 @@ package com.fpt.rentahome.Services;
 import com.fpt.rentahome.Models.Client;
 import com.fpt.rentahome.Models.Property;
 import com.fpt.rentahome.Models.Wishlist;
+import com.fpt.rentahome.Repositories.ClientRepository;
 import com.fpt.rentahome.Repositories.PropertyRepository;
 import com.fpt.rentahome.Repositories.WishlistRepository;
+import com.mysql.cj.jdbc.ClientInfoProvider;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,12 @@ public class WishlistService {
     private WishlistRepository wishlistRepository;
     @Autowired
     private PropertyRepository propertyRepository;
+    @Autowired
+    private ClientRepository clientRepository;
 
-    public Wishlist addPropertyToWishlist(Integer propertyId,Client client) {
+    public Wishlist addPropertyToWishlist(Integer propertyId,Integer clientId) {
         Property property = propertyRepository.findById(propertyId).orElseThrow(() -> new EntityNotFoundException("Property not found"));
+        Client client = clientRepository.findById(clientId).orElseThrow(() -> new EntityNotFoundException("Property not found"));
         Wishlist wishlist = Wishlist.builder()
                 .client(client)
                 .property(property)
@@ -33,7 +38,11 @@ public class WishlistService {
 
     }
 
-    public List<Wishlist> readWishList(Client client) {
-        return wishlistRepository.findAllByClientOrderByCreatedDateDesc(client);
+    public List<Wishlist> readWishList(Integer clientId) {
+        return wishlistRepository.findAllByClientOrderByCreatedDateDesc(clientId);
+    }
+
+    public List<Wishlist> getAllWishlistItems() {
+        return wishlistRepository.findAll();
     }
 }
