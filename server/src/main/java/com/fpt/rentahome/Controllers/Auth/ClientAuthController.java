@@ -35,6 +35,7 @@ public class ClientAuthController {
     @Autowired
     private JwtTokenProvider jwtTokenUtil;
 
+
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> registerClient(@RequestBody ClientRegistrationRequest clientRegistrationRequest, HttpServletRequest request, HttpServletResponse response) {
         // Check if email already exists
