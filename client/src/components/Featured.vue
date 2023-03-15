@@ -51,7 +51,8 @@ export default {
         console.log(this.properties);
 
 
-      }
+      },
+
     },
     mounted() {
       this.getProperties();
