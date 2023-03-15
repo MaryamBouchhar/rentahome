@@ -3,24 +3,12 @@
     <div class="flex flex-col lg:flex-row my-5">
       <div class="property-images px-4">
         <div class="carousel w-full" id="images">
-          <div id="item1" class="carousel-item w-full">
-            <img src="../assets/images/hero_img_1.jpg" class="w-full"/>
-          </div>
-          <div id="item2" class="carousel-item w-full">
-            <img src="../assets/images/hero_img_2.jpg" class="w-full"/>
-          </div>
-          <div id="item3" class="carousel-item w-full">
-            <img src="../assets/images/hero_img_3.jpg" class="w-full"/>
-          </div>
-          <div id="item4" class="carousel-item w-full">
-            <img src="../assets/images/hero_img_4.jpg" class="w-full"/>
+          <div :id="`image`+image.id" class="carousel-item w-full" v-for="image in property.images" :key="image">
+            <img :src="image.url" class="w-full"/>
           </div>
         </div>
         <div class="flex justify-center w-full py-2 gap-2">
-          <a href="#item1" class="btn btn-xs">1</a>
-          <a href="#item2" class="btn btn-xs">2</a>
-          <a href="#item3" class="btn btn-xs">3</a>
-          <a href="#item4" class="btn btn-xs">4</a>
+          <a :href="`#image`+index" class="btn btn-xs" v-for="index in images_count" :key="index"> {{ index }} </a>
         </div>
         <!-- comments section -->
         <h1 class="text-2xl font-bold mb-3">Comments</h1>
@@ -101,9 +89,13 @@
         </div>
         <iframe
             class="mb-3"
-            src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCUwB_Qhwh8EswnSDcmb2Hqe2rDceyti14&center=40.712776,-74.005974&zoom=18"
-            width="800" height="340" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            width="700"
+            height="500"
+            frameborder="0"
+            style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?q=12.33,23.33&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8"
+            allowfullscreen
+        ></iframe>
         <div class="flex justify-center">
           <button class="btn btn-wide " v-if="property.status=='Available'">Book now</button>
           <button v-else disabled class="btn btn-wide cursor-not-allowed opacity-70 "
@@ -124,12 +116,41 @@ export default {
     return {
       active: 1,
       property: [],
-      status: 'Available',
+      images_count: 0,
       id: this.$route.params.id,
+      status: 'Available',
+
      comment:[],
     };
   },
   methods: {
+    async getPropertyImages() {
+      //get images count
+      await this.getImagesCount();
+      let images = [];
+      for (let i = 0; i < this.images_count; i++) {
+        await axios.get('http://localhost:8080/uploads/properties/' + this.id + '/images/' + i, {responseType: 'arraybuffer'})
+            .then(response => {
+              console.log("Property Image: ", response.data)
+              const imageBlob = new Blob([response.data], {type: 'image/jpeg'});
+              const imageUrl = URL.createObjectURL(imageBlob);
+              images.push({
+                id: i,
+                url: imageUrl
+              })
+            })
+      }
+      this.property.images = images;
+    },
+    async getImagesCount() {
+      await axios.get('http://localhost:8080/uploads/properties/' + this.id + '/images/count')
+          .then(response => {
+            console.log("Property Image Count: ", response.data)
+            this.images_count = response.data;
+            console.log("Property Image Count: ", this.images_count)
+          })
+    },
+
     checkAvailability() {
       axios.get(`http://localhost:8080/manage-properties/property/${this.id}/availability`)
           .then(response => {
@@ -138,6 +159,7 @@ export default {
           .catch(error => {
             console.error(error)
           })
+
     },
     async addComment() {
       const comment = this.comment;
@@ -163,9 +185,15 @@ export default {
     },
     mounted() {
       this.checkAvailability();
-      this.getProperty();
+      this.getProperty(); 
+      this.getPropertyImages();
     },
-  }
+
+    }
+  },
+
+ 
+  
 }
 </script>
 <style scoped>

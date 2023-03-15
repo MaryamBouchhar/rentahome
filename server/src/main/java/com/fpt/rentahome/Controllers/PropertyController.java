@@ -53,6 +53,7 @@ public class PropertyController {
 
 
     //get property
+    @CrossOrigin(origins = "*")
     @GetMapping("/properties/{id}")
     /*public ResponseEntity<Property> getPropertyById(@PathVariable("id") int id) {
         Optional<Property> property = propertyService.getPropertyById(id);
@@ -62,7 +63,7 @@ public class PropertyController {
         Property getedproperty = property.get();
         return new ResponseEntity<>(getedproperty, HttpStatus.OK);
     }*/
-    public Property getProperty(@PathVariable Integer id) {
+    public Property getProperty(@PathVariable("id") int id) {
         return propertyService.getProperty(id);
     }
 
