@@ -25,17 +25,29 @@ import axios from "axios";
 export default {
   name: "Featured",
   components: {PropertyCard},
-
-    data() {
-      return {
-        properties: [],
-        selectedProperty:{
-
-        },
-        isModalActive:false,
-        PROPERTY_API_BASE_URL: `http://localhost:8080/manage-properties/properties`,
-      };
-
+  data() {
+    return {
+      properties: [],
+      property_categories: [],
+      cities: []
+    }
+  },
+  methods: {
+    async getProperties() {
+      await axios.get('http://localhost:8080/manage-properties/recent-properties')
+          .then(response => {
+            this.properties = response.data
+            //add new attribute to each property (title: category + city)
+            for (let i = 0; i < this.properties.length; i++) {
+              this.properties[i].title = this.properties[i].category + ' in ' + this.properties[i].location.city
+            }
+            //get each property's image
+            this.getPropertyImage()
+            console.log("Properties: ", this.properties)
+          })
+          .catch(error => {
+            console.log(error)
+          })
     },
     methods: {
 
@@ -58,7 +70,9 @@ export default {
     mounted() {
       this.getProperties();
 
-    }}
+    }
+}
+}
 </script>
 
 
