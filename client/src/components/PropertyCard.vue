@@ -25,7 +25,7 @@
         <div class="rating rating-sm">
           <input class="mask mask-star-2 bg-orange-400" v-for="star in property.rating" :key="star"/>
         </div>
-        <span class="wishlist" @click="toggleWishlist">
+        <span class="wishlist" @click="addItemToWishlist(property.id)">
           <i :class="{ 'bx bxs-heart bx-sm': is_favorite, 'bx bx-heart bx-sm': !is_favorite }"></i>
         </span>
       </div>
@@ -35,6 +35,9 @@
 
 <script>
 import 'boxicons'
+import axios from "axios";
+import {useStore} from "vuex";
+import {computed} from "vue";
 
 export default {
   name: "PropertyCard",
@@ -42,16 +45,41 @@ export default {
     property: {
       type: Object,
       required: true
+    },
+
+  },
+  setup() {
+    const store = useStore();
+
+    return {
+      user: computed(() => store.state.user)
     }
   },
   data() {
     return {
+      WishList_API_BASE_URL: "http://localhost:8080/api/wishlist/",
       is_favorite: false
     }
   },
   methods: {
     toggleWishlist() {
       this.is_favorite = !this.is_favorite
+    },
+    async addItemToWishlist(propertyId) {
+      this.toggleWishlist()
+      axios.post(this.WishList_API_BASE_URL, {
+        propertyId: propertyId,
+        userId: this.user.id
+      })
+          .then(response => {
+            console.log(response.data())
+            this.is_favorite = true
+          })
+          .catch(error => {
+            console.log(error)
+          })
+
+
     }
   }
 }

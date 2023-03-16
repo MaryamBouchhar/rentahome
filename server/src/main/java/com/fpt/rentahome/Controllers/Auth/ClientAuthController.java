@@ -35,7 +35,9 @@ public class ClientAuthController {
     @Autowired
     private JwtTokenProvider jwtTokenUtil;
 
+
     @CrossOrigin(origins = "http://127.0.0.1:5173/")
+
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> registerClient(@RequestBody ClientRegistrationRequest clientRegistrationRequest, HttpServletRequest request, HttpServletResponse response) {
         // Check if email already exists
@@ -106,9 +108,10 @@ public class ClientAuthController {
     }
 
     @CrossOrigin(origins = "http://localhost:5173/")
-    @PostMapping("/logout")
+    @PostMapping("/finish")
     public ResponseEntity<?> logoutClient(@RequestBody TokenRequest request) {
         String token = request.getToken();
+        System.out.println("Request token: " + token);
 
         // Get session ID from token
         String sessionId = jwtTokenUtil.getSessionFromToken(token).getId();
@@ -126,16 +129,13 @@ public class ClientAuthController {
     public ResponseEntity<?> checkClient(@RequestBody TokenRequest request) {
         String token = request.getToken();
         System.out.println("Token: " + token);
-        if (token == null || token.isEmpty()) {
-            return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
-        } else {
-            // Get session ID from token
-            Claims session = jwtTokenUtil.getSessionFromToken(token);
-            String sessionId = session.getId();
-            // Check if session is valid
-            if (jwtTokenUtil.isSessionValid(sessionId)) {
-                return ResponseEntity.ok(new AuthResponse(token, true, "Session is valid", session.get("client", Client.class)));
-            }
+
+        // Get session ID from token
+        Claims session = jwtTokenUtil.getSessionFromToken(token);
+
+        // Check if session is valid
+        if (jwtTokenUtil.isSessionValid(token)) {
+            return ResponseEntity.ok(new AuthResponse(token, true, "Session is valid", session.get("client", Client.class)));
         }
         return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
     }
