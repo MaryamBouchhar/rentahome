@@ -101,14 +101,12 @@ public class ImageController {
         if (property == null) {
             return ResponseEntity.notFound().build();
         }
-
         // get the images of the property
         List<Image> images = imageRepository.findImageByProperty(property);
         if (images.isEmpty()) {
             // return an empty list if the property has no images
             return ResponseEntity.ok().body(new ArrayList<byte[]>());
         }
-
         // read the image files from the file system and return them as byte arrays
         List<byte[]> imageBytesList = new ArrayList<>();
         for (Image image : images) {
