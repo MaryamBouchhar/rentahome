@@ -41,7 +41,8 @@
 
           <h1 class="text-2xl font-bold mb-3">Rate this property</h1>
 
-          <textarea class="textarea h-24 textarea-secondary mb-3" placeholder="Your comment" :v-model="comment.content"></textarea>
+          <textarea class="textarea h-24 textarea-secondary mb-3" placeholder="Your comment"
+                    :v-model="comment.content"></textarea>
           <div class="rating">
             <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
             <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked/>
@@ -49,7 +50,7 @@
             <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
             <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
           </div>
-          <button  @click="addComment" class="btn btn-wide mt-3">Add Comment</button>
+          <button @click="addComment" class="btn btn-wide mt-3">Add Comment</button>
         </div>
       </div>
       <div class="property-details w-full mx-4">
@@ -120,7 +121,7 @@ export default {
       id: this.$route.params.id,
       status: 'Available',
 
-     comment:[],
+      comment: [],
     };
   },
   methods: {
@@ -174,27 +175,23 @@ export default {
     async getProperty() {
       axios.get(`http://localhost:8080/manage-properties/properties/${this.id}`)
           .then((response) => {
-        this.property = response.data;
-        this.property.title = this.property.category + ' in ' + this.property.location.city
+            this.property = response.data;
+            this.property.title = this.property.category + ' in ' + this.property.location.city
 
-        console.log("Properties: ", this.property);
-      })
+            console.log("Properties: ", this.property);
+          })
           .catch((error) => {
             console.log(error);
           });
     },
     mounted() {
       this.checkAvailability();
-      this.getProperty(); 
+      this.getProperty();
       this.getPropertyImages();
     },
 
-    }
-  },
-
- 
-  
-}
+  }
+};
 </script>
 <style scoped>
 </style>
