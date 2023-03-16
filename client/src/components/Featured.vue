@@ -49,28 +49,34 @@ export default {
             console.log(error)
           })
     },
-    async getPropertyImage() {
-      //get each property's image
-      for (let i = 0; i < this.properties.length; i++) {
-        await axios.get('http://localhost:8080/uploads/properties/' + this.properties[i].id + '/first', {responseType: 'arraybuffer'})
+    methods: {
+
+      async getProperties() {
+        await axios.get(this.PROPERTY_API_BASE_URL)
             .then(response => {
-              console.log("Property Image: ", response.data)
-              const imageBlob = new Blob([response.data], {type: 'image/jpeg'});
-              this.properties[i].image = URL.createObjectURL(imageBlob)
+              this.properties = response.data
+              this.properties.forEach(property => {
+                property.publish_date = new Date(property.publish_date).toLocaleDateString();
+              })
             })
-            .catch(error => {
-              console.log(error)
-            })
-      }
-      console.log("Properties: ", this.properties)
+
+            .catch(error => console.log(error))
+        console.log(this.properties);
+
+
+      },
+
+    },
+    mounted() {
+      this.getProperties();
+
     }
-  },
-  mounted() {
-    this.getProperties()
-  }
+}
 }
 </script>
 
-<style scoped>
 
-</style>
+
+
+ 
+  

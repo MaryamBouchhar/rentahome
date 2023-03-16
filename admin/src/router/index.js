@@ -10,7 +10,6 @@ const routes = [
     },
 
     path: "/",
-    requireAuth: false,
     name: "login",
     component: import("@/views/LoginView.vue")
   },
@@ -20,7 +19,6 @@ const routes = [
     },
     path: "/profile",
     name: "profile",
-    requireAuth: true,
     component: () => import("@/views/ProfileView.vue")
   },
   {
@@ -29,7 +27,6 @@ const routes = [
     },
     path: "/dashboard",
     name: "dashboard",
-    requireAuth: true,
     component: () => import("@/views/HomeView.vue")
   },
   {
@@ -38,7 +35,6 @@ const routes = [
     },
     path: "/properties",
     name: "properties",
-    requireAuth: true,
     component: () => import("@/views/PropertiesView.vue")
   },
   {
@@ -49,7 +45,6 @@ const routes = [
     },
     path: "/add-property",
     name: "addproperty",
-    requireAuth: true,
     component: () => import("@/views/NewPropertyView.vue")
   },
   {
@@ -58,7 +53,6 @@ const routes = [
     },
     path: "/booking_request",
     name: "booking_request",
-    requireAuth: true,
     component: () => import("@/views/ReservationView.vue")
   },
 
@@ -68,7 +62,6 @@ const routes = [
     },
     path: "/admins",
     name: "admins",
-    requireAuth: true,
     component: () => import("@/views/AdminView.vue")
   },
   {
@@ -77,7 +70,6 @@ const routes = [
     },
     path: "/clients",
     name: "clients",
-    requireAuth: true,
     component: () => import("@/views/ClientsView.vue")
   },
   {
@@ -86,7 +78,6 @@ const routes = [
     },
     path: "/add-admin",
     name: "addadmin",
-    requireAuth: true,
     component: () => import("@/views/NewAdminView.vue")
   },
 
@@ -96,7 +87,6 @@ const routes = [
     },
     path: "/add-client",
     name: "addclient",
-    requireAuth: true,
     component: () => import("@/views/NewClientView.vue")
   },
 
@@ -106,7 +96,6 @@ const routes = [
     },
     path: "/update-admin/:id",
     name: "updateadmin",
-    requireAuth: true,
     component: () => import("@/views/UpdateAdminView.vue")
   }
 
@@ -120,9 +109,9 @@ const router = createRouter({
   }
 });
 
-router.beforeEach((to, from, next) => {
-  store.commit('setPath', to.path)
-  next();
-})
+// router.beforeEach((to, from, next) => {
+//   store.commit('setPath', to.path)
+//   next();
+// })
 
 export default router;
