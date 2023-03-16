@@ -108,7 +108,7 @@ const store = createStore({
                     commit('setAuthError', response.data.message);
                 }
             }).catch(error => {
-                console.log("ERROR: ", error);
+                console.log(error);
                 commit('setAuthError', error.message);
             });
         },
