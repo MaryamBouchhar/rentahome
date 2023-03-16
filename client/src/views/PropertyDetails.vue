@@ -120,7 +120,6 @@ export default {
       images_count: 0,
       id: this.$route.params.id,
       status: 'Available',
-
       comment: [],
     };
   },
@@ -184,14 +183,13 @@ export default {
             console.log(error);
           });
     },
-    mounted() {
-      this.checkAvailability();
-      this.getProperty();
-      this.getPropertyImages();
-    },
-
-  }
-};
+  },
+  mounted() {
+    this.checkAvailability();
+    this.getProperty();
+    this.getPropertyImages();
+  },
+}
 </script>
 <style scoped>
 </style>
