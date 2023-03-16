@@ -36,6 +36,8 @@ public class ClientAuthController {
     private JwtTokenProvider jwtTokenUtil;
 
 
+    @CrossOrigin(origins = "http://127.0.0.1:5173/")
+
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> registerClient(@RequestBody ClientRegistrationRequest clientRegistrationRequest, HttpServletRequest request, HttpServletResponse response) {
         // Check if email already exists
@@ -69,7 +71,7 @@ public class ClientAuthController {
 
         return ResponseEntity.ok().body(new AuthResponse(token, true, "Client successfully registered", client));
     }
-
+    @CrossOrigin(origins = "http://127.0.0.1:5173/")
     @PostMapping("/login")
     public ResponseEntity<?> authenticateClient(@RequestBody ClientLoginRequest request, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
         // Get client by email

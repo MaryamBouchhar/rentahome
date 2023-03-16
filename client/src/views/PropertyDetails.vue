@@ -36,11 +36,12 @@
           </div>
           <div class="chat-bubble">Not leave it in Darkness</div>
         </div>
-
         <!-- add comment -->
         <div class="flex flex-col mt-3">
+
           <h1 class="text-2xl font-bold mb-3">Rate this property</h1>
-          <textarea class="textarea h-24 textarea-secondary mb-3" placeholder="Your comment"></textarea>
+
+          <textarea class="textarea h-24 textarea-secondary mb-3" placeholder="Your comment" :v-model="comment.content"></textarea>
           <div class="rating">
             <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
             <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked/>
@@ -48,7 +49,7 @@
             <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
             <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
           </div>
-          <button class="btn btn-wide mt-3">Add Comment</button>
+          <button  @click="addComment" class="btn btn-wide mt-3">Add Comment</button>
         </div>
       </div>
       <div class="property-details w-full mx-4">
@@ -118,6 +119,8 @@ export default {
       images_count: 0,
       id: this.$route.params.id,
       status: 'Available',
+
+     comment:[],
     };
   },
   methods: {
@@ -147,6 +150,7 @@ export default {
             console.log("Property Image Count: ", this.images_count)
           })
     },
+
     checkAvailability() {
       axios.get(`http://localhost:8080/manage-properties/property/${this.id}/availability`)
           .then(response => {
@@ -155,27 +159,42 @@ export default {
           .catch(error => {
             console.error(error)
           })
+
+    },
+    async addComment() {
+      const comment = this.comment;
+      await axios.post(`http://localhost:8080/manage-properties/${this.id}/add-comment`, comment)
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    },
+    async getProperty() {
+      axios.get(`http://localhost:8080/manage-properties/properties/${this.id}`)
+          .then((response) => {
+        this.property = response.data;
+        this.property.title = this.property.category + ' in ' + this.property.location.city
+
+        console.log("Properties: ", this.property);
+      })
+          .catch((error) => {
+            console.log(error);
+          });
+    },
+    mounted() {
+      this.checkAvailability();
+      this.getProperty(); 
+      this.getPropertyImages();
+    },
+
     }
   },
-  mounted() {
-    this.checkAvailability()
-    this.getPropertyImages();
-  },
-  created() {
-    axios.get('http://localhost:8080/manage-properties/properties/' + this.id)
-        .then(response => {
-          this.property = response.data;
-          console.log("Property: ", this.property)
-        })
-        .catch(error => {
-          console.error(error)
-        })
-  }
+
+ 
+  
 }
 </script>
-
 <style scoped>
-.disabled-btn {
-  cursor: not-allowed;
-}
 </style>
