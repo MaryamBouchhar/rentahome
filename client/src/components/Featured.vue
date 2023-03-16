@@ -33,7 +33,7 @@ export default {
     }
   },
   methods: {
-    async getProperties() {
+    async getRecentProperties() {
       await axios.get('http://localhost:8080/manage-properties/recent-properties')
           .then(response => {
             this.properties = response.data
@@ -49,29 +49,10 @@ export default {
             console.log(error)
           })
     },
-    methods: {
-
-      async getProperties() {
-        await axios.get(this.PROPERTY_API_BASE_URL)
-            .then(response => {
-              this.properties = response.data
-              this.properties.forEach(property => {
-                property.publish_date = new Date(property.publish_date).toLocaleDateString();
-              })
-            })
-
-            .catch(error => console.log(error))
-        console.log(this.properties);
-
-
-      },
-
-    },
-    mounted() {
-      this.getProperties();
-
-    }
-}
+  },
+  mounted() {
+    this.getRecentProperties()
+  }
 }
 </script>
 

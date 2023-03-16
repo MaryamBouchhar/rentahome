@@ -186,7 +186,7 @@ export default {
             icon: "success",
             closeOnClickOutside: false,
           });
-          // this.$router.go();
+          this.$router.go();
         })
         .catch(error => {
           console.log(error);
