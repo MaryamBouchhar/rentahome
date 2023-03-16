@@ -88,15 +88,18 @@
             </tbody>
           </table>
         </div>
-        <iframe
-            class="mb-3"
-            width="700"
-            height="300"
-            frameborder="0"
-            style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?q=12.33,23.33&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8"
-            allowfullscreen
-        ></iframe>
+        <!--maps -->
+        <div id="embed-map">
+          <!--          <iframe-->
+          <!--              class="mb-3"-->
+          <!--              width="700"-->
+          <!--              height="300"-->
+          <!--              frameborder="0"-->
+          <!--              style="border:0"-->
+          <!--              src="https://www.google.com/maps/embed/v1/place?q=12.33,23.33&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8"-->
+          <!--              allowfullscreen-->
+          <!--          ></iframe>-->
+        </div>
         <div class="flex justify-center">
           <button class="btn btn-wide " v-if="property.status=='Available'">Book now</button>
           <button v-else disabled class="btn btn-wide cursor-not-allowed opacity-70 "
@@ -117,6 +120,9 @@ export default {
     return {
       active: 1,
       property: [],
+      lat: 0,
+      lng: 0,
+      maps_src: "",
       images_count: 0,
       id: this.$route.params.id,
       status: 'Available',
@@ -175,13 +181,32 @@ export default {
           .then((response) => {
             this.property = response.data;
             this.property.title = this.property.category + ' in ' + this.property.location.city
+            this.lat = this.property.location.latitude;
+            this.lng = this.property.location.longitude;
+
+            //fill form src
+            this.maps_src = `https://www.google.com/maps/embed/v1/place?q=${this.lng},${this.lng}&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8`
 
             console.log("Properties: ", this.property);
+
+            this.loadMap(this.lat, this.lng);
           })
           .catch((error) => {
             console.log(error);
           });
     },
+    loadMap(lat, lng) {
+      //put ifram in div of id embed-map
+      document.getElementById('embed-map').innerHTML = `<iframe
+              class="mb-3"
+              width="700"
+              height="300"
+              frameborder="0"
+              style="border:0"
+              src="https://www.google.com/maps/embed/v1/place?q=${lat},${lng}&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8"
+              allowfullscreen
+          ></iframe>`
+    }
   },
   mounted() {
     this.checkAvailability();
