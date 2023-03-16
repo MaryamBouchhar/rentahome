@@ -33,6 +33,21 @@ export default {
     }
   },
   methods: {
+    async getPropertyImage() {
+      //get each property's image
+      for (let i = 0; i < this.properties.length; i++) {
+        await axios.get('http://localhost:8080/uploads/properties/' + this.properties[i].id + '/first', {responseType: 'arraybuffer'})
+            .then(response => {
+              console.log("Property Image: ", response.data)
+              const imageBlob = new Blob([response.data], {type: 'image/jpeg'});
+              this.properties[i].image = URL.createObjectURL(imageBlob)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+      }
+      console.log("Properties: ", this.properties)
+    },
     async getRecentProperties() {
       await axios.get('http://localhost:8080/manage-properties/recent-properties')
           .then(response => {
