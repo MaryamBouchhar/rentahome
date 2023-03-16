@@ -30,7 +30,7 @@ public class Property {
     private String rent_type;
     private int bathroom_count;
     private int room_count;
-    private boolean is_equipped;
+    private boolean equipped;
     //@OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     //private List<Comment> comments;
     private Date publish_date;

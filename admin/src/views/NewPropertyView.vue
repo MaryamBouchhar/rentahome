@@ -12,6 +12,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
+import FormCheckRadio from "@/components/FormCheckRadio.vue";
 
 
 </script>
@@ -71,21 +72,10 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
           <FormField label="Address">
             <FormControl type="text" v-model="property.location.address"/>
           </FormField>
-          <FormField>
-            <FormField label="Longitute">
-              <FormControl type="number" v-model="property.location.longitude"/>
-            </FormField>
-            <FormField label="Latitude">
-              <FormControl type="number" v-model="property.location.latitude"/>
-            </FormField>
-          </FormField>
           <div id="map"></div>
 
           <FormField label="Equiped">
-            <div class="flex items-center">
-              <input checked id="checked-checkbox" type="checkbox" value="" v-model="property._equipped"
-                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-            </div>
+            <FormControl type="text" :options="equipped" v-model="property.equipped"/>
           </FormField>
         </FormField>
 
@@ -135,6 +125,10 @@ export default {
   data() {
     return {
       RESERVATION_API_BASE_URL: "http://localhost:8080/manage-properties",
+      equipped: [
+        {value: "true", label: "Yes"},
+        {value: "false", label: "No"},
+      ],
       categories: [
         {value: "House", label: "House"},
         {value: "Apartment", label: "Apartment"},
@@ -163,7 +157,7 @@ export default {
         rent_type: "Daily",
         bathroom_count: 0,
         room_count: 0,
-        _equipped: false,
+        equipped: false,
         publish_date: null,
       },
       images: [],
@@ -173,6 +167,7 @@ export default {
     async addNewProperty() {
       this.property.category = this.property.category.value;
       this.property.rent_type = this.property.rent_type.value;
+      this.property.equipped = this.property.equipped.value;
 
       const formData = new FormData();
       formData.append("property", JSON.stringify(this.property));
@@ -191,7 +186,7 @@ export default {
             icon: "success",
             closeOnClickOutside: false,
           });
-          this.$router.go();
+          // this.$router.go();
         })
         .catch(error => {
           console.log(error);

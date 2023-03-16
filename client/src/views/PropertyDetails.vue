@@ -89,7 +89,7 @@
         <iframe
             class="mb-3"
             width="700"
-            height="500"
+            height="300"
             frameborder="0"
             style="border:0"
             src="https://www.google.com/maps/embed/v1/place?q=12.33,23.33&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8"
