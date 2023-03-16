@@ -225,6 +225,7 @@ export default {
             const reservation = this.getReservationById(id);
             reservation.status = "Approved";
 
+
             axios.put(this.RESERVATION_API_BASE_URL + "/update/" + id, reservation)
               .then(response => {
                 console.log(response.data)
@@ -258,6 +259,32 @@ export default {
         .then((willDelete) => {
           if (willDelete) {
             const reservation = this.getReservationById(id);
+            const start_date = new Date(reservation.start_date)
+            const end_date = new Date(reservation.end_date)
+
+            const formatted_sd = start_date.toLocaleString('en-US', {
+              timeZone: 'UTC',
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+            })
+
+            const formatted_ed = end_date.toLocaleString('en-US', {
+              timeZone: 'UTC',
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+            })
+
+            reservation.start_date = formatted_sd
+            reservation.end_date = formatted_ed
+
             reservation.status = "Rejected";
 
             axios.put(this.RESERVATION_API_BASE_URL + "/update/" + id, reservation)
