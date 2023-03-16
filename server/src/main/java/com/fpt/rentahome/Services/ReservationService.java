@@ -37,17 +37,20 @@ public class ReservationService {
         reservationDto.setStatus(reservation.getStatus());
         reservationDto.setStart_date(reservation.getStart_date());
         reservationDto.setEnd_date(reservation.getEnd_date());
+
         reservationDto.setEnd_date(reservationDto.getEnd_date());
         reservationDto.setId_property(reservation.getProperty().getId());
         reservationDto.setClient(reservation.getClient());
         reservationDto.setId(reservation.getId());
         reservationDto.setCreated_at(reservation.getCreated_at());
         reservationDto.setUpdated_at(reservation.getUpdated_at());
+
         return reservationDto;
     }
 
     public List<ReservationDto> getAllReservations() {
         List<Reservation> allReservation = reservationRepository.findAll();
+
         List<ReservationDto> reservationDto = new ArrayList<>();
         for (Reservation reservation : allReservation) {
             reservationDto.add(getReservationDto(reservation));

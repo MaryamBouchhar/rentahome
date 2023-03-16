@@ -36,9 +36,9 @@
           </div>
           <div class="chat-bubble">Not leave it in Darkness</div>
         </div>
+
         <!-- add comment -->
         <div class="flex flex-col mt-3">
-
           <h1 class="text-2xl font-bold mb-3">Rate this property</h1>
 
           <textarea class="textarea h-24 textarea-secondary mb-3" placeholder="Your comment"
@@ -150,7 +150,6 @@ export default {
             console.log("Property Image Count: ", this.images_count)
           })
     },
-
     checkAvailability() {
       axios.get(`http://localhost:8080/manage-properties/property/${this.id}/availability`)
           .then(response => {
@@ -191,5 +190,9 @@ export default {
   },
 }
 </script>
+
 <style scoped>
+.disabled-btn {
+  cursor: not-allowed;
+}
 </style>
