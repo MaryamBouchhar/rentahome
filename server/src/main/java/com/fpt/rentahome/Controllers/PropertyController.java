@@ -1,6 +1,7 @@
 package com.fpt.rentahome.Controllers;
 
 import com.fpt.rentahome.Helpers.ApiResponse;
+import com.fpt.rentahome.Helpers.PriceRange;
 import com.fpt.rentahome.Models.*;
 import com.fpt.rentahome.Repositories.ClientRepository;
 import com.fpt.rentahome.Repositories.CommentRepository;
@@ -177,5 +178,33 @@ public class PropertyController {
     public int getTotalRates(@PathVariable int id) {
         List<Comment> comments = commentRepository.findByPropertyId(id);
         return comments.size();
+    }
+
+    //FILTRING PROPERTIES METHODS
+
+    //filter properties by price(min, max)
+    @PostMapping("/filter-by-price/")
+    public List<Property> filterByPrice(@RequestBody PriceRange priceRange) {
+        float min = priceRange.getMinPrice();
+        float max = priceRange.getMaxPrice();
+        return propertyRepository.findByPriceRange(min, max);
+    }
+
+    //filter properties by category
+    @GetMapping("/filter-by-category/")
+    public List<Property> filterByCategory(@RequestParam String category) {
+        return propertyService.filterByCategory(category);
+    }
+
+    //filter properties by location
+    @PostMapping("/filter-by-location/")
+    public List<Property> filterByLocation(@RequestParam String location) {
+        return propertyService.filterByLocation(location);
+    }
+
+    //filter properties by search
+    @PostMapping("/filter-by-search/")
+    public List<Property> filterBySearch(@RequestParam String search) {
+        return propertyRepository.filterBySearch(search);
     }
 }
