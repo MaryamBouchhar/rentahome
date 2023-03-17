@@ -12,24 +12,25 @@
         </div>
         <!-- comments section -->
         <h1 class="text-2xl font-bold mb-3">Comments</h1>
-        <div class="chat chat-start" v-for="comment in comments" :key="comment.id">
-          <div class="chat-image avatar">
-            <div class="w-10 rounded-full">
-              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar"/>
-            </div>
-          </div>
-          <div class="chat-bubble">
-            <div class="chat-bubble-content">
-              <div class="chat-bubble-content-text">
-                {{ comment.content }}
+        <div class="comments-section">
+          <div class="chat chat-start" v-for="comment in comments" :key="comment.id">
+            <div class="chat-image avatar">
+              <div class="w-10 rounded-full">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar"/>
               </div>
-              <div class="chat-bubble-content-time text-xs mt-1 font-light">
-                {{ comment.created_at }}
+            </div>
+            <div class="chat-bubble">
+              <div class="chat-bubble-content">
+                <div class="chat-bubble-content-text">
+                  {{ comment.content }}
+                </div>
+                <div class="chat-bubble-content-time text-xs mt-1 font-light">
+                  {{ comment.created_at }}
+                </div>
               </div>
             </div>
           </div>
         </div>
-
         <!-- add comment -->
         <div class="flex flex-col mt-3">
           <h1 class="text-2xl font-bold mb-3">Rate this property</h1>
@@ -264,4 +265,27 @@ export default {
 .disabled-btn {
   cursor: not-allowed;
 }
+
+.comments-section {
+  max-height: 240px; /* set a fixed maximum height for the container */
+  overflow-y: auto; /* enable vertical scrolling when content exceeds container height */
+}
+
+.comments-section::-webkit-scrollbar {
+  width: 10px; /* set the width of the scrollbar */
+}
+
+.comments-section::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* set the background color of the scrollbar track */
+}
+
+.comments-section::-webkit-scrollbar-thumb {
+  background-color: #888; /* set the color of the scrollbar thumb */
+  border-radius: 5px; /* set the border radius of the scrollbar thumb */
+}
+
+.comments-section::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* set the color of the scrollbar thumb on hover */
+}
+
 </style>
