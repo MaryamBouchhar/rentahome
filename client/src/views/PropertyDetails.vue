@@ -12,37 +12,35 @@
         </div>
         <!-- comments section -->
         <h1 class="text-2xl font-bold mb-3">Comments</h1>
-        <div class="chat chat-start mb-3">
+        <div class="chat chat-start" v-for="comment in comments" :key="comment.id">
           <div class="chat-image avatar">
             <div class="w-10 rounded-full">
               <img src="https://i.pravatar.cc/50"/>
             </div>
           </div>
-          <div class="chat-bubble">It was said that you would, destroy the Sith, not join them.</div>
-        </div>
-        <div class="chat chat-start">
-          <div class="chat-image avatar">
-            <div class="w-10 rounded-full">
-              <img src="https://i.pravatar.cc/50"/>
+          <div class="chat-bubble">
+            <div class="chat-bubble-content">
+              <div class="chat-bubble-content-text">
+                {{ comment.content }}
+              </div>
+              <div class="chat-bubble-content-time text-xs mt-1 font-light">
+                {{ comment.created_at }}
+              </div>
             </div>
           </div>
-          <div class="chat-bubble">It was you who would bring balance to the Force</div>
-        </div>
-        <div class="chat chat-start">
-          <div class="chat-image avatar">
-            <div class="w-10 rounded-full">
-              <img src="https://i.pravatar.cc/50"/>
-            </div>
-          </div>
-          <div class="chat-bubble">Not leave it in Darkness</div>
         </div>
 
         <!-- add comment -->
         <div class="flex flex-col mt-3">
           <h1 class="text-2xl font-bold mb-3">Rate this property</h1>
 
-          <textarea class="textarea h-24 textarea-secondary mb-3" placeholder="Your comment"
-                    :v-model="comment.content"></textarea>
+          <textarea
+              class="textarea h-24 textarea-secondary mb-3"
+              placeholder="Your comment"
+              v-model="comment.content"
+              @change="comment.content = $event.target.value;"
+          ></textarea>
+
           <div class="rating">
             <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
             <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked/>
@@ -89,17 +87,7 @@
           </table>
         </div>
         <!--maps -->
-        <div id="embed-map">
-          <!--          <iframe-->
-          <!--              class="mb-3"-->
-          <!--              width="700"-->
-          <!--              height="300"-->
-          <!--              frameborder="0"-->
-          <!--              style="border:0"-->
-          <!--              src="https://www.google.com/maps/embed/v1/place?q=12.33,23.33&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8"-->
-          <!--              allowfullscreen-->
-          <!--          ></iframe>-->
-        </div>
+        <div id="embed-map"></div>
         <div class="flex justify-center">
           <button class="btn btn-wide " v-if="property.status=='Available'">Book now</button>
           <button v-else disabled class="btn btn-wide cursor-not-allowed opacity-70 "
@@ -113,9 +101,19 @@
 
 <script>
 import axios from "axios";
+import {useStore} from "vuex";
+import {computed} from "vue";
 
 export default {
   name: "PropertyDetails",
+  setup() {
+    const store = useStore();
+
+    return {
+      rtl: computed(() => store.state.rtl),
+      user: computed(() => store.state.user)
+    }
+  },
   data() {
     return {
       active: 1,
@@ -126,7 +124,14 @@ export default {
       images_count: 0,
       id: this.$route.params.id,
       status: 'Available',
-      comment: [],
+      comments: [],
+      comment: {
+        property_id: this.$route.params.id,
+        client: null,
+        content: "",
+        rating: 0
+      },
+      comment_content: "",
     };
   },
   methods: {
@@ -167,10 +172,22 @@ export default {
 
     },
     async addComment() {
+      this.comment.client = this.user;
       const comment = this.comment;
+      console.log("comment: ", this.comment)
       await axios.post(`http://localhost:8080/manage-properties/${this.id}/add-comment`, comment)
           .then((response) => {
             console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    },
+    async getComments() {
+      await axios.get(`http://localhost:8080/manage-properties/${this.id}/comments`)
+          .then((response) => {
+            this.comments = response.data;
+            console.log("Comments: ", this.comments);
           })
           .catch((error) => {
             console.log(error);
@@ -212,6 +229,7 @@ export default {
     this.checkAvailability();
     this.getProperty();
     this.getPropertyImages();
+    this.getComments();
   },
 }
 </script>
