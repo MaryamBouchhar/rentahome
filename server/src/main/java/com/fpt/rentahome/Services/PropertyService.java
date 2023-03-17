@@ -146,5 +146,12 @@ public class PropertyService implements ServletContextAware {
         return propertyRepository.findById(id).get().getStatus();
     }
 
+    public List<Property> filterByCategory(String category) {
+        return propertyRepository.findByCategory(category);
     }
+
+    public List<Property> filterByLocation(String location) {
+        return propertyRepository.findByCity(location);
+    }
+}
 
