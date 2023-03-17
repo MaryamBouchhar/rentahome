@@ -160,14 +160,16 @@ public class PropertyController {
     @GetMapping("/property/{id}/rating")
     public int getPropertyRating(@PathVariable int id) {
         List<Comment> comments = commentRepository.findByPropertyId(id);
+        System.out.println("comments: " + comments.size());
         if (comments.size() == 0) {
             return 0;
         }
         int sum = 0;
         for (Comment comment : comments) {
             sum += comment.getRating();
+            System.out.println("Comment: " + comment.getRating());
         }
-        return Math.round(sum / comments.size());
+        return (int) Math.round(sum / comments.size());
     }
 
     //get total of rates of a property

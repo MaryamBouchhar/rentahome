@@ -52,7 +52,7 @@
         <h1 class="text-3xl font-bold mb-3"> {{ property.title }} </h1>
         <div class="flex flex-row items-center gap-2 mb-3">
           <div class="rating rating-sm">
-            <input class="mask mask-star-2 bg-orange-400" v-for="rate in property.rating" :key="rate"/>
+            <input class="mask mask-star-2 bg-orange-400" v-for="rate in property.rating"/>
           </div>
           <span class="rate-count">({{ property.total_rates }})</span>
         </div>
@@ -75,6 +75,11 @@
             <tr>
               <th class="font-bold text-lg">Rooms count</th>
               <td>{{ property.room_count }}</td>
+            </tr>
+            <!-- row 4 -->
+            <tr class="active">
+              <th class="font-bold text-lg">Is furnished</th>
+              <td>{{ property.equipped ? 'Yes' : 'No' }}</td>
             </tr>
             </tbody>
           </table>
@@ -203,7 +208,7 @@ export default {
             //fill form src
             this.maps_src = `https://www.google.com/maps/embed/v1/place?q=${this.lng},${this.lng}&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8`
 
-            console.log("Properties: ", this.property);
+            console.log("Property: ", this.property);
 
             this.loadMap(this.lat, this.lng);
           })
