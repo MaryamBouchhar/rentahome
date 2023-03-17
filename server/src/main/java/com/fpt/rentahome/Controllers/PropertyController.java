@@ -2,6 +2,7 @@ package com.fpt.rentahome.Controllers;
 
 import com.fpt.rentahome.Helpers.ApiResponse;
 import com.fpt.rentahome.Models.*;
+import com.fpt.rentahome.Repositories.ClientRepository;
 import com.fpt.rentahome.Repositories.CommentRepository;
 import com.fpt.rentahome.Repositories.PropertyRepository;
 import com.fpt.rentahome.Services.ClientService;
@@ -27,7 +28,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/manage-properties")
 public class PropertyController {
     @Autowired
@@ -35,6 +36,12 @@ public class PropertyController {
 
     @Autowired
     private PropertyRepository propertyRepository;
+
+    @Autowired
+    private ClientService clientService;
+
+    @Autowired
+    private ClientRepository clientRepository;
 
     @Autowired
     private CommentRepository commentRepository;
@@ -118,14 +125,23 @@ public class PropertyController {
     }
 
     //add a comment
-    @GetMapping("/{propertyId}/add-comment")
+    @CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "Authorization")
+    @PostMapping("/{propertyId}/add-comment")
     public Comment addComment(@PathVariable int propertyId, @RequestBody Comment comment) {
         Property property = propertyRepository.findById(propertyId).orElse(null);
         if (property == null) {
-            throw new RuntimeException("Property not found");
+            throw new RuntimeException("Property not found or client not found");
         }
         comment.setProperty(property);
+        comment.setCreated_at(new Date().toString());
+        comment.setUpdated_at(new Date().toString());
         return commentRepository.save(comment);
+    }
+
+    //get all comment of a property
+    @GetMapping("/{propertyId}/comments")
+    public List<Comment> getComments(@PathVariable int propertyId) {
+        return commentRepository.findByPropertyId(propertyId);
     }
 
     //get latest property id
@@ -133,16 +149,33 @@ public class PropertyController {
     public int getLatestPropertyId() {
         return propertyService.getLatestPropertyId();
     }
-  //  @GetMapping("/categories")
-   // public ResponseEntity<List<String>> getEnumValues() {
-      //  List<String> enumValues = propertyRepository.findAllValues();
-       // return ResponseEntity.ok(enumValues);
-  //  }
+
     //check the status of the property
     @GetMapping("/property/{id}/availability")
     public String checkPropertyStatus(@PathVariable int id) {
         return propertyService.checkPropertyStatus(id);
-
     }
 
+    //get rating of a property
+    @GetMapping("/property/{id}/rating")
+    public int getPropertyRating(@PathVariable int id) {
+        List<Comment> comments = commentRepository.findByPropertyId(id);
+        System.out.println("comments: " + comments.size());
+        if (comments.size() == 0) {
+            return 0;
+        }
+        int sum = 0;
+        for (Comment comment : comments) {
+            sum += comment.getRating();
+            System.out.println("Comment: " + comment.getRating());
+        }
+        return (int) Math.round(sum / comments.size());
+    }
+
+    //get total of rates of a property
+    @GetMapping("/property/{id}/total-rates")
+    public int getTotalRates(@PathVariable int id) {
+        List<Comment> comments = commentRepository.findByPropertyId(id);
+        return comments.size();
+    }
 }
