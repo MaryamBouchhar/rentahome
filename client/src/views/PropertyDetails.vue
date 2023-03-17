@@ -15,7 +15,8 @@
         <div class="chat chat-start" v-for="comment in comments" :key="comment.id">
           <div class="chat-image avatar">
             <div class="w-10 rounded-full">
-              <img src="https://i.pravatar.cc/50"/>
+              <img :src="comment.user.avatar" alt="avatar" v-if="comment.user.avatar !== null"/>
+              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar" v-else/>
             </div>
           </div>
           <div class="chat-bubble">
@@ -42,11 +43,8 @@
           ></textarea>
 
           <div class="rating">
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked/>
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
+            <input type="radio" name="rating-2" :checked="index === selected" @change="select(index)"
+                   class="mask mask-star-2 bg-orange-400" v-for="(star, index) in stars" :key="index">
           </div>
           <button @click="addComment" class="btn btn-wide mt-3">Add Comment</button>
         </div>
@@ -117,6 +115,7 @@ export default {
   data() {
     return {
       active: 1,
+      stars: [1, 2, 3, 4, 5],
       property: [],
       lat: 0,
       lng: 0,
@@ -160,6 +159,11 @@ export default {
             this.images_count = response.data;
             console.log("Property Image Count: ", this.images_count)
           })
+    },
+    select(index) {
+      this.selected = index;
+      this.comment.rating = this.stars[index];
+      console.log("rating: ", this.comment.rating)
     },
     checkAvailability() {
       axios.get(`http://localhost:8080/manage-properties/property/${this.id}/availability`)
