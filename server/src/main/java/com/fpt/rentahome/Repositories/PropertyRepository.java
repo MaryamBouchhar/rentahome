@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface PropertyRepository extends JpaRepository<Property, Integer> {
-    //@Query("SELECT DISTINCT e.category FROM property e")
-    //List<String> findAllValues();
+    List<Property> filterByPrice(int min, int max);
+
+    List<Property> findByDescriptionContaining(String search);
 }

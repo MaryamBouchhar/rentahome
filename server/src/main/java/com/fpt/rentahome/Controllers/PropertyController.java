@@ -150,16 +150,41 @@ public class PropertyController {
         return propertyService.getLatestPropertyId();
     }
 
-    //  @GetMapping("/categories")
-    // public ResponseEntity<List<String>> getEnumValues() {
-    //  List<String> enumValues = propertyRepository.findAllValues();
-    // return ResponseEntity.ok(enumValues);
-    //  }
     //check the status of the property
     @GetMapping("/property/{id}/availability")
     public String checkPropertyStatus(@PathVariable int id) {
         return propertyService.checkPropertyStatus(id);
-
     }
 
+    //FILITRING PROPERTIES METHODS
+
+    //filter properties by price (min, max)
+    @GetMapping("/filter-by-price")
+    public List<Property> filterByPrice(@RequestParam("min") int min, @RequestParam("max") int max) {
+        return propertyService.filterByPrice(min, max);
+    }
+
+    //filter properties by search
+    @GetMapping("/filter-by-search")
+    public List<Property> filterBySearch(@RequestParam("search") String search) {
+        return propertyService.filterBySearch(search);
+    }
+
+    //filter properties by type
+    @GetMapping("/filter-by-type")
+    public List<Property> filterByType(@RequestParam("type") String type) {
+        return propertyService.filterByType(type);
+    }
+
+    //filter properties by location
+    @GetMapping("/filter-by-location")
+    public List<Property> filterByLocation(@RequestParam("location") String location) {
+        return propertyService.filterByLocation(location);
+    }
+
+    //filter properties by category
+    @GetMapping("/filter-by-category")
+    public List<Property> filterByCategory(@RequestParam("category") String category) {
+        return propertyService.filterByCategory(category);
+    }
 }
