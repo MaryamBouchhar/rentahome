@@ -146,50 +146,5 @@ public class PropertyService implements ServletContextAware {
         return propertyRepository.findById(id).get().getStatus();
     }
 
-    public List<Property> filterByPrice(int min, int max) {
-        return propertyRepository.filterByPrice(min, max);
     }
-
-    public List<Property> filterBySearch(String search) {
-        //get all properties with description containing the search string
-        List<Property> properties = propertyRepository.findByDescriptionContaining(search);
-        return properties;
-    }
-
-    public List<Property> filterByType(String type) {
-        List<Property> properties = propertyRepository.findAll();
-        List<Property> filteredProperties = new ArrayList<>();
-
-        for (Property property : properties) {
-            if (property.getRent_type().equals(type)) {
-                filteredProperties.add(property);
-            }
-        }
-        return filteredProperties;
-    }
-
-    public List<Property> filterByLocation(String location) {
-        List<Property> properties = propertyRepository.findAll();
-        List<Property> filteredProperties = new ArrayList<>();
-
-        for (Property property : properties) {
-            if (property.getLocation().getCity().equals(location)) {
-                filteredProperties.add(property);
-            }
-        }
-        return filteredProperties;
-    }
-
-    public List<Property> filterByCategory(String category) {
-        List<Property> properties = propertyRepository.findAll();
-        List<Property> filteredProperties = new ArrayList<>();
-
-        for (Property property : properties) {
-            if (property.getCategory().equals(category)) {
-                filteredProperties.add(property);
-            }
-        }
-        return filteredProperties;
-    }
-}
 
