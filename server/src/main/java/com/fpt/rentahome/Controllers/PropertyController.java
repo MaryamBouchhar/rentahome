@@ -150,16 +150,30 @@ public class PropertyController {
         return propertyService.getLatestPropertyId();
     }
 
-    //  @GetMapping("/categories")
-    // public ResponseEntity<List<String>> getEnumValues() {
-    //  List<String> enumValues = propertyRepository.findAllValues();
-    // return ResponseEntity.ok(enumValues);
-    //  }
     //check the status of the property
     @GetMapping("/property/{id}/availability")
     public String checkPropertyStatus(@PathVariable int id) {
         return propertyService.checkPropertyStatus(id);
-
     }
 
+    //get rating of a property
+    @GetMapping("/property/{id}/rating")
+    public int getPropertyRating(@PathVariable int id) {
+        List<Comment> comments = commentRepository.findByPropertyId(id);
+        if (comments.size() == 0) {
+            return 0;
+        }
+        int sum = 0;
+        for (Comment comment : comments) {
+            sum += comment.getRating();
+        }
+        return Math.round(sum / comments.size());
+    }
+
+    //get total of rates of a property
+    @GetMapping("/property/{id}/total-rates")
+    public int getTotalRates(@PathVariable int id) {
+        List<Comment> comments = commentRepository.findByPropertyId(id);
+        return comments.size();
+    }
 }

@@ -15,8 +15,7 @@
         <div class="chat chat-start" v-for="comment in comments" :key="comment.id">
           <div class="chat-image avatar">
             <div class="w-10 rounded-full">
-              <img :src="comment.user.avatar" alt="avatar" v-if="comment.user.avatar !== null"/>
-              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar" v-else/>
+              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar"/>
             </div>
           </div>
           <div class="chat-bubble">
@@ -53,13 +52,9 @@
         <h1 class="text-3xl font-bold mb-3"> {{ property.title }} </h1>
         <div class="flex flex-row items-center gap-2 mb-3">
           <div class="rating rating-sm">
-            <input class="mask mask-star-2 bg-orange-400"/>
-            <input class="mask mask-star-2 bg-orange-400"/>
-            <input class="mask mask-star-2 bg-orange-400"/>
-            <input class="mask mask-star-2 bg-orange-400"/>
-            <input class="mask mask-star-2 bg-orange-400"/>
+            <input class="mask mask-star-2 bg-orange-400" v-for="rate in property.rating" :key="rate"/>
           </div>
-          <span class="rate-count">()</span>
+          <span class="rate-count">({{ property.total_rates }})</span>
         </div>
         <p class="mb-3">{{ property.description }}</p>
         <h1 class="font-bold text-xl text-green-400 mb-3">${{ property.price }} </h1>
@@ -216,6 +211,26 @@ export default {
             console.log(error);
           });
     },
+    async getPropertyRating() {
+      await axios.get(`http://localhost:8080/manage-properties/property/${this.id}/rating`)
+          .then((response) => {
+            this.property.rating = response.data;
+            console.log("Property Rating: ", this.property.rating);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    },
+    async getTotalRates() {
+      await axios.get(`http://localhost:8080/manage-properties/property/${this.id}/total-rates`)
+          .then((response) => {
+            this.property.total_rates = response.data;
+            console.log("Property Total Rates: ", this.property.total_rates);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    },
     loadMap(lat, lng) {
       //put ifram in div of id embed-map
       document.getElementById('embed-map').innerHTML = `<iframe
@@ -234,6 +249,8 @@ export default {
     this.getProperty();
     this.getPropertyImages();
     this.getComments();
+    this.getPropertyRating();
+    this.getTotalRates();
   },
 }
 </script>
