@@ -9,8 +9,8 @@
         <!-- Search -->
         <div class="form-control mb-2">
           <div class="input-group">
-            <input type="text" placeholder="Search…" class="input input-bordered"/>
-            <button class="btn btn-square">
+            <input type="text" placeholder="Search…" class="input input-bordered" v-model="search"/>
+            <button class="btn btn-square" @click="filterBySearch">
               <i class='bx bx-search bx-sm'></i>
             </button>
           </div>
@@ -46,13 +46,14 @@
         <label class="label font-bold">
           <span class="label-text">Filter by rating</span>
         </label>
-        <div class="rating">
+        <div class="rating mb-3">
           <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
           <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked/>
           <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
           <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
           <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
         </div>
+        <button class="btn btn-wide" @submit="filterByPriceRange">OK</button>
       </div>
       <div class="flex flex-col w-full content-center mx-4">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 flex justify-center mx-auto">
@@ -83,6 +84,7 @@ export default {
       properties: [],
       selectedProperty: {},
       isModalActive: false,
+      search: "",
       PROPERTY_API_BASE_URL: `http://localhost:8080/manage-properties/properties`,
       property_categories: [
         'House',
@@ -101,9 +103,7 @@ export default {
         'Edmonton',
         'Winnipeg',
       ],
-
     };
-
   },
   methods: {
     async getProperties() {
@@ -134,99 +134,29 @@ export default {
       }
       console.log("Properties: ", this.properties)
     },
+    async filterByPriceRange() {
+
+    },
+    async filterBySearch() {
+      await axios.post('http://localhost:8080/manage-properties/filter-by-search', this.search, {
+        headers: {
+          'Content-Type': 'text/plain',
+        }
+      }).then(response => {
+        this.properties = response.data
+        this.properties.forEach(property => {
+          property.publish_date = new Date(property.publish_date).toLocaleDateString();
+        })
+        console.log("Properties: ", this.properties)
+        //get each property's image
+        this.getPropertyImage();
+      }).catch(error => console.log(error))
+    },
   },
   mounted() {
     this.getProperties();
-
   }
 }
-/*const property_categories = ref([
-  'House',
-  'Apartment',
-  'Condo',
-  'Townhouse',
-  'Villa',
-  'Bungalow',
-])
-
-const cities = ref([
-  'Toronto',
-  'Ottawa',
-  'Montreal',
-  'Vancouver',
-  'Calgary',
-  'Edmonton',
-  'Winnipeg',
-])
-
-const properties = ref([
-  {
-    id: 1,
-    title: 'House in Toronto',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-    price: 1000,
-    rating: 4,
-    status: 'For Rent',
-    category: 'House',
-    city: 'Toronto',
-    image: 'https://picsum.photos/500/300?random=1',
-  },
-  {
-    id: 2,
-    title: 'Apartment in Ottawa',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-    price: 1000,
-    rating: 4,
-    status: 'For Rent',
-    category: 'Apartment',
-    city: 'Ottawa',
-    image: 'https://picsum.photos/500/300?random=2',
-  },
-  {
-    id: 3,
-    title: 'Condo in Montreal',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-    price: 1000,
-    rating: 4,
-    status: 'For Rent',
-    category: 'Condo',
-    city: 'Montreal',
-    image: 'https://picsum.photos/500/300?random=3',
-  },
-  {
-    id: 4,
-    title: 'Townhouse in Vancouver',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-    price: 1000,
-    rating: 4,
-    status: 'For Rent',
-    category: 'Townhouse',
-    city: 'Vancouver',
-    image: 'https://picsum.photos/500/300?random=4',
-  },
-  {
-    id: 5,
-    title: 'Villa in Calgary',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-    price: 1000,
-    rating: 2,
-    status: 'For Rent',
-    category: 'Villa',
-    city: 'Calgary',
-    image: 'https://picsum.photos/500/300?random=5',
-  },
-  {
-    id: 6,
-    title: 'Bungalow in Edmonton',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod...',
-    price: 1000,
-    rating: 4,
-    status: 'For Rent',
-    category: 'Bungalow',
-    city: 'Edmonton',
-    image: 'https://picsum.photos/500/300?random=6',
-  },
-]);*/
 </script>
 
 <style scoped>

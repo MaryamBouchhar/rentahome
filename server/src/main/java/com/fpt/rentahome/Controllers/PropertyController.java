@@ -183,7 +183,7 @@ public class PropertyController {
     //FILTRING PROPERTIES METHODS
 
     //filter properties by price(min, max)
-    @PostMapping("/filter-by-price/")
+    @PostMapping("/filter-by-price")
     public List<Property> filterByPrice(@RequestBody PriceRange priceRange) {
         float min = priceRange.getMinPrice();
         float max = priceRange.getMaxPrice();
@@ -191,20 +191,22 @@ public class PropertyController {
     }
 
     //filter properties by category
-    @GetMapping("/filter-by-category/")
+    @GetMapping("/filter-by-category")
     public List<Property> filterByCategory(@RequestParam String category) {
         return propertyService.filterByCategory(category);
     }
 
     //filter properties by location
-    @PostMapping("/filter-by-location/")
-    public List<Property> filterByLocation(@RequestParam String location) {
+    @PostMapping("/filter-by-location")
+    public List<Property> filterByLocation(@RequestBody String location) {
         return propertyService.filterByLocation(location);
     }
 
     //filter properties by search
-    @PostMapping("/filter-by-search/")
-    public List<Property> filterBySearch(@RequestParam String search) {
+    @CrossOrigin(origins = "http://localhost:5173")
+    @PostMapping("/filter-by-search")
+    public List<Property> filterBySearch(@RequestBody String search) {
+        System.out.println("search: " + search);
         return propertyRepository.filterBySearch(search);
     }
 }
