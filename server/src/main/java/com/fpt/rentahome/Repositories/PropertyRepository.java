@@ -23,4 +23,7 @@ public interface PropertyRepository extends JpaRepository<Property, Integer> {
 
     @Query("SELECT p FROM Property p WHERE p.description LIKE %:search% OR p.category LIKE %:search% OR p.location.city LIKE %:search%")
     List<Property> filterBySearch(String search);
+
+    @Query("SELECT DISTINCT p.location.city FROM Property p")
+    List<String> getAllCities();
 }

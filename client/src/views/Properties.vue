@@ -38,8 +38,10 @@
           <span class="label-text">Filter by price</span>
         </label>
         <div class="flex justify-between gap-2">
-          <input type="number" placeholder="Min" min="10" class="input input-bordered w-1/2" v-model="filter.price.min_price"/>
-          <input type="number" placeholder="Max" min="10" class="input input-bordered w-1/2" v-model="filter.price.max_price"/>
+          <input type="number" placeholder="Min" min="10" class="input input-bordered w-1/2"
+                 v-model="filter.price.min_price"/>
+          <input type="number" placeholder="Max" min="10" class="input input-bordered w-1/2"
+                 v-model="filter.price.max_price"/>
         </div>
 
         <!-- Filter by rating -->
@@ -208,9 +210,17 @@ export default {
         this.getPropertyImage();
       }).catch(error => console.log(error))
     },
+    async getAllCities() {
+      await axios.get('http://localhost:8080/manage-properties/cities')
+          .then(response => {
+            this.cities = response.data
+            console.log("Cities: ", this.cities)
+          }).catch(error => console.log(error))
+    },
   },
   mounted() {
     this.getProperties();
+    this.getAllCities();
   }
 }
 </script>

@@ -209,4 +209,10 @@ public class PropertyController {
         System.out.println("search: " + search);
         return propertyRepository.filterBySearch(search);
     }
+
+    //get all cities from location table
+    @GetMapping("/cities")
+    public List<String> getAllCities() {
+        return propertyRepository.getAllCities();
+    }
 }
