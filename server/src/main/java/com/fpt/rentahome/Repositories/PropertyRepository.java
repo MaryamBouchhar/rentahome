@@ -13,8 +13,8 @@ import java.util.List;
 @Repository
 public interface PropertyRepository extends JpaRepository<Property, Integer> {
 
-    @Query("SELECT p FROM Property p WHERE p.price >= :minPrice AND p.price <= :maxPrice")
-    List<Property> findByPriceRange(@Param("minPrice") float minPrice, @Param("maxPrice") float maxPrice);
+    @Query("SELECT p FROM Property p WHERE p.price >= :min AND p.price <= :max")
+    List<Property> findByPriceRange(@Param("min") float minPrice, @Param("max") float maxPrice);
 
     List<Property> findByCategory(String category);
 

@@ -38,8 +38,8 @@
           <span class="label-text">Filter by price</span>
         </label>
         <div class="flex justify-between gap-2">
-          <input type="number" placeholder="Min" min="1" class="input input-bordered w-1/2"/>
-          <input type="number" placeholder="Max" min="1" class="input input-bordered w-1/2"/>
+          <input type="number" placeholder="Min" min="10" class="input input-bordered w-1/2" v-model="filter.price.min_price"/>
+          <input type="number" placeholder="Max" min="10" class="input input-bordered w-1/2" v-model="filter.price.max_price"/>
         </div>
 
         <!-- Filter by rating -->
@@ -53,7 +53,7 @@
           <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
           <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
         </div>
-        <button class="btn btn-wide" @submit="filterByPriceRange">OK</button>
+        <button class="btn btn-wide" @click="filterByPriceRange">OK</button>
       </div>
       <div class="flex flex-col w-full content-center mx-4">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 flex justify-center mx-auto">
@@ -89,8 +89,8 @@ export default {
         category: "",
         city: "",
         price: {
-          min: 0,
-          max: 0
+          min_price: 0,
+          max_price: 0
         },
         rating: 0
       },
@@ -144,7 +144,19 @@ export default {
       console.log("Properties: ", this.properties)
     },
     async filterByPriceRange() {
-
+      await axios.post('http://localhost:8080/manage-properties/filter-by-price', this.filter.price, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then(response => {
+        this.properties = response.data
+        this.properties.forEach(property => {
+          property.publish_date = new Date(property.publish_date).toLocaleDateString();
+        })
+        console.log("Properties: ", this.properties)
+        //get each property's image
+        this.getPropertyImage();
+      }).catch(error => console.log(error))
     },
     async filterByCategory() {
       const category = this.filter.category
@@ -179,7 +191,6 @@ export default {
       }).catch(error => console.log(error))
     },
     async filterByRating() {
-
     },
     async filterBySearch() {
       const search = this.filter.search

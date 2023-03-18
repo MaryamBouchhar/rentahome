@@ -185,8 +185,8 @@ public class PropertyController {
     //filter properties by price(min, max)
     @PostMapping("/filter-by-price")
     public List<Property> filterByPrice(@RequestBody PriceRange priceRange) {
-        float min = priceRange.getMinPrice();
-        float max = priceRange.getMaxPrice();
+        float min = priceRange.getMin_price();
+        float max = priceRange.getMax_price();
         return propertyRepository.findByPriceRange(min, max);
     }
 
