@@ -183,28 +183,42 @@ public class PropertyController {
     //FILTRING PROPERTIES METHODS
 
     //filter properties by price(min, max)
-    @PostMapping("/filter-by-price/")
+    @PostMapping("/filter-by-price")
     public List<Property> filterByPrice(@RequestBody PriceRange priceRange) {
-        float min = priceRange.getMinPrice();
-        float max = priceRange.getMaxPrice();
+        float min = priceRange.getMin_price();
+        float max = priceRange.getMax_price();
         return propertyRepository.findByPriceRange(min, max);
     }
 
     //filter properties by category
-    @GetMapping("/filter-by-category/")
-    public List<Property> filterByCategory(@RequestParam String category) {
+    @PostMapping("/filter-by-category")
+    public List<Property> filterByCategory(@RequestBody String category) {
         return propertyService.filterByCategory(category);
     }
 
     //filter properties by location
-    @PostMapping("/filter-by-location/")
-    public List<Property> filterByLocation(@RequestParam String location) {
+    @PostMapping("/filter-by-city")
+    public List<Property> filterByLocation(@RequestBody String location) {
         return propertyService.filterByLocation(location);
     }
 
     //filter properties by search
-    @PostMapping("/filter-by-search/")
-    public List<Property> filterBySearch(@RequestParam String search) {
+    @CrossOrigin(origins = "http://localhost:5173")
+    @PostMapping("/filter-by-search")
+    public List<Property> filterBySearch(@RequestBody String search) {
+        System.out.println("search: " + search);
         return propertyRepository.filterBySearch(search);
+    }
+
+    //filter properties by rating
+    @PostMapping("/filter-by-rating")
+    public List<Property> filterByRating(@RequestParam("rating") int rating) {
+        return propertyRepository.filterByRating(rating);
+    }
+
+    //get all cities from location table
+    @GetMapping("/cities")
+    public List<String> getAllCities() {
+        return propertyRepository.getAllCities();
     }
 }

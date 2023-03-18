@@ -10,6 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PriceRange {
-    private float minPrice;
-    private float maxPrice;
+    private float min_price;
+    private float max_price;
 }
