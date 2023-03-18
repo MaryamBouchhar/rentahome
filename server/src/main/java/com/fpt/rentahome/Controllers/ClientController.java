@@ -18,7 +18,6 @@ public class ClientController {
     private ClientService clientService;
 
     //FETCH ALL Clients
-    @CrossOrigin(origins = "http://localhost:5174")
     @GetMapping("/clients")
     public List<Client> getAllClients() {
         return clientService.getAllClients();

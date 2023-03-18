@@ -12,57 +12,50 @@
         </div>
         <!-- comments section -->
         <h1 class="text-2xl font-bold mb-3">Comments</h1>
-        <div class="chat chat-start mb-3">
-          <div class="chat-image avatar">
-            <div class="w-10 rounded-full">
-              <img src="https://i.pravatar.cc/50"/>
+        <div class="comments-section">
+          <div class="chat chat-start" v-for="comment in comments" :key="comment.id">
+            <div class="chat-image avatar">
+              <div class="w-10 rounded-full">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar"/>
+              </div>
+            </div>
+            <div class="chat-bubble">
+              <div class="chat-bubble-content">
+                <div class="chat-bubble-content-text">
+                  {{ comment.content }}
+                </div>
+                <div class="chat-bubble-content-time text-xs mt-1 font-light">
+                  {{ comment.created_at }}
+                </div>
+              </div>
             </div>
           </div>
-          <div class="chat-bubble">It was said that you would, destroy the Sith, not join them.</div>
-        </div>
-        <div class="chat chat-start">
-          <div class="chat-image avatar">
-            <div class="w-10 rounded-full">
-              <img src="https://i.pravatar.cc/50"/>
-            </div>
-          </div>
-          <div class="chat-bubble">It was you who would bring balance to the Force</div>
-        </div>
-        <div class="chat chat-start">
-          <div class="chat-image avatar">
-            <div class="w-10 rounded-full">
-              <img src="https://i.pravatar.cc/50"/>
-            </div>
-          </div>
-          <div class="chat-bubble">Not leave it in Darkness</div>
         </div>
         <!-- add comment -->
         <div class="flex flex-col mt-3">
-
           <h1 class="text-2xl font-bold mb-3">Rate this property</h1>
 
-          <textarea class="textarea h-24 textarea-secondary mb-3" placeholder="Your comment" :v-model="comment.content"></textarea>
+          <textarea
+              class="textarea h-24 textarea-secondary mb-3"
+              placeholder="Your comment"
+              v-model="comment.content"
+              @change="comment.content = $event.target.value;"
+          ></textarea>
+
           <div class="rating">
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked/>
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
-            <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
+            <input type="radio" name="rating-2" :checked="index === selected" @change="select(index)"
+                   class="mask mask-star-2 bg-orange-400" v-for="(star, index) in stars" :key="index">
           </div>
-          <button  @click="addComment" class="btn btn-wide mt-3">Add Comment</button>
+          <button @click="addComment" class="btn btn-wide mt-3">Add Comment</button>
         </div>
       </div>
       <div class="property-details w-full mx-4">
         <h1 class="text-3xl font-bold mb-3"> {{ property.title }} </h1>
         <div class="flex flex-row items-center gap-2 mb-3">
           <div class="rating rating-sm">
-            <input class="mask mask-star-2 bg-orange-400"/>
-            <input class="mask mask-star-2 bg-orange-400"/>
-            <input class="mask mask-star-2 bg-orange-400"/>
-            <input class="mask mask-star-2 bg-orange-400"/>
-            <input class="mask mask-star-2 bg-orange-400"/>
+            <input class="mask mask-star-2 bg-orange-400" v-for="rate in property.rating"/>
           </div>
-          <span class="rate-count">()</span>
+          <span class="rate-count">({{ property.total_rates }})</span>
         </div>
         <p class="mb-3">{{ property.description }}</p>
         <h1 class="font-bold text-xl text-green-400 mb-3">${{ property.price }} </h1>
@@ -84,18 +77,16 @@
               <th class="font-bold text-lg">Rooms count</th>
               <td>{{ property.room_count }}</td>
             </tr>
+            <!-- row 4 -->
+            <tr class="active">
+              <th class="font-bold text-lg">Is furnished</th>
+              <td>{{ property.equipped ? 'Yes' : 'No' }}</td>
+            </tr>
             </tbody>
           </table>
         </div>
-        <iframe
-            class="mb-3"
-            width="700"
-            height="500"
-            frameborder="0"
-            style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?q=12.33,23.33&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8"
-            allowfullscreen
-        ></iframe>
+        <!--maps -->
+        <div id="embed-map"></div>
         <div class="flex justify-center">
           <button class="btn btn-wide " v-if="property.status=='Available'">Book now</button>
           <button v-else disabled class="btn btn-wide cursor-not-allowed opacity-70 "
@@ -109,18 +100,38 @@
 
 <script>
 import axios from "axios";
+import {useStore} from "vuex";
+import {computed} from "vue";
 
 export default {
   name: "PropertyDetails",
+  setup() {
+    const store = useStore();
+
+    return {
+      rtl: computed(() => store.state.rtl),
+      user: computed(() => store.state.user)
+    }
+  },
   data() {
     return {
       active: 1,
+      stars: [1, 2, 3, 4, 5],
       property: [],
+      lat: 0,
+      lng: 0,
+      maps_src: "",
       images_count: 0,
       id: this.$route.params.id,
       status: 'Available',
-
-     comment:[],
+      comments: [],
+      comment: {
+        property_id: this.$route.params.id,
+        client: null,
+        content: "",
+        rating: 0
+      },
+      comment_content: "",
     };
   },
   methods: {
@@ -150,7 +161,11 @@ export default {
             console.log("Property Image Count: ", this.images_count)
           })
     },
-
+    select(index) {
+      this.selected = index;
+      this.comment.rating = this.stars[index];
+      console.log("rating: ", this.comment.rating)
+    },
     checkAvailability() {
       axios.get(`http://localhost:8080/manage-properties/property/${this.id}/availability`)
           .then(response => {
@@ -162,7 +177,9 @@ export default {
 
     },
     async addComment() {
+      this.comment.client = this.user;
       const comment = this.comment;
+      console.log("comment: ", this.comment)
       await axios.post(`http://localhost:8080/manage-properties/${this.id}/add-comment`, comment)
           .then((response) => {
             console.log(response);
@@ -171,30 +188,104 @@ export default {
             console.log(error);
           });
     },
-    async getProperty() {
-      axios.get(`http://localhost:8080/manage-properties/properties/${this.id}`)
+    async getComments() {
+      await axios.get(`http://localhost:8080/manage-properties/${this.id}/comments`)
           .then((response) => {
-        this.property = response.data;
-        this.property.title = this.property.category + ' in ' + this.property.location.city
-
-        console.log("Properties: ", this.property);
-      })
+            this.comments = response.data;
+            console.log("Comments: ", this.comments);
+          })
           .catch((error) => {
             console.log(error);
           });
     },
-    mounted() {
-      this.checkAvailability();
-      this.getProperty(); 
-      this.getPropertyImages();
+    async getProperty() {
+      axios.get(`http://localhost:8080/manage-properties/properties/${this.id}`)
+          .then((response) => {
+            this.property = response.data;
+            this.property.title = this.property.category + ' in ' + this.property.location.city
+            this.lat = this.property.location.latitude;
+            this.lng = this.property.location.longitude;
+
+            //fill form src
+            this.maps_src = `https://www.google.com/maps/embed/v1/place?q=${this.lng},${this.lng}&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8`
+
+            console.log("Property: ", this.property);
+
+            this.loadMap(this.lat, this.lng);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     },
-
+    async getPropertyRating() {
+      await axios.get(`http://localhost:8080/manage-properties/property/${this.id}/rating`)
+          .then((response) => {
+            this.property.rating = response.data;
+            console.log("Property Rating: ", this.property.rating);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    },
+    async getTotalRates() {
+      await axios.get(`http://localhost:8080/manage-properties/property/${this.id}/total-rates`)
+          .then((response) => {
+            this.property.total_rates = response.data;
+            console.log("Property Total Rates: ", this.property.total_rates);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    },
+    loadMap(lat, lng) {
+      //put ifram in div of id embed-map
+      document.getElementById('embed-map').innerHTML = `<iframe
+              class="mb-3"
+              width="700"
+              height="300"
+              frameborder="0"
+              style="border:0"
+              src="https://www.google.com/maps/embed/v1/place?q=${lat},${lng}&maptype=satellite&key=AIzaSyB-micHZxFKc5PDvE_4Uq4KqrrGy-Xz4H8"
+              allowfullscreen
+          ></iframe>`
     }
-
-
- 
-  
+  },
+  mounted() {
+    this.checkAvailability();
+    this.getProperty();
+    this.getPropertyImages();
+    this.getComments();
+    this.getPropertyRating();
+    this.getTotalRates();
+  },
 }
 </script>
+
 <style scoped>
+.disabled-btn {
+  cursor: not-allowed;
+}
+
+.comments-section {
+  max-height: 240px; /* set a fixed maximum height for the container */
+  overflow-y: auto; /* enable vertical scrolling when content exceeds container height */
+}
+
+.comments-section::-webkit-scrollbar {
+  width: 10px; /* set the width of the scrollbar */
+}
+
+.comments-section::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* set the background color of the scrollbar track */
+}
+
+.comments-section::-webkit-scrollbar-thumb {
+  background-color: #888; /* set the color of the scrollbar thumb */
+  border-radius: 5px; /* set the border radius of the scrollbar thumb */
+}
+
+.comments-section::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* set the color of the scrollbar thumb on hover */
+}
+
 </style>

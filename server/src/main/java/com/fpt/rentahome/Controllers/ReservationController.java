@@ -72,6 +72,6 @@ public class ReservationController {
         Property property = optionalProperty.get();
         Client client = optionalClient.get();
         reservationService.updateReservation(id, reservation, property, client);
-        return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Reservation has been updated"), HttpStatus.OK);
+        return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been updated"), HttpStatus.OK);
     }
 }
