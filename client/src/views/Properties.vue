@@ -49,11 +49,8 @@
           <span class="label-text">Filter by rating</span>
         </label>
         <div class="rating mb-3">
-          <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
-          <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked/>
-          <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
-          <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
-          <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
+          <input type="radio" name="rating-2" :checked="index === selected" @change="select(index)"
+                 class="mask mask-star-2 bg-orange-400" v-for="(star, index) in stars" :key="index"/>
         </div>
         <button class="btn btn-wide" @click="filterByPriceRange">OK</button>
       </div>
@@ -105,15 +102,8 @@ export default {
         'Villa',
         'Bungalow',
       ],
-      cities: [
-        'Toronto',
-        'Ottawa',
-        'Montreal',
-        'Vancouver',
-        'Calgary',
-        'Edmonton',
-        'Winnipeg',
-      ],
+      cities: [],
+      stars: [1, 2, 3, 4, 5]
     };
   },
   methods: {
@@ -193,6 +183,18 @@ export default {
       }).catch(error => console.log(error))
     },
     async filterByRating() {
+      const formDate = new FormData();
+      formDate.append('rating', this.filter.rating)
+      await axios.post('http://localhost:8080/manage-properties/filter-by-rating', formDate)
+          .then(response => {
+            this.properties = response.data
+            this.properties.forEach(property => {
+              property.publish_date = new Date(property.publish_date).toLocaleDateString();
+            })
+            console.log("Properties: ", this.properties)
+            //get each property's image
+            this.getPropertyImage();
+          }).catch(error => console.log(error))
     },
     async filterBySearch() {
       const search = this.filter.search
@@ -216,6 +218,14 @@ export default {
             this.cities = response.data
             console.log("Cities: ", this.cities)
           }).catch(error => console.log(error))
+    },
+    select(index) {
+      this.selected = index;
+      this.filter.rating = this.stars[index];
+      console.log("rating: ", this.filter.rating)
+
+      //filter by rating
+      this.filterByRating();
     },
   },
   mounted() {

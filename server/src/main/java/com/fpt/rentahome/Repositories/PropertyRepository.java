@@ -26,4 +26,7 @@ public interface PropertyRepository extends JpaRepository<Property, Integer> {
 
     @Query("SELECT DISTINCT p.location.city FROM Property p")
     List<String> getAllCities();
+
+    @Query("SELECT p FROM Property p WHERE p.id IN (SELECT c.property.id FROM Comment c WHERE c.rating = :rating)")
+    List<Property> filterByRating(int rating);
 }

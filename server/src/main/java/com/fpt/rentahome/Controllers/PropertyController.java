@@ -210,6 +210,12 @@ public class PropertyController {
         return propertyRepository.filterBySearch(search);
     }
 
+    //filter properties by rating
+    @PostMapping("/filter-by-rating")
+    public List<Property> filterByRating(@RequestParam("rating") int rating) {
+        return propertyRepository.filterByRating(rating);
+    }
+
     //get all cities from location table
     @GetMapping("/cities")
     public List<String> getAllCities() {
