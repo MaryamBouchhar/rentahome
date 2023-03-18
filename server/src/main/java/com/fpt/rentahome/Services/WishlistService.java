@@ -38,11 +38,11 @@ public class WishlistService {
 
     }
 
-    public List<Wishlist> readWishList(Integer clientId) {
-        return wishlistRepository.findAllByClientOrderByCreatedDateDesc(clientId);
+    public List<Wishlist> readWishList(int clientId) {
+        return wishlistRepository.findByClientId(clientId);
     }
 
-    public List<Wishlist> getAllWishlistItems() {
-        return wishlistRepository.findAll();
-    }
+//    public List<Wishlist> getAllWishlistItems() {
+//        return wishlistRepository.findAll();
+//    }
 }
