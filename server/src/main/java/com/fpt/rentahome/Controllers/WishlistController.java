@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -35,18 +36,25 @@ public class WishlistController {
     }
 
 
-    @GetMapping("/{client_id}")
-    public ResponseEntity<List<Property>> getWishList(@PathVariable("client_id") Integer clientId) {
-
-        List<Wishlist> body = wishlistService.readWishList(clientId);
-        List<Property> properties = new ArrayList<Property>();
-        for (Wishlist wishList : body) {
-         properties.add(wishList.getProperty());
-        }
-
-        return new ResponseEntity<List<Property>>(properties, HttpStatus.OK);
+//    @GetMapping("/{clientId}")
+//    public ResponseEntity<List<Property>> getWishList(@PathVariable int clientId) {
+//
+//        List<Wishlist> body = wishlistService.readWishList(clientId);
+//        List<Property> properties = body.stream()
+//                .map(Wishlist::getProperty)
+//                .collect(Collectors.toList());
+//
+//        return new ResponseEntity<List<Property>>(properties, HttpStatus.OK);
+//    }
+@GetMapping("/{clientId}")
+public ResponseEntity<List<Wishlist>> getWishlistByClientId(@PathVariable("clientId") int clientId) {
+    List<Wishlist> wishlistItems = wishlistService.readWishList(clientId);
+    if(wishlistItems.isEmpty()) {
+        return ResponseEntity.noContent().build();
+    } else {
+        return ResponseEntity.ok(wishlistItems);
     }
-
+}
 
 
 
