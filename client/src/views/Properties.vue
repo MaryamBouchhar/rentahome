@@ -28,7 +28,7 @@
         <label class="label font-bold">
           <span class="label-text">Filter by city</span>
         </label>
-        <select class="select select-primary w-full max-w-xs">
+        <select class="select select-primary w-full max-w-xs" v-model="filter.city" @change="filterByCity">
           <option disabled selected>Filter by city</option>
           <option v-for="city in cities" :key="city">{{ city }}</option>
         </select>
@@ -163,7 +163,20 @@ export default {
       }).catch(error => console.log(error))
     },
     async filterByCity() {
-
+      const city = this.filter.city
+      await axios.post('http://localhost:8080/manage-properties/filter-by-city', city, {
+        headers: {
+          'Content-Type': 'text/plain',
+        }
+      }).then(response => {
+        this.properties = response.data
+        this.properties.forEach(property => {
+          property.publish_date = new Date(property.publish_date).toLocaleDateString();
+        })
+        console.log("Properties: ", this.properties)
+        //get each property's image
+        this.getPropertyImage();
+      }).catch(error => console.log(error))
     },
     async filterByRating() {
 

@@ -197,7 +197,7 @@ public class PropertyController {
     }
 
     //filter properties by location
-    @PostMapping("/filter-by-location")
+    @PostMapping("/filter-by-city")
     public List<Property> filterByLocation(@RequestBody String location) {
         return propertyService.filterByLocation(location);
     }
