@@ -57,9 +57,14 @@
       <div class="flex flex-col w-full content-center mx-4">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 flex justify-center mx-auto">
           <router-link v-for="property in properties" :key="property.id"
-                       :to="{name: 'PropertyDetails', params: {id: property.id}}">
+                       :to="{name: 'PropertyDetails', params: {id: property.id}}" v-if="properties.length > 0">
             <PropertyCard :property="property"/>
           </router-link>
+          <div v-else class="flex flex-col justify-center items-center">
+            <h1 class="text-center font-bold text-2xl my-5">
+              No properties found
+            </h1>
+          </div>
         </div>
       </div>
     </div>
