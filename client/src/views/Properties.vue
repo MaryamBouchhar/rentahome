@@ -9,7 +9,7 @@
         <!-- Search -->
         <div class="form-control mb-2">
           <div class="input-group">
-            <input type="text" placeholder="Search…" class="input input-bordered" v-model="search"/>
+            <input type="text" placeholder="Search…" class="input input-bordered" v-model="filter.search"/>
             <button class="btn btn-square" @click="filterBySearch">
               <i class='bx bx-search bx-sm'></i>
             </button>
@@ -20,7 +20,7 @@
         <label class="label font-bold">
           <span class="label-text">Filter by category</span>
         </label>
-        <select class="select select-primary w-full max-w-xs">
+        <select class="select select-primary w-full max-w-xs" v-model="filter.category" @change="filterByCategory">
           <option disabled selected>Filter by category</option>
           <option v-for="category in property_categories" :key="category">{{ category }}</option>
         </select>
@@ -84,7 +84,16 @@ export default {
       properties: [],
       selectedProperty: {},
       isModalActive: false,
-      search: "",
+      filter: {
+        search: "",
+        category: "",
+        city: "",
+        price: {
+          min: 0,
+          max: 0
+        },
+        rating: 0
+      },
       PROPERTY_API_BASE_URL: `http://localhost:8080/manage-properties/properties`,
       property_categories: [
         'House',
@@ -137,8 +146,31 @@ export default {
     async filterByPriceRange() {
 
     },
+    async filterByCategory() {
+      const category = this.filter.category
+      axios.post('http://localhost:8080/manage-properties/filter-by-category', category, {
+        headers: {
+          'Content-Type': 'text/plain',
+        }
+      }).then(response => {
+        this.properties = response.data
+        this.properties.forEach(property => {
+          property.publish_date = new Date(property.publish_date).toLocaleDateString();
+        })
+        console.log("Properties: ", this.properties)
+        //get each property's image
+        this.getPropertyImage();
+      }).catch(error => console.log(error))
+    },
+    async filterByCity() {
+
+    },
+    async filterByRating() {
+
+    },
     async filterBySearch() {
-      await axios.post('http://localhost:8080/manage-properties/filter-by-search', this.search, {
+      const search = this.filter.search
+      await axios.post('http://localhost:8080/manage-properties/filter-by-search', search, {
         headers: {
           'Content-Type': 'text/plain',
         }

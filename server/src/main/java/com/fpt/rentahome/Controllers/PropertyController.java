@@ -191,8 +191,8 @@ public class PropertyController {
     }
 
     //filter properties by category
-    @GetMapping("/filter-by-category")
-    public List<Property> filterByCategory(@RequestParam String category) {
+    @PostMapping("/filter-by-category")
+    public List<Property> filterByCategory(@RequestBody String category) {
         return propertyService.filterByCategory(category);
     }
 
