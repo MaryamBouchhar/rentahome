@@ -15,40 +15,9 @@ defineProps({
 });
 
 const mainStore = useMainStore();
-
-const items = computed(() => mainStore.properties);
-
 const isModalActive = ref(false);
-
 const isModalDangerActive = ref(false);
-
-const perPage = ref(5);
-
-const currentPage = ref(0);
-
 const checkedRows = ref([]);
-
-const itemsPaginated = computed(() =>
-  items.value.slice(
-    perPage.value * currentPage.value,
-    perPage.value * (currentPage.value + 1)
-  )
-);
-
-const numPages = computed(() => Math.ceil(items.value.length / perPage.value));
-
-const currentPageHuman = computed(() => currentPage.value + 1);
-
-const pagesList = computed(() => {
-  const pagesList = [];
-
-  for (let i = 0; i < numPages.value; i++) {
-    pagesList.push(i);
-  }
-
-  return pagesList;
-});
-
 const remove = (arr, cb) => {
   const newArr = [];
 
@@ -112,7 +81,7 @@ const checked = (isChecked, client) => {
     </tr>
     </thead>
     <tbody>
-    <tr v-for="reservation in reservations" :key="reservation.id">
+    <tr v-for="reservation in paginatedReservations" :key="reservation.id">
       <TableCheckboxCell
         v-if="checkable"
         @checked="checked($event, reservation)"
@@ -195,6 +164,8 @@ export default {
   data() {
     return {
       reservations: [],
+      currentPage: 0,
+      pageSize: 5,
       RESERVATION_API_BASE_URL: "http://localhost:8080/manage-reservation",
     };
 
@@ -324,6 +295,22 @@ export default {
     getReservationById(id) {
       return this.reservations.filter(reservation => reservation.id === id)[0];
     },
+  },
+  computed: {
+    paginatedReservations: function () {
+      const startIndex = this.currentPage * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      return this.reservations.slice(startIndex, endIndex);
+    },
+    numPages: function () {
+      return Math.ceil(this.reservations.length / this.pageSize);
+    },
+    currentPageHuman: function () {
+      return this.currentPage + 1;
+    },
+    pagesList: function () {
+      return Array.from({length: this.numPages}, (v, k) => k);
+    }
   },
   mounted() {
     this.getReservations();
