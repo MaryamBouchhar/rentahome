@@ -131,7 +131,7 @@ export default {
       clients: [],
       currentPage: 0,
       pageSize: 5,
-      CLIENT_API_BASE_URL: "http://localhost:8080/manage-client/clients",
+      CLIENT_API_BASE_URL: "http://localhost:8080/api/clients/clients",
     };
 
   },
