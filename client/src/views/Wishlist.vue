@@ -68,7 +68,6 @@
 
 import {useStore} from 'vuex';
 import {computed} from "vue";
-import WishlistItems from "../components/WishlistItems.vue";
 import Footer from "../components/Footer.vue";
 import axios from "axios";
 import PropertyCard from "../components/PropertyCard.vue";
@@ -77,7 +76,6 @@ export default {
   name: 'Wishlist',
   components: {
     PropertyCard,
-    WishlistItems,
     Footer
   },
   setup() {
@@ -90,8 +88,6 @@ export default {
   },
   data() {
     return {
-
-
       categories: [
         {
           id: 1,
@@ -104,9 +100,7 @@ export default {
         }
       ],
       selectedCategory: null,
-      wishlistItems: [
-
-      ],
+      wishlistItems: [],
       isLoaded: false
     }
   },
@@ -116,11 +110,26 @@ export default {
     //   this.selectedCategory = category ? category.id : null;
     //   this.getProperties();
     // },
+    async getPropertyImage() {
+      //get each property's image
+      for (let i = 0; i < this.wishlistItems.length; i++) {
+        await axios.get('http://localhost:8080/uploads/properties/' + this.wishlistItems.property[i].id + '/first', {responseType: 'arraybuffer'})
+            .then(response => {
+              console.log("Property Image: ", response.data)
+              const imageBlob = new Blob([response.data], {type: 'image/jpeg'});
+              this.wishlistItems.property[i].image = URL.createObjectURL(imageBlob)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+      }
+    },
     async getProperties() {
 
       axios.get(`http://localhost:8080/api/wishlist/${this.user.id}`)
           .then(response => {
             this.wishlistItems = response.data
+            this.getPropertyImage()
             console.log(this.wishlistItems)
           })
           .catch(error => {
