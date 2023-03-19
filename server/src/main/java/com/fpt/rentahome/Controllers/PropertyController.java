@@ -29,7 +29,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin
 @RequestMapping("/manage-properties")
 public class PropertyController {
     @Autowired
@@ -76,7 +76,7 @@ public class PropertyController {
 
     //add a property
     //accept all origins
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:5174/")
     @PostMapping("/add-property")
     public ResponseEntity<ApiResponse> createProperty(MultipartHttpServletRequest request) {
         System.out.println("REQUEST:");
