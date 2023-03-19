@@ -1,18 +1,19 @@
 package com.fpt.rentahome.Models;
 
+
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
 @Setter
 @Getter
-@Builder
 @Entity
 @Table(name="wishlist")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Wishlist {
 
     @Id
@@ -29,5 +30,4 @@ public class Wishlist {
     @ManyToOne()
     @JoinColumn(name = "property_id")
     private Property property;
-
 }

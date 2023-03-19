@@ -26,7 +26,7 @@ public class WishlistService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public Wishlist addPropertyToWishlist(Integer propertyId,Integer clientId) {
+    public Wishlist addPropertyToWishlist(Integer propertyId, Integer clientId) {
         Property property = propertyRepository.findById(propertyId).orElseThrow(() -> new EntityNotFoundException("Property not found"));
         Client client = clientRepository.findById(clientId).orElseThrow(() -> new EntityNotFoundException("Property not found"));
         Wishlist wishlist = Wishlist.builder()
@@ -38,11 +38,11 @@ public class WishlistService {
 
     }
 
-    public List<Wishlist> readWishList(int clientId) {
-        return wishlistRepository.findByClientId(clientId);
+    public List<Wishlist> readWishList(Client client) {
+        return wishlistRepository.findAllByClientOrderByCreatedDateDesc(client);
     }
 
-//    public List<Wishlist> getAllWishlistItems() {
-//        return wishlistRepository.findAll();
-//    }
+    public List<Wishlist> getAllWishlistItems() {
+        return wishlistRepository.findAll();
+    }
 }

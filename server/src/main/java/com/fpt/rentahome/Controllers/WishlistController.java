@@ -7,6 +7,7 @@ import com.fpt.rentahome.Models.Client;
 import com.fpt.rentahome.Models.Property;
 import com.fpt.rentahome.Models.Wishlist;
 import com.fpt.rentahome.Repositories.PropertyRepository;
+import com.fpt.rentahome.Services.ClientService;
 import com.fpt.rentahome.Services.WishlistService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -28,6 +29,8 @@ public class WishlistController {
     @Autowired
     WishlistService wishlistService;
 
+    @Autowired
+    ClientService clientService;
 
     @PostMapping("/")
     public ResponseEntity<ApiResponse> addPropertyToWishlist(@RequestBody AddToWishlistRequest request) {
@@ -36,29 +39,19 @@ public class WishlistController {
     }
 
 
-//    @GetMapping("/{clientId}")
-//    public ResponseEntity<List<Property>> getWishList(@PathVariable int clientId) {
-//
-//        List<Wishlist> body = wishlistService.readWishList(clientId);
-//        List<Property> properties = body.stream()
-//                .map(Wishlist::getProperty)
-//                .collect(Collectors.toList());
-//
-//        return new ResponseEntity<List<Property>>(properties, HttpStatus.OK);
-//    }
-@GetMapping("/{clientId}")
-public ResponseEntity<List<Wishlist>> getWishlistByClientId(@PathVariable("clientId") int clientId) {
-    List<Wishlist> wishlistItems = wishlistService.readWishList(clientId);
-    if(wishlistItems.isEmpty()) {
-        return ResponseEntity.noContent().build();
-    } else {
-        return ResponseEntity.ok(wishlistItems);
+    @GetMapping("/{client_id}")
+    public ResponseEntity<List<Property>> getWishList(@PathVariable("client_id") Integer clientId) {
+        Optional<Client> c = clientService.getClientById(clientId);
+        //convert optional to Object
+        Client client = c.orElseThrow(() -> new EntityNotFoundException("Client not found"));
+        List<Wishlist> body = wishlistService.readWishList(client);
+        List<Property> properties = new ArrayList<Property>();
+        for (Wishlist wishList : body) {
+            properties.add(wishList.getProperty());
+        }
+
+        return new ResponseEntity<List<Property>>(properties, HttpStatus.OK);
     }
-}
-
-
-
-
 
 
 }
