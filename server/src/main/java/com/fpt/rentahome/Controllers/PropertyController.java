@@ -52,6 +52,7 @@ public class PropertyController {
     }
 
     //fetch all properties
+    @CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"})
     @GetMapping("/properties")
     public List<Property> getAllProperties() {
         return propertyService.getAllProperties();
@@ -59,16 +60,8 @@ public class PropertyController {
 
 
     //get property
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/properties/{id}")
-    /*public ResponseEntity<Property> getPropertyById(@PathVariable("id") int id) {
-        Optional<Property> property = propertyService.getPropertyById(id);
-        if (property == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        Property getedproperty = property.get();
-        return new ResponseEntity<>(getedproperty, HttpStatus.OK);
-    }*/
     public Property getProperty(@PathVariable("id") int id) {
         return propertyService.getProperty(id);
     }
@@ -76,7 +69,7 @@ public class PropertyController {
 
     //add a property
     //accept all origins
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:5174")
     @PostMapping("/add-property")
     public ResponseEntity<ApiResponse> createProperty(MultipartHttpServletRequest request) {
         System.out.println("REQUEST:");
