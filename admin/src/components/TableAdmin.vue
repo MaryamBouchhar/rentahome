@@ -95,7 +95,7 @@ export default {
     return {
       admins: [],
       currentPage: 0,
-      pageSize: 10,
+      pageSize: 5,
       totalPages: 0,
       ADMIN_API_BASE_URL: "http://localhost:8080/manage-admin/admins",
     };

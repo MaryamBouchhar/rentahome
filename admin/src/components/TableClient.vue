@@ -1,7 +1,7 @@
 <script setup>
-import { computed, ref } from "vue";
-import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan,mdiImageEdit } from "@mdi/js";
+import {computed, ref} from "vue";
+import {useMainStore} from "@/stores/main";
+import {mdiEye, mdiTrashCan, mdiImageEdit} from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
@@ -15,36 +15,9 @@ defineProps({
 });
 
 const mainStore = useMainStore();
-
-const items = computed(() => mainStore.clients);
-
 const isModalActive = ref(false);
-
 const isModalDangerActive = ref(false);
-
-const perPage = ref(2);
-
-const currentPage = ref(0);
-
 const checkedRows = ref([]);
-
-const itemsPaginated = computed(() =>
-  items.value.slice(
-    perPage.value * currentPage.value,
-    perPage.value * (currentPage.value + 1)
-  )
-);
-
-const numPages = computed(() => Math.ceil(items.value.length / perPage.value));
-const currentPageHuman = computed(() => currentPage.value + 1);
-const pagesList = computed(() => {
-  const pagesList = [];
-  for (let i = 0; i < numPages.value; i++) {
-    pagesList.push(i);
-  }
-  return pagesList;
-});
-
 const remove = (arr, cb) => {
   const newArr = [];
 
@@ -98,7 +71,7 @@ const checked = (isChecked, client) => {
   <table>
     <thead>
     <tr>
-      <th v-if="checkable" />
+      <th v-if="checkable"/>
       <th>Id</th>
       <th>Name</th>
       <th>Email</th>
@@ -108,7 +81,7 @@ const checked = (isChecked, client) => {
     </tr>
     </thead>
     <tbody>
-    <tr v-for="client in clients" :key="client.id">
+    <tr v-for="client in paginatedClients" :key="client.id">
       <TableCheckboxCell
         v-if="checkable"
         @checked="checked($event, client)"
@@ -150,25 +123,43 @@ const checked = (isChecked, client) => {
 </template>
 <script>
 import axios from 'axios';
+
 export default {
   name: "ClientView",
-  data(){
-    return{
-      clients:[],
-      CLIENT_API_BASE_URL : "http://localhost:8080/manage-client/clients",
+  data() {
+    return {
+      clients: [],
+      currentPage: 0,
+      pageSize: 5,
+      CLIENT_API_BASE_URL: "http://localhost:8080/manage-client/clients",
     };
 
   },
-  methods : {
-
+  methods: {
     async getClients() {
       await axios.get(this.CLIENT_API_BASE_URL)
-        .then(response=>this.clients=response.data)
-        .catch(error=>console.log(error))
+        .then(response => this.clients = response.data)
+        .catch(error => console.log(error))
     }
   },
-  mounted(){
- this.getClients();
+  computed: {
+    paginatedClients: function () {
+      const startIndex = this.currentPage * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      return this.clients.slice(startIndex, endIndex);
+    },
+    numPages: function () {
+      return Math.ceil(this.clients.length / this.pageSize);
+    },
+    currentPageHuman: function () {
+      return this.currentPage + 1;
+    },
+    pagesList: function () {
+      return Array.from({length: this.numPages}, (v, k) => k);
+    }
+  },
+  mounted() {
+    this.getClients();
   }
 };
 </script>
