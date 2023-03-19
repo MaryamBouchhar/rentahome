@@ -12,8 +12,7 @@ import java.util.List;
 @Repository
 public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
 
-    // find all the properties saved to wishlist for a user
-    // sort by latest created date
-    List<Wishlist> findAllByClientOrderByCreatedDateDesc(Integer clientId);
+
+    List<Wishlist> findByClientId(int clientId);
 
 }

@@ -48,9 +48,9 @@
         class="flex grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 p-5"
     >
       <PropertyCard
-          v-for="property in properties"
-          :key="property.id"
-          :property="property"
+          v-for="item in wishlistItems"
+          :key="item"
+          :property="item.property"
       />
     </div>
   </div>
@@ -68,9 +68,9 @@
 
 import {useStore} from 'vuex';
 import {computed} from "vue";
-import PropertyCard from "../components/PropertyCard.vue";
 import Footer from "../components/Footer.vue";
 import axios from "axios";
+import PropertyCard from "../components/PropertyCard.vue";
 
 export default {
   name: 'Wishlist',
@@ -88,8 +88,6 @@ export default {
   },
   data() {
     return {
-
-
       categories: [
         {
           id: 1,
@@ -102,39 +100,55 @@ export default {
         }
       ],
       selectedCategory: null,
-      properties: [],
+      wishlistItems: [],
       isLoaded: false
     }
   },
   methods: {
-    selectCategory(category) {
-      this.isLoaded = false;
-      this.selectedCategory = category ? category.id : null;
-      this.getProperties();
+    // selectCategory(category) {
+    //   this.isLoaded = false;
+    //   this.selectedCategory = category ? category.id : null;
+    //   this.getProperties();
+    // },
+    async getPropertyImage() {
+      //get each property's image
+      for (let i = 0; i < this.wishlistItems.length; i++) {
+        await axios.get('http://localhost:8080/uploads/properties/' + this.wishlistItems.property[i].id + '/first', {responseType: 'arraybuffer'})
+            .then(response => {
+              console.log("Property Image: ", response.data)
+              const imageBlob = new Blob([response.data], {type: 'image/jpeg'});
+              this.wishlistItems.property[i].image = URL.createObjectURL(imageBlob)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+      }
     },
     async getProperties() {
 
       axios.get(`http://localhost:8080/api/wishlist/${this.user.id}`)
           .then(response => {
-            this.properties = response.data
+            this.wishlistItems = response.data
+            this.getPropertyImage()
+            console.log(this.wishlistItems)
           })
           .catch(error => {
             console.log(error)
           })
-      if (this.selectedCategory === null) {
-        let props = this.categories.map(category => category.properties).flat();
-        this.isLoaded = true;
-        this.properties = props;
-      } else {
-        let props = this.categories.find(category => category.id === this.selectedCategory).properties;
-        this.isLoaded = true;
-        this.properties = props;
-      }
+      // if (this.selectedCategory === null) {
+      //   let props = this.categories.map(category => category.properties).flat();
+      //   this.isLoaded = true;
+      //   this.properties = props;
+      // } else {
+      //   let props = this.categories.find(category => category.id === this.selectedCategory).properties;
+      //   this.isLoaded = true;
+      //   this.properties = props;
+      // }
     }
   },
   mounted() {
-    console.log(this.categories);
-    console.log(this.selectedCategory);
+    // console.log(this.categories);
+    // console.log(this.selectedCategory);
     this.getProperties();
     this.isLoaded = true;
   }
