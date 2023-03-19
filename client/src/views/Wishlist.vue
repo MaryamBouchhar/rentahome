@@ -1,11 +1,12 @@
 <template>
   <div>
     <div class="border-b border-t p-5">
-      <h1
-          class="text-2xl font-bold text-center"
-      >
+      <h1 class="text-2xl font-bold text-center">
         {{ $t('wishlist.wishlist') }}
       </h1>
+      <p class="text-center text-gray-500">
+        Here you can find all the properties you have added to your wishlist.
+      </p>
     </div>
   </div>
 
