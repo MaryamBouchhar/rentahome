@@ -68,10 +68,10 @@ public class JwtTokenProvider {
                 .getBody();
     }
 
-    public void invalidateSession(String sessionId) {
+    public void invalidateSession(String token) {
         Jwts.parser()
                 .setSigningKey(jwtSecret)
-                .parseClaimsJws(sessionId)
+                .parseClaimsJws(token)
                 .getBody()
                 .setId(null);
     }
