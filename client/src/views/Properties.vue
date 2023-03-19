@@ -55,15 +55,20 @@
         <button class="btn btn-wide" @click="filterByPriceRange">OK</button>
       </div>
       <div class="flex flex-col w-full content-center mx-4">
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 flex justify-center mx-auto">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 flex justify-center mx-auto" v-if="properties.length > 0">
           <router-link v-for="property in properties" :key="property.id"
-                       :to="{name: 'PropertyDetails', params: {id: property.id}}" v-if="properties.length > 0">
+                       :to="{name: 'PropertyDetails', params: {id: property.id}}">
             <PropertyCard :property="property"/>
           </router-link>
-          <div v-else class="flex flex-col justify-center items-center">
-            <h1 class="text-center font-bold text-2xl my-5">
-              No properties found
-            </h1>
+        </div>
+        <div class="alert alert-warning shadow-lg flex flex-col items-center justify-center" v-else>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            <span>No properties found, please search again.</span>
           </div>
         </div>
       </div>
