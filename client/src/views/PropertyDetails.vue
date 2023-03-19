@@ -21,6 +21,9 @@
             </div>
             <div class="chat-bubble">
               <div class="chat-bubble-content">
+                <div class="rating rating-sm" v-if="comment.rating > 0">
+                  <input class="mask mask-star-2 bg-orange-400" v-for="rate in comment.rating"/>
+                </div>
                 <div class="chat-bubble-content-text">
                   {{ comment.content }}
                 </div>
