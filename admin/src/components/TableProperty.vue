@@ -17,39 +17,9 @@ defineProps({
 });
 
 const mainStore = useMainStore();
-
-const items = computed(() => PropertyService.getProperties().toString());
-
 const isModalActive = ref(false);
-
 const isModalDangerActive = ref(false);
-
-const perPage = ref(5);
-
-const currentPage = ref(0);
-
 const checkedRows = ref([]);
-
-const itemsPaginated = computed(() =>
-  items.value.slice(
-    perPage.value * currentPage.value,
-    perPage.value * (currentPage.value + 1)
-  )
-);
-
-const numPages = computed(() => Math.ceil(items.value.length / perPage.value));
-
-const currentPageHuman = computed(() => currentPage.value + 1);
-
-const pagesList = computed(() => {
-  const pagesList = [];
-
-  for (let i = 0; i < numPages.value; i++) {
-    pagesList.push(i);
-  }
-
-  return pagesList;
-});
 
 const remove = (arr, cb) => {
   const newArr = [];
@@ -80,26 +50,26 @@ const checked = (isChecked, property) => {
 
   <CardBoxModal v-model="isModalActive" title="View Detail Property">
 
-    <span > <b>Categpry :</b></span><span>{{selectedProperty.category}}</span>
+    <span> <b>Categpry :</b></span><span>{{ selectedProperty.category }}</span>
     <br>
-    <span> <b>Bathroom Count :</b></span><span>{{selectedProperty.bathroom_count}}</span>
+    <span> <b>Bathroom Count :</b></span><span>{{ selectedProperty.bathroom_count }}</span>
     <br>
-    <span> <b>Room Count :</b></span><span>{{selectedProperty.room_count}}</span>
+    <span> <b>Room Count :</b></span><span>{{ selectedProperty.room_count }}</span>
     <br>
-    <span> <b>Area :</b></span><span>{{selectedProperty.area}}</span>
+    <span> <b>Area :</b></span><span>{{ selectedProperty.area }}</span>
     <br>
-    <span> <b>Rent Type:</b></span><span>{{selectedProperty.rent_type}}</span>
+    <span> <b>Rent Type:</b></span><span>{{ selectedProperty.rent_type }}</span>
     <br>
-    <span> <b>Price :</b></span><span>{{selectedProperty.price}}</span>
+    <span> <b>Price :</b></span><span>{{ selectedProperty.price }}</span>
     <br>
-    <span> <b>Location :</b></span><span>{{selectedProperty.location}}</span>
+    <span> <b>Location :</b></span><span>{{ selectedProperty.location }}</span>
     <br>
-    <span> <b>Publish Date :</b></span><span>{{selectedProperty.category}}</span>
+    <span> <b>Publish Date :</b></span><span>{{ selectedProperty.category }}</span>
     <br>
     <span> <b>Equipped :</b></span><span v-if="selectedProperty._equipped">Equipped</span>
     <span v-else>Not Equipped</span>
     <br>
-    <span> <b>Status :</b></span><span>{{selectedProperty.status}}</span>
+    <span> <b>Status :</b></span><span>{{ selectedProperty.status }}</span>
     <br>
   </CardBoxModal>
 
@@ -139,7 +109,7 @@ const checked = (isChecked, property) => {
     </tr>
     </thead>
     <tbody>
-    <tr v-for="property in properties" :key="property.id">
+    <tr v-for="property in paginatedProperties" :key="property.id">
       <TableCheckboxCell
         v-if="checkable"
         @checked="checked($event, property)"
@@ -159,7 +129,7 @@ const checked = (isChecked, property) => {
         {{ property.location.city }}
       </td>
       <td data-label="Equipped" class="lg:w-42">
-        <div v-if="property._equipped" class="badge badge-outline badge-success">Equipped</div>
+        <div v-if="property.equipped" class="badge badge-outline badge-success">Equipped</div>
         <div v-else class="badge badge-outline badge-error">Not equipped</div>
       </td>
       <td data-label="Price">
@@ -221,16 +191,14 @@ export default {
   data() {
     return {
       properties: [],
-      selectedProperty:{
-
-      },
-      isModalActive:false,
+      selectedProperty: {},
+      isModalActive: false,
+      currentPage: 0,
+      pageSize: 5,
       PROPERTY_API_BASE_URL: `http://localhost:8080/manage-properties/properties`,
     };
-
   },
   methods: {
-
     async getProperties() {
       await axios.get(this.PROPERTY_API_BASE_URL)
         .then(response => {
@@ -240,21 +208,36 @@ export default {
           })
         })
         .catch(error => console.log(error))
-         console.log(this.properties);
+      console.log(this.properties);
     },
-    async getProperty(property){
+    async getProperty(property) {
 
-      await axios.get(this.PROPERTY_API_BASE_URL+`/${property.id}`)
-        .then(response =>{
+      await axios.get(this.PROPERTY_API_BASE_URL + `/${property.id}`)
+        .then(response => {
           this.selectedProperty = response.data
         })
         .catch(error => console.log(error))
-         console.log(this.selectedProperty.location.city)
+      console.log(this.selectedProperty.location.city)
+    }
+  },
+  computed: {
+    paginatedProperties: function () {
+      const startIndex = this.currentPage * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      return this.properties.slice(startIndex, endIndex);
+    },
+    numPages: function () {
+      return Math.ceil(this.properties.length / this.pageSize);
+    },
+    currentPageHuman: function () {
+      return this.currentPage + 1;
+    },
+    pagesList: function () {
+      return Array.from({length: this.numPages}, (v, k) => k);
     }
   },
   mounted() {
     this.getProperties();
   }
-
 };
 </script>

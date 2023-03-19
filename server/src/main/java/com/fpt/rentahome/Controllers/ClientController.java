@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/clients")
@@ -18,6 +19,7 @@ public class ClientController {
     private ClientService clientService;
 
     //FETCH ALL Clients
+    @CrossOrigin(origins = "http://localhost:5174")
     @GetMapping("/clients")
     public List<Client> getAllClients() {
         return clientService.getAllClients();
