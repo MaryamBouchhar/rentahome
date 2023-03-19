@@ -57,18 +57,24 @@ public class ReservationService {
         }
         return reservationDto;
     }
+
     public static ReservationDto getDtoFromReservation(Reservation reservation) {
         ReservationDto reservationDto = new ReservationDto(reservation);
         return reservationDto;
     }
-    public static Reservation getReservationFromDto(ReservationDto reservationDto,Property property, Client client) {
+
+    public static Reservation getReservationFromDto(ReservationDto reservationDto, Property property, Client client) {
         Reservation reservation = new Reservation(reservationDto, property, client);
         return reservation;
     }
 
     public void updateReservation(Integer reservationID, ReservationDto reservationDto, Property property, Client client) {
-        Reservation reservation = getReservationFromDto(reservationDto, property,client);
+        Reservation reservation = getReservationFromDto(reservationDto, property, client);
         reservation.setId(reservationID);
         reservationRepository.save(reservation);
+    }
+
+    public void deleteReservation(int id) {
+        reservationRepository.deleteById(id);
     }
 }

@@ -105,7 +105,7 @@ const checked = (isChecked, client) => {
       <th v-if="checkable"/>
 
       <th>Property ID</th>
-      <th>Client </th>
+      <th>Client</th>
       <th>Status</th>
       <th>Added at</th>
       <th/>
@@ -293,6 +293,8 @@ export default {
                 Swal("Reservation has been rejected!", {
                   icon: "success",
                 });
+                //delete reservation
+                this.deleteReservation(id)
                 this.getReservations()
               })
               .catch(error => {
@@ -308,6 +310,16 @@ export default {
             Swal("Reservation is not rejected");
           }
         });
+    },
+    async deleteReservation(id) {
+      await axios.delete(this.RESERVATION_API_BASE_URL + "/delete/" + id)
+        .then(response => {
+          console.log(response.data)
+          this.getReservations()
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
     getReservationById(id) {
       return this.reservations.filter(reservation => reservation.id === id)[0];
