@@ -171,7 +171,6 @@ export default {
 
   },
   methods: {
-
     async getReservations() {
       await axios.get(this.RESERVATION_API_BASE_URL + "/reservations")
         .then(response => {
