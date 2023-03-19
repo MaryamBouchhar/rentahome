@@ -113,7 +113,7 @@ const store = createStore({
             });
         },
         async logout({commit}) {
-            axios.post(API_BASE_URL + 'finish', {
+            axios.post(API_BASE_URL + 'logout', {
                 token: store.state.token
             }).then(response => {
                 console.log(response);
