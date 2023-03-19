@@ -70,6 +70,7 @@ public class ClientAuthController {
         return ResponseEntity.ok().body(new AuthResponse(token, true, "Client successfully registered", client));
     }
 
+    @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<?> authenticateClient(@RequestBody ClientLoginRequest request, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
         // Get client by email
@@ -106,7 +107,7 @@ public class ClientAuthController {
     }
 
     @CrossOrigin(origins = "http://localhost:5173/")
-    @PostMapping("/finish")
+    @PostMapping("/logout")
     public ResponseEntity<?> logoutClient(@RequestBody TokenRequest request) {
         String token = request.getToken();
         System.out.println("Request token: " + token);
@@ -117,7 +118,7 @@ public class ClientAuthController {
         System.out.println("Session ID: " + sessionId);
 
         // Invalidate session
-        jwtTokenUtil.invalidateSession(sessionId);
+        jwtTokenUtil.invalidateSession(token);
 
         return ResponseEntity.ok(new ApiResponse(true, "Successfully logged out"));
     }
