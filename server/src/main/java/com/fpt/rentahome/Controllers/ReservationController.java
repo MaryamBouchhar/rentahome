@@ -34,9 +34,10 @@ public class ReservationController {
     private ClientRepository clientRepository;
     @Autowired
     private ClientService clientService;
+
     @PostMapping("/add-reservation")
     public ResponseEntity<ApiResponse> createReservation(@RequestBody ReservationDto reservation) {
-        Optional<Property> propertyOptional = propertyRepository.findById( reservation.getId_property());
+        Optional<Property> propertyOptional = propertyRepository.findById(reservation.getId_property());
         Optional<Client> clientOptional = clientRepository.findById(reservation.getClient().getId());
 
         if (!propertyOptional.isPresent()) {
@@ -45,9 +46,10 @@ public class ReservationController {
         if (!clientOptional.isPresent()) {
             return new ResponseEntity<ApiResponse>(new ApiResponse(false, "client does not exists"), HttpStatus.BAD_REQUEST);
         }
-        reservationService.createReservation(reservation,propertyOptional.get(),clientOptional.get());
+        reservationService.createReservation(reservation, propertyOptional.get(), clientOptional.get());
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "created the reservation"), HttpStatus.CREATED);
     }
+
     @GetMapping("/reservations")
     public ResponseEntity<List<ReservationDto>> getReservations() {
         List<ReservationDto> reservations = reservationService.getAllReservations();
@@ -73,5 +75,12 @@ public class ReservationController {
         Client client = optionalClient.get();
         reservationService.updateReservation(id, reservation, property, client);
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been updated"), HttpStatus.OK);
+    }
+
+    //delete reservation
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ApiResponse> deleteReservation(@PathVariable("id") int id) {
+        reservationService.deleteReservation(id);
+        return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Reservation has been deleted"), HttpStatus.OK);
     }
 }

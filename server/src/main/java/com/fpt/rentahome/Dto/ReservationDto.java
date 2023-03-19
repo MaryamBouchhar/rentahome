@@ -1,5 +1,6 @@
 package com.fpt.rentahome.Dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fpt.rentahome.Models.Client;
 import com.fpt.rentahome.Models.Property;
 import com.fpt.rentahome.Models.Reservation;
@@ -17,9 +18,13 @@ public class ReservationDto {
     private int id_property;
     private Client client;
     private String status;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "M/d/yyyy, h:mm:ss a")
     private Date start_date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "M/d/yyyy, h:mm:ss a")
     private Date end_date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "M/d/yyyy, h:mm:ss a")
     private Date created_at;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "M/d/yyyy, h:mm:ss a")
     private Date updated_at;
 
     public ReservationDto(Reservation reservation) {
