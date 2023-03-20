@@ -17,8 +17,8 @@ public class LoginController {
     private AdminService adminService;
 
 
-
-    @PostMapping("/auth")
+    @CrossOrigin(origins = "http://localhost:5174")
+    @PostMapping("/")
     public ResponseEntity<ApiResponse> login(@RequestBody Admin admin) {
         Admin existingAdmin = adminService.findByEmail(admin.getEmail());
 
