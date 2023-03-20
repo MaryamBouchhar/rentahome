@@ -100,9 +100,27 @@ public class PropertyService implements ServletContextAware {
             return false;
         }
 
+        Location location = new Location();
+        location.setAddress(updatedProperty.getLocation().getAddress());
+        location.setCity(updatedProperty.getLocation().getAddress());
+        location.setLongitude(updatedProperty.getLocation().getLongitude());
+        location.setLatitude(updatedProperty.getLocation().getLatitude());
+
+
+
         // Update the admin object
         Property property = propertyOptional.get();
-
+        property.setCategory(updatedProperty.getCategory());
+        property.setLocation(location);
+        property.setPublish_date(new Date());
+        property.setStatus(updatedProperty.getStatus());
+        property.setArea(updatedProperty.getArea());
+        property.setBathroom_count(updatedProperty.getBathroom_count());
+        property.setDescription(updatedProperty.getDescription());
+        property.setEquipped(updatedProperty.isEquipped());
+        property.setPrice(updatedProperty.getPrice());
+        property.setRent_type(updatedProperty.getRent_type());
+        property.setRoom_count(updatedProperty.getRoom_count());
 
         // Save the updated admin to the database
         propertyRepository.save(property);
