@@ -100,7 +100,6 @@ import FormCheckRadio from "@/components/FormCheckRadio.vue";
 
           <BaseButtons class=" flex items-center justify-center">
             <BaseButton type="submit" color="warning" label="Add" @click="addNewProperty"/>
-            <BaseButton type="reset" color="warning" outline label="Reset"/>
           </BaseButtons>
 
         </template>
