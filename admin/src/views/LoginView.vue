@@ -67,7 +67,7 @@ export default {
         password: this.password
       };
 
-      const response = axios.post('http://localhost:8080/login/auth',login
+      const response = axios.post('http://localhost:8080/login/',login
       )
         .then(response => {
           console.log(response.data);
