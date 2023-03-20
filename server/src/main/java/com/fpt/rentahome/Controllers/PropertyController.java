@@ -92,7 +92,7 @@ public class PropertyController {
     }
 
     //update property
-    @PutMapping("/update/{id}")
+    @PutMapping("/update-property/{id}")
     public ResponseEntity<ApiResponse> updateProperty(@PathVariable("id") int id, @RequestBody Property property) {
 
         ApiResponse apiResponse = new ApiResponse();
