@@ -35,6 +35,7 @@ public class ReservationController {
     @Autowired
     private ClientService clientService;
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/add-reservation")
     public ResponseEntity<ApiResponse> createReservation(@RequestBody ReservationDto reservation) {
         Optional<Property> propertyOptional = propertyRepository.findById(reservation.getId_property());
