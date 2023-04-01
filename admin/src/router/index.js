@@ -52,6 +52,16 @@ const routes = [
     requireAuth: true,
     component: () => import("@/views/NewPropertyView.vue")
   },
+
+  {
+    meta: {
+      title: "UpdateProperty"
+    },
+    path: "/update-property/:id",
+    name: "updateproperty",
+    requireAuth: true,
+    component: () => import("@/views/UpdatePropertyView.vue")
+  },
   {
     meta: {
       title: "Booking Requests"
