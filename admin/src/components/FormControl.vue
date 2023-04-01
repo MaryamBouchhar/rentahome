@@ -76,6 +76,7 @@ const inputElClass = computed(() => {
 });
 
 const computedType = computed(() => (props.options ? "select" : props.type));
+const app ="app";
 
 const controlIconH = computed(() =>
   props.type === "textarea" ? "h-full" : "h-12"
@@ -124,6 +125,7 @@ if (props.ctrlKFocus) {
   });
 }
 </script>
+
 
 <template>
   <div class="relative">
