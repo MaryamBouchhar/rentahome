@@ -13,6 +13,7 @@ import BaseButtons from "@/components/BaseButtons.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
 import FormCheckRadio from "@/components/FormCheckRadio.vue";
+import updatePropertyView from "@/views/UpdatePropertyView.vue";
 
 
 </script>
@@ -91,7 +92,7 @@ import FormCheckRadio from "@/components/FormCheckRadio.vue";
 
         <template #footer>
           <BaseButtons class=" flex items-center justify-center">
-            <BaseButton type="submit" color="warning" label="Edit Property" @click="addNewProperty"/>
+            <BaseButton type="submit" color="warning" label="Edit Property" @click="updateProperty"/>
           </BaseButtons>
         </template>
       </CardBox>
@@ -156,39 +157,32 @@ export default {
   methods: {
 
     getPropertyById() {
-
-
       const id = this.$route.params.id;
-      axios.get(this.Properties_API_BASE_URL + `/properties/` + `${id}`).then((response) => {
-        this.property = response.data
-        console.log(this.property.category);
-      })
+      axios.get('http://localhost:8080/manage-properties/properties/' + id)
+        .then((response) => {
+          this.property = response.data
+          console.log("Property: " + this.property);
+          console.log(this.property.category);
+        })
     },
 
-    async UpdateProperty() {
+    async updateProperty() {
       this.property.category = this.property.category.value;
       this.property.rent_type = this.property.rent_type.value;
       this.property.equipped = this.property.equipped.value;
 
-
       const formData = new FormData();
       formData.append("property", JSON.stringify(this.property));
-      for (let i = 0; i < this.images.length; i++) {
-        formData.append("images", this.images[i]);
-      }
 
-      const headers = {
-        'Content-Type': 'multipart/form-data'
-      }
       //send property and images to backend
-      await axios.post(this.Properties_API_BASE_URL + `/update-property/${this.property.id}`, formData)
+      await axios.put(`http://localhost:8080/manage-properties/update/${this.property.id}`, this.property)
         .then(() => {
           swal({
             text: "Property updated Successfully!",
             icon: "success",
             closeOnClickOutside: false,
           });
-          this.$router.go();
+          // this.$router.go();
         })
         .catch(error => {
           console.log(error);

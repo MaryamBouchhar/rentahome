@@ -1,7 +1,7 @@
 <script setup>
 import {computed, ref} from "vue";
 import {useMainStore} from "@/stores/main";
-import {mdiEye, mdiTrashCan, mdiUpdate} from "@mdi/js";
+import {mdiEye, mdiPencil, mdiTrashCan, mdiUpdate} from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
@@ -156,8 +156,8 @@ const checked = (isChecked, property) => {
             @click="isModalActive=true,getProperty(property)"
           />
           <BaseButton
-            color="success"
-            :icon="mdiUpdate"
+            color="warning"
+            :icon="mdiPencil"
             :to="'/update-property/' + property.id"
             small
           />

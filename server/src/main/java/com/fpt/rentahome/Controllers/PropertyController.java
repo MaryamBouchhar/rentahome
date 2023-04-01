@@ -60,7 +60,7 @@ public class PropertyController {
 
 
     //get property
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"})
     @GetMapping("/properties/{id}")
     public Property getProperty(@PathVariable("id") int id) {
         return propertyService.getProperty(id);
@@ -92,24 +92,36 @@ public class PropertyController {
     }
 
     //update property
+    @CrossOrigin(origins = "http://localhost:5174")
     @PutMapping("/update/{id}")
-    public ResponseEntity<ApiResponse> updateProperty(@PathVariable("id") int id, @RequestBody Property property) {
-
-        ApiResponse apiResponse = new ApiResponse();
-        HttpStatus status;
-
-        // Call the service method to update the admin with the given ID
-        boolean success = propertyService.updateProperty(id, property);
-
-        if (success) {
-            apiResponse.setMessage("Property updated successfully");
-            status = HttpStatus.OK;
-        } else {
-            apiResponse.setMessage("Property not found");
-            status = HttpStatus.NOT_FOUND;
+    public ResponseEntity<ApiResponse> updateProperty(@RequestBody Property property) {
+        // First, retrieve the existing property object by ID from the database
+        Optional<Property> optionalProperty = propertyRepository.findById(property.getId());
+        if (!optionalProperty.isPresent()) {
+            // If the property does not exist, return a 404 error
+            return ResponseEntity.notFound().build();
         }
 
-        return new ResponseEntity<>(apiResponse, status);
+        // Update the existing property object with the new values
+        Property existingProperty = optionalProperty.get();
+        Location location = existingProperty.getLocation();
+        location.setAddress(property.getLocation().getAddress());
+        location.setCity(property.getLocation().getCity());
+        location.setLongitude(property.getLocation().getLongitude());
+        location.setLatitude(property.getLocation().getLatitude());
+
+        existingProperty.setLocation(location);
+        existingProperty.setPrice(property.getPrice());
+        existingProperty.setArea(property.getArea());
+        existingProperty.setBathroom_count(property.getBathroom_count());
+        existingProperty.setRent_type(property.getRent_type());
+        existingProperty.setCategory(property.getCategory());
+        existingProperty.setDescription(property.getDescription());
+
+        // update the property object in the database
+        propertyRepository.save(existingProperty);
+
+        return new ResponseEntity<>(new ApiResponse(true, "updated the property"), HttpStatus.OK);
     }
 
     //fetch recent properties
