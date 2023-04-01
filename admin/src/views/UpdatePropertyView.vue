@@ -40,7 +40,6 @@ import updatePropertyView from "@/views/UpdatePropertyView.vue";
       <CardBox form>
         <FormField>
           <FormField label="Category">
-
             <FormControl type="text" :options="categories" v-model="property.category"/>
           </FormField>
           <FormField label="Rent Type">
