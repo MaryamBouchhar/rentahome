@@ -11,13 +11,6 @@ public class RentahomeApplication implements CommandLineRunner {
         SpringApplication.run(RentahomeApplication.class, args);
     }
 
-    // @Autowired
-    // private PropertyRepository propertyRepository;
-  /*  @Autowired
-    private PropertyRepository propertyRepository;
-    @Autowired
-    private LocationRepository addressRepository;*/
-
     @Override
     public void run(String... args) throws Exception {
        /* Property property = Property.builder()

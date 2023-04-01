@@ -1,7 +1,7 @@
 <script setup>
 import {computed, ref} from "vue";
 import {useMainStore} from "@/stores/main";
-import {mdiEye, mdiImageEdit, mdiTrashCan, mdiUpdate} from "@mdi/js";
+import {mdiEye, mdiTrashCan, mdiUpdate} from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
@@ -156,6 +156,12 @@ const checked = (isChecked, property) => {
             @click="isModalActive=true,getProperty(property)"
           />
           <BaseButton
+            color="success"
+            :icon="mdiUpdate"
+            :to="'/update-property/' + property.id"
+            small
+          />
+          <BaseButton
             color="danger"
             :icon="mdiTrashCan"
             small
@@ -163,6 +169,7 @@ const checked = (isChecked, property) => {
           />
         </BaseButtons>
       </td>
+
     </tr>
     </tbody>
   </table>
@@ -203,12 +210,12 @@ export default {
       await axios.get(this.PROPERTY_API_BASE_URL)
         .then(response => {
           this.properties = response.data
-          this.properties.forEach(property => {
-            property.publish_date = new Date(property.publish_date).toLocaleDateString();
-          })
+          // this.properties.forEach(property => {
+          //   property.publish_date = new Date(property.publish_date).toLocaleDateString();
+          // })
+          console.log(this.properties)
         })
         .catch(error => console.log(error))
-      console.log(this.properties);
     },
     async getProperty(property) {
 

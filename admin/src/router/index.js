@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 import store from "../stores/index"
 
 const routes = [
@@ -51,6 +51,16 @@ const routes = [
     name: "addproperty",
     requireAuth: true,
     component: () => import("@/views/NewPropertyView.vue")
+  },
+
+  {
+    meta: {
+      title: "UpdateProperty"
+    },
+    path: "/update-property/:id",
+    name: "updateproperty",
+    requireAuth: true,
+    component: () => import("@/views/UpdatePropertyView.vue")
   },
   {
     meta: {
@@ -116,7 +126,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    return savedPosition || { top: 0 };
+    return savedPosition || {top: 0};
   }
 });
 
