@@ -44,13 +44,12 @@ const checked = (isChecked, client) => {
 
 <template>
   <CardBoxModal v-model="isModalActive" title="View Reservation Detail">
-
     <span> <b>Property ID :</b></span><span> {{ selectedReservation.id }}</span> <br>
     <span> <b>Client Name :</b></span><span> {{ selectedReservation.client.name }}</span> <br>
     <span> <b>Client Email :</b></span><span> {{ selectedReservation.client.email }}</span> <br>
     <span> <b>Client Phone :</b></span><span> {{ selectedReservation.client.phone }}</span> <br>
-    <span> <b>Start Date :</b></span><span> {{ selectedReservation.start_date }}</span> <br>
-    <span> <b>End Date :</b></span><span> {{ selectedReservation.end_date }}</span> <br>
+    <span> <b>Reservation will start from :</b></span><span> {{ selectedReservation.start_date }}</span> <br>
+    <span> <b>Reservation will end at :</b></span><span> {{ selectedReservation.end_date }}</span> <br>
   </CardBoxModal>
 
   <CardBoxModal
