@@ -20,6 +20,7 @@ import CardBoxClient from "@/components/CardBoxClient.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
 import axios from "axios";
+import TableNewestClients from "@/components/TableNewestClients.vue";
 
 const chartData = ref(null);
 
@@ -62,17 +63,10 @@ const getTodayReservations = async () => {
   console.log("Reservations: ", todayReservations.value);
 };
 
-const getNewestClients = async () => {
-  const response = await axios.get("http://localhost:8080/dashboard/newest-clients");
-  newestClients.value = response.data;
-  console.log("Newest Clients: ", newestClients.value);
-};
-
 onMounted(() => {
   getTotalClients();
   getTotalProperties();
   getTodayReservations();
-  getNewestClients();
 });
 </script>
 
@@ -139,9 +133,9 @@ onMounted(() => {
         </div>
       </div>
 
-      <SectionTitleLineWithButton :icon="mdiAccountMultiple" title="Clients"/>
+      <SectionTitleLineWithButton :icon="mdiAccountMultiple" title="Newest subscibed clients"/>
       <CardBox has-table>
-        <TableSampleClients/>
+        <TableNewestClients/>
       </CardBox>
     </SectionMain>
   </LayoutAuthenticated>
