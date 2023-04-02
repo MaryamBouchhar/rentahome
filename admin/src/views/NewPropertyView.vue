@@ -116,9 +116,13 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
+import Style from 'ol/style/Style';
+import Circle from 'ol/style/Circle';
+import Fill from 'ol/style/Fill';
 import VectorSource from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
 import {transform} from 'ol/proj';
+import {fromLonLat} from "ol/proj";
 
 export default {
   name: "NewPropertyView",
@@ -241,8 +245,8 @@ export default {
   mounted() {
     // Define the map view
     const view = new View({
-      center: [0, 0],
-      zoom: 2,
+      center: fromLonLat([-9.6, 30.4]), // Set center to Agadir coordinates
+      zoom: 12, // Increase zoom level to focus on Agadir
       projection: 'EPSG:3857'
     });
 
@@ -256,6 +260,19 @@ export default {
     const marker = new Feature({
       geometry: new Point([0, 0]),
     });
+
+    // Create a new style for the marker
+    const markerStyle = new Style({
+      image: new Circle({
+        radius: 10,
+        fill: new Fill({
+          color: 'red'
+        })
+      })
+    });
+
+    // Set the style of the marker feature
+    marker.setStyle(markerStyle);
 
     // Create the vector layer for the marker
     const vectorLayer = new VectorLayer({

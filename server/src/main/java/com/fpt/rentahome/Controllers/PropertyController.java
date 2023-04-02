@@ -29,7 +29,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin
 @RequestMapping("/manage-properties")
 public class PropertyController {
     @Autowired
@@ -107,6 +107,7 @@ public class PropertyController {
         Location location = existingProperty.getLocation();
         location.setAddress(property.getLocation().getAddress());
         location.setCity(property.getLocation().getCity());
+
         location.setLongitude(property.getLocation().getLongitude());
         location.setLatitude(property.getLocation().getLatitude());
 

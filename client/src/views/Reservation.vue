@@ -48,6 +48,7 @@ import {useStore} from 'vuex';
 import {computed} from 'vue';
 import axios from "axios";
 import moment from "moment";
+import swal from 'sweetalert';
 
 export default {
     name: "Login",
@@ -84,6 +85,14 @@ export default {
             await axios.post('http://localhost:8080/manage-reservation/add-reservation', data)
                 .then(response => {
                     console.log(response.data)
+                    swal({
+                        title: "Reservation",
+                        text: "Reservation has been made successfully!",
+                        icon: "success",
+                        button: "OK",
+                    }).then(() => {
+                        this.$router.push({name: 'Home'})
+                    })
                 })
                 .catch(error => console.log(error))
         },
