@@ -150,5 +150,9 @@ public class PropertyService implements ServletContextAware {
     public List<Property> filterByLocation(String location) {
         return propertyRepository.findByCity(location);
     }
+
+    public void deleteProperty(int id) {
+        propertyRepository.deleteById(id);
+    }
 }
 

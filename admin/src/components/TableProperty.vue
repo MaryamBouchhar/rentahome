@@ -165,7 +165,7 @@ const checked = (isChecked, property) => {
             color="danger"
             :icon="mdiTrashCan"
             small
-            @click="isModalDangerActive = true"
+            @click="deleteProperty(property.id)"
           />
         </BaseButtons>
       </td>
@@ -192,6 +192,7 @@ const checked = (isChecked, property) => {
 </template>
 <script>
 import axios from 'axios';
+import swal from "sweetalert";
 
 export default {
   name: "PropertyView",
@@ -225,7 +226,30 @@ export default {
         })
         .catch(error => console.log(error))
       console.log(this.selectedProperty.location.city)
-    }
+    },
+    deleteProperty(id) {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this property!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            axios.delete(`http://localhost:8080/manage-properties/delete/${id}`)
+              .then(response => {
+                swal("Poof! Your property has been deleted!", {
+                  icon: "success",
+                });
+                this.getProperties()
+              })
+              .catch(error => console.log(error))
+          } else {
+            swal("Your property is safe!");
+          }
+        });
+    },
   },
   computed: {
     paginatedProperties: function () {

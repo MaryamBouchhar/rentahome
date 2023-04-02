@@ -7,6 +7,7 @@ import com.fpt.rentahome.Repositories.ClientRepository;
 import com.fpt.rentahome.Repositories.CommentRepository;
 import com.fpt.rentahome.Repositories.PropertyRepository;
 import com.fpt.rentahome.Services.ClientService;
+import com.fpt.rentahome.Services.ImageService;
 import com.fpt.rentahome.Services.PropertyService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,9 @@ public class PropertyController {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private ImageService imageService;
 
     public PropertyController(PropertyService propertyService) {
         this.propertyService = propertyService;
@@ -123,6 +127,22 @@ public class PropertyController {
         propertyRepository.save(existingProperty);
 
         return new ResponseEntity<>(new ApiResponse(true, "updated the property"), HttpStatus.OK);
+    }
+
+    //delete property
+    @CrossOrigin(origins = "http://localhost:5174")
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ApiResponse> deleteProperty(@PathVariable("id") int id) {
+        //delete images of the property
+        Property property = propertyRepository.findById(id).orElse(null);
+        if (property == null) {
+            throw new RuntimeException("Property not found");
+        }
+        //delete images of the property
+        imageService.deleteImagesOfProperty(property);
+
+        propertyService.deleteProperty(id);
+        return new ResponseEntity<>(new ApiResponse(true, "deleted the property"), HttpStatus.OK);
     }
 
     //fetch recent properties
