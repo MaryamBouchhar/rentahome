@@ -77,4 +77,8 @@ public class ReservationService {
     public void deleteReservation(int id) {
         reservationRepository.deleteById(id);
     }
+
+    public int todayReservations() {
+        return reservationRepository.todayReservations();
+    }
 }

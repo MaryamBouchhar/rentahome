@@ -82,6 +82,25 @@ export default {
                 created_at: moment().format("M/D/YYYY, h:mm:ss a"),
                 updated_at: moment().format("M/D/YYYY, h:mm:ss a")
             }
+
+            //validate dates if empty or end date is before start date
+            if (this.start_date === '' || this.end_date === '') {
+                swal({
+                    title: "Reservation",
+                    text: "Please fill in all the fields!",
+                    icon: "error",
+                    button: "OK",
+                })
+                return
+            } else if (moment(this.end_date).isBefore(this.start_date)) {
+                swal({
+                    title: "Reservation",
+                    text: "End date cannot be before start date!",
+                    icon: "error",
+                    button: "OK",
+                })
+                return
+            }
             await axios.post('http://localhost:8080/manage-reservation/add-reservation', data)
                 .then(response => {
                     console.log(response.data)

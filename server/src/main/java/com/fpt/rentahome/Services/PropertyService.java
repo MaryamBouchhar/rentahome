@@ -154,5 +154,9 @@ public class PropertyService implements ServletContextAware {
     public void deleteProperty(int id) {
         propertyRepository.deleteById(id);
     }
+
+    public int totalProperties() {
+        return propertyRepository.findAll().size();
+    }
 }
 
