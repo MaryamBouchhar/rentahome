@@ -54,13 +54,8 @@ public class ClientAuthController {
         // Save client to database
         clientService.createClient(client);
 
-        // Create a new session and return the session ID as a token
-        HttpSession session = request.getSession(true);
-
-        session.setAttribute("client", client);
-
         // Generate JWT token
-        String token = jwtTokenUtil.generateToken(session.getId());
+        String token = jwtTokenUtil.generateToken(client.getEmail());
 
         // Set the token as a cookie in the response
         Cookie cookie = new Cookie("token", token);
@@ -86,15 +81,8 @@ public class ClientAuthController {
             return ResponseEntity.badRequest().body(new ApiResponse(false, "Invalid email or password"));
         }
 
-        // Create a new session and return the session ID as a token
-        HttpSession session = servletRequest.getSession();
-
-        if (session.getAttribute("client") == null) {
-            session.setAttribute("client", client);
-        }
-
         // Generate JWT token
-        String token = jwtTokenUtil.generateToken(session.getId());
+        String token = jwtTokenUtil.generateToken(client.getEmail());
 
         // Set the token as a cookie in the response
         Cookie cookie = new Cookie("token", token);
@@ -110,15 +98,6 @@ public class ClientAuthController {
     public ResponseEntity<?> logoutClient(@RequestBody TokenRequest request) {
         String token = request.getToken();
         System.out.println("Request token: " + token);
-
-        // Get session ID from token
-        String sessionId = jwtTokenUtil.getSessionFromToken(token).getId();
-
-        System.out.println("Session ID: " + sessionId);
-
-        // Invalidate session
-        jwtTokenUtil.invalidateSession(sessionId);
-
         return ResponseEntity.ok(new ApiResponse(true, "Successfully logged out"));
     }
 
@@ -128,13 +107,17 @@ public class ClientAuthController {
         String token = request.getToken();
         System.out.println("Token: " + token);
 
-        // Get session ID from token
-        Claims session = jwtTokenUtil.getSessionFromToken(token);
+        if(JwtTokenProvider.validateToken(token)) {
+            String email = JwtTokenProvider.getEmailFromJWT(token);
 
-        // Check if session is valid
-        if (jwtTokenUtil.isSessionValid(token)) {
-            return ResponseEntity.ok(new AuthResponse(token, true, "Session is valid", session.get("client", Client.class)));
-        }
+            Optional<Client> clientOptional = clientService.getClientByEmail(email);
+
+            if(clientOptional.isPresent()) {
+                return ResponseEntity.ok(new AuthResponse(token, true, "Session is valid", clientOptional.get()));
+            } else {
+                return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
+            }
+        } 
         return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
     }
 }

@@ -10,7 +10,7 @@ const store = createStore({
             rtl: false,
             path: '/',
             isAuthenticated: false,
-            token: localStorage.getItem('token') || '',
+            token: localStorage.getItem('token') || null,
             user: null,
             auth_error: null,
         };
@@ -117,7 +117,7 @@ const store = createStore({
             localStorage.removeItem('token');
 
             // set authentication status in store
-            commit('setToken', '');
+            commit('setToken', null);
             commit('setIsAuthenticated', false);
             commit('setUser', null);
 
@@ -132,6 +132,7 @@ const store = createStore({
             });
         },
         async checkSession({commit}) {
+            if(!isEmpty(store.state.token) || !isNaN(store.state.token)) {
             // @ts-ignore
             axios.post(API_BASE_URL + 'check', {
                 token: store.state.token
@@ -146,16 +147,17 @@ const store = createStore({
                     localStorage.removeItem('token');
 
                     // set authentication status in store
-                    commit('setToken', '');
+                    commit('setToken', null);
                     commit('setIsAuthenticated', false);
                     commit('setUser', null);
                 }
             }).catch(error => {
                 console.log(error);
-                commit('setToken', '');
+                commit('setToken', null);
                 commit('setIsAuthenticated', false);
                 commit('setUser', null);
             });
+        }
         },
         uploadAvatar({commit}, {avatar}) {
 
