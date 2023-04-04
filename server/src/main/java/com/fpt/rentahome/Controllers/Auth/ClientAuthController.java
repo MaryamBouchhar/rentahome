@@ -4,6 +4,7 @@ import com.fpt.rentahome.Dto.ClientLoginRequest;
 import com.fpt.rentahome.Dto.TokenRequest;
 import com.fpt.rentahome.Helpers.ApiResponse;
 import com.fpt.rentahome.Helpers.AuthResponse;
+import com.fpt.rentahome.Helpers.EmailService;
 import com.fpt.rentahome.Helpers.JWT.JwtTokenProvider;
 import com.fpt.rentahome.Models.Client;
 import com.fpt.rentahome.Services.ClientService;
@@ -26,9 +27,10 @@ public class ClientAuthController {
     private ClientService clientService;
     @Autowired
     private PasswordEncoder passwordEncoder;
-
     @Autowired
     private JwtTokenProvider jwtTokenUtil;
+    @Autowired
+    private EmailService emailService;
 
 
     @PostMapping("/register")
@@ -57,6 +59,10 @@ public class ClientAuthController {
         cookie.setPath("/");
         response.addCookie(cookie);
 
+        // Send verification email
+        emailService.sendVerificationEmail(client.getEmail(), token);
+
+        // Return token in response
         return ResponseEntity.ok().body(new AuthResponse(token, true, "Client successfully registered", client));
     }
 
