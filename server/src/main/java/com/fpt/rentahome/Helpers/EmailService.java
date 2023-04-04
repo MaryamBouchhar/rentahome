@@ -1,5 +1,15 @@
 package com.fpt.rentahome.Helpers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
+
 @Service
 public class EmailService {
     
@@ -14,10 +24,15 @@ public class EmailService {
         
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");
-        helper.setTo(toEmail);
-        helper.setSubject(subject);
-        helper.setText(body, true); // true indicates html
-        
-        emailSender.send(message);
+        try {
+            helper.setTo(toEmail);
+            helper.setSubject(subject);
+            helper.setText(body, true); // true indicates html
+        } catch (MessagingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            emailSender.send(message);
+        }
     }
 }
