@@ -108,8 +108,8 @@ public class ClientAuthController {
         String token = request.getToken();
         System.out.println("Token: " + token);
 
-        if(JwtTokenProvider.validateToken(token)) {
-            String email = JwtTokenProvider.getEmailFromJWT(token);
+        if(jwtTokenUtil.validateToken(token)) {
+            String email = jwtTokenUtil.getEmailFromJWT(token);
 
             Optional<Client> clientOptional = clientService.getClientByEmail(email);
 
