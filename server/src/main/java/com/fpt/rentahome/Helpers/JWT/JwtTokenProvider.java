@@ -31,7 +31,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    public static String getEmailFromJWT(String token) {
+    public String getEmailFromJWT(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
@@ -40,7 +40,7 @@ public class JwtTokenProvider {
         return claims.getSubject();
     }
 
-    public static boolean validateToken(String authToken) {
+    public boolean validateToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
