@@ -8,7 +8,6 @@ import com.fpt.rentahome.Helpers.JWT.JwtTokenProvider;
 import com.fpt.rentahome.Models.Client;
 import com.fpt.rentahome.Services.ClientService;
 import com.fpt.rentahome.Dto.ClientRegistrationRequest;
-import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,11 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.time.LocalDateTime;
 import java.util.Optional;
-
-import static org.springframework.data.relational.core.sql.Assignments.value;
 
 @CrossOrigin
 @RestController
