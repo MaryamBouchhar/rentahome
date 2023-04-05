@@ -132,7 +132,7 @@ const store = createStore({
             });
         },
         async checkSession({commit}) {
-            if(!isEmpty(store.state.token) || !isNaN(store.state.token)) {
+            if(store.state.token != '' || !isNaN(store.state.token)) {
             // @ts-ignore
             axios.post(API_BASE_URL + 'check', {
                 token: store.state.token
@@ -142,6 +142,10 @@ const store = createStore({
                     commit('setIsAuthenticated', true);
                     commit('setAuthError', null);
                     commit('setUser', response.data.client);
+
+                    let redirect = router.currentRoute.value.query.redirect || '/';
+                    // @ts-ignore
+                    router.push(redirect)
                 } else {
                     // remove token from local storage
                     localStorage.removeItem('token');
