@@ -90,6 +90,13 @@ const routes: RouteInterface[] = [
                 component: () => import('../views/PropertyDetails.vue')
             }
         ]
+    },
+    {
+        // @ts-ignore
+        path: '/reservation/:id',
+        name: 'Reservation',
+        requireAuth: true,
+        component: () => import('../views/Reservation.vue')
     }
 ];
 

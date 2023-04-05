@@ -92,13 +92,10 @@ public class PropertyService implements ServletContextAware {
         return propertyRepository.findById(id);
     }
 
-    public boolean updateProperty(int id, Property updatedProperty) {
-
+    public boolean updateProperty(Property updatedProperty) {
+        System.out.println("Property id: " + updatedProperty.getId());
         // Check if an admin with the given ID exists
-        Optional<Property> propertyOptional = propertyRepository.findById(id);
-        if (!propertyOptional.isPresent()) {
-            return false;
-        }
+        Optional<Property> propertyOptional = propertyRepository.findById(updatedProperty.getId());
 
         // Update the admin object
         Property property = propertyOptional.get();
@@ -152,6 +149,14 @@ public class PropertyService implements ServletContextAware {
 
     public List<Property> filterByLocation(String location) {
         return propertyRepository.findByCity(location);
+    }
+
+    public void deleteProperty(int id) {
+        propertyRepository.deleteById(id);
+    }
+
+    public int totalProperties() {
+        return propertyRepository.findAll().size();
     }
 }
 

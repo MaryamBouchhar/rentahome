@@ -4,11 +4,11 @@ import com.fpt.rentahome.Dto.ClientLoginRequest;
 import com.fpt.rentahome.Dto.TokenRequest;
 import com.fpt.rentahome.Helpers.ApiResponse;
 import com.fpt.rentahome.Helpers.AuthResponse;
+import com.fpt.rentahome.Helpers.EmailService;
 import com.fpt.rentahome.Helpers.JWT.JwtTokenProvider;
 import com.fpt.rentahome.Models.Client;
 import com.fpt.rentahome.Services.ClientService;
 import com.fpt.rentahome.Dto.ClientRegistrationRequest;
-import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,11 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.time.LocalDateTime;
 import java.util.Optional;
-
-import static org.springframework.data.relational.core.sql.Assignments.value;
 
 @CrossOrigin
 @RestController
@@ -31,9 +27,10 @@ public class ClientAuthController {
     private ClientService clientService;
     @Autowired
     private PasswordEncoder passwordEncoder;
-
     @Autowired
     private JwtTokenProvider jwtTokenUtil;
+    @Autowired
+    private EmailService emailService;
 
 
     @PostMapping("/register")
@@ -54,23 +51,21 @@ public class ClientAuthController {
         // Save client to database
         clientService.createClient(client);
 
-        // Create a new session and return the session ID as a token
-        HttpSession session = request.getSession(true);
-
-        session.setAttribute("client", client);
-
         // Generate JWT token
-        String token = jwtTokenUtil.generateToken(session.getId());
+        String token = jwtTokenUtil.generateToken(client.getEmail());
 
         // Set the token as a cookie in the response
         Cookie cookie = new Cookie("token", token);
         cookie.setPath("/");
         response.addCookie(cookie);
 
+        // Send verification email
+        emailService.sendVerificationEmail(client.getEmail(), token);
+
+        // Return token in response
         return ResponseEntity.ok().body(new AuthResponse(token, true, "Client successfully registered", client));
     }
 
-    @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<?> authenticateClient(@RequestBody ClientLoginRequest request, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
         // Get client by email
@@ -87,15 +82,8 @@ public class ClientAuthController {
             return ResponseEntity.badRequest().body(new ApiResponse(false, "Invalid email or password"));
         }
 
-        // Create a new session and return the session ID as a token
-        HttpSession session = servletRequest.getSession();
-
-        if (session.getAttribute("client") == null) {
-            session.setAttribute("client", client);
-        }
-
         // Generate JWT token
-        String token = jwtTokenUtil.generateToken(session.getId());
+        String token = jwtTokenUtil.generateToken(client.getEmail());
 
         // Set the token as a cookie in the response
         Cookie cookie = new Cookie("token", token);
@@ -107,19 +95,10 @@ public class ClientAuthController {
     }
 
     @CrossOrigin(origins = "http://localhost:5173/")
-    @PostMapping("/logout")
+    @PostMapping("/finish")
     public ResponseEntity<?> logoutClient(@RequestBody TokenRequest request) {
         String token = request.getToken();
         System.out.println("Request token: " + token);
-
-        // Get session ID from token
-        String sessionId = jwtTokenUtil.getSessionFromToken(token).getId();
-
-        System.out.println("Session ID: " + sessionId);
-
-        // Invalidate session
-        jwtTokenUtil.invalidateSession(token);
-
         return ResponseEntity.ok(new ApiResponse(true, "Successfully logged out"));
     }
 
@@ -129,13 +108,17 @@ public class ClientAuthController {
         String token = request.getToken();
         System.out.println("Token: " + token);
 
-        // Get session ID from token
-        Claims session = jwtTokenUtil.getSessionFromToken(token);
+        if(jwtTokenUtil.validateToken(token)) {
+            String email = jwtTokenUtil.getEmailFromJWT(token);
 
-        // Check if session is valid
-        if (jwtTokenUtil.isSessionValid(token)) {
-            return ResponseEntity.ok(new AuthResponse(token, true, "Session is valid", session.get("client", Client.class)));
-        }
+            Optional<Client> clientOptional = clientService.getClientByEmail(email);
+
+            if(clientOptional.isPresent()) {
+                return ResponseEntity.ok(new AuthResponse(token, true, "Session is valid", clientOptional.get()));
+            } else {
+                return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
+            }
+        } 
         return ResponseEntity.ok(new ApiResponse(false, "Session is invalid"));
     }
 }

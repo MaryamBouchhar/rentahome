@@ -6,6 +6,9 @@ import com.fpt.rentahome.Models.Property;
 import com.fpt.rentahome.Repositories.AdminRepository;
 import com.fpt.rentahome.Repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,5 +49,15 @@ public class ClientService {
         client1.setPassword(client.getPassword());
         clientRepository.save(client1);
         return client1;
+    }
+
+    public List<Client> newestClients() {
+        int limit = 6;
+        Pageable pageable = PageRequest.of(0, limit, Sort.by("id").descending());
+        return clientRepository.newestClients(pageable);
+    }
+
+    public int totalClients() {
+        return clientRepository.findAll().size();
     }
 }

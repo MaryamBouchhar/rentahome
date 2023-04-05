@@ -1,6 +1,6 @@
 <script setup>
-import { computed, ref, onMounted } from "vue";
-import { useMainStore } from "@/stores/main";
+import {computed, ref, onMounted} from "vue";
+import {useMainStore} from "@/stores/main";
 import {
   mdiAccountMultiple,
   mdiChartTimelineVariant,
@@ -19,6 +19,8 @@ import CardBoxTransaction from "@/components/CardBoxTransaction.vue";
 import CardBoxClient from "@/components/CardBoxClient.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
+import axios from "axios";
+import TableNewestClients from "@/components/TableNewestClients.vue";
 
 const chartData = ref(null);
 
@@ -35,6 +37,37 @@ const mainStore = useMainStore();
 const clientBarItems = computed(() => mainStore.clients.slice(0, 4));
 
 const transactionBarItems = computed(() => mainStore.history);
+
+//dashboard metrics
+const clients = ref(0);
+const properties = ref(0);
+const todayReservations = ref(0);
+const newestClients = ref([]);
+
+//get metrics
+const getTotalClients = async () => {
+  const response = await axios.get("http://localhost:8080/dashboard/clients-count");
+  clients.value = response.data;
+  console.log("Clients: ", clients.value);
+};
+
+const getTotalProperties = async () => {
+  const response = await axios.get("http://localhost:8080/dashboard/properties-count");
+  properties.value = response.data;
+  console.log("Properties: ", properties.value);
+};
+
+const getTodayReservations = async () => {
+  const response = await axios.get("http://localhost:8080/dashboard/today-reservations");
+  todayReservations.value = response.data;
+  console.log("Reservations: ", todayReservations.value);
+};
+
+onMounted(() => {
+  getTotalClients();
+  getTotalProperties();
+  getTodayReservations();
+});
 </script>
 
 <template>
@@ -54,26 +87,24 @@ const transactionBarItems = computed(() => mainStore.history);
           trend-type="up"
           color="text-emerald-500"
           :icon="mdiAccountMultiple"
-          :number="512"
+          :number="clients"
           label="Clients"
         />
         <CardBoxWidget
-          trend="12%"
-          trend-type="down"
+          trend="35%"
+          trend-type="up"
           color="text-blue-500"
           :icon="mdiHome"
-          :number="7770"
-          prefix="$"
+          :number="properties"
           label="Properties"
         />
         <CardBoxWidget
-          trend="Overflow"
+          trend="8%"
           trend-type="alert"
           color="text-red-500"
           :icon="mdiChartTimelineVariant"
-          :number="256"
-          suffix="%"
-          label="Performance"
+          :number="todayReservations"
+          label="Today Reservations"
         />
       </div>
 
@@ -102,9 +133,9 @@ const transactionBarItems = computed(() => mainStore.history);
         </div>
       </div>
 
-      <SectionTitleLineWithButton :icon="mdiAccountMultiple" title="Clients" />
+      <SectionTitleLineWithButton :icon="mdiAccountMultiple" title="Newest subscibed clients"/>
       <CardBox has-table>
-        <TableSampleClients />
+        <TableNewestClients/>
       </CardBox>
     </SectionMain>
   </LayoutAuthenticated>

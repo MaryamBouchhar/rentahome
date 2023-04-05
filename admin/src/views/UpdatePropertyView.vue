@@ -1,6 +1,6 @@
 <script setup>
 import {reactive, ref} from "vue";
-import {mdiPlus} from "@mdi/js";
+import {mdiHome, mdiUpdate} from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
 import CardBox from "@/components/CardBox.vue";
 import FormCheckRadioGroup from "@/components/FormCheckRadioGroup.vue";
@@ -13,6 +13,7 @@ import BaseButtons from "@/components/BaseButtons.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
 import FormCheckRadio from "@/components/FormCheckRadio.vue";
+import updatePropertyView from "@/views/UpdatePropertyView.vue";
 
 
 </script>
@@ -21,14 +22,14 @@ import FormCheckRadio from "@/components/FormCheckRadio.vue";
   <LayoutAuthenticated>
     <SectionMain>
       <SectionTitleLineWithButton
-        :icon="mdiPlus"
-        title="New Property"
+        :icon="mdiUpdate"
+        title="Update Property"
         main
       >
         <router-link to="/properties">
           <BaseButton
             target="_blank"
-            :icon="mdiProperty"
+            :icon="mdiHome"
             label="Show properties"
             color="contrast"
             rounded-full
@@ -86,23 +87,12 @@ import FormCheckRadio from "@/components/FormCheckRadio.vue";
             v-model="property.description"
           />
         </FormField>
-        <FormField label="Images">
-          <input type="file"
-                 id="images"
-                 name="images"
-                 class="file-input file-input-bordered file-input-info w-full max-w-xs"
-                 @change="onImageSelected"
-                 multiple/>
-        </FormField>
         <BaseDivider/>
 
         <template #footer>
-
           <BaseButtons class=" flex items-center justify-center">
-            <BaseButton type="submit" color="warning" label="Add" @click="addNewProperty"/>
-            <BaseButton type="reset" color="warning" outline label="Reset"/>
+            <BaseButton type="submit" color="warning" label="Edit Property" @click="updateProperty"/>
           </BaseButtons>
-
         </template>
       </CardBox>
     </SectionMain>
@@ -116,19 +106,18 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
-import Style from 'ol/style/Style';
-import Circle from 'ol/style/Circle';
-import Fill from 'ol/style/Fill';
 import VectorSource from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
-import {transform} from 'ol/proj';
-import {fromLonLat} from "ol/proj";
+import {fromLonLat, transform} from 'ol/proj';
+import Style from "ol/style/Style";
+import Circle from "ol/style/Circle";
+import Fill from "ol/style/Fill";
 
 export default {
   name: "NewPropertyView",
   data() {
     return {
-      RESERVATION_API_BASE_URL: "http://localhost:8080/manage-properties",
+      Properties_API_BASE_URL: "http://localhost:8080/manage-properties",
       equipped: [
         {value: "true", label: "Yes"},
         {value: "false", label: "No"},
@@ -168,29 +157,34 @@ export default {
     };
   },
   methods: {
-    async addNewProperty() {
+
+    getPropertyById() {
+      const id = this.$route.params.id;
+      axios.get('http://localhost:8080/manage-properties/properties/' + id)
+        .then((response) => {
+          this.property = response.data
+          console.log("Property: " + this.property);
+          console.log(this.property.category);
+        })
+    },
+
+    async updateProperty() {
       this.property.category = this.property.category.value;
       this.property.rent_type = this.property.rent_type.value;
       this.property.equipped = this.property.equipped.value;
 
       const formData = new FormData();
       formData.append("property", JSON.stringify(this.property));
-      for (let i = 0; i < this.images.length; i++) {
-        formData.append("images", this.images[i]);
-      }
 
-      const headers = {
-        'Content-Type': 'multipart/form-data'
-      }
       //send property and images to backend
-      await axios.post(this.RESERVATION_API_BASE_URL + "/add-property", formData)
+      await axios.put(`http://localhost:8080/manage-properties/update/${this.property.id}`, this.property)
         .then(() => {
           swal({
-            text: "Property Added Successfully!",
+            text: "Property updated Successfully!",
             icon: "success",
             closeOnClickOutside: false,
           });
-          this.$router.go();
+          this.$router.go(-1);
         })
         .catch(error => {
           console.log(error);
@@ -198,7 +192,7 @@ export default {
       console.log(this.property);
     },
     async getCategories() {
-      await axios.get(this.RESERVATION_API_BASE_URL + "/categories")
+      await axios.get(this.Properties_API_BASE_URL + "/categories")
         .then(response => {
           this.categories = response.data;
         })
@@ -207,7 +201,7 @@ export default {
         });
     },
     async getRentTypes() {
-      await axios.get(this.RESERVATION_API_BASE_URL + "/rent-types")
+      await axios.get(this.Properties_API_BASE_URLL + "/rent-types")
         .then(response => {
           this.types = response.data;
         })
@@ -231,7 +225,7 @@ export default {
 
       let current_property_id = 0;
 
-      await axios.get(this.RESERVATION_API_BASE_URL + "/latest-property-id")
+      await axios.get(this.Properties_API_BASE_URL + "/latest-property-id")
         .then(response => {
           current_property_id = response.data;
         })
@@ -243,6 +237,9 @@ export default {
     }
   },
   mounted() {
+
+    this.getPropertyById();
+
     // Define the map view
     const view = new View({
       center: fromLonLat([-9.6, 30.4]), // Set center to Agadir coordinates

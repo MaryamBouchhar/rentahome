@@ -1,7 +1,7 @@
 <script setup>
 import {computed, ref} from "vue";
 import {useMainStore} from "@/stores/main";
-import {mdiEye, mdiImageEdit, mdiTrashCan, mdiUpdate} from "@mdi/js";
+import {mdiEye, mdiPencil, mdiTrashCan, mdiUpdate} from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
@@ -156,13 +156,20 @@ const checked = (isChecked, property) => {
             @click="isModalActive=true,getProperty(property)"
           />
           <BaseButton
+            color="warning"
+            :icon="mdiPencil"
+            :to="'/update-property/' + property.id"
+            small
+          />
+          <BaseButton
             color="danger"
             :icon="mdiTrashCan"
             small
-            @click="isModalDangerActive = true"
+            @click="deleteProperty(property.id)"
           />
         </BaseButtons>
       </td>
+
     </tr>
     </tbody>
   </table>
@@ -185,6 +192,7 @@ const checked = (isChecked, property) => {
 </template>
 <script>
 import axios from 'axios';
+import swal from "sweetalert";
 
 export default {
   name: "PropertyView",
@@ -203,12 +211,12 @@ export default {
       await axios.get(this.PROPERTY_API_BASE_URL)
         .then(response => {
           this.properties = response.data
-          this.properties.forEach(property => {
-            property.publish_date = new Date(property.publish_date).toLocaleDateString();
-          })
+          // this.properties.forEach(property => {
+          //   property.publish_date = new Date(property.publish_date).toLocaleDateString();
+          // })
+          console.log(this.properties)
         })
         .catch(error => console.log(error))
-      console.log(this.properties);
     },
     async getProperty(property) {
 
@@ -218,7 +226,30 @@ export default {
         })
         .catch(error => console.log(error))
       console.log(this.selectedProperty.location.city)
-    }
+    },
+    deleteProperty(id) {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this property!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            axios.delete(`http://localhost:8080/manage-properties/delete/${id}`)
+              .then(response => {
+                swal("Poof! Your property has been deleted!", {
+                  icon: "success",
+                });
+                this.getProperties()
+              })
+              .catch(error => console.log(error))
+          } else {
+            swal("Your property is safe!");
+          }
+        });
+    },
   },
   computed: {
     paginatedProperties: function () {

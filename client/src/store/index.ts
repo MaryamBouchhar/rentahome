@@ -10,7 +10,7 @@ const store = createStore({
             rtl: false,
             path: '/',
             isAuthenticated: false,
-            token: localStorage.getItem('token') || '',
+            token: localStorage.getItem('token') || null,
             user: null,
             auth_error: null,
         };
@@ -113,28 +113,26 @@ const store = createStore({
             });
         },
         async logout({commit}) {
-            axios.post(API_BASE_URL + 'logout', {
+            // remove token from local storage
+            localStorage.removeItem('token');
+
+            // set authentication status in store
+            commit('setToken', null);
+            commit('setIsAuthenticated', false);
+            commit('setUser', null);
+
+            router.push('/');
+
+            axios.post(API_BASE_URL + 'finish', {
                 token: store.state.token
             }).then(response => {
                 console.log(response);
-
-                if (response.data.success) {
-                    // remove token from local storage
-                    localStorage.removeItem('token');
-
-                    // set authentication status in store
-                    commit('setToken', '');
-                    commit('setIsAuthenticated', false);
-                    commit('setUser', null);
-
-                    router.push('/');
-                } else {
-                }
             }).catch(error => {
                 console.log(error);
             });
         },
         async checkSession({commit}) {
+            if(store.state.token != '' || !isNaN(store.state.token)) {
             // @ts-ignore
             axios.post(API_BASE_URL + 'check', {
                 token: store.state.token
@@ -144,21 +142,26 @@ const store = createStore({
                     commit('setIsAuthenticated', true);
                     commit('setAuthError', null);
                     commit('setUser', response.data.client);
+
+                    let redirect = router.currentRoute.value.query.redirect || '/';
+                    // @ts-ignore
+                    router.push(redirect)
                 } else {
                     // remove token from local storage
                     localStorage.removeItem('token');
 
                     // set authentication status in store
-                    commit('setToken', '');
+                    commit('setToken', null);
                     commit('setIsAuthenticated', false);
                     commit('setUser', null);
                 }
             }).catch(error => {
                 console.log(error);
-                commit('setToken', '');
+                commit('setToken', null);
                 commit('setIsAuthenticated', false);
                 commit('setUser', null);
             });
+        }
         },
         uploadAvatar({commit}, {avatar}) {
 

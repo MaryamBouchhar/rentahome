@@ -43,9 +43,13 @@ const checked = (isChecked, client) => {
 </script>
 
 <template>
-  <CardBoxModal v-model="isModalActive" title="Sample modal">
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
+  <CardBoxModal v-model="isModalActive" title="View Reservation Detail">
+    <span> <b>Property ID :</b></span><span> {{ selectedReservation.id }}</span> <br>
+    <span> <b>Client Name :</b></span><span> {{ selectedReservation.client.name }}</span> <br>
+    <span> <b>Client Email :</b></span><span> {{ selectedReservation.client.email }}</span> <br>
+    <span> <b>Client Phone :</b></span><span> {{ selectedReservation.client.phone }}</span> <br>
+    <span> <b>Reservation will start from :</b></span><span> {{ selectedReservation.start_date }}</span> <br>
+    <span> <b>Reservation will end at :</b></span><span> {{ selectedReservation.end_date }}</span> <br>
   </CardBoxModal>
 
   <CardBoxModal
@@ -113,7 +117,7 @@ const checked = (isChecked, client) => {
             color="info"
             :icon="mdiEye"
             small
-            @click="isModalActive = true"
+            @click="isModalActive = true, selectedReservation = reservation"
           />
           <BaseButton
             color="success"
@@ -165,6 +169,7 @@ export default {
     return {
       reservations: [],
       currentPage: 0,
+      selectedReservation: {},
       pageSize: 5,
       RESERVATION_API_BASE_URL: "http://localhost:8080/manage-reservation",
     };
