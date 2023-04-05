@@ -1,6 +1,8 @@
 package com.fpt.rentahome.Helpers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -9,12 +11,14 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
+import java.util.Properties;
+
 
 @Service
 public class EmailService {
     
     @Autowired
-    private JavaMailSender emailSender;
+    private JavaMailSender emailSender = javaMailSender();
     
     public void sendVerificationEmail(String toEmail, String verificationToken) {
         String subject = "Verify your email";
@@ -34,5 +38,20 @@ public class EmailService {
         } finally {
             emailSender.send(message);
         }
+    }
+
+    @Bean
+    public JavaMailSender javaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername("abdelatiflaghjaj@gmail.com");
+        mailSender.setPassword("pdrnuadvktlkzsmn");
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.smtp.starttls.enable", "true");
+
+        return mailSender;
     }
 }
